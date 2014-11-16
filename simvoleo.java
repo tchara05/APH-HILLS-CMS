@@ -20,10 +20,7 @@ import java.awt.Font;
 
 import javax.swing.SwingConstants;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.RowSpec;
+
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
