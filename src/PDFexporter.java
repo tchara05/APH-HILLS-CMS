@@ -22,6 +22,9 @@ public class PDFexporter {
 		private static int RECEIPT = 3;
 		
 		
+		
+		
+		
 		private static Paragraph NewLine = new Paragraph("\n");
 		
 		
