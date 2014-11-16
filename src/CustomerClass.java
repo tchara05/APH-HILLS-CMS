@@ -9,6 +9,9 @@ public class CustomerClass {
 	String phonebus;
 	String phonecon;
 	String fax;
+	
+	
+	
 	boolean closeAccount;
 	boolean informationMaterial;
 	String address;

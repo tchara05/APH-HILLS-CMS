@@ -1,15 +1,29 @@
 import java.awt.EventQueue;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
+import java.awt.Color;
+import java.io.InputStream;
 import java.util.Arrays;
+
+import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
+
 import java.awt.Label;
 import java.awt.Font;
+import java.awt.SystemColor;
+
+import javax.swing.UIManager;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPasswordField;
@@ -48,6 +62,8 @@ public class myLogin {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
+	
 
 	// check pass
 	final boolean isPasswordCorrect_admin(char[] pass) {
@@ -152,6 +168,7 @@ public class myLogin {
 
 		return isCorrect;
 	}
+	
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
@@ -162,7 +179,7 @@ public class myLogin {
 
 		ImageIcon input = new ImageIcon(getClass().getResource(
 				"aphrodite_small.png"));
-
+		
 		JLabel lblNewLabel = new JLabel(input);
 		lblNewLabel.setBounds(35, 11, 117, 74);
 		frame.getContentPane().add(lblNewLabel);
@@ -233,7 +250,6 @@ public class myLogin {
 							"Warning", JOptionPane.WARNING_MESSAGE);
 
 				Object typelogin = comboBoxUser.getSelectedItem();
-				type = "admin";
 				if (typelogin.toString().equals("Admin"))
 					type = "admin";
 				else if (typelogin.toString().equals("Secretary"))
@@ -248,7 +264,8 @@ public class myLogin {
 							&& isPasswordCorrect_admin(input)) {
 						frame.setVisible(false);
 						new adminLogin(usern, type).frame.setVisible(true);
-					} else
+					}
+					else
 						JOptionPane.showMessageDialog(null,
 								"Username or Password is wrong", "WARNING",
 								JOptionPane.WARNING_MESSAGE);
@@ -257,7 +274,8 @@ public class myLogin {
 							&& isPasswordCorrect_secretary(input)) {
 						frame.setVisible(false);
 						new adminLogin(usern, type).frame.setVisible(true);
-					} else
+					}
+					else
 						JOptionPane.showMessageDialog(null,
 								"Username or Password is wrong", "WARNING",
 								JOptionPane.WARNING_MESSAGE);
@@ -266,7 +284,8 @@ public class myLogin {
 							&& isPasswordCorrect_accountant(input)) {
 						frame.setVisible(false);
 						new adminLogin(usern, type).frame.setVisible(true);
-					} else
+					}
+					else
 						JOptionPane.showMessageDialog(null,
 								"Username or Password is wrong", "WARNING",
 								JOptionPane.WARNING_MESSAGE);
@@ -275,7 +294,8 @@ public class myLogin {
 							&& isPasswordCorrect_security(input)) {
 						frame.setVisible(false);
 						new adminLogin(usern, type).frame.setVisible(true);
-					} else
+					}
+					else
 						JOptionPane.showMessageDialog(null,
 								"Username or Password is wrong", "WARNING",
 								JOptionPane.WARNING_MESSAGE);
@@ -288,9 +308,7 @@ public class myLogin {
 		final JButton help = new JButton("HELP");
 		help.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane
-						.showMessageDialog(
-								null,
+				JOptionPane.showMessageDialog(null,
 								"1. Choose your login type from the combo box \n2. Type your username \n3. Type your password \n4. Then, Click LOG IN",
 								"HELP", JOptionPane.INFORMATION_MESSAGE);
 			}

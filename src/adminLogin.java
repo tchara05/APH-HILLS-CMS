@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class adminLogin {
 
@@ -95,6 +97,12 @@ public class adminLogin {
 		frame.getContentPane().add(editcust);
 
 		JButton addprop = new JButton("Add new");
+		addprop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new AddNewProperty().main(null);
+				
+			}
+		});
 		addprop.setBounds(237, 156, 89, 23);
 		frame.getContentPane().add(addprop);
 
@@ -186,7 +194,7 @@ public class adminLogin {
 			}
 		});
 		help.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		help.setBounds(237, 302, 89, 23);
+		help.setBounds(241, 302, 89, 23);
 		frame.getContentPane().add(help);
 
 		JButton switch_user = new JButton("SWITCH USER");
@@ -208,23 +216,52 @@ public class adminLogin {
 			}
 		});
 		exit.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		exit.setBounds(138, 302, 89, 23);
+		exit.setBounds(138, 302, 93, 23);
 		frame.getContentPane().add(exit);
 		
-		JButton Emails = new JButton("Emails");
-		Emails.setBounds(138, 252, 89, 29);
-		frame.getContentPane().add(Emails);
-		
-		JButton Proforma = new JButton("Proforma");
-		Proforma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JButton btnEmail = new JButton("Email");
+		btnEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		Proforma.setBounds(237, 252, 89, 29);
-		frame.getContentPane().add(Proforma);
+		btnEmail.setBounds(138, 255, 89, 23);
+		frame.getContentPane().add(btnEmail);
+		
+		JButton btnPoforma = new JButton("Proforma");
+		btnPoforma.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0)  {
+				
+				try{
+					new PDFexporter().creat_Invoice(2);
+				}catch (Exception t){
+					System.out.println("ok");
+				}
+			}
+		});
+		btnPoforma.setBounds(237, 255, 89, 23);
+		frame.getContentPane().add(btnPoforma);
 		
 		JButton btnInvoice = new JButton("Invoice");
-		btnInvoice.setBounds(336, 252, 117, 29);
+		btnInvoice.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				try{
+					new PDFexporter().creat_Invoice(1);
+				}catch (Exception t){
+					System.out.println("ok");
+				}
+				
+				
+				try{
+					new PDFexporter().creat_Invoice(3);
+				}catch (Exception t){
+					System.out.println("ok");
+				}
+			}
+		});
+		btnInvoice.setBounds(336, 255, 113, 23);
 		frame.getContentPane().add(btnInvoice);
 	}
 }
