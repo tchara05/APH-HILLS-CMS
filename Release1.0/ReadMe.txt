@@ -5,7 +5,6 @@
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
 
 \f0\fs24 \cf0 \
-\
 This is the first prototype edition.\
 \
 You can just add the zip file as existing project in \
@@ -36,7 +35,6 @@ The proforma and invoice buttons have some fuctionality too.\
 The profroma button generates a pdf document for PROFORMA   and the invoice button \
 generates pdf documents INVOICE and RECEIPT.\
 These documetns are empty show how invoice receipt and proforma will be.\
-\
 \
 \
 \
