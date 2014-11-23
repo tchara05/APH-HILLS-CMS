@@ -1,42 +1,41 @@
-import java.awt.Checkbox;
-import java.awt.EventQueue;
+package Forms;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import Threads.*;
+import javax.swing.JCheckBox;
 
 
-public class CustomerForm implements Runnable{
+public class CustomerForm{
 
 	private static JFrame CustomerFrame;
 	private JPanel contentPane;
-	JTextField fname;
-	JTextField lname;
-	JTextField city;
-	JTextField accountCode;
-	JTextField email1;
-	JTextField country;
-	JTextField email2;
-	JTextField zip;
-	JTextField phonebus;
-	JTextField phonecon;
-	JTextField phonemob;
-	JTextField note;
-	JTextField fax;
-	JTextField address;
-	Checkbox aa;
-	Checkbox bb;
+	private static JTextField fname;
+	private static JTextField lname;
+	private static JTextField city;
+	private static JTextField accountCode;
+	private static JTextField email1;
+	private static JTextField country;
+	private static JTextField email2;
+	private static JTextField zip;
+	private static JTextField phonebus;
+	private static JTextField phonecon;
+	private static JTextField phonemob;
+	private static JTextField note;
+	private static JTextField fax;
+	private static JTextField address;
+	private static JCheckBox ClosedAccount;
+	private static JCheckBox InfoMaterial ;
+	
 	public static int id = 0;
-	public static ArrayList<Customer> allCustomers = new ArrayList<Customer>();
 
 
 	/**
@@ -45,8 +44,8 @@ public class CustomerForm implements Runnable{
 	public static void main(String[] args) {
 		
 		CustomerForm custform = new CustomerForm();
-		EventQueue.invokeLater(custform);
-		custform.run();
+		custform.setVisible(true);
+
 	}
 
 	/**
@@ -87,6 +86,7 @@ public class CustomerForm implements Runnable{
 		accountCode.setBounds(166, 106, 115, 20);
 		contentPane.add(accountCode);
 		accountCode.setColumns(10);
+		accountCode.setText("" + id);
 
 		JLabel lblNewLabel = new JLabel("First Name 1 :");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -198,18 +198,10 @@ public class CustomerForm implements Runnable{
 		lblClosedAccount.setBounds(29, 337, 127, 14);
 		contentPane.add(lblClosedAccount);
 
-		final JRadioButton closedacc = new JRadioButton("Yes");
-		closedacc.setBounds(169, 333, 109, 23);
-		contentPane.add(closedacc);
-
 		JLabel lblInformationMaterial = new JLabel("Information Material :");
 		lblInformationMaterial.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblInformationMaterial.setBounds(29, 365, 140, 14);
 		contentPane.add(lblInformationMaterial);
-
-		final JRadioButton infomaterial = new JRadioButton("Yes");
-		infomaterial.setBounds(169, 361, 109, 23);
-		contentPane.add(infomaterial);
 
 		JLabel lblNote = new JLabel("Note :");
 		lblNote.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -226,67 +218,15 @@ public class CustomerForm implements Runnable{
 		lblZipCode.setBounds(323, 183, 127, 14);
 		contentPane.add(lblZipCode);
 
-		final JButton addCust = new JButton("ADD/UPDATE CUSTOMER");
+		final JButton addCust = new JButton("ADD CUSTOMER");
 		addCust.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		addCust.setBounds(304, 485, 240, 23);
-
-		//if (changed == 3)
-			addCust.setEnabled(false);
+		addCust.setEnabled(true);
 
 		addCust.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-
-			/**	// ginete tropopoiisi
-				if (changed == 1) {
-					cust.fname = fname.getText();
-					cust.lname = lname.getText();
-					cust.accountCode = Integer.parseInt(accountCode.getText());
-					cust.email1 = email1.getText();
-					cust.email2 = email2.getText();
-					cust.phonemob = phonemob.getText();
-					cust.phonecon = phonecon.getText();
-					cust.fax = fax.getText();
-					// if(cust.closeAccount == true)
-					// aa.setEnabled(true);
-					// if(cust.informationMaterial == true)
-					// bb.setEnabled(true);
-					cust.address = address.getText();
-					cust.city = city.getText();
-					cust.country = country.getText();
-					cust.zipCode = zip.getText();
-					cust.note = note.getText();
-					frame.setVisible(false);
-					
-				}
-
-				else if (changed == 0) {
-
-					if (blank == 1)
-						JOptionPane
-								.showMessageDialog(
-										null,
-										"There are empty fields. \nPlease, check again",
-										"Warning", JOptionPane.WARNING_MESSAGE);
-					else {
-						CustomerClass newCustomer = new CustomerClass(fname
-								.getText(), lname.getText(),
-								(1015200 + id++), email1
-										.getText(), email2.getText(), phonemob
-										.getText(), phonebus.getText(),
-								phonecon.getText(), fax.getText(), closedacc
-										.isSelected(), infomaterial
-										.isSelected(), address.getText(), city
-										.getText(), country.getText(), zip
-										.getText(), note.getText());
-
-						allCustomers.add(newCustomer); 
-
-						frame.setVisible(false);
-					
-					} 
-
-				} */
+				
+				  new BtnAddCustomer().start();
 			}
 		});
 		contentPane.add(addCust);
@@ -321,29 +261,131 @@ public class CustomerForm implements Runnable{
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_3.setBounds(169, 38, 112, 23);
 		contentPane.add(lblNewLabel_3);
+		
+		 ClosedAccount = new JCheckBox("Yes");
+		ClosedAccount.setBounds(166, 333, 128, 23);
+		contentPane.add(ClosedAccount);
+		
+		 InfoMaterial = new JCheckBox("Yes");
+		InfoMaterial.setBounds(166, 361, 128, 23);
+		contentPane.add(InfoMaterial);
 	}
 
 	
 	public static void setVisible(boolean f){
 		CustomerFrame.setVisible(f);
-		
 	}
 	
 	
 	
-	public Customer  addNewCustomer(){
-		
-		return null;
+	
+	/******************************* All Getters Here *****************************/
+	
+	public static String getFname(){
+		return fname.getText();
+	}
+	public static String getLname(){
+		return lname.getText();
+	}
+	public static String getCity(){
+		return city.getText();
+	}
+	public static String getAccountCode(){
+		return accountCode.getText();
+	}
+	public static String getEmail1(){
+		return email1.getText();
+	}
+	public static String getEmail2(){
+		return email2.getText();
+	}
+	public static String getCountry(){
+		return country.getText();
+	}
+	public static String getZipCode(){
+		return zip.getText();
+	}
+	public static String getPhoneBussines(){
+		return phonebus.getText();
+	}
+	public static String getPhoneMob(){
+		return phonemob.getText();
+	}
+	public static String getPhoneConnection(){
+		return phonecon.getText();
+	}
+	public static String getNote(){
+		return note.getText();
+	}
+	public static String getFax(){
+		return fax.getText();
+	}
+	public static String getAddress(){
+		return address.getText();
+	}
+	public static boolean getInfoMaterial(){
+		return ClosedAccount.isSelected();
+	}
+	public static boolean getAccountClose(){
+		return InfoMaterial.isSelected();
+	}
+	
+	public static int getID(){
+		return id;
 	}
 	
 	
-	@Override
-	public void run() {
-		
-		CustomerFrame.setVisible(false);
-		
-		// TODO Auto-generated method stub
-		
+	
+	/******************************* All Setters Here *****************************/
+	
+	
+	public static void setFName(String srt){
+		fname.setText(srt);
 	}
-
+	public static void setLName(String srt){
+		lname.setText(srt);
+	}
+	public static void setCity(String srt){
+		city.setText(srt);
+	}
+	public static void setAddress(String srt){
+		address.setText(srt);
+	}
+	public static void setZip(String srt){
+		zip.setText(srt);
+	}
+	public static void setAccountCode(String srt){
+		accountCode.setText(srt);
+	}
+	public static void setEmail1(String srt){
+		email1.setText(srt);
+	}
+	public static void setEmail2(String srt){
+		email2.setText(srt);
+	}
+	public static void setPhoneMob(String srt){
+		phonemob.setText(srt);
+	}
+	public static void setPhoneBussines(String srt){
+		phonebus.setText(srt);
+	}
+	public static void setContact(String srt){
+		phonecon.setText(srt);
+	}
+	public static void setFax(String srt){
+		fax.setText(srt);
+	}
+	public static void setInfoMaterial(boolean f){
+		InfoMaterial.setSelected(f);
+	}
+	public static void setAccountClosed(boolean f){
+		ClosedAccount.setSelected(f);
+	}
+	public static void setCountry(String srt){
+		country.setText(srt);
+	}
+	public static void setNote(String srt){
+		note.setText(srt);
+	}
+	
 }

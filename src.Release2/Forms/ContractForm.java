@@ -1,3 +1,4 @@
+package Forms;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -364,7 +365,7 @@ public class ContractForm implements Runnable {
 	@Override
 	public void run() {
 		
-		ContractForm.setVisible(false);
+		ContractForm.setVisible(true);
 		
 		// TODO Auto-generated method stub
 		

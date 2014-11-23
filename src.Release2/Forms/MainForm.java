@@ -1,3 +1,4 @@
+package Forms;
 
 
 import javax.swing.ImageIcon;
@@ -7,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -25,15 +27,16 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPasswordField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class MainProgram implements Runnable {
+public class MainForm implements Runnable {
 
 	private static JFrame LoginFrame;
 	private JTextField username;
 	private JPasswordField password;
-	
-	
-	
+	private static String PermissionCategory;
+	private static ArrayList<Customer> Customers = new ArrayList<Customer>();
 	
 
 	/**
@@ -42,7 +45,7 @@ public class MainProgram implements Runnable {
 	public static void main(String[] args) {
 		
 		//Program Starts
-		MainProgram main = new MainProgram();
+		MainForm main = new MainForm();
 		
 		//AdminMenu
 		AdminMenuForm  AdmMenu= new AdminMenuForm(main.getUserName(), main.getPassword().toString());
@@ -63,15 +66,18 @@ public class MainProgram implements Runnable {
 		PropertyForm prtyForm = new PropertyForm();
 		
 		
-	
+		AdmMenu.setActor(PermissionCategory);
 		
-		prtyForm.run();
-		manageCustForm.run();
-		AdmMenu.run();
-		main.run();
-		pform.run();
-		contractForm.run();
-		custForm.run();
+		
+		
+		prtyForm.setVisible(false);
+		
+		manageCustForm.setVisible(false);
+		AdmMenu.setVisible(false);
+		main.setVisible(true);
+		pform.setVisible(false);
+		contractForm.setVisible(false);
+		custForm.setVisible(false);
 		
 		
 
@@ -80,7 +86,7 @@ public class MainProgram implements Runnable {
 	/**
 	 * Create the application.
 	 */
-	public MainProgram() {
+	public MainForm() {
 		initialize();
 	}
 
@@ -229,12 +235,31 @@ public class MainProgram implements Runnable {
 		LoginFrame.getContentPane().add(username);
 		username.setColumns(10);
 
-		final JComboBox comboBoxUser = new JComboBox();
-		comboBoxUser.setModel(new DefaultComboBoxModel(new String[] { "Admin",
+		final JComboBox Actors = new JComboBox();
+		Actors.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+				int permision = Actors.getSelectedIndex();
+				if (permision == 0){
+					PermissionCategory = "Admin";
+					
+				}else if (permision ==1 ){
+					PermissionCategory = "Secretary";
+				}else if (permision == 2){
+					PermissionCategory = "Accountant";
+				}else {
+					PermissionCategory = "Security";
+				}
+			
+			
+			}
+		});
+		Actors.setModel(new DefaultComboBoxModel(new String[] { "Admin",
 				"Secretary", "Accountant", "Security" }));
-		comboBoxUser.setSelectedIndex(0);
-		comboBoxUser.setBounds(167, 91, 133, 20);
-		LoginFrame.getContentPane().add(comboBoxUser);
+		Actors.setSelectedIndex(1);
+		Actors.setBounds(167, 91, 133, 20);
+		LoginFrame.getContentPane().add(Actors);
 
 		final JButton login = new JButton("LOGIN");
 		login.setEnabled(false);
@@ -253,6 +278,11 @@ public class MainProgram implements Runnable {
 			}
 
 			public void changed() {
+				
+				
+				
+				
+				
 				if (username.getText().equals("")) {
 					login.setEnabled(false);
 				} else {
@@ -274,7 +304,7 @@ public class MainProgram implements Runnable {
 					JOptionPane.showMessageDialog(null, "Password is missing",
 							"Warning", JOptionPane.WARNING_MESSAGE);
 
-				Object typelogin = comboBoxUser.getSelectedItem();
+				Object typelogin = Actors.getSelectedItem();
 				if (typelogin.toString().equals("Admin"))
 					type = "admin";
 				else if (typelogin.toString().equals("Secretary"))
@@ -359,6 +389,10 @@ public class MainProgram implements Runnable {
 	}
 
 	
+	
+
+	
+	
 	public String getUserName(){
 		return username.getText();
 	}
@@ -371,11 +405,14 @@ public class MainProgram implements Runnable {
 		LoginFrame.setVisible(f);
 	}
 	
+	 public static ArrayList<Customer> getCustomers(){
+		 return Customers;
+	 }
 	
 	@Override
 	public void run() {
 		LoginFrame.setVisible(true);
-		// TODO Auto-generated method stub
+	
 		
 	}
 }

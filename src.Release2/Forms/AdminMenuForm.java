@@ -1,3 +1,4 @@
+package Forms;
 import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -13,9 +14,8 @@ import java.awt.event.MouseEvent;
 
 public class AdminMenuForm implements Runnable {
 
-	private static JFrame AdminForm
-	;
-	private JTextField textField;
+	private static JFrame AdminForm;
+	private JTextField Actor;
 
 	/**
 	 * Launch the application.
@@ -54,16 +54,16 @@ public class AdminMenuForm implements Runnable {
 		lblNewLabel_1.setBounds(138, 32, 142, 25);
 		AdminForm.getContentPane().add(lblNewLabel_1);
 
-		textField = new JTextField();
-		textField.setBounds(388, 11, 113, 20);
-		AdminForm.getContentPane().add(textField);
-		textField.setColumns(10);
+		Actor = new JTextField();
+		Actor.setBounds(388, 11, 113, 20);
+		AdminForm.getContentPane().add(Actor);
+		Actor.setColumns(10);
 
 		// //////////////////////////////////////////////////
 		JButton addcust = new JButton("Add new");
 		addcust.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// frame.setVisible(false);
+				
 				CustomerForm.setVisible(true);
 			}
 		});
@@ -147,8 +147,8 @@ public class AdminMenuForm implements Runnable {
 			editprop.setEnabled(false);
 		}
 
-		textField.setText(username);
-		textField.setEditable(false);
+		Actor.setText(username);
+		Actor.setEditable(false);
 		// textField.setEnabled(false);
 
 		JLabel lblLogInAs = new JLabel("Loged in as:");
@@ -196,7 +196,7 @@ public class AdminMenuForm implements Runnable {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				AdminForm.setVisible(false);
-				MainProgram.setVisible(true);
+				MainForm.setVisible(true);
 			}
 		});
 		switch_user.setBounds(336, 302, 113, 24);
@@ -206,7 +206,7 @@ public class AdminMenuForm implements Runnable {
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminForm.setVisible(false);
-				AdminForm.dispose();
+				System.exit(1);
 			}
 		});
 		exit.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -227,7 +227,9 @@ public class AdminMenuForm implements Runnable {
 			public void mouseClicked(MouseEvent arg0)  {
 				
 				try{
-					new PDFexporter().creat_Invoice(2);
+					PDFexporter t = new PDFexporter();
+					t.setDocType(2);
+					t.run();
 				}catch (Exception t){
 					System.out.println("ok");
 				}
@@ -237,26 +239,31 @@ public class AdminMenuForm implements Runnable {
 		AdminForm.getContentPane().add(btnPoforma);
 		
 		JButton btnInvoice = new JButton("Invoice");
-		btnInvoice.addMouseListener(new MouseAdapter() {
+		btnInvoice.addMouseListener(new MouseAdapter()  {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
 				try{
-					new PDFexporter().creat_Invoice(1);
+					PDFexporter t = new PDFexporter();
+					t.setDocType(1);
+					t.run();
 				}catch (Exception t){
-					System.out.println("ok");
+	
 				}
 				
 				
-				try{
-					new PDFexporter().creat_Invoice(3);
-				}catch (Exception t){
-					System.out.println("ok");
-				}
 			}
 		});
+		
+		
 		btnInvoice.setBounds(336, 255, 113, 23);
 		AdminForm.getContentPane().add(btnInvoice);
+	}
+	
+	public void setActor(String pr){
+		
+		Actor.setText(pr);
+		
 	}
 	
 	
