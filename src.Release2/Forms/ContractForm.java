@@ -1,4 +1,5 @@
 package Forms;
+import Threads.BtnAddCustomer;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JCheckBox;
 
 
 public class ContractForm implements Runnable {
@@ -335,23 +339,29 @@ public class ContractForm implements Runnable {
 		btnExit.setBounds(630, 367, 89, 23);
 		contentPane.add(btnExit);
 		
-		JRadioButton multipleOwner = new JRadioButton("Multiple Owner");
-		multipleOwner.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		multipleOwner.setBounds(524, 271, 140, 23);
-		contentPane.add(multipleOwner);
-		
-		JRadioButton closedAccount = new JRadioButton("Closed Account");
-		closedAccount.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		closedAccount.setBounds(524, 301, 140, 23);
-		contentPane.add(closedAccount);
-		
 		JButton btnNewButton = new JButton("Add Contract");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				
+			}
+		});
 		btnNewButton.setBounds(500, 367, 109, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnHelp = new JButton("Help");
 		btnHelp.setBounds(630, 334, 89, 23);
 		contentPane.add(btnHelp);
+		
+		JCheckBox MltiOwner = new JCheckBox("Multiple Owner");
+		MltiOwner.setBounds(524, 270, 128, 23);
+		contentPane.add(MltiOwner);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Closed Account");
+		chckbxNewCheckBox.setBounds(524, 301, 154, 23);
+		contentPane.add(chckbxNewCheckBox);
 		
 		
 	}
@@ -370,6 +380,4 @@ public class ContractForm implements Runnable {
 		// TODO Auto-generated method stub
 		
 	}
-	
-
 }
