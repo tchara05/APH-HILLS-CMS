@@ -5,14 +5,13 @@ import javax.swing.JOptionPane;
 
 import Forms.MainForm;
 import Forms.ManageCustForm;
-import Forms.ManagePropForm;
+import Forms.ManagePropertyForm;
 import Forms.Property;
 import Forms.PropertyForm;
 
-public class BtnDeleteProperty implements Runnable {
+public class BtnDeleteProperty extends Thread {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
 	public void run() {
 
 			int go = 0;
@@ -26,7 +25,7 @@ public class BtnDeleteProperty implements Runnable {
 
 			if (go == 0) {
 
-				String name_sur = ManagePropForm.list.getSelectedValue().toString();
+				String name_sur = ManagePropertyForm.list.getSelectedValue().toString();
 				String[] name = name_sur.split("\\s+");
 				String idnum = name[0];
 				int id_num = Integer.parseInt(idnum.toString());
@@ -36,8 +35,8 @@ public class BtnDeleteProperty implements Runnable {
 					int propID = Integer.parseInt(id_prop);
 					if (id_num == propID) {
 						MainForm.getProperties().remove(i);
-						ManagePropForm.list.removeAll();
-						ManagePropForm.list.setModel(new AbstractListModel() {
+						ManagePropertyForm.list.removeAll();
+						ManagePropertyForm.list.setModel(new AbstractListModel() {
 							String[] values = new String[MainForm.getProperties()
 									.size()];
 							{

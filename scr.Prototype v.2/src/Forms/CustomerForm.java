@@ -1,5 +1,4 @@
 package Forms;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +11,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import Threads.*;
 import javax.swing.JCheckBox;
-
 
 public class CustomerForm{
 
@@ -43,8 +41,7 @@ public class CustomerForm{
 	 */
 	public static void main(String[] args) {
 		
-		CustomerForm custform = new CustomerForm();
-		custform.setVisible(true);
+		new CustomerForm();
 
 	}
 
@@ -226,7 +223,8 @@ public class CustomerForm{
 		addCust.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				  new BtnAddCustomer().start();
+				
+				new BtnAddCustomer().start();
 			}
 		});
 		contentPane.add(addCust);
@@ -324,15 +322,12 @@ public class CustomerForm{
 		return address.getText();
 	}
 	public static boolean getInfoMaterial(){
-		return ClosedAccount.isSelected();
-	}
-	public static boolean getAccountClose(){
 		return InfoMaterial.isSelected();
 	}
-	
-	public static int getID(){
-		return id;
+	public static boolean getAccountClose(){
+		return ClosedAccount.isSelected();
 	}
+	
 	
 	
 	
@@ -387,5 +382,4 @@ public class CustomerForm{
 	public static void setNote(String srt){
 		note.setText(srt);
 	}
-	
 }

@@ -14,6 +14,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JCheckBox;
+
+import Threads.BtnAddProperty;
 
 public class PropertyForm {
 	private JPanel contentPane;
@@ -32,7 +35,23 @@ public class PropertyForm {
 	private static JTextField NumberOfBathrooms;
 	private static JTextField NumberOfFloors;
 	private static JTextField NumberOfAirConditionUnits;
-
+	private static JCheckBox PropertyDelivered; ///////
+	private static JCheckBox RentalGuarantee; ////////
+	private static JCheckBox Commited;/////
+	private static JCheckBox RentalPlan;
+	private static JCheckBox GrandView; /////////
+	private static JCheckBox TitleDeed;/////////
+	private static JCheckBox Pool;///////
+	private static JCheckBox Garden;////
+	private static JCheckBox Parking; ////
+	private static JCheckBox PoolHeading;/////
+	private static JCheckBox CentralHeading; ////
+	private static JCheckBox AirCond;/////
+	private static JCheckBox Basement;/////
+	public static int plotID = 0;
+	
+	
+	
 	private static JFrame PropertyForm;
 
 	/**
@@ -77,9 +96,11 @@ public class PropertyForm {
 		contentPane.add(lblNewLabel);
 
 		PlotID = new JTextField();
+		PlotID.setEditable(false);
 		PlotID.setBounds(175, 95, 220, 20);
 		contentPane.add(PlotID);
 		PlotID.setColumns(10);
+		PlotID.setText(plotID+"");
 
 		JLabel lblGrand = new JLabel("Grand View Rights to BRM ");
 		lblGrand.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -100,11 +121,6 @@ public class PropertyForm {
 		lblTitleDeed.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblTitleDeed.setBounds(481, 126, 87, 14);
 		contentPane.add(lblTitleDeed);
-
-		JRadioButton rdbtnIncludes = new JRadioButton("Included");
-		rdbtnIncludes.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnIncludes.setBounds(697, 122, 103, 23);
-		contentPane.add(rdbtnIncludes);
 
 		JLabel lblPlotName = new JLabel("Plot Name :");
 		lblPlotName.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -234,11 +250,6 @@ public class PropertyForm {
 		lblPool.setBounds(481, 260, 87, 14);
 		contentPane.add(lblPool);
 
-		JRadioButton rdbtnHave = new JRadioButton("Included");
-		rdbtnHave.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnHave.setBounds(697, 256, 103, 23);
-		contentPane.add(rdbtnHave);
-
 		JLabel lblDetails = new JLabel("Details :");
 		lblDetails.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDetails.setBounds(15, 478, 97, 14);
@@ -253,11 +264,6 @@ public class PropertyForm {
 		lblGarden.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblGarden.setBounds(481, 282, 129, 14);
 		contentPane.add(lblGarden);
-
-		JRadioButton rdbtnHave_1 = new JRadioButton("Included ");
-		rdbtnHave_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnHave_1.setBounds(697, 283, 103, 23);
-		contentPane.add(rdbtnHave_1);
 
 		JLabel lblNumberOfFloors = new JLabel("Number of Floors :");
 		lblNumberOfFloors.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -274,60 +280,30 @@ public class PropertyForm {
 		lblPropertyDelivered.setBounds(15, 343, 141, 14);
 		contentPane.add(lblPropertyDelivered);
 
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Included");
-		rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton_1.setBounds(175, 339, 147, 23);
-		contentPane.add(rdbtnNewRadioButton_1);
-
 		JLabel lblParking = new JLabel("Parking :");
 		lblParking.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParking.setBounds(481, 340, 120, 21);
 		contentPane.add(lblParking);
-
-		JRadioButton rdbtnHave_2 = new JRadioButton("Included ");
-		rdbtnHave_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnHave_2.setBounds(697, 342, 97, 23);
-		contentPane.add(rdbtnHave_2);
 
 		JLabel lblRentalGuarantee = new JLabel("Rental Guarantee :");
 		lblRentalGuarantee.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblRentalGuarantee.setBounds(15, 368, 120, 14);
 		contentPane.add(lblRentalGuarantee);
 
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Included");
-		rdbtnNewRadioButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton_2.setBounds(175, 364, 112, 23);
-		contentPane.add(rdbtnNewRadioButton_2);
-
 		JLabel lblPoolHeading = new JLabel("Pool Heading :");
 		lblPoolHeading.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPoolHeading.setBounds(481, 365, 129, 20);
 		contentPane.add(lblPoolHeading);
-
-		JRadioButton rdbtnNewRadioButton_9 = new JRadioButton("Included");
-		rdbtnNewRadioButton_9.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton_9.setBounds(697, 368, 103, 23);
-		contentPane.add(rdbtnNewRadioButton_9);
 
 		JLabel lblCommitted = new JLabel("Committed :");
 		lblCommitted.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCommitted.setBounds(15, 393, 120, 14);
 		contentPane.add(lblCommitted);
 
-		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("Included");
-		rdbtnNewRadioButton_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton_4.setBounds(175, 389, 112, 23);
-		contentPane.add(rdbtnNewRadioButton_4);
-
 		JLabel lblCentralHeading = new JLabel("Central Heading :");
 		lblCentralHeading.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCentralHeading.setBounds(481, 393, 147, 14);
 		contentPane.add(lblCentralHeading);
-
-		JRadioButton rdbtnNewRadioButton_11 = new JRadioButton("Included");
-		rdbtnNewRadioButton_11.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton_11.setBounds(697, 394, 97, 23);
-		contentPane.add(rdbtnNewRadioButton_11);
 
 		JLabel lblPropertyStatus = new JLabel("Property Status :");
 		lblPropertyStatus.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -344,20 +320,10 @@ public class PropertyForm {
 		lblAirconditionUnits.setBounds(481, 421, 147, 14);
 		contentPane.add(lblAirconditionUnits);
 
-		JRadioButton rdbtnNewRadioButton_13 = new JRadioButton("Included ");
-		rdbtnNewRadioButton_13.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton_13.setBounds(697, 420, 87, 23);
-		contentPane.add(rdbtnNewRadioButton_13);
-
 		JLabel lblRentalPlan = new JLabel("Rental Plan :");
 		lblRentalPlan.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblRentalPlan.setBounds(15, 443, 120, 14);
+		lblRentalPlan.setBounds(15, 449, 120, 14);
 		contentPane.add(lblRentalPlan);
-
-		JRadioButton rdbtnNewRadioButton_6 = new JRadioButton("Included");
-		rdbtnNewRadioButton_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton_6.setBounds(175, 439, 112, 23);
-		contentPane.add(rdbtnNewRadioButton_6);
 
 		JLabel lblNumberOfAircondition = new JLabel(
 				"Number of Air-condition Units :");
@@ -375,67 +341,12 @@ public class PropertyForm {
 		lblBasement.setBounds(481, 473, 129, 14);
 		contentPane.add(lblBasement);
 
-		JRadioButton rdbtnNewRadioButton_15 = new JRadioButton("Included");
-		rdbtnNewRadioButton_15.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton_15.setBounds(697, 474, 97, 23);
-		contentPane.add(rdbtnNewRadioButton_15);
-
 		JButton btnOk = new JButton("ADD PROPERTY");
 		btnOk.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int blank = 0;
-
-				if (PlotID.getText().equals(""))
-					blank = 1;
-
-				if (PlotNumber.getText().equals(""))
-					blank = 1;
-
-				if (PlotName.getText().equals(""))
-					blank = 1;
-
-				if (PropertyClass.getText().equals(""))
-					blank = 1;
-
-				if (Parcel.getText().equals(""))
-					blank = 1;
-
-				if (LandUse.getText().equals(""))
-					blank = 1;
-
-				if (PerChance.getText().equals(""))
-					blank = 1;
-
-				if (Plots.getText().equals(""))
-					blank = 1;
-
-				if (Details.getText().equals(""))
-					blank = 1;
-
-				if (PropertyStatus.getText().equals(""))
-					blank = 1;
-
-				if (DeedNumber.getText().equals(""))
-					blank = 1;
-
-				if (NumberOfRooms.getText().equals(""))
-					blank = 1;
-
-				if (NumberOfBathrooms.getText().equals(""))
-					blank = 1;
-
-				if (NumberOfFloors.getText().equals(""))
-					blank = 1;
-
-				if (NumberOfAirConditionUnits.getText().equals(""))
-					blank = 1;
-
-				if (blank == 1) {
-					JOptionPane.showMessageDialog(null,
-							"There are empty fields. \nPlease, check again",
-							"Warning", JOptionPane.WARNING_MESSAGE);
-				}
+				
+				new BtnAddProperty().start();
 			}
 		});
 		btnOk.setBounds(630, 571, 129, 23);
@@ -465,11 +376,63 @@ public class PropertyForm {
 		contentPane.add(btnExit);
 
 		PropertyForm.getContentPane().add(contentPane);
+		
+	     PropertyDelivered = new JCheckBox("Included");
+		 PropertyDelivered.setBounds(175, 341, 97, 23);
+		contentPane.add(PropertyDelivered);
+		
+		 RentalGuarantee = new JCheckBox("Included");
+		RentalGuarantee.setBounds(175, 366, 97, 23);
+		contentPane.add(RentalGuarantee);
+		
 
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Included");
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		rdbtnNewRadioButton.setBounds(697, 99, 109, 23);
-		contentPane.add(rdbtnNewRadioButton);
+		Commited = new JCheckBox("Included");
+		Commited.setBounds(175, 391, 97, 23);
+		contentPane.add(Commited);
+		
+		 RentalPlan = new JCheckBox("Included");
+		RentalPlan.setBounds(175, 445, 97, 23);
+		contentPane.add(RentalPlan);
+		
+		 GrandView = new JCheckBox("Included");
+		 GrandView.setBounds(697, 99, 97, 23);
+		contentPane.add(GrandView);
+		
+	    TitleDeed = new JCheckBox("Included");
+		TitleDeed.setBounds(697, 124, 97, 23);
+		contentPane.add(TitleDeed);
+		
+		 Pool = new JCheckBox("Included");
+		 Pool.setBounds(697, 258, 97, 23);
+		contentPane.add( Pool);
+		
+		 Garden = new JCheckBox("Included");
+		Garden.setBounds(697, 280, 97, 23);
+		contentPane.add(Garden);
+		
+		
+
+		
+		
+		 Parking = new JCheckBox("Included");
+		Parking.setBounds(697, 341, 97, 23);
+		contentPane.add(Parking);
+		
+		PoolHeading = new JCheckBox("Included");
+		PoolHeading.setBounds(697, 366, 97, 23);
+		contentPane.add(PoolHeading);
+		
+	    CentralHeading= new JCheckBox("Included");
+		CentralHeading.setBounds(697, 391, 97, 23);
+		contentPane.add(CentralHeading);
+		
+		AirCond = new JCheckBox("Included");
+		AirCond.setBounds(697, 419, 97, 23);
+		contentPane.add(AirCond);
+		
+        Basement = new JCheckBox("Included");
+		Basement.setBounds(697, 476, 97, 23);
+		contentPane.add(Basement);
 
 	}
 	
@@ -540,12 +503,64 @@ public class PropertyForm {
 		
 		public static String getNumberOfAirConditionUnits(){
 			return NumberOfAirConditionUnits.getText();
-		}		
+		}
+		
+		public static boolean getPropertyDeli() {
+			return PropertyDelivered.isSelected();
+		}
+		
+		public static boolean getRentalGuarantee() {
+			return RentalGuarantee.isSelected();
+		}
+		
+		public static boolean getCommited() {
+			return Commited.isSelected();
+		}
+		
+		public static boolean getRentalPlan() {
+			return RentalPlan.isSelected();
+		}
+		
+		public static boolean getGrandeView() {
+			return GrandView.isSelected();
+		}
+		
+		public static boolean getTitleDeed() {
+			return TitleDeed.isSelected();
+		}
+		
+		public static boolean getPool() {
+			return Pool.isSelected();
+		}
+		
+		public static boolean getGarden() {
+			return Garden.isSelected();
+		}
+		public static boolean getParking() {
+			return Parking.isSelected();
+		}
+		public static boolean getPoolHeading() {
+			return PoolHeading.isSelected();
+		}
+		
+		public static boolean getCentralHeading() {
+			return CentralHeading.isSelected();
+		}
+		
+		public static boolean getAirCond() {
+			return AirCond.isSelected();
+		}
+		public static boolean getBasement(){
+			return Basement.isSelected();
+		}
 		
 		
 		/******************************* All Setters Here *****************************/
 
-		
+		public static void setPlotID(String f){
+			
+			PlotID.setText(f);
+		}
 		
 		public static void setPlotNumber(String srt){
 			PlotNumber.setText(srt);
@@ -602,5 +617,62 @@ public class PropertyForm {
 		public static void setNumberOfAirConditionUnits(String srt){
 			NumberOfAirConditionUnits.setText(srt);
 		}
-			
+		
+		public static void setPropertyDeli(boolean f) {
+			 PropertyDelivered.setSelected(f);
+		}
+		
+		public static void setRentalGuarantee(boolean f) {
+			 RentalGuarantee.setSelected(f);
+		}
+		
+		public static void setCommited(boolean f) {
+			 Commited.setSelected(f);
+		}	 
+		
+		public static void setRentalPlan(boolean f) {
+			  RentalPlan.setSelected(f);
+		}
+		
+		public static void setGrandeView(boolean f) {
+			 GrandView.setSelected(f);
+		}
+		
+		public static void setTitleDeed(boolean f) {
+			TitleDeed.setSelected(f);
+		}
+		
+		public static void setPool(boolean f) {
+			Pool.setSelected(f);
+		}
+		
+		public static void getGarden(boolean f) {
+			 Garden.setSelected(f);
+		}
+		public static void getParking(boolean f) {
+		     Parking.setSelected(f);
+		}
+		public static void setPoolHeading(boolean f) {
+			PoolHeading.setSelected(f);
+		}
+		
+		public static void setCentralHeading(boolean f) {
+			 CentralHeading.setSelected(f);
+		}
+		public static void setAirCond(boolean f) {
+			 AirCond.setSelected(f);
+		}
+		public static void setBasement(boolean f){
+			Basement.setSelected(f);
+		}
+		public static void setGarden(boolean f){
+			Garden.setSelected(f);
+		}
+		public static void setParking(boolean f){
+			Parking.setSelected(f);
+		}
+		public static void setClass(String t){
+			PropertyClass.setText("");
+		}
+		
 }

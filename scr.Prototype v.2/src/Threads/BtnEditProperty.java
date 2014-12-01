@@ -3,26 +3,27 @@ package Threads;
 import javax.swing.JOptionPane;
 
 import Forms.MainForm;
-import Forms.ManagePropForm;
+import Forms.ManagePropertyForm;
 import Forms.Property;
 import Forms.PropertyForm;
 
-public class BtnEditProperty implements Runnable {
+public class BtnEditProperty extends Thread {
 
+	
 	@Override
 	public void run() {
 		
-		int go = 0;
+		
 		if (MainForm.getProperties().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "There are no Properties!",
 					"ERROR", JOptionPane.ERROR_MESSAGE);
-			go = 1;
-		}
 
-		if (go == 0) {
-			String name_sur = ManagePropForm.list.getSelectedValue().toString();
+		}else{
 
-			Property prop = MainForm.getProperties().get(0);
+		
+			String name_sur = ManagePropertyForm.list.getSelectedValue().toString();
+
+			Property p = MainForm.getProperties().get(0);
 
 			String[] name = name_sur.split("\\s+");
 			String idnum = name[0];
@@ -32,30 +33,49 @@ public class BtnEditProperty implements Runnable {
 				String id_prop = MainForm.getProperties().get(i).getPlotID();
 				int propID = Integer.parseInt(id_prop);
 				if (id_num == propID) {
-					prop = MainForm.getProperties().get(i);
+					p = MainForm.getProperties().get(i);
 					break;
 				}
 			}
+			
+			BtnAddProperty.p = p;
 
 			PropertyForm.setVisible(true);
-/*
-			CustomerForm.setAccountCode(String.valueOf(cust.getCustomerID()));
-			CustomerForm.setFName(cust.getFName());
-			CustomerForm.setLName(cust.getLName());
-			CustomerForm.setEmail1(cust.getEmail1());
-			CustomerForm.setEmail2(cust.getEmail2());
-			CustomerForm.setPhoneMob(cust.getPhoneMobile());
-			CustomerForm.setPhoneBussines(cust.getPhoneBus());
-			CustomerForm.setContact(cust.getPhoneCon());
-			CustomerForm.setNote(cust.getNote());
-			CustomerForm.setAddress(cust.getAddress());
-			CustomerForm.setCity(cust.getCity());
-			CustomerForm.setCountry(cust.getCountry());
-			CustomerForm.setZip(cust.getZipCode());
-			CustomerForm.setFax(cust.getFax());
-			CustomerForm.setInfoMaterial(cust.getInfoMaterial());
-			CustomerForm.setAccountClosed(cust.getAccountClosed());
-*/
+			PropertyForm.setPlotID(p.getPlotID());
+			PropertyForm.setAirCond(p.getAirCond());
+			PropertyForm.setBasement(p.getBasement());
+			PropertyForm.setCentralHeading(p.getCentralHeading());
+			PropertyForm.setCommited(p.getCommited());
+			PropertyForm.setDeedNymber(p.getDeedNumber());
+			PropertyForm.setDetails(p.getDetails());
+			PropertyForm.setGrandeView(p.getGrandeView());
+			PropertyForm.setLandUse(p.getLandUse());
+			PropertyForm.setNumberOfAirConditionUnits(p.getNumberOfAirConditionUnits());
+			PropertyForm.setNumberOfBathrooms(p.getNumberOfBathrooms());
+			PropertyForm.setNumberOfFloors(p.getNumberOfFloors());
+			PropertyForm.setNumberOfRooms(p.getNumberOfRooms());
+			PropertyForm.setParcel(p.getParcel());
+			PropertyForm.setPerChance(p.getPerChance());
+			PropertyForm.setPlotName(p.getPlotName());
+			PropertyForm.setPlotNumber(p.getPlotNumber());
+			PropertyForm.setPlots(p.getPlots());
+			PropertyForm.setPool(p.getPool());
+			PropertyForm.setPoolHeading(p.getPoolHeading());
+			PropertyForm.setPropertyClass(p.getPropertyClass());
+			
+			PropertyForm.setPropertyDeli(p.getPropertyDeli());
+			PropertyForm.setPropertyStatus(p.getPropertyStatus());
+			PropertyForm.setRentalGuarantee(p.getRentalGuarantee());
+			PropertyForm.setRentalPlan(p.getRentalPlan());
+			PropertyForm.setTitleDeed(p.getTitleDeed());
+			PropertyForm.setGarden(p.getGarden());
+			PropertyForm.setPlotID(PropertyForm.plotID + 1 +"");
+			
+			
+			
+			
+
+
 		}
 		
 	}

@@ -5,7 +5,7 @@ import javax.swing.AbstractListModel;
 import Forms.MainForm;
 import Forms.ManageCustForm;
 
-public class BtnRefreshCustomer implements Runnable {
+public class BtnRefreshCustomer extends Thread {
 
 	@SuppressWarnings("unchecked")
 	public void run() {

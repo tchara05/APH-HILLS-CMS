@@ -6,26 +6,22 @@ import Forms.CustomerForm;
 import Forms.MainForm;
 import Forms.ManageCustForm;
 
-public class BtnEditCustomer implements Runnable {
+public class BtnEditCustomer extends Thread {
+	
 
 	@Override
 	public void run() {
 
-		int go = 0;
-		if (MainForm.getProperties().isEmpty()) {
+		if (MainForm.getCustomers().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "There are no Customers!",
 					"ERROR", JOptionPane.ERROR_MESSAGE);
-			go = 1;
-		}
+		}else{
 
-		if (go == 0) {
 			String name_sur = ManageCustForm.list.getSelectedValue().toString();
 
 			Customer cust = MainForm.getCustomers().get(0);
-
 			String[] name = name_sur.split("\\s+");
 			String idnum = name[0];
-
 			int id_num = Integer.parseInt(idnum.toString());
 			for (int i = 0; i < MainForm.getCustomers().size(); i++) {
 				int id_cust = MainForm.getCustomers().get(i).getCustomerID();
@@ -35,8 +31,11 @@ public class BtnEditCustomer implements Runnable {
 				}
 			}
 
+			
+			BtnAddCustomer.c = cust;
 			CustomerForm.setVisible(true);
-
+			
+			
 			CustomerForm.setAccountCode(String.valueOf(cust.getCustomerID()));
 			CustomerForm.setFName(cust.getFName());
 			CustomerForm.setLName(cust.getLName());
@@ -53,8 +52,14 @@ public class BtnEditCustomer implements Runnable {
 			CustomerForm.setFax(cust.getFax());
 			CustomerForm.setInfoMaterial(cust.getInfoMaterial());
 			CustomerForm.setAccountClosed(cust.getAccountClosed());
+			
+			
+	
+			
+			
 		}
 
 	}
+	
 
 }

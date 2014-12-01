@@ -50,32 +50,28 @@ public class MainForm implements Runnable {
 		//AdminMenu
 		AdminMenuForm  AdmMenu= new AdminMenuForm(main.getUserName(), main.getPassword().toString());
 		
-		//Property Form
-		PropertyForm pform = new PropertyForm();
-		
 		//Contract Form
 		ContractForm contractForm = new ContractForm();
 		
 		//CustomerForm
 		CustomerForm custForm = new CustomerForm();
 		
-		//ManageCustForm 
-		ManageCustForm  manageCustForm = new ManageCustForm();
-		
 		//Property Form
 		PropertyForm prtyForm = new PropertyForm();
+		//Manage Customer Form 
+		ManageCustForm mngCust = new ManageCustForm();
+		//Manage Property Form
+		ManagePropertyForm mngPro = new ManagePropertyForm();
 		
 		
 		AdmMenu.setActor(PermissionCategory);
 		
 		
-		
+		mngCust.setVisible(false);
 		prtyForm.setVisible(false);
-		
-		manageCustForm.setVisible(false);
 		AdmMenu.setVisible(false);
 		main.setVisible(true);
-		pform.setVisible(false);
+		mngPro.setVisible(false);
 		contractForm.setVisible(false);
 		custForm.setVisible(false);
 		

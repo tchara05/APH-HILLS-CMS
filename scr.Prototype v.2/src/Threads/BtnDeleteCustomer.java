@@ -6,13 +6,13 @@ import javax.swing.JOptionPane;
 import Forms.MainForm;
 import Forms.ManageCustForm;
 
-public class BtnDeleteCustomer implements Runnable {
+public class BtnDeleteCustomer extends Thread {
 
 	@SuppressWarnings("unchecked")
 	public void run() {
 
 		int go = 0;
-		if (MainForm.getProperties().isEmpty()) {
+		if (MainForm.getCustomers().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "There are no Customers!",
 					"ERROR", JOptionPane.ERROR_MESSAGE);
 			// setVisible(false);

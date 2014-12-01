@@ -104,6 +104,13 @@ public class AdminMenuForm implements Runnable {
 		AdminForm.getContentPane().add(viewprop);
 
 		JButton editprop = new JButton("Edit/Delete");
+		editprop.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				ManagePropertyForm.setVisible(true);
+			}
+		});
 		editprop.setBounds(336, 156, 113, 23);
 		AdminForm.getContentPane().add(editprop);
 
@@ -222,43 +229,6 @@ public class AdminMenuForm implements Runnable {
 		AdminForm.getContentPane().add(btnEmail);
 		
 		JButton btnPoforma = new JButton("Proforma");
-		/*
-		btnPoforma.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0)  {
-				
-				try{
-					//PDFexporter t = new PDFexporter();
-					t.setDocType(2);
-					t.run();
-				}catch (Exception t){
-					System.out.println("ok");
-				}
-			}
-		});
-		btnPoforma.setBounds(237, 255, 89, 23);
-		AdminForm.getContentPane().add(btnPoforma);
-		
-		JButton btnInvoice = new JButton("Invoice");
-		btnInvoice.addMouseListener(new MouseAdapter()  {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-				try{
-					//PDFexporter t = new PDFexporter();
-					t.setDocType(1);
-					t.run();
-				}catch (Exception t){
-	
-				}
-				
-				
-			}
-		});
-		*/
-		
-		//btnInvoice.setBounds(336, 255, 113, 23);
-		//AdminForm.getContentPane().add(btnInvoice);
 	}
 	
 	public void setActor(String pr){
@@ -268,8 +238,8 @@ public class AdminMenuForm implements Runnable {
 	}
 	
 	
-	public static void setVisible(boolean f){
-		AdminForm.setVisible(f);
+	public static void setVisible(boolean t){
+		AdminForm.setVisible(t);
 	}
 
 	@Override

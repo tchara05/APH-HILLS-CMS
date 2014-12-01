@@ -20,6 +20,9 @@ public class Customer {
 	private String zipCode;
 	private String note;
 
+	public Customer (){
+		accountCode ++;
+	}
 
 	public void setName(String fname){
 		this.fname = fname;
@@ -45,7 +48,6 @@ public class Customer {
 	public void setFax(String fax){
 		this.fax = fax;
 	}
-	
 	public void setCloseAcount(boolean f){
 		this.closeAccount = f;
 	}
@@ -55,11 +57,9 @@ public class Customer {
 	public void setAddress(String Address){
 		this.address = Address;
 	}
-	
 	public void setCity(String City){
 		this.city = City;
 	}
-	
 	public void setCountry(String Country){
 		this.country = Country;
 	}
@@ -70,6 +70,9 @@ public class Customer {
 		this.note = note;
 	}
 	
+	
+	
+///////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
@@ -100,30 +103,18 @@ public class Customer {
 	public String getFax(){
 		return fax;
 	}
-	
 	public boolean getInfoMaterial() {
 		return informationMaterial;
 	}
-	
 	public boolean getAccountClosed() {
 		return closeAccount;
 	}
-	/*
-	public void setCloseAcount(boolean f){
-		this.closeAccount = f;
-	}
-	public void setInfoMaterials(boolean f){
-		this.informationMaterial = f;
-	}
-	*/
 	public String getAddress(){
 		return address;
 	}
-	
 	public String getCity(){
 		return city;
 	}
-	
 	public String getCountry(){
 		return country;
 	}
@@ -133,5 +124,4 @@ public class Customer {
 	public String getNote(){
 		return note;
 	}
-
 }
