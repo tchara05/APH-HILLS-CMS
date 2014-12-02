@@ -19,7 +19,7 @@ public class BtnAddProperty extends Thread {
 		if (p == null) {
 
 			p = new Property();
-			PropertyForm.plotID++;
+			
 			p.setPlotID(PropertyForm.plotID +"" );
 			p.setDeedNumber(PropertyForm.getDeedNumber());
 			p.setDetails(PropertyForm.getDetails());
@@ -52,6 +52,7 @@ public class BtnAddProperty extends Thread {
 			
 			MainForm.getProperties().add(p);
 			
+			PropertyForm.plotID++;
 			p=null;
 		}else{
 			p.setDeedNumber(PropertyForm.getDeedNumber());
@@ -102,6 +103,7 @@ public class BtnAddProperty extends Thread {
 		PropertyForm.setNumberOfRooms("");
 		PropertyForm.setParcel("");
 		PropertyForm.setPerChance("");
+		PropertyForm.setPropertyClass("");
 		PropertyForm.setPlotName("");
 		PropertyForm.setPlotNumber("");
 		PropertyForm.setPlots("");
