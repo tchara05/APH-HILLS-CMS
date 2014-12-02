@@ -71,7 +71,7 @@ public class BtnAddCustomer extends Thread {
 			CustomerForm.setZip("");
 			CustomerForm.setCountry("");
 			CustomerForm.setNote("");
-			CustomerForm.setAccountCode("" + CustomerForm.id+1);
+			CustomerForm.setAccountCode("" + CustomerForm.id);
 		
 			
 			ManageCustForm.list.removeAll();
