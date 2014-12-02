@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,39 +15,42 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Forms.CustomerForm;
+import Forms.PropertyForm;
 
-public class ContractForm implements Runnable {
+
+public class ContractForm  {
 
 	private static JFrame ContractForm;
-	private JPanel contentPane;
-	private JTextField Lname;
-	private JTextField SFname;
-	private JTextField SLname;
-	private JTextField Pemail;
-	private JTextField Semail;
-	private JTextField city;
-	private JTextField country;
-	private JTextField zipCode;
-	private JTextField address;
-	private JTextField Fname;
-	private JTextField code;
-	private JLabel lblContractId;
-	private JLabel label_3;
-	private JLabel lblBusinessPhone;
-	private JLabel lblMobilePhone;
-	private JLabel lblContactPhone;
-	private JLabel lblFax;
-	private JLabel lblInformationMaterial;
-	private JLabel lblNote;
-	private JLabel lblPlotId;
-	private JTextField contractID;
-	private JTextField businessPhone;
-	private JTextField mobilePhone;
-	private JTextField contactPhone;
-	private JTextField fax;
-	private JTextField iMaterial;
-	private JTextField note;
-	private JTextField plotID;
+	private static JPanel contentPane;
+	private static JTextField Lname;
+	private static JTextField SFname;
+	private static JTextField SLname;
+	private static JTextField Pemail;
+	private static JTextField Semail;
+	private static JTextField city;
+	private static JTextField country;
+	private static JTextField zipCode;
+	private static JTextField address;
+	private static JTextField Fname;
+	private static JTextField code;
+	private static JLabel lblContractId;
+	private static JLabel label_3;
+	private static JLabel lblBusinessPhone;
+	private static JLabel lblMobilePhone;
+	private static JLabel lblContactPhone;
+	private static JLabel lblFax;
+	private static JLabel lblInformationMaterial;
+	private static JLabel lblNote;
+	private static JLabel lblPlotId;
+	private static JTextField contractID;
+	private static JTextField businessPhone;
+	private static JTextField mobilePhone;
+	private static JTextField contactPhone;
+	private static JTextField fax;
+	private static JTextField iMaterial;
+	private static JTextField note;
+	private static JTextField plotID;
 
 	/**
 	 * Launch the application.
@@ -55,9 +59,7 @@ public class ContractForm implements Runnable {
 
 		
 		ContractForm t = new ContractForm();
-		EventQueue.invokeLater(t);
-		t.run();
-		
+
 	}
 
 	/**
@@ -353,6 +355,18 @@ public class ContractForm implements Runnable {
 		btnHelp.setBounds(630, 334, 89, 23);
 		contentPane.add(btnHelp);
 		
+		JButton btnView = new JButton("View Details");
+		btnView.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
+		btnView.setBounds(401, 332, 89, 26);
+		contentPane.add(btnView);
+		
 		
 	}
 
@@ -362,14 +376,119 @@ public class ContractForm implements Runnable {
 		ContractForm.setVisible(f);	
 	}
 	
-	@Override
-	public void run() {
-		
-		ContractForm.setVisible(true);
-		
-		// TODO Auto-generated method stub
-		
+
+	
+/******************************* All Getters Here *****************************/
+	
+	public static String getLName(){
+		return Lname.getText();
 	}
+	public static String getSFName(){
+		return SFname.getText();
+	}
+	public static String getSLName(){
+		return SLname.getText();
+	}
+	public static String getFName(){
+		return Fname.getText();
+	}
+	public static String getPEmail(){
+		return Pemail.getText();
+	}
+	public static String getSEmail(){
+		return Semail.getText();
+	}
+	public static String getCity(){
+		return city.getText();
+	}
+	public static String getCountry(){
+		return country.getText();
+	}
+	public static String getZipCode(){
+		return zipCode.getText();
+	}
+	public static String getAddress(){
+		return address.getText();
+	}
+	public static int getCode(){
+		return Integer.parseInt(code.getText());
+	}
+	public static String getBusinessPhone(){
+		return businessPhone.getText();
+	}
+	public static String getContactPhone(){
+		return contactPhone.getText();
+	}
+	public static String getMobilePhone(){
+		return mobilePhone.getText();
+	}
+	public static String getFax(){
+		return fax.getText();
+	}
+	public static String getNote(){
+		return note.getText();
+	}
+	public static String getPlotID(){
+		return plotID.getText();
+	}
+
+	
+/******************************* All Setters Here *****************************/
 	
 
+	
+	public static void setLName(String srt){
+		Lname.setText(srt);
+	}
+	public static void setSFName(String srt){
+		SFname.setText(srt);
+	}
+	public static void setSLName(String srt){
+		SLname.setText(srt);
+	}
+	public static void setFName(String srt){
+		Fname.setText(srt);
+	}
+	public static void setPEmail(String srt){
+		Pemail.setText(srt);
+	}
+	public static void setSEmail(String srt){
+		Semail.setText(srt);
+	}
+	public static void setCity(String srt){
+		city.setText(srt);
+	}
+	public static void setCountry(String srt){
+		country.setText(srt);
+	}
+	public static void setZipCode(String srt){
+		zipCode.setText(srt);
+	}
+	public static void setAddress(String srt){
+		address.setText(srt);
+	}
+	public static void setCode(int srt){
+		code.setText(String.valueOf(srt));
+	}
+	public static void setBusinessPhone(int srt){
+		businessPhone.setText(String.valueOf(srt));
+	}
+	public static void setMobilePhone(int srt){
+		mobilePhone.setText(String.valueOf(srt));
+	}
+	public static void setContactPhone(int srt){
+		contactPhone.setText(String.valueOf(srt));
+	}
+	public static void setFax(String srt){
+		fax.setText(srt);
+	}
+//	public static void setIMaterial(boolean f){
+//		iMaterial.setSelected(f);
+//	}
+	public static void setNote(String srt){
+		note.setText(srt);
+	}
+	public static void setPlotID(String srt){
+		plotID.setText(srt);
+	}
 }

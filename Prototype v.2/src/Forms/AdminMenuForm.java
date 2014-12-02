@@ -38,7 +38,7 @@ public class AdminMenuForm implements Runnable {
 	 */
 	private void initialize(final String username, final String usertype) {
 		AdminForm = new JFrame();
-		AdminForm.setBounds(100, 100, 527, 389);
+		AdminForm.setBounds(100, 100, 527, 414);
 		AdminForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		AdminForm.getContentPane().setLayout(null);
 
@@ -227,6 +227,26 @@ public class AdminMenuForm implements Runnable {
 		});
 		btnEmail.setBounds(138, 255, 89, 23);
 		AdminForm.getContentPane().add(btnEmail);
+		
+		JLabel lblContract = new JLabel("CONTRACT:");
+		lblContract.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblContract.setBounds(33, 352, 83, 20);
+		AdminForm.getContentPane().add(lblContract);
+		
+		JButton btnAddContract = new JButton("Add new");
+		btnAddContract.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ContractForm.setVisible(true);
+				
+				
+			}
+		});
+		btnAddContract.setBounds(237, 350, 89, 29);
+		AdminForm.getContentPane().add(btnAddContract);
+		
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.setBounds(350, 350, 85, 29);
+		AdminForm.getContentPane().add(btnEdit);
 		
 		JButton btnPoforma = new JButton("Proforma");
 	}

@@ -36,12 +36,16 @@ public class MainForm implements Runnable {
 	private JTextField username;
 	private JPasswordField password;
 	private static String PermissionCategory;
+	
 	private static ArrayList<Customer> Customers = new ArrayList<Customer>();
 	private static ArrayList<Property> Property = new ArrayList<Property>();
+	private static ArrayList<Contract> Contract=new ArrayList<Contract>();
 
 	/**
 	 * Launch the application.
 	 */
+	
+	
 	public static void main(String[] args) {
 		
 		//Program Starts
@@ -409,6 +413,9 @@ public class MainForm implements Runnable {
 		 return Property;
 	 }
 	
+	 public static ArrayList<Contract> getContracts(){
+		 return Contract;
+	 }
 	@Override
 	public void run() {
 		LoginFrame.setVisible(true);

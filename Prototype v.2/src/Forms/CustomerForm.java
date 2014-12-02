@@ -327,6 +327,9 @@ public class CustomerForm{
 	public static boolean getAccountClose(){
 		return ClosedAccount.isSelected();
 	}
+	public static int getCode(){
+		return id;
+	}
 	
 	
 	

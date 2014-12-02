@@ -124,4 +124,7 @@ public class Customer {
 	public String getNote(){
 		return note;
 	}
+	public int getCode(){
+		return accountCode;
+	}
 }
