@@ -35,19 +35,19 @@ public class PropertyForm {
 	private static JTextField NumberOfBathrooms;
 	private static JTextField NumberOfFloors;
 	private static JTextField NumberOfAirConditionUnits;
-	private static JCheckBox PropertyDelivered; ///////
-	private static JCheckBox RentalGuarantee; ////////
-	private static JCheckBox Commited;/////
+	private static JCheckBox PropertyDelivered; 
+	private static JCheckBox RentalGuarantee;
+	private static JCheckBox Commited;
 	private static JCheckBox RentalPlan;
-	private static JCheckBox GrandView; /////////
-	private static JCheckBox TitleDeed;/////////
-	private static JCheckBox Pool;///////
-	private static JCheckBox Garden;////
-	private static JCheckBox Parking; ////
-	private static JCheckBox PoolHeading;/////
-	private static JCheckBox CentralHeading; ////
-	private static JCheckBox AirCond;/////
-	private static JCheckBox Basement;/////
+	private static JCheckBox GrandView;
+	private static JCheckBox TitleDeed;
+	private static JCheckBox Pool;
+	private static JCheckBox Garden;
+	private static JCheckBox Parking; 
+	private static JCheckBox PoolHeading;
+	private static JCheckBox CentralHeading; 
+	private static JCheckBox AirCond;
+	private static JCheckBox Basement;
 	public static int plotID = 0;
 	
 	
@@ -571,7 +571,7 @@ public class PropertyForm {
 		}
 		
 		public static void setPropertyClass(String srt){
-			PlotNumber.setText(srt);
+			PropertyClass.setText(srt);
 		}
 		
 		public static void setParcel(String srt){
@@ -674,5 +674,8 @@ public class PropertyForm {
 		public static void setClass(String t){
 			PropertyClass.setText("");
 		}
+		
+		
+
 		
 }

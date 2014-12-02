@@ -16,11 +16,11 @@ public class Contract {
 	private String zipCode;
 	private String address;
 	private int code;
-	private int businessPhone;
-	private int mobilePhone;
-	private int contactPhone;
+	private String businessPhone;
+	private String mobilePhone;
+	private String contactPhone;
 	private String fax;
-	private JTextField iMaterial;
+	private boolean iMaterial;
 	private String note;
 	private String plotID;
 
@@ -62,13 +62,13 @@ public class Contract {
 	public void setCode(int code) {
 		this.code = code;
 	}
-	public void setBusinessPhone(int businessPhone) {
+	public void setBusinessPhone(String businessPhone) {
 		this.businessPhone = businessPhone;
 	}
-	public void setMobilePhone(int mobilePhone) {
+	public void setMobilePhone(String mobilePhone) {
 		this.mobilePhone = mobilePhone;
 	}
-	public void setContactPhone(int contactPhone) {
+	public void setContactPhone(String contactPhone) {
 		this.contactPhone = contactPhone;
 	}
 	public void setFax(String fax) {
@@ -123,13 +123,13 @@ public class Contract {
 	public int getCode(){
 		return code;
 	}
-	public int getBusinessPhone(){
+	public String getBusinessPhone(){
 		return businessPhone;
 	}
-	public int getContactPhone(){
+	public String getContactPhone(){
 		return contactPhone ;
 	}
-	public int getMobilePhone (){
+	public String getMobilePhone (){
 		return mobilePhone ;
 	}
 	public String getFax(){

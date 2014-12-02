@@ -1,4 +1,7 @@
 package Forms;
+
+import java.util.ArrayList;
+
 public class Customer {
 
 	private static int accountCode = 1;
@@ -19,9 +22,12 @@ public class Customer {
 	private String country;
 	private String zipCode;
 	private String note;
+	private ArrayList<Property> owns;
 
 	public Customer (){
 		accountCode ++;
+		owns = new ArrayList<Property>();
+	
 	}
 
 	public void setName(String fname){
@@ -127,4 +133,44 @@ public class Customer {
 	public int getCode(){
 		return accountCode;
 	}
+
+	
+	public ArrayList<Property> getPropertys(){
+		
+		return owns;
+		
+	}
+
+	public void CalculateCost(){
+		
+		
+		
+		
+		for (int i=0;i<owns.size();i++){
+			owns.get(i).calculateCost();
+		}
+		
+		
+		
+	}
+
+	
+	
+	public  String toString(){
+		
+		String s = fname +" \n" +lname;
+		
+		return s;
+		
+		
+	}	
+		
+		
+		
+		
+		
+	
+
+
+
 }

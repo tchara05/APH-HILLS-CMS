@@ -45,18 +45,7 @@ public class BtnView extends Thread {
 	//c.setIMaterial(Integer.parseInt(ContractForm.getIMaterial()));
 	ContractForm.setNote(cu.getNote());
 	
-ArrayList<Property> prop=MainForm.getProperties();
-	
-	Property pro=prop.get(0);
 
-	for(int j = 0;j<prop.size();j++){
-		pro=prop.get(j);
-		if (ContractForm.getPlotID() ==pro.getPlotID() ){
-			break;
-		}
-		
-	}
-	ContractForm.setPlotID(pro.getPlotID());	
 	
 	}
 		

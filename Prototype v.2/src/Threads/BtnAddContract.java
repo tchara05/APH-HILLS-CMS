@@ -27,8 +27,14 @@ public class BtnAddContract extends Thread {
 		ArrayList<Customer> cust=MainForm.getCustomers();
 		
 		Customer cu=cust.get(0);
+		
+		
 		for (int i=0;i<cust.size();i++){
+			
+			
 			cu=cust.get(i);
+			
+			
 			if(cu.getCode()!=ContractForm.getCode()){
 				break;
 		}
@@ -46,9 +52,9 @@ public class BtnAddContract extends Thread {
 		c.setCountry(cu.getCountry());
 		c.setZipCode(cu.getZipCode());
 		c.setAddress(cu.getAddress());
-		c.setBusinessPhone(Integer.parseInt(cu.getPhoneBus()));
-		c.setMobilePhone(Integer.parseInt(cu.getPhoneMobile()));
-		c.setContactPhone(Integer.parseInt(cu.getPhoneCon()));
+		c.setBusinessPhone(cu.getPhoneBus());
+		c.setMobilePhone(cu.getPhoneMobile());
+		c.setContactPhone(cu.getPhoneCon());
 		c.setFax(cu.getFax());
 		//c.setIMaterial(Integer.parseInt(ContractForm.getIMaterial()));
 		c.setNote(cu.getNote());
@@ -56,12 +62,19 @@ public class BtnAddContract extends Thread {
 		ArrayList<Property> prop=MainForm.getProperties();
 		
 		Property pro=prop.get(0);
-		int j=0;
-		while(pro.getPlotID()!=c.getPlotID()){
-			j++;
+		for(int j=0;j<prop.size();j++){
+			
 			pro=prop.get(j);
+			if (pro.getPlotID() == ContractForm.getPlotID()){
+				break;
+			}
+	
+		
 		}
+
 		c.setPlotID(pro.getPlotID());
+		
+		cu.getPropertys().add(pro);
 		
 		MainForm.getContracts().add(c);
 		
@@ -76,16 +89,17 @@ public class BtnAddContract extends Thread {
 		ContractForm.setCountry("");
 		ContractForm.setZipCode("");
 		ContractForm.setAddress("");
-		ContractForm.setCode(Integer.parseInt(""));
-		ContractForm.setBusinessPhone(Integer.parseInt(""));
-		ContractForm.setMobilePhone(Integer.parseInt(""));
-		ContractForm.setContactPhone(Integer.parseInt(""));
+		ContractForm.setCode("");
+		ContractForm.setBusinessPhone("");
+		ContractForm.setMobilePhone((""));
+		ContractForm.setContactPhone((""));
 		ContractForm.setFax("");
 		//ContractForm.setIMaterial("");
 		ContractForm.setNote("");
 		ContractForm.setPlotID("");
 		
-
+		
+		
 		
 		System.out.println(MainForm.getProperties());
 		JOptionPane.showMessageDialog(null,

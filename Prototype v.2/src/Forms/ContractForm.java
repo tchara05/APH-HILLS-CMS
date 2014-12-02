@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import Forms.CustomerForm;
 import Forms.PropertyForm;
+import Threads.BtnView;
 
 
 public class ContractForm  {
@@ -360,11 +361,12 @@ public class ContractForm  {
 			
 			public void actionPerformed(ActionEvent e) {
 				
+				new BtnView().start();
 				
 				
 			}
 		});
-		btnView.setBounds(401, 332, 89, 26);
+		btnView.setBounds(401, 332, 132, 26);
 		contentPane.add(btnView);
 		
 		
@@ -467,16 +469,16 @@ public class ContractForm  {
 	public static void setAddress(String srt){
 		address.setText(srt);
 	}
-	public static void setCode(int srt){
+	public static void setCode(String srt){
 		code.setText(String.valueOf(srt));
 	}
-	public static void setBusinessPhone(int srt){
+	public static void setBusinessPhone(String srt){
 		businessPhone.setText(String.valueOf(srt));
 	}
-	public static void setMobilePhone(int srt){
+	public static void setMobilePhone(String srt){
 		mobilePhone.setText(String.valueOf(srt));
 	}
-	public static void setContactPhone(int srt){
+	public static void setContactPhone(String srt){
 		contactPhone.setText(String.valueOf(srt));
 	}
 	public static void setFax(String srt){

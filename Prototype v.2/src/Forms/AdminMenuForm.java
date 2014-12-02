@@ -7,6 +7,9 @@ import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import Threads.BtnProforma;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -38,7 +41,7 @@ public class AdminMenuForm implements Runnable {
 	 */
 	private void initialize(final String username, final String usertype) {
 		AdminForm = new JFrame();
-		AdminForm.setBounds(100, 100, 527, 414);
+		AdminForm.setBounds(100, 100, 574, 460);
 		AdminForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		AdminForm.getContentPane().setLayout(null);
 
@@ -180,7 +183,7 @@ public class AdminMenuForm implements Runnable {
 
 		JLabel lblBilling = new JLabel("BILLING:");
 		lblBilling.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblBilling.setBounds(33, 252, 108, 25);
+		lblBilling.setBounds(33, 309, 108, 25);
 		AdminForm.getContentPane().add(lblBilling);
 
 		JButton help = new JButton("HELP");
@@ -194,7 +197,7 @@ public class AdminMenuForm implements Runnable {
 			}
 		});
 		help.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		help.setBounds(241, 302, 89, 23);
+		help.setBounds(237, 396, 89, 23);
 		AdminForm.getContentPane().add(help);
 
 		JButton switch_user = new JButton("SWITCH USER");
@@ -206,7 +209,7 @@ public class AdminMenuForm implements Runnable {
 				MainForm.setVisible(true);
 			}
 		});
-		switch_user.setBounds(336, 302, 113, 24);
+		switch_user.setBounds(336, 396, 113, 24);
 		AdminForm.getContentPane().add(switch_user);
 
 		JButton exit = new JButton("EXIT");
@@ -217,7 +220,7 @@ public class AdminMenuForm implements Runnable {
 			}
 		});
 		exit.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		exit.setBounds(138, 302, 93, 23);
+		exit.setBounds(138, 396, 93, 23);
 		AdminForm.getContentPane().add(exit);
 		
 		JButton btnEmail = new JButton("Email");
@@ -225,12 +228,12 @@ public class AdminMenuForm implements Runnable {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnEmail.setBounds(138, 255, 89, 23);
+		btnEmail.setBounds(138, 353, 89, 23);
 		AdminForm.getContentPane().add(btnEmail);
 		
 		JLabel lblContract = new JLabel("CONTRACT:");
 		lblContract.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblContract.setBounds(33, 352, 83, 20);
+		lblContract.setBounds(33, 258, 83, 20);
 		AdminForm.getContentPane().add(lblContract);
 		
 		JButton btnAddContract = new JButton("Add new");
@@ -241,12 +244,38 @@ public class AdminMenuForm implements Runnable {
 				
 			}
 		});
-		btnAddContract.setBounds(237, 350, 89, 29);
+		btnAddContract.setBounds(237, 256, 89, 29);
 		AdminForm.getContentPane().add(btnAddContract);
 		
 		JButton btnEdit = new JButton("Edit");
-		btnEdit.setBounds(350, 350, 85, 29);
+		btnEdit.setBounds(138, 256, 85, 29);
 		AdminForm.getContentPane().add(btnEdit);
+		
+		JButton Cost = new JButton("Cost");
+		Cost.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Cost.setBounds(138, 309, 89, 29);
+		AdminForm.getContentPane().add(Cost);
+		
+		JButton btnExportProf = new JButton("Export Prof");
+		btnExportProf.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				BtnProforma t = new BtnProforma();
+				t.start();
+				
+				
+			}
+		});
+		btnExportProf.setBounds(237, 309, 117, 29);
+		AdminForm.getContentPane().add(btnExportProf);
+		
+		JButton btnExportInvoice = new JButton("Export Invoice");
+		btnExportInvoice.setBounds(366, 309, 117, 29);
+		AdminForm.getContentPane().add(btnExportInvoice);
 		
 		JButton btnPoforma = new JButton("Proforma");
 	}

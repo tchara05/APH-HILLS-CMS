@@ -1,4 +1,4 @@
-/*
+
 
 package Forms;
 import com.itextpdf.text.*;
@@ -8,10 +8,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
 
-public class PDFexporter implements Runnable {
+public class PDFexporter {
 
 	private String CompanyName = "APHRODITEHILLS SERVICES LTD \n";
-
 	private String CustomerDetails = "\nCustomer Details:";
 	private String AccountCode = "Account Code:";
 	private String DocNumber = "Doc. Number:";
@@ -20,112 +19,16 @@ public class PDFexporter implements Runnable {
 	private static int INVOICE = 1;
 	private static int PROFORMA = 2;
 	private static int RECEIPT = 3;
-	private int DocType;
-
-	private class InvoiceExport implements Runnable {
-
-		@Override
-		public void run() {
-
-			Document doc = new Document();
-
-			String name = "INVOICE.pdf";
-			int type = INVOICE;
-
-			try {
-
-				PdfWriter.getInstance(doc, new FileOutputStream(name));
-				doc.open();
-
-				createHeader(type, doc);
-				doc.add(NewLine);
-				createDetailsTable(type, doc);
-				doc.add(NewLine);
-				createCostTable(type, doc);
-				doc.add(NewLine);
-				Signatures(type, doc);
-				doc.add(NewLine);
-				if (type != RECEIPT) {
-					BankInfo(type, doc);
-				}
-				doc.close();
-			} catch (Exception e) {};
-
-		}
-
-	}
-
-	private class ReceiptExport implements Runnable {
-
-		@Override
-		public void run() {
-
-			Document doc = new Document();
-
-			String name = "RECEIPT.pdf";
-			int type = RECEIPT;
-
-			try {
-
-				PdfWriter.getInstance(doc, new FileOutputStream(name));
-				doc.open();
-
-				createHeader(type, doc);
-				doc.add(NewLine);
-				createDetailsTable(type, doc);
-				doc.add(NewLine);
-				createCostTable(type, doc);
-				doc.add(NewLine);
-				Signatures(type, doc);
-				doc.add(NewLine);
-				if (type != RECEIPT) {
-					BankInfo(type, doc);
-				}
-				doc.close();
-			} catch (Exception e) {};
-
-			// TODO Auto-generated method stub
-
-		}
-
-	}
+	
+	public static Customer forCustomer = new Customer() ;
 	
 	
-	private class ProformaExport implements Runnable{
+	
+	
+	
+	private static int DocType = 0;
 
-		@Override
-		public void run() {
-			Document doc = new Document();
 
-			String name = "PROFORMA.pdf";
-			int type = PROFORMA;
-
-			try {
-
-				PdfWriter.getInstance(doc, new FileOutputStream(name));
-				doc.open();
-
-				createHeader(type, doc);
-				doc.add(NewLine);
-				createDetailsTable(type, doc);
-				doc.add(NewLine);
-				createCostTable(type, doc);
-				doc.add(NewLine);
-				Signatures(type, doc);
-				doc.add(NewLine);
-				if (type != RECEIPT) {
-					BankInfo(type, doc);
-				}
-				doc.close();
-			} catch (Exception e) {};
-
-			
-		}
-		
-		
-		
-		
-	}
 
 	private static Paragraph NewLine = new Paragraph("\n");
 
@@ -185,11 +88,14 @@ public class PDFexporter implements Runnable {
 
 	public void createDetailsTable(int type, Document doc) throws Exception {
 
+		
+		System.out.println(forCustomer);
+		
+		
 		String documentDetailsString = documentType(type);
 
 		PdfPTable CustomerDetailsTable = new PdfPTable(2); // Megalos Pinakas
-		PdfPCell CustomerDetails = new PdfPCell(new Phrase(
-				"Kokos\nKokos\nKokos"));// aristeri Plevra
+		PdfPCell CustomerDetails = new PdfPCell(new Phrase(forCustomer.toString()));// aristeri Plevra
 		CustomerDetails.setHorizontalAlignment(Element.ALIGN_LEFT);
 
 		PdfPCell AllCodes = new PdfPCell(); // De3ia keli megalo pinaka p krata
@@ -201,7 +107,7 @@ public class PDFexporter implements Runnable {
 		PdfPTable CodesTable = new PdfPTable(2); // Pinakas Kodikwn
 		PdfPCell CodesDefinition = new PdfPCell(new Phrase(
 				documentDetailsString)); // De3i keli me names
-		PdfPCell Codes = new PdfPCell(new Phrase("1\n1\n1\n1")); // aristero
+		PdfPCell Codes = new PdfPCell(new Phrase(forCustomer.getCustomerID()+ "\n" + (DocType++) + "\n" + type +"\n" + "HH:MM:SS" )); // aristero
 																	// kelli me
 																	// arithmous
 
@@ -247,6 +153,7 @@ public class PDFexporter implements Runnable {
 		}
 
 		Phrase[] titles = new Phrase[N];
+		
 
 		if (N == 5) {
 			titles[0] = new Phrase("S/N");
@@ -378,6 +285,11 @@ public class PDFexporter implements Runnable {
 	public void creat_Invoice(int type) throws Exception {
 		PDFexporter t = new PDFexporter();
 
+		
+	//	if (forCustomer.getPropertys().size()==0){
+		//	return;
+	//	}
+		
 		String name = "test.pdf";
 		Document doc = new Document();
 		if (type == INVOICE) {
@@ -404,60 +316,32 @@ public class PDFexporter implements Runnable {
 		}
 		doc.close();
 		
-		System.out.println("AAAAAAAAAAAA");
 
+		
+		
+		forCustomer = null;
 	}
 
-	public void StartInvoiceExporter() {
 
-		InvoiceExport t = new InvoiceExport();
-		ReceiptExport r = new ReceiptExport();
-		
-
-		
-		
-		t.run();
-		r.run();
-		
-
-	}
 	
-	public void StartProformaExporter(){
-		
-		ProformaExport p = new ProformaExport();
-		p.run();
-	}
-	
+
 	
 	public void setDocType(int t){
 		DocType = t;
 	}
 	
 	
-	@Override
-	public void run() {
-		
-		if (DocType == INVOICE || DocType == RECEIPT){
-			StartInvoiceExporter();
-			
-		}else{
-			StartProformaExporter();
-		}
-		
-		
-		
-		
+	public void setCustomer(Customer c){
+		forCustomer = c;
 	}
 	
-	public void shit(){
-		for (int i = 0; i <1000;i++){
-			System.out.println("Skata");
-		}
-	}
+
+	
+
 
 	public static void main(String args[]) throws Exception {
 
-		
+		new PDFexporter().creat_Invoice(1);
 		
 
 	}
@@ -465,4 +349,4 @@ public class PDFexporter implements Runnable {
 
 
 }
-*/
+

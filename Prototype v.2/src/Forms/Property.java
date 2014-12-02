@@ -1,5 +1,7 @@
 package Forms;
 
+import java.util.Random;
+
 public class Property {
 	
 	private String plotID ;
@@ -31,9 +33,20 @@ public class Property {
 	private boolean AirCond;
 	private boolean Basement;
 	public int service;
-
+	private Cost cost ;
+	
+	public Property(){
+		
+		Random s = new Random();
+		service = s.nextInt(3);
+		Cost  cost = new Cost();
+	}
+	
 
 	/***********************************************All Setters***************************************/
+	
+	
+	
 	public void setPlotID(String s){
 		this.plotID = s;
 	}
@@ -248,6 +261,19 @@ public class Property {
 	public boolean getBasement(){
 		return Basement;
 	}
+	public int getService(){
+		return service;
+	}
+	
+	
+	public void calculateCost(){
+		
+		cost.CalculateProforma(service);
+		cost.getProforma();
+		
+	}
+	
+	
 	
 	
 

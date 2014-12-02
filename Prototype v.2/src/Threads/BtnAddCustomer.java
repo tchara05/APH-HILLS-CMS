@@ -34,6 +34,7 @@ public class BtnAddCustomer extends Thread {
 				c.setPhoneBussines(CustomerForm.getPhoneBussines());
 				c.setPhoneContact(CustomerForm.getPhoneConnection());
 				c.setPhoneMobile(CustomerForm.getPhoneMob());
+				c.setZipCode(CustomerForm.getZipCode());
 				MainForm.getCustomers().add(c);
 				CustomerForm.id++;
 				c = null;
