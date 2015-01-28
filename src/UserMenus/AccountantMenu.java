@@ -40,8 +40,6 @@ public class AccountantMenu {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		//Hello //
-	
 	}
 
 }
