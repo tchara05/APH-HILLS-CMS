@@ -217,7 +217,7 @@ public class PropertyForm {
 		
 	    TitleDeed = new JCheckBox("TitleDeed");
 		
-		 chckbxGrandViewRights = new JCheckBox("Grand View Rights to BRM");
+		 chckbxGrandViewRights = new JCheckBox("Grand View Rights to PRM");
 		
 		 chckbxPool = new JCheckBox("Pool");
 		
@@ -241,7 +241,7 @@ public class PropertyForm {
 		JLabel lblExtraFeatures = new JLabel("Extra Features:");
 		lblExtraFeatures.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		
-		JLabel lblStandarFeatures = new JLabel("Standar Features:");
+		JLabel lblStandarFeatures = new JLabel("Standart Features:");
 		lblStandarFeatures.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
@@ -369,7 +369,7 @@ public class PropertyForm {
 		txtLandUse = new JTextField();
 		txtLandUse.setColumns(10);
 		
-		JLabel lblN = new JLabel("Per Change:");
+		JLabel lblN = new JLabel("Percentage");
 		
 		txtPerChange = new JTextField();
 		txtPerChange.setColumns(10);
