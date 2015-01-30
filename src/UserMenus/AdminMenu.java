@@ -21,9 +21,7 @@ public class AdminMenu {
 
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 
 					AdminMenu window = new AdminMenu();
