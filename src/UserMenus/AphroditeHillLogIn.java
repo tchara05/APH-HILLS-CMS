@@ -34,9 +34,7 @@ public class AphroditeHillLogIn {
 	public static void main(String[] args) {
 
 					AphroditeHillLogIn window = new AphroditeHillLogIn();
-					window.frmAphroditeHill.setVisible(true);
-					
-					
+					window.frmAphroditeHill.setVisible(true);			
 	}				
 				
 
