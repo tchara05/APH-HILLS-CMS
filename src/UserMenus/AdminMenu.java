@@ -20,7 +20,7 @@ import Property.PropertyMenu;
 public class AdminMenu {
 
 	private JFrame frame;
-
+	/** Main Class **/
 
 	public static void main(String[] args) {
 
