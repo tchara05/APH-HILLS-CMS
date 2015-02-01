@@ -58,7 +58,7 @@ public class AphroditeHillLogIn {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		ImageIcon image = new ImageIcon("img/aphrodite-resort-logo.png");
+		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		
 		JLabel lblIcon = new JLabel(image);
 		lblIcon.setBackground(UIManager.getColor("Button.foreground"));
