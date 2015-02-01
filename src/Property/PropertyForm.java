@@ -83,7 +83,7 @@ public class PropertyForm {
 		
 		frmPropertyForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
+		ImageIcon image = new ImageIcon("img/aphrodite-resort-logo.png");
 		
 		JLabel lblFormTitle = new JLabel(image);
 		

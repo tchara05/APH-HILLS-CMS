@@ -84,7 +84,7 @@ public class CustomerForm {
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
+		ImageIcon image = new ImageIcon("img/aphrodite-resort-logo.png");
 		JLabel lblImage = new JLabel(image);
 		lblImage.setText("image");
 		lblImage.setFont(new Font("Lucida Grande", Font.PLAIN, 13));

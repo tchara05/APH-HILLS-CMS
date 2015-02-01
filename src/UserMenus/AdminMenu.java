@@ -50,7 +50,7 @@ public class AdminMenu {
 		JLabel lblAdminMenu;
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
+		ImageIcon image = new ImageIcon("img/aphrodite-resort-logo.png");
 		JLabel lblNewLabel = new JLabel(image);
 		lblNewLabel.setBackground(Color.BLACK);
 		
