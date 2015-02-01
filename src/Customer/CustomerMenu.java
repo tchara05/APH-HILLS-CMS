@@ -1,7 +1,6 @@
 package Customer;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,6 +17,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class CustomerMenu extends JPanel {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8304803972288047455L;
 	private  CustomerForm customerform;
 	private  JLabel lblCustomerDescriptions;	
 	private  JTextField txtCustomerSearch;
