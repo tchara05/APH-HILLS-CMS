@@ -1,4 +1,4 @@
-package Customer;
+package customer;
 
 
 import java.awt.event.MouseAdapter;
@@ -20,11 +20,11 @@ public class CustomerMenu extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8304803972288047455L;
-	private  CustomerForm customerform;
-	private  JLabel lblCustomerDescriptions;	
-	private  JTextField txtCustomerSearch;
-	private  JComboBox<String> AllCustomers;
+
+	private static CustomerForm customerform;
+	private static JLabel lblCustomerDescriptions;	
+	private static JTextField txtCustomerSearch;
+	private static JComboBox<String> AllCustomers;
 	private static JPanel CustomerPanel;
 
 	/**

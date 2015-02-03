@@ -1,4 +1,4 @@
-package Customer;
+package customer;
 
 
 import java.awt.Toolkit;
@@ -19,7 +19,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-import PropertyFormButtons.CustomerClearButton;
+
+import propertyFormButtons.CustomerClearButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

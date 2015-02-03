@@ -1,4 +1,4 @@
-package Contract;
+package contract;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;

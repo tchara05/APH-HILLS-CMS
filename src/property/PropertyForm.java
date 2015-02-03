@@ -1,4 +1,4 @@
-package Property;
+package property;
 
 
 import java.awt.Toolkit;
@@ -19,11 +19,13 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+
+import propertyFormButtons.*;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import PropertyFormButtons.*;
 
 public class PropertyForm {
 

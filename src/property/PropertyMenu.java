@@ -1,4 +1,4 @@
-package Property;
+package property;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

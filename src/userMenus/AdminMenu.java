@@ -1,79 +1,73 @@
-package UserMenus;
+package userMenus;
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Toolkit;
+
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.GroupLayout.Alignment;
 
-import Customer.CustomerMenu;
-import Property.PropertyMenu;
+import property.PropertyMenu;
+
+import customer.CustomerMenu;
 
 
-public class SecretaryMenu {
 
-	private JFrame frmSecretaryMenu;
+public class AdminMenu {
+
+	private JFrame frame;
+	/** Main Class **/
+	
+	
 	
 
-	
-
-	
-	
-	
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		
-					SecretaryMenu window = new SecretaryMenu();
-					window.frmSecretaryMenu.setVisible(true);
-				
+
+					AdminMenu window = new AdminMenu();
+					window.frame.setVisible(true);
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public SecretaryMenu() {
+	public AdminMenu() {
 		initialize();
-
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmSecretaryMenu = new JFrame();
-		frmSecretaryMenu.setTitle("Secretary Menu");
-		frmSecretaryMenu.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		frame = new JFrame();
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
+		JLabel lblAdminMenu;
 		
-		
-		JLabel lblSecretaryMenu;
-		
-		frmSecretaryMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		JLabel lblNewLabel = new JLabel(image);
 		lblNewLabel.setBackground(Color.BLACK);
 		
-		lblSecretaryMenu = new JLabel("Secretary Menu ");
-		lblSecretaryMenu.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		lblAdminMenu = new JLabel("Adminstrator Menu ");
+		lblAdminMenu.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		GroupLayout groupLayout = new GroupLayout(frmSecretaryMenu.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(307)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 592, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSecretaryMenu))
+						.addComponent(lblAdminMenu))
 					.addGap(221)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
 					.addGap(107))
@@ -84,7 +78,7 @@ public class SecretaryMenu {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(50)
-							.addComponent(lblSecretaryMenu)
+							.addComponent(lblAdminMenu)
 							.addGap(42)
 							.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 582, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
@@ -102,12 +96,14 @@ public class SecretaryMenu {
 		JPanel CustomerPanel = CustomerMenu.createCustumerMenu();
 		tabbedPane.addTab("Customer Menu", null, CustomerPanel, null);
 		
+		JPanel accountMenu = accountantPanel.createAccountantMenu();
+		tabbedPane.addTab("AccountMenu", null, accountMenu, null);
 		
 		
-		frmSecretaryMenu.getContentPane().setLayout(groupLayout);
 		
 		
-		
+		frame.getContentPane().setLayout(groupLayout);
 		
 	}
+
 }

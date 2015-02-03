@@ -1,4 +1,4 @@
-package UserMenus;
+package userMenus;
 
 import java.awt.EventQueue;
 
