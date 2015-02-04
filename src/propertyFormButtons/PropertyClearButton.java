@@ -10,7 +10,7 @@ public class PropertyClearButton extends Thread {
 		boolean val1 = false;
 		String val2 = "";
 		
-		
+		// Just a commnet //
 		PropertyForm.setAirCondition(val1);
 		PropertyForm.setBasement(val1);
 		PropertyForm.setAirUnits(val2);
