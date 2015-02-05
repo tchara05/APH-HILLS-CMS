@@ -19,7 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class PropertyMenu extends JPanel {
 
 	
-	//Jimmys//
+	
 	private static final long serialVersionUID = -6335457457980522343L;
 	/**
 	 * Create the panel.
