@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -21,6 +22,12 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager.*;
+import java.awt.SystemColor;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
 
 public class AphroditeHillLogIn {
 
@@ -49,14 +56,28 @@ public class AphroditeHillLogIn {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            System.out.println("here");
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+
+		
 		frmAphroditeHill = new JFrame();
 		frmAphroditeHill.setTitle("Aphrodite Hill");
 		frmAphroditeHill.setBackground(Color.GRAY);
-		frmAphroditeHill.getContentPane().setForeground(UIManager.getColor("Button.darkShadow"));
+		frmAphroditeHill.getContentPane().setForeground(new Color(0, 0, 0));
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(30, 144, 255), new Color(0, 0, 0)));
 		
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		
@@ -69,25 +90,26 @@ public class AphroditeHillLogIn {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(462, Short.MAX_VALUE)
+					.addContainerGap(372, Short.MAX_VALUE)
 					.addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 549, GroupLayout.PREFERRED_SIZE)
 					.addGap(429))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(560)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(519, Short.MAX_VALUE))
+					.addGap(484)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(505, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(29)
-					.addComponent(lblIcon, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-					.addGap(36)
+					.addComponent(lblIcon, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+					.addGap(35)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-					.addGap(288))
+					.addGap(289))
 		);
 		
 		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setFont(new Font("Calibri", Font.PLAIN, 15));
 		
 		txtUserName = new JTextField();
 		txtUserName.setColumns(10);
@@ -95,6 +117,7 @@ public class AphroditeHillLogIn {
 		txtPassword = new JPasswordField();
 		
 		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 15));
 		
 		JButton btnLogIn = new JButton("Log In");
 		btnLogIn.addActionListener(new ActionListener() {
@@ -107,21 +130,22 @@ public class AphroditeHillLogIn {
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblUsername)
-						.addComponent(lblPassword))
-					.addGap(65)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtPassword, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-						.addComponent(txtUserName, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-					.addContainerGap(64, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(60)
-					.addComponent(btnLogIn, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(63, Short.MAX_VALUE))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(2)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblPassword)
+								.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtUserName, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+								.addComponent(txtPassword, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(btnLogIn, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnHelp, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)))
+					.addGap(59))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -131,14 +155,14 @@ public class AphroditeHillLogIn {
 						.addComponent(txtUserName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblUsername))
 					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblPassword)
-						.addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPassword))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnLogIn)
 						.addComponent(btnHelp))
-					.addContainerGap(87, Short.MAX_VALUE))
+					.addContainerGap(69, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		frmAphroditeHill.getContentPane().setLayout(groupLayout);
