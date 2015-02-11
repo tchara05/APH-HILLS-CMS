@@ -1,10 +1,14 @@
 package propertyFormButtons;
 
+import javax.swing.JTextField;
+
 public class Checker {
 
 	
-	public static boolean checkString(String s ){
+	public static boolean checkString(JTextField t){
 		
+		String s=t.getText();
+				
 		 char[] chars = s.toCharArray();
 
 		    for (char c : chars) {
@@ -25,16 +29,16 @@ public class Checker {
 		return false;
 		
 	}
-	
-	public static void main (String arg[]){
-		
-		String s="1";
-		boolean t ;
-		
-		t=checkNumber(s);
-		System.out.print(t);
-		
-		
-		
-	}
+//	
+//	public static void main (String arg[]){
+//		
+//		String s="1";
+//		boolean t ;
+//		
+//		t=checkString(s);
+//		System.out.print(t);
+//		
+//		
+//		
+//	}
 }
