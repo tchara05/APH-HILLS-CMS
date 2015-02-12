@@ -7,7 +7,7 @@ import checksClasses.Checker;
 public class PropertySaveButton extends Thread {
 	
 	
-	
+	/*This classes need improvements*/
 	
 	public void run(){
 		
