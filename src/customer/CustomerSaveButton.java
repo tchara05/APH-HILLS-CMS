@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import checksClasses.Checker;
 
-public class SaveButton extends Thread {
+public class CustomerSaveButton extends Thread {
 	
 	
 	public void run(){

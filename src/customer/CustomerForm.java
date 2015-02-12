@@ -123,7 +123,7 @@ public class CustomerForm {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					new SaveButton().start();
+					new CustomerSaveButton().start();
 			}
 		});
 		
