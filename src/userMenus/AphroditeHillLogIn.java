@@ -37,6 +37,7 @@ public class AphroditeHillLogIn {
 
 	/**
 	 * Launch the application.
+	 * Just a main to test the rusult.
 	 */
 	public static void main(String[] args) {
 
@@ -47,6 +48,7 @@ public class AphroditeHillLogIn {
 
 	/**
 	 * Create the application.
+	 * Constructor for the window.
 	 */
 	public AphroditeHillLogIn() {
 		initialize();
