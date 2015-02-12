@@ -1,6 +1,5 @@
-package propertyFormButtons;
+package property;
 
-import property.PropertyForm;
 
 public class PropertyClearButton extends Thread {
 	

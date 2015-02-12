@@ -1,6 +1,5 @@
-package propertyFormButtons;
+package customer;
 
-import customer.CustomerForm;
 
 public class CustomerClearButton extends Thread {
 	

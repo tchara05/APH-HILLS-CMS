@@ -20,8 +20,8 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import propertyFormButtons.CustomerClearButton;
-import propertyFormButtons.Checker;
+import checksClasses.Checker;
+
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -123,12 +123,7 @@ public class CustomerForm {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//boolean t=Checker.checkString(txtFname);
-				if (!Checker.checkString(txtFname )){
-					System.out.print("dfjsanfasfniasjfoiaLA8");
-				}
-				
-				
+					new SaveButton().start();
 			}
 		});
 		
