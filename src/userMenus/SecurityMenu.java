@@ -9,7 +9,7 @@ public class SecurityMenu {
 	private JFrame frame;
 
 	/**
-	 * Launch the application.
+	 * Launch the application.test
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
