@@ -1,43 +1,52 @@
 package userMenus;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
-public class SecurityMenu {
+public class SecurityMenu extends JPanel {
 
-	private JFrame frame;
-
-	/**
-	 * Launch the application.test
-	 */
+	private JFrame frmSecurityMenu;
+	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SecurityMenu window = new SecurityMenu();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		
+		SecurityMenu window = new SecurityMenu();
+		window.frmSecurityMenu.setVisible(true);
 	}
-
-	/**
-	 * Create the application.
-	 */
+	
 	public SecurityMenu() {
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
+	
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            System.out.println("here");
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		
+		frmSecurityMenu = new JFrame();
+		frmSecurityMenu.setTitle("Security Menu");
+		frmSecurityMenu.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		
+		frmSecurityMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
+		JLabel lblNewLabel = new JLabel(image);
+		lblNewLabel.setBackground(Color.BLACK);
+		
 	}
-
 }
