@@ -8,6 +8,7 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -24,16 +25,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager.*;
 import java.awt.SystemColor;
+import java.sql.ResultSet;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.MatteBorder;
+
+import extras.Checker;
+import extras.DatabaseConnection;
 
 public class AphroditeHillLogIn {
 
 	private JFrame frmAphroditeHill;
 	private JTextField txtUserName;
 	private JPasswordField txtPassword;
+	private JFrame menu;
 
 	/**
 	 * Launch the application.
@@ -63,7 +70,6 @@ public class AphroditeHillLogIn {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
 		            UIManager.setLookAndFeel(info.getClassName());
-		            System.out.println("here");
 		            break;
 		        }
 		    }
@@ -124,6 +130,51 @@ public class AphroditeHillLogIn {
 		JButton btnLogIn = new JButton("Log In");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String username = txtUserName.getText();
+				String password = txtPassword.getText();
+				String query="SELECT * FROM SystemUsers WHERE username='"+username+"' AND passwords = '"+password+"'";
+				
+				
+				try {
+					DatabaseConnection  t= new DatabaseConnection();
+					ResultSet rst =null;
+					
+					
+					System.out.println("I will execute query");
+					
+					
+					
+					
+					rst = t.getStatement().executeQuery(query);
+					
+					System.out.println("I executed query");
+					
+					
+					if (rst.next()){
+						 System.out.println(rst.getString(1) + " " + rst.getString(2) + " " + rst.getString(3));		
+						 if (rst.getString(4).equals("a")){
+							 frmAphroditeHill.setVisible(false);
+							  new AdminMenu().setVisible(true);
+						 }else{
+							 
+						 }
+				
+					}else{
+						
+						JOptionPane.showMessageDialog(null,
+							    "Wrong User Name or Password",
+							    "Error",
+							    JOptionPane.ERROR_MESSAGE);	
+
+				   }
+					
+				}catch(Exception p){
+					
+					p.printStackTrace();
+					
+				}
+				
 			}
 		});
 		

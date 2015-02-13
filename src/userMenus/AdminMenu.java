@@ -105,5 +105,12 @@ public class AdminMenu {
 		frame.getContentPane().setLayout(groupLayout);
 		
 	}
+	
+	
+	public void setVisible(boolean visible){
+		
+		frame.setVisible(visible);
+	
+	}
 
 }
