@@ -20,7 +20,8 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import propertyFormButtons.*;
+import checksClasses.*;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

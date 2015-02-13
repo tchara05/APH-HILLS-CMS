@@ -20,10 +20,13 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import propertyFormButtons.CustomerClearButton;
+import checksClasses.Checker;
+
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CustomerForm {
 
@@ -52,7 +55,7 @@ public class CustomerForm {
 		
 					CustomerForm window = new CustomerForm();
 					window.frame.setVisible(true);
-				
+					
 	}
 
 	/**
@@ -118,6 +121,11 @@ public class CustomerForm {
 		});
 		
 		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+					new CustomerSaveButton().start();
+			}
+		});
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addMouseListener(new MouseAdapter() {
@@ -290,6 +298,7 @@ public class CustomerForm {
 		
 		txtFname = new JTextField();
 		txtFname.setColumns(10);
+	
 		
 		JLabel lblLastname = new JLabel("Last Name");
 		
