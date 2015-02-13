@@ -2,7 +2,7 @@ package customer;
 
 import javax.swing.JOptionPane;
 
-import checksClasses.Checker;
+import extras.Checker;
 
 public class CustomerSaveButton extends Thread {
 	

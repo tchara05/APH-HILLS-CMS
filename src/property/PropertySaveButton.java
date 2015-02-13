@@ -2,7 +2,7 @@ package property;
 
 import javax.swing.JOptionPane;
 
-import checksClasses.Checker;
+import extras.Checker;
 
 public class PropertySaveButton extends Thread {
 	

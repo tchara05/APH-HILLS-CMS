@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import checksClasses.*;
+import extras.*;
 
 
 import java.awt.event.ActionListener;
@@ -393,13 +393,12 @@ public class PropertyForm {
 		JLabel lblOtherInfo = new JLabel("Other Info:");
 		GroupLayout gl_panelDetails = new GroupLayout(panelDetails);
 		gl_panelDetails.setHorizontalGroup(
-			gl_panelDetails.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panelDetails.createSequentialGroup()
+			gl_panelDetails.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelDetails.createSequentialGroup()
 					.addGap(21)
 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-							.addComponent(txtExtraDetails, GroupLayout.PREFERRED_SIZE, 441, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblDetails))
+						.addComponent(txtExtraDetails, GroupLayout.PREFERRED_SIZE, 441, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblDetails)
 						.addGroup(gl_panelDetails.createSequentialGroup()
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNo)
@@ -420,11 +419,11 @@ public class PropertyForm {
 								.addComponent(txtLandUse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtPlotID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(34)
+							.addGap(62)
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblOtherInfo)
 								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(544, Short.MAX_VALUE))
+					.addContainerGap(85, Short.MAX_VALUE))
 		);
 		gl_panelDetails.setVerticalGroup(
 			gl_panelDetails.createParallelGroup(Alignment.LEADING)
@@ -460,14 +459,14 @@ public class PropertyForm {
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
 								.addComponent(txtPerChange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblN)))
-						.addComponent(panel, 0, 0, Short.MAX_VALUE))
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(12)
 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPlots))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblDetails)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
 					.addComponent(txtExtraDetails, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);

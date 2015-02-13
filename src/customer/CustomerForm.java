@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import checksClasses.Checker;
+import extras.Checker;
 
 
 import java.awt.event.MouseAdapter;
@@ -328,6 +328,7 @@ public class CustomerForm {
 		JLabel lblNote = new JLabel("Note:");
 		
 	    txtNote = new JTextArea();
+	    txtNote.setLineWrap(true);
 		
 		JLabel lblCustomerId = new JLabel("Customer ID:");
 		
