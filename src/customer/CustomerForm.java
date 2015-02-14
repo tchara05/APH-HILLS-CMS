@@ -30,7 +30,7 @@ import java.awt.event.ActionEvent;
 
 public class CustomerForm {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private static JTextField txtFname;
 	private static JTextField txtLastName;
 	private static JTextField txtAddress;
@@ -333,6 +333,7 @@ public class CustomerForm {
 		JLabel lblCustomerId = new JLabel("Customer ID:");
 		
 		txtID = new JTextField();
+		txtID.setEditable(false);
 		txtID.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -546,12 +547,12 @@ public class CustomerForm {
 		return	chckbxInformationMaterial.isSelected();
 	}
 	
-	public void setVisible(boolean val){
-		this.frame.setVisible(val);	
+	public static String getCountry(){
+		return Country.getSelectedItem() + "";
 	}
 	
-	
-	
-	
+	public static void setVisible(boolean val){
+		frame.setVisible(val);	
+	}
 	
 }

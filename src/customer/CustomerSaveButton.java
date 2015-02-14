@@ -1,7 +1,10 @@
 package customer;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
-
+import userMenus.LogIn;
 import extras.Checker;
 
 public class CustomerSaveButton extends Thread {
@@ -22,28 +25,51 @@ public class CustomerSaveButton extends Thread {
 		
 			
 			
-			String s = CustomerForm.getFname();
+			String Fname = CustomerForm.getFname();
 			boolean checked = true;
 			
 			
-			if ( !Checker.checkString(s)){
+			if ( !Checker.checkString(Fname)){
 						JOptionPane.showMessageDialog(null,
 					    "First Name has invalid characters",
 					    "Inane warning",
 					    JOptionPane.WARNING_MESSAGE);
 						checked = false;
 			}
-		
+			String country = CustomerForm.getCountry();
 			
+			
+		
+			try {
+				Statement st =	LogIn.database.getDatabaseConnection().createStatement();
+				
+				int countryID = getCountry(country,st);
+				if (countryID >0 && checked){
+					
+					String query = "";
+					st.executeUpdate(query);
+					new CustomerClearButton().start();
+					CustomerForm.setVisible(false);
+					
+				}else {
+					
+					System.out.println("Invalid Character or Country Somewhere");
+				}
+				
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+				
+			} catch (NullPointerException e){
+				
+				e.printStackTrace();
+			}
 			
 			/* If everything is ok, run the query for the database */
 			
+			System.out.println("I am here");
 			
-			
-			if  (checked){
-				execQuery();
-			}
-		
+
 		
 	}
 	
@@ -79,25 +105,23 @@ public class CustomerSaveButton extends Thread {
 	
 	
 	
-	private static int getCountry(String  country){
+	private static int getCountry(String  country,Statement st) throws SQLException{
 		
-		int countryID=0;
-		
-		/* We need a query here */
-		
+		int countryID=-1;
+		ResultSet result = st.executeQuery("SELECT counrtyID FROM Country WHERE countryName='"+country+"'");
+		if (result.next()){
+			countryID = Integer.parseInt(result.getString(1));
+		}else{
+			countryID=-1;
+		}
 		return countryID;
-		
 	}
-		
-		
-		
-		
-		
-		
-		
-		
 	
-	
-	
-
+		
 }
+
+/** To Do Things:
+ * 
+ * 	We must implement the query and check int
+ * 
+ */

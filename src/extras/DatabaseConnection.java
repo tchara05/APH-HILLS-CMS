@@ -2,6 +2,8 @@ package extras;
 
 import java.sql.*;
 
+import javax.swing.JOptionPane;
+
 public class DatabaseConnection {
 	
 	
@@ -12,23 +14,42 @@ public class DatabaseConnection {
 	private static Statement statement;
 	
 	
-	public DatabaseConnection() throws ClassNotFoundException, SQLException{
+	public DatabaseConnection(){
 		
 		
 		String urlConnection  = "jdbc:sqlserver://APOLLO;" +
 	
 				"databaseName="+databaseName+";user="+username+";password="+password+";";
 		
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		conn = DriverManager.getConnection(urlConnection);
-		if (conn==null){
-			System.out.println("No Connection");	
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Class Not found, The library is missing");
+			JOptionPane.showMessageDialog(null,
+				    "SQL Library Support is missing",
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
 			
-		}else{
-			System.out.println("Succesfull");
+		}
+		try {
+			conn = DriverManager.getConnection(urlConnection);
+			statement = conn.createStatement();
+		} catch (SQLException e) {
+			System.out.println("The database is not Accesible, please check your internet connection\n" +
+					"or Database's username  and password");
+			JOptionPane.showMessageDialog(null,
+					"The database is not Accesible, please check your internet connection\n" +
+							"or Database's username  and password",
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE);
+
+			e.printStackTrace();
 		}
 		
-		statement = conn.createStatement();
+
+		
+
 		
 	}
 	

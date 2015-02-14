@@ -109,7 +109,11 @@ public class SecretaryMenu {
 		frmSecretaryMenu.getContentPane().setLayout(groupLayout);
 		
 		
-		
-		
 	}
+	
+	
+	public void setVisible(boolean visible){
+		this.frmSecretaryMenu.setVisible(visible);
+	}
+	
 }

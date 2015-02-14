@@ -35,12 +35,13 @@ import javax.swing.border.MatteBorder;
 import extras.Checker;
 import extras.DatabaseConnection;
 
-public class AphroditeHillLogIn {
+public class LogIn {
 
 	private JFrame frmAphroditeHill;
 	private JTextField txtUserName;
 	private JPasswordField txtPassword;
 	private JFrame menu;
+	public static DatabaseConnection  database;
 
 	/**
 	 * Launch the application.
@@ -48,7 +49,7 @@ public class AphroditeHillLogIn {
 	 */
 	public static void main(String[] args) {
 
-					AphroditeHillLogIn window = new AphroditeHillLogIn();
+					LogIn window = new LogIn();
 					window.frmAphroditeHill.setVisible(true);			
 	}				
 				
@@ -57,7 +58,7 @@ public class AphroditeHillLogIn {
 	 * Create the application.
 	 * Constructor for the window.
 	 */
-	public AphroditeHillLogIn() {
+	public LogIn() {
 		initialize();
 	}
 
@@ -137,27 +138,31 @@ public class AphroditeHillLogIn {
 				
 				
 				try {
-					DatabaseConnection  t= new DatabaseConnection();
+					database= new DatabaseConnection();
 					ResultSet rst =null;
 					
 					
-					System.out.println("I will execute query");
 					
-					
-					
-					
-					rst = t.getStatement().executeQuery(query);
+					rst = database.getStatement().executeQuery(query);
 					
 					System.out.println("I executed query");
 					
 					
 					if (rst.next()){
-						 System.out.println(rst.getString(1) + " " + rst.getString(2) + " " + rst.getString(3));		
-						 if (rst.getString(4).equals("a")){
+						 String rights = rst.getString(4);
+						 rights = "b";
+						 if (rights.equals("a")){
 							 frmAphroditeHill.setVisible(false);
 							  new AdminMenu().setVisible(true);
-						 }else{
-							 
+						 }else if (rights.equals("b")){
+							 frmAphroditeHill.setVisible(false);
+							 new SecretaryMenu().setVisible(true);
+						 }else if (rights.equals("c")){
+							 frmAphroditeHill.setVisible(false);
+							 new SecurityMenu().setVisible(true);
+						 }else if(rights.equals("d")){
+							 frmAphroditeHill.setVisible(false);
+							 new AccountantMenu().setVisible(true);
 						 }
 				
 					}else{
@@ -222,4 +227,5 @@ public class AphroditeHillLogIn {
 		frmAphroditeHill.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmAphroditeHill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
 }

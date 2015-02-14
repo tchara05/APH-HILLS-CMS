@@ -75,4 +75,9 @@ public class AccountantMenu {
 		JPanel accountPanel =accountantPanel.createAccountantMenu();
 		tabbedPane.addTab("Accountant Menu", null, accountPanel, null);
 	}
+	
+	
+	public void setVisible(boolean visible){
+		this.frame.setVisible(visible);
+	}
 }
