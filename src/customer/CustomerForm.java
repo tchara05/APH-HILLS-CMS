@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPanel;
@@ -85,6 +88,19 @@ public class CustomerForm {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            System.out.println("here");
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		
 		frame = new JFrame();
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

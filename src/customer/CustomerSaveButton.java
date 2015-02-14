@@ -31,6 +31,7 @@ public class CustomerSaveButton extends Thread {
 					    "First Name has invalid characters",
 					    "Inane warning",
 					    JOptionPane.WARNING_MESSAGE);
+						
 						checked = false;
 			}
 		
