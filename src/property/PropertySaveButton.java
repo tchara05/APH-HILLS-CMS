@@ -15,8 +15,6 @@ public class PropertySaveButton extends Thread {
 		boolean checked = true;
 		
 		if (!Checker.checkString(s)){
-			
-			
 			if ( !Checker.checkString(s)){
 				JOptionPane.showMessageDialog(null,
 			    "Plot Name has invalid characters",
@@ -25,6 +23,16 @@ public class PropertySaveButton extends Thread {
 				checked = false;
 	
 			}
+			
+			
+			
+			
+			JOptionPane.showMessageDialog(null,
+				    "Property Added",
+				    "Information Message",
+				    JOptionPane.INFORMATION_MESSAGE);
+			
+			
 		}
 	}
 }

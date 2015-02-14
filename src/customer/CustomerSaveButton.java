@@ -106,10 +106,10 @@ public class CustomerSaveButton extends Thread {
 					
 					
 					st.executeUpdate(query);
-					new CustomerClearButton().start();
+					CustomerForm.clear.start();
 					JOptionPane.showMessageDialog(null,
 						    "Customer Added",
-						    "",
+						    "Information Message",
 						    JOptionPane.INFORMATION_MESSAGE);
 					CustomerForm.setVisible(false);
 				}else {

@@ -30,6 +30,9 @@ import java.awt.event.MouseEvent;
 
 public class PropertyForm {
 
+	
+	//Graphical variables //
+	
 	private static JFrame frmPropertyForm;
 	private static JTextField txtPlotID;
 	private static JTextField txtPlotNo;
@@ -57,7 +60,11 @@ public class PropertyForm {
 	private static JCheckBox chckbxPoolHeading ;
 	private static JCheckBox chckbxAirCondition ;
 	private static JCheckBox chckbxBasement;
-	private static JTextArea txtExtraDetails ;
+	private static JTextArea txtExtraDetails;
+	
+	// Button Fuctionalities //
+	private static PropertySaveButton save = new PropertySaveButton();
+	private static PropertyClearButton clear = new PropertyClearButton();
 
 	/**
 	 * Launch the application.
@@ -110,18 +117,9 @@ public class PropertyForm {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				/* CODE FOR SAVING */
-				
-				new PropertyClearButton().start();
-				JOptionPane.showMessageDialog(null,
-					    "Property Saved",
-					    "Information Message",
-					    JOptionPane.CLOSED_OPTION);
-				
+				save.start();
 				frmPropertyForm.setVisible(false);
-				
-				
-				
+					
 			}
 		});
 
@@ -133,7 +131,7 @@ public class PropertyForm {
 				
 				
 				
-				new PropertyClearButton().start();
+				clear.start();
 				frmPropertyForm.setVisible(false);
 			}
 		});
@@ -146,7 +144,7 @@ public class PropertyForm {
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PropertyClearButton().start();
+				clear.start();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(frmPropertyForm.getContentPane());

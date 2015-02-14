@@ -59,7 +59,7 @@ public class CustomerForm {
 	// Button Fuctionality //
 	
 	private static CustomerSaveButton save = new CustomerSaveButton();
-	private static CustomerClearButton clear =new CustomerClearButton();
+	public static CustomerClearButton clear =new CustomerClearButton();
 	
 	//Remove when finished //
 	 static DatabaseConnection 	database= new DatabaseConnection();
