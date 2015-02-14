@@ -1,3 +1,5 @@
+drop table Customer;
+
 create table Customer (
 	customerID int identity(1,1) primary key,
 	firstName varchar (50),

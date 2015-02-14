@@ -1,4 +1,5 @@
 
+drop talbe DocumentHead;
 
 create table DocumentHead(
 	documentID integer primary key,

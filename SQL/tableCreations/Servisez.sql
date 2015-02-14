@@ -1,4 +1,7 @@
-create table Servicez (
+
+drop table Service;
+
+create table Service (
 	keyID int  primary key,
 	specificKey int primary key,
 	checkIN datetime,

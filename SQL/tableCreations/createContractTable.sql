@@ -1,3 +1,9 @@
+
+
+
+drop table Contract;
+
+
 create table Contract (
 	contractID integer identity primary key,
 	customerID integer not null,

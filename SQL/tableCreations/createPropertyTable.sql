@@ -1,3 +1,8 @@
+
+drop Property;
+
+
+
 create table Property (
 	plotID integer identity(1,1) primary key,
 	plotNumber integer not null,

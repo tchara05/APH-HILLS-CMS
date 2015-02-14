@@ -1,3 +1,6 @@
+
+drop table DocumentLines;
+
 create table DocumentLines (
 	docNumber integer primary key,
 	NA integer not null,
