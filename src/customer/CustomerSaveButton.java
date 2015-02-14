@@ -112,9 +112,6 @@ public class CustomerSaveButton extends Thread {
 						    "",
 						    JOptionPane.INFORMATION_MESSAGE);
 					CustomerForm.setVisible(false);
-					
-					
-					
 				}else {
 					System.out.println("Invalid Character or Country Somewhere");
 				}
