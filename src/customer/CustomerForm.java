@@ -17,13 +17,18 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Color;
 import java.io.File;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
+import userMenus.LogIn;
+
 import extras.Checker;
+import extras.DatabaseConnection;
 
 
 import java.awt.event.MouseAdapter;
@@ -66,19 +71,28 @@ public class CustomerForm {
 	 */
 	public CustomerForm() {
 		initialize();
-		File fp = new File("Countries.txt");
+		
 		
 		try{
-			Scanner read = new Scanner(fp);
-			while (read.hasNext() ){
+			
+			/** Remove in the finishe **/	
+			DatabaseConnection	database= new DatabaseConnection();
+			ResultSet rst =null;
+			Statement st = database.getStatement(); 	
+			
 				
-				String cntr = read.nextLine();
-				Country.addItem(cntr);	
-				
+			/*************************/	
+			
+		//	Statement st = LogIn.database.getStatement();
+			ResultSet rs = st.executeQuery("SELECT countryName FROM Country");	
+		
+			
+			while (rs.next()){
+				Country.addItem(rs.getString(1));
+				System.out.println(rs.getString(1));
 			}
-			read.close();
 		}catch (Exception e){
-			System.out.println("File Not Found!");
+			e.printStackTrace();
 			
 		}
 		
