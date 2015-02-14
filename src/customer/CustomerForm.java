@@ -93,7 +93,6 @@ public class CustomerForm {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
 		            UIManager.setLookAndFeel(info.getClassName());
-		            System.out.println("here");
 		            break;
 		        }
 		    }
