@@ -83,13 +83,11 @@ public class CustomerForm {
 				
 			/*************************/	
 			
-		//	Statement st = LogIn.database.getStatement();
 			ResultSet rs = st.executeQuery("SELECT countryName FROM Country");	
 		
 			
 			while (rs.next()){
 				Country.addItem(rs.getString(1));
-				System.out.println(rs.getString(1));
 			}
 		}catch (Exception e){
 			e.printStackTrace();
