@@ -150,7 +150,6 @@ public class LogIn {
 					
 					if (rst.next()){
 						 String rights = rst.getString(4);
-						 rights = "b";
 						 if (rights.equals("a")){
 							 frmAphroditeHill.setVisible(false);
 							  new AdminMenu().setVisible(true);

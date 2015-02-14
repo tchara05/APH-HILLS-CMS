@@ -535,15 +535,15 @@ public class CustomerForm {
 	}
 	
 	
-	public static String getNote(String val){
+	public static String getNote(){
 		return txtNote.getText();
 	}
 	
-	public static boolean getCloseAccound(boolean val){
+	public static boolean getCloseAccound(){
 		return chckbxCloseAccound.isSelected();	
 	}
 	
-	public static boolean getInformationMaterial(boolean val){
+	public static boolean getInformationMaterial(){
 		return	chckbxInformationMaterial.isSelected();
 	}
 	

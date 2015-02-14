@@ -10,8 +10,8 @@ public class DatabaseConnection {
 	private static String databaseName="aphroditehills";
 	private static String password="guYa5Ah!";
 	private static String username="aphroditehills";
-	private  static  Connection conn; 	
-	private static Statement statement;
+	private  static Connection conn; 	
+	private  static  Statement statement;
 	
 	
 	public DatabaseConnection(){
