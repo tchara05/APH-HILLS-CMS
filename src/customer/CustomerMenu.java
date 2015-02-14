@@ -62,6 +62,7 @@ public class CustomerMenu extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				customerform.setVisible(true);
 			}
 		});

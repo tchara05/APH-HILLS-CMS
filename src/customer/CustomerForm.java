@@ -37,7 +37,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class CustomerForm {
-
+	// Graphical Variables  Data //
 	private static JFrame frame;
 	private static JTextField txtFname;
 	private static JTextField txtLastName;
@@ -56,13 +56,22 @@ public class CustomerForm {
 	private static JCheckBox chckbxCloseAccound;	
 	private static JCheckBox chckbxInformationMaterial;
 
+	// Button Fuctionality //
+	
+	private static CustomerSaveButton save = new CustomerSaveButton();
+	private static CustomerClearButton clear =new CustomerClearButton();
+	
+	//Remove when finished //
+	 static DatabaseConnection 	database= new DatabaseConnection();
+	
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		
 					CustomerForm window = new CustomerForm();
-					window.frame.setVisible(true);
+					CustomerForm.setVisible(true);
 					
 	}
 
@@ -76,19 +85,24 @@ public class CustomerForm {
 		try{
 			
 			/** Remove in the finishe **/	
-			DatabaseConnection	database= new DatabaseConnection();
+			database= new DatabaseConnection();
 			ResultSet rst =null;
 			Statement st = database.getStatement(); 	
 			
 				
 			/*************************/	
 			
+			// databaseconnection from login here // 
+			
+			
 			ResultSet rs = st.executeQuery("SELECT countryName FROM Country");	
-		
+			
 			
 			while (rs.next()){
 				Country.addItem(rs.getString(1));
 			}
+			
+			
 		}catch (Exception e){
 			e.printStackTrace();
 			
@@ -141,8 +155,7 @@ public class CustomerForm {
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				new CustomerClearButton().start();
+				clear.start();
 				setVisible(false);
 			}
 		});
@@ -150,7 +163,7 @@ public class CustomerForm {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					new CustomerSaveButton().start();
+					save.start();
 			}
 		});
 		
@@ -158,9 +171,7 @@ public class CustomerForm {
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-					new CustomerClearButton().start();
-			
+					clear.start();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -490,8 +501,25 @@ public class CustomerForm {
 		FaxNumber.setText(val);
 	}
 	
-	public static void setID(String val){
-		txtID.setText(val);
+	public static void setID() throws Exception{
+		
+		
+		//Statement st = LogIn.database.getStatement();
+		Statement st = database.getStatement();
+		ResultSet rs = st.executeQuery("SELECT MAX(customerID)  FROM Customer");
+		
+		if (rs.next()){
+			String id = rs.getString(1);
+			if (id!=null){
+				txtID.setText(""+(Integer.parseInt(rs.getString(1))+1));
+			}else{
+				txtID.setText("1");
+			}
+		}else{
+			txtID.setText("1");
+		}
+		
+		
 	}
 	
 	
@@ -579,6 +607,11 @@ public class CustomerForm {
 	}
 	
 	public static void setVisible(boolean val){
+		try {
+			setID();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		frame.setVisible(val);	
 	}
 	

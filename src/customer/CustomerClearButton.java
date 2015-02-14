@@ -13,7 +13,11 @@ public class CustomerClearButton extends Thread {
 			CustomerForm.setContactNumber(val);
 			CustomerForm.setFaxNumber(val);
 			CustomerForm.setFname(val);
-			CustomerForm.setID(val);
+			try {
+				CustomerForm.setID() ;
+			} catch (Exception e) {
+				
+			}
 			CustomerForm.setInformationMaterial(false);
 			CustomerForm.setLastName(val);
 			CustomerForm.setNote(val);
