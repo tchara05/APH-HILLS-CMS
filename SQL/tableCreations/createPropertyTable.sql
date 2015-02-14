@@ -1,5 +1,5 @@
 create table Property (
-	plotID integer identity primary key,
+	plotID integer identity(1,1) primary key,
 	plotNumber integer not null,
 	plotName nvarchar(50) not null,
 	propertyClassNo integer not null,

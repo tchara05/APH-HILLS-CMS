@@ -2,6 +2,7 @@
 
 create table DocumentHead(
 	documentID integer primary key,
+	customerID integer not null,
 	docType char not null,
 	exportDate int not null,
 	issuedBy integer not null,

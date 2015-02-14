@@ -3,5 +3,6 @@ create table Contract (
 	customerID integer not null,
 	plotID integer not null,
 	customerPercentage float not null,
-	active integer not null --yes/no
+	active integer not null,
+	CONSTRAINT bool CHECK (avtive = 1 or docStatus = 0)
 );
