@@ -3,6 +3,9 @@ package customer;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -13,19 +16,25 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import extras.DatabaseConnection;
+
 
 public class CustomerMenu extends JPanel {
 	
 	
-	/**
-	 * 
-	 */
+	// Graphical Variables //
 
 	private static CustomerForm customerform;
 	private static JLabel lblCustomerDescriptions;	
 	private static JTextField txtCustomerSearch;
 	private static JComboBox<String> AllCustomers;
 	private static JPanel CustomerPanel;
+	
+	
+
+	
+	
+
 
 	/**
 	 * Create the panel.
@@ -43,6 +52,12 @@ public class CustomerMenu extends JPanel {
 		lblCustomerDescriptions = new JLabel("");
 		
 		AllCustomers = new JComboBox<String>();
+		
+		
+		UpDateCustomerList();
+	
+		
+		
 		
 		JButton btnAddNewCustomer = new JButton("Add New Customer");
 		btnAddNewCustomer.addMouseListener(new MouseAdapter() {
@@ -81,6 +96,10 @@ public class CustomerMenu extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblCustomerDescriptions.setText("");
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new CustomerEditButton().start();
 			}
 		});
 
@@ -172,6 +191,34 @@ public class CustomerMenu extends JPanel {
 		new CustomerMenu();
 		return CustomerPanel;
 	
+	}
+	
+	public static Object getSelectedCustomer(){
+		return AllCustomers.getSelectedItem();
+	}
+	
+	public static void UpDateCustomerList(){
+		
+		/** Remove in the finish **/	
+		DatabaseConnection database= new DatabaseConnection();
+		ResultSet rst =null;
+		Statement st = database.getStatement(); 	
+		
+			
+		/*************************/	
+		
+		//	Statement st = LogIn.database.getStatement();
+		try {
+			rst = st.executeQuery("SELECT customerID, firstName , lastName FROM Customer");
+			while (rst.next()){
+				AllCustomers.addItem(rst.getString(2) +" " + rst.getString(3));
+			}
+			
+		} catch (SQLException e1) {
+			
+			e1.printStackTrace();
+		}
+		
 	}
 
 }

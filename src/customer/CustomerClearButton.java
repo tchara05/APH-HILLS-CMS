@@ -24,7 +24,9 @@ public class CustomerClearButton extends Thread {
 			CustomerForm.setPhoneMobile(val);
 			CustomerForm.setPrimaryMail(val);
 			CustomerForm.setSecondaryMail(val);
-			CustomerForm.setZipCode(val);		
+			CustomerForm.setZipCode(val);
+			CustomerForm.edit=false;
+			
 	}
 
 }

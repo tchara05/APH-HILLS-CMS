@@ -55,11 +55,10 @@ public class CustomerForm {
 	private static JTextArea txtNote;
 	private static JCheckBox chckbxCloseAccound;	
 	private static JCheckBox chckbxInformationMaterial;
-
-	// Button Fuctionality //
 	
-	private static CustomerSaveButton save = new CustomerSaveButton();
-	public static CustomerClearButton clear =new CustomerClearButton();
+	public static boolean edit = false;
+
+
 	
 	//Remove when finished //
 	 static DatabaseConnection 	database= new DatabaseConnection();
@@ -84,7 +83,7 @@ public class CustomerForm {
 		
 		try{
 			
-			/** Remove in the finishe **/	
+			/** Remove in the finish **/	
 			database= new DatabaseConnection();
 			ResultSet rst =null;
 			Statement st = database.getStatement(); 	
@@ -92,7 +91,7 @@ public class CustomerForm {
 				
 			/*************************/	
 			
-			// databaseconnection from login here // 
+			//	Statement st = LogIn.database.getStatement();
 			
 			
 			ResultSet rs = st.executeQuery("SELECT countryName FROM Country");	
@@ -155,7 +154,8 @@ public class CustomerForm {
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				clear.start();
+				
+				
 				setVisible(false);
 			}
 		});
@@ -163,7 +163,7 @@ public class CustomerForm {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					save.start();
+				new CustomerSaveButton().start();
 			}
 		});
 		
@@ -171,7 +171,7 @@ public class CustomerForm {
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					clear.start();
+				new CustomerClearButton().start();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -505,13 +505,14 @@ public class CustomerForm {
 		
 		
 		//Statement st = LogIn.database.getStatement();
+		
+		//	Remove  later //
 		Statement st = database.getStatement();
 		ResultSet rs = st.executeQuery("SELECT MAX(customerID)  FROM Customer");
 		
 		if (rs.next()){
-			String id = rs.getString(1);
-			if (id!=null){
-				txtID.setText(""+(Integer.parseInt(rs.getString(1))+1));
+			if (rs.getString(1)!=null){
+				txtID.setText(""+(rs.getInt(1)+1));
 			}else{
 				txtID.setText("1");
 			}
@@ -520,6 +521,10 @@ public class CustomerForm {
 		}
 		
 		
+	}
+	
+	public static void setIDbyEdit(String val){
+		txtID.setText(val);
 	}
 	
 	

@@ -23,8 +23,7 @@ public class CustomerSaveButton extends Thread {
 	 * 
 	 */
 	
-	
-	
+	protected boolean edit = false;
 	public void run(){
 		
 			boolean checked = true;
@@ -154,21 +153,30 @@ public class CustomerSaveButton extends Thread {
 			
 			//	Statement st =	LogIn.database.getStatement();
 				
+				
+				
 				int countryID = getCountry(country,st);
 				if (countryID >0 && checked){
 					
-					String query = "INSERT INTO CUSTOMER VALUES ('"+Fname+"','"+Lname+"','"+primaryMail+"','"+secondaryMail+"','"
+					String query="";
+					if (!CustomerForm.edit)
+						query = "INSERT INTO CUSTOMER VALUES ('"+Fname+"','"+Lname+"','"+address+"','"+primaryMail+"','"+secondaryMail+"','"
 									+countryID+"','"+city+"','"+zipcode+"','"+bussinesNumber+"','"+mobileNum+"','"+contactNumber+
 									"','"+faxNumber+"','"+closeAccount+"','"+infoMaterial+"','"+note+"')";
+					else{
+						//Query Update here //
+						query = "UPDATE Customer SET firstName = '";
+					}
 					
 					
 					st.executeUpdate(query);
-					CustomerForm.clear.start();
+					new CustomerClearButton().start();
 					JOptionPane.showMessageDialog(null,
 						    "Customer Added",
 						    "Information Message",
 						    JOptionPane.INFORMATION_MESSAGE);
 					CustomerForm.setVisible(false);
+					CustomerMenu.UpDateCustomerList();
 				}else {
 					System.out.println("Invalid Character or Country Somewhere");
 				}
@@ -185,7 +193,7 @@ public class CustomerSaveButton extends Thread {
 			/* If everything is ok, run the query for the database */
 			
 			System.out.println("I am here");
-			
+			CustomerForm.edit=false;
 
 		
 	}
