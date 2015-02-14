@@ -107,10 +107,15 @@ public class CustomerSaveButton extends Thread {
 					
 					st.executeUpdate(query);
 					new CustomerClearButton().start();
+					JOptionPane.showMessageDialog(null,
+						    "Customer Added",
+						    "",
+						    JOptionPane.INFORMATION_MESSAGE);
 					CustomerForm.setVisible(false);
 					
-				}else {
 					
+					
+				}else {
 					System.out.println("Invalid Character or Country Somewhere");
 				}
 				
