@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import checksClasses.*;
+import extras.*;
 
 
 import java.awt.event.ActionListener;
@@ -30,7 +30,7 @@ import java.awt.event.MouseEvent;
 
 public class PropertyForm {
 
-	private JFrame frmPropertyForm;
+	private static JFrame frmPropertyForm;
 	private static JTextField txtPlotID;
 	private static JTextField txtPlotNo;
 	private static JTextField txtPlotName;
@@ -48,7 +48,6 @@ public class PropertyForm {
 	private static JTextField txtBedrooms;
 	private static JTextField txtBathrooms;
 	private static JTextField txtDeedNo;
-	private static JTextField txtAirUnits;
 	private static JCheckBox TitleDeed;
 	private static JCheckBox chckbxGrandViewRights;
 	private static JCheckBox chckbxPool ;
@@ -236,11 +235,6 @@ public class PropertyForm {
 		
 		 chckbxBasement = new JCheckBox("Basement");
 		
-		JLabel lblNumberOfAircondition = new JLabel("Air-Condition Unitis No.");
-		
-		txtAirUnits = new JTextField();
-		txtAirUnits.setColumns(10);
-		
 		JLabel lblExtraFeatures = new JLabel("Extra Features:");
 		lblExtraFeatures.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		
@@ -280,17 +274,15 @@ public class PropertyForm {
 								.addComponent(chckbxParking))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtAirUnits)
 								.addComponent(chckbxBasement)
-								.addComponent(chckbxAirCondition)
-								.addComponent(lblNumberOfAircondition))
-							.addContainerGap())
+								.addComponent(chckbxAirCondition))
+							.addGap(13))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(lblExtraFeatures)
-							.addContainerGap(314, Short.MAX_VALUE))
+							.addContainerGap(275, Short.MAX_VALUE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(lblStandarFeatures)
-							.addContainerGap(314, Short.MAX_VALUE))))
+							.addContainerGap(253, Short.MAX_VALUE))))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -326,18 +318,14 @@ public class PropertyForm {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(chckbxPool)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(chckbxPoolHeading)
-						.addComponent(lblNumberOfAircondition))
+					.addComponent(chckbxPoolHeading)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(chckbxParking)
-						.addComponent(txtAirUnits, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addComponent(chckbxParking)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(chckbxCentralHeading)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(chckbxGarden)
-					.addContainerGap(38, Short.MAX_VALUE))
+					.addContainerGap(49, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
@@ -345,42 +333,42 @@ public class PropertyForm {
 		
 		txtPlotID = new JTextField();
 		txtPlotID.setEditable(false);
-		txtPlotID.setColumns(10);
+		txtPlotID.setColumns(15);
 		
 		JLabel lblNo = new JLabel("Plot Number:");
 		
 		txtPlotNo = new JTextField();
-		txtPlotNo.setColumns(10);
+		txtPlotNo.setColumns(15);
 		
 		JLabel lblName = new JLabel("Plot Name:");
 		
 		txtPlotName = new JTextField();
-		txtPlotName.setColumns(10);
+		txtPlotName.setColumns(15);
 		
 		JLabel lblClass = new JLabel("Property Class:");
 		
 		txtClass = new JTextField();
-		txtClass.setColumns(10);
+		txtClass.setColumns(15);
 		
 		JLabel lblParcel = new JLabel("Parcel:");
 		
 		txtParcel = new JTextField();
-		txtParcel.setColumns(10);
+		txtParcel.setColumns(15);
 		
 		JLabel lblLand = new JLabel("Land Use:");
 		
 		txtLandUse = new JTextField();
-		txtLandUse.setColumns(10);
+		txtLandUse.setColumns(15);
 		
 		JLabel lblN = new JLabel("Percentage");
 		
 		txtPerChange = new JTextField();
-		txtPerChange.setColumns(10);
+		txtPerChange.setColumns(15);
 		
 		JLabel lblPlots = new JLabel("Plots:");
 		
 		txtPlots = new JTextField();
-		txtPlots.setColumns(10);
+		txtPlots.setColumns(15);
 		
 		JLabel lblDetails = new JLabel("Details:");
 		
@@ -393,13 +381,12 @@ public class PropertyForm {
 		JLabel lblOtherInfo = new JLabel("Other Info:");
 		GroupLayout gl_panelDetails = new GroupLayout(panelDetails);
 		gl_panelDetails.setHorizontalGroup(
-			gl_panelDetails.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panelDetails.createSequentialGroup()
+			gl_panelDetails.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelDetails.createSequentialGroup()
 					.addGap(21)
 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-							.addComponent(txtExtraDetails, GroupLayout.PREFERRED_SIZE, 441, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblDetails))
+						.addComponent(txtExtraDetails, GroupLayout.PREFERRED_SIZE, 441, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblDetails)
 						.addGroup(gl_panelDetails.createSequentialGroup()
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNo)
@@ -420,11 +407,11 @@ public class PropertyForm {
 								.addComponent(txtLandUse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtPlotID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(34)
+							.addGap(62)
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblOtherInfo)
 								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(544, Short.MAX_VALUE))
+					.addContainerGap(85, Short.MAX_VALUE))
 		);
 		gl_panelDetails.setVerticalGroup(
 			gl_panelDetails.createParallelGroup(Alignment.LEADING)
@@ -460,14 +447,14 @@ public class PropertyForm {
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
 								.addComponent(txtPerChange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblN)))
-						.addComponent(panel, 0, 0, Short.MAX_VALUE))
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(12)
 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPlots))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblDetails)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
 					.addComponent(txtExtraDetails, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
@@ -615,11 +602,7 @@ public class PropertyForm {
 		txtDeedNo.setText(val);
 	}
 	
-	public static void setAirUnits(String val){
-		
-		txtAirUnits.setText(val);
-	}
-	
+
 	public static void setTitleDeed(boolean val){
 		
 		TitleDeed.setSelected(val);
@@ -737,10 +720,7 @@ public class PropertyForm {
 		return txtDeedNo.getText();
 	}
 	
-	public static String getAirUnits(){
-		
-		return txtAirUnits.getText();
-	}
+
 	
 	public static boolean getTitleDeed(){
 		

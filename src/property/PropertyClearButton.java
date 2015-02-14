@@ -12,7 +12,7 @@ public class PropertyClearButton extends Thread {
 		
 		PropertyForm.setAirCondition(val1);
 		PropertyForm.setBasement(val1);
-		PropertyForm.setAirUnits(val2);
+		
 		PropertyForm.setBathrooms(val2);
 		PropertyForm.setBedrooms(val2);
 		PropertyForm.setCentralHeading(val1);

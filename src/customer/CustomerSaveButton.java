@@ -1,8 +1,15 @@
 package customer;
 
-import javax.swing.JOptionPane;
+import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
-import checksClasses.Checker;
+import javax.swing.JOptionPane;
+import userMenus.LogIn;
+import extras.Checker;
+import extras.DatabaseConnection;
 
 public class CustomerSaveButton extends Thread {
 	
@@ -21,12 +28,10 @@ public class CustomerSaveButton extends Thread {
 	public void run(){
 		
 			
-			
-			String s = CustomerForm.getFname();
+		    String country = CustomerForm.getCountry();
+			String Fname = CustomerForm.getFname();
 			boolean checked = true;
-			
-			
-			if ( !Checker.checkString(s)){
+			if ( !Checker.checkString(Fname)){
 						JOptionPane.showMessageDialog(null,
 					    "First Name has invalid characters",
 					    "Inane warning",
@@ -34,41 +39,99 @@ public class CustomerSaveButton extends Thread {
 						
 						checked = false;
 			}
-		
+			String Lname=CustomerForm.getLastName();
+			// Check Here //
 			
+			
+			String address = CustomerForm.getAddress();
+			// Check Here //
+			
+			String bussinesNumber = CustomerForm.getBussinesNumber();
+			//Check Here //
+			
+			String city = CustomerForm.getCity();
+			//Check Here //
+			
+			String contactNumber = CustomerForm.getContactNumber();
+			//Check Here //
+			String faxNumber = CustomerForm.getFaxNumber();
+			// Check Here //
+			
+			String customerID =	CustomerForm.getID();
+			// Check Here //
+			String note =  CustomerForm.getNote();
+			// Check Here //
+			String mobileNum = CustomerForm.getPhoneMobile();
+			// Check Here //
+			String primaryMail = CustomerForm.getPrimaryMail();
+			// Check Here //
+			String secondaryMail = CustomerForm.getSecondaryMail();
+			// Check Here //
+			String zipcode = CustomerForm.getZipCode();
+			// Check Here //
+			
+			short infoMaterial = 0; 
+			if   (CustomerForm.getInformationMaterial()){
+				infoMaterial = 1;
+			}
+			
+			short closeAccount = 0;
+			if (CustomerForm.getCloseAccound()){
+				closeAccount =1;
+			}
+			
+			
+			
+
+			try {
+			/** Remove in the finishe **/	
+			DatabaseConnection	database= new DatabaseConnection();
+			ResultSet rst =null;
+			Statement st = null; 	
+			
+			
+			
+				
+			/*************************/	
+				st = database.getStatement();
+			
+			//	Statement st =	LogIn.database.getStatement();
+				
+				int countryID = getCountry(country,st);
+				if (countryID >0 && checked){
+					
+					String query = "INSERT INTO CUSTOMER VALUES ('"+Fname+"','"+Lname+"','"+primaryMail+"','"+secondaryMail+"','"
+									+countryID+"','"+city+"','"+zipcode+"','"+bussinesNumber+"','"+mobileNum+"','"+contactNumber+
+									"','"+faxNumber+"','"+closeAccount+"','"+infoMaterial+"','"+note+"')";
+					
+					
+					st.executeUpdate(query);
+					new CustomerClearButton().start();
+					CustomerForm.setVisible(false);
+					
+				}else {
+					
+					System.out.println("Invalid Character or Country Somewhere");
+				}
+				
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+				
+			} catch (NullPointerException e){
+				
+				e.printStackTrace();
+			}
 			
 			/* If everything is ok, run the query for the database */
 			
+			System.out.println("I am here");
 			
-			
-			if  (checked){
-				execQuery();
-			}
-		
+
 		
 	}
 	
-	/** Query Code is be in here
-	 * 
-	 * 
-	 * Before we run the full query for the save,
-	 * we will run some other query first to retrieve the countryID
-	 * 
-	 * if it throws PK exception,  mean some updates so with catch,
-	 * we run the update query
-	 *  
-	 **/
-	
-	private static void execQuery(){
-		
-		
-		/* Code Here */
-		
 
-	}	
-	
-	
-	
 	
 	
 	/**
@@ -80,25 +143,25 @@ public class CustomerSaveButton extends Thread {
 	
 	
 	
-	private static int getCountry(String  country){
+	private static int getCountry(String  country,Statement st) throws SQLException{
 		
-		int countryID=0;
 		
-		/* We need a query here */
-		
+	
+		int countryID=-1;
+		ResultSet result = st.executeQuery("SELECT countryID FROM Country WHERE countryName='"+country+"'");
+		if (result.next()){
+			countryID = Integer.parseInt(result.getString(1));
+		}else{
+			countryID=-1;
+		}
 		return countryID;
-		
 	}
-		
-		
-		
-		
-		
-		
-		
-		
 	
-	
-	
-
+		
 }
+
+/** To Do Things:
+ * 
+ * 	We must implement the query and check int
+ * 
+ */

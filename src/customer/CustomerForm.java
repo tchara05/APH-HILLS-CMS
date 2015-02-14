@@ -23,7 +23,7 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import checksClasses.Checker;
+import extras.Checker;
 
 
 import java.awt.event.MouseAdapter;
@@ -33,7 +33,7 @@ import java.awt.event.ActionEvent;
 
 public class CustomerForm {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private static JTextField txtFname;
 	private static JTextField txtLastName;
 	private static JTextField txtAddress;
@@ -344,10 +344,12 @@ public class CustomerForm {
 		JLabel lblNote = new JLabel("Note:");
 		
 	    txtNote = new JTextArea();
+	    txtNote.setLineWrap(true);
 		
 		JLabel lblCustomerId = new JLabel("Customer ID:");
 		
 		txtID = new JTextField();
+		txtID.setEditable(false);
 		txtID.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -549,24 +551,24 @@ public class CustomerForm {
 	}
 	
 	
-	public static String getNote(String val){
+	public static String getNote(){
 		return txtNote.getText();
 	}
 	
-	public static boolean getCloseAccound(boolean val){
+	public static boolean getCloseAccound(){
 		return chckbxCloseAccound.isSelected();	
 	}
 	
-	public static boolean getInformationMaterial(boolean val){
+	public static boolean getInformationMaterial(){
 		return	chckbxInformationMaterial.isSelected();
 	}
 	
-	public void setVisible(boolean val){
-		this.frame.setVisible(val);	
+	public static String getCountry(){
+		return Country.getSelectedItem() + "";
 	}
 	
-	
-	
-	
+	public static void setVisible(boolean val){
+		frame.setVisible(val);	
+	}
 	
 }
