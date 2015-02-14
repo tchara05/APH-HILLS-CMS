@@ -27,46 +27,103 @@ public class CustomerSaveButton extends Thread {
 	
 	public void run(){
 		
+			boolean checked = true;
 			
 		    String country = CustomerForm.getCountry();
+		    
 			String Fname = CustomerForm.getFname();
-			boolean checked = true;
 			if ( !Checker.checkString(Fname)){
-						JOptionPane.showMessageDialog(null,
-					    "First Name has invalid characters",
-					    "Inane warning",
-					    JOptionPane.WARNING_MESSAGE);
-						
-						checked = false;
+				JOptionPane.showMessageDialog(null,
+			    "First Name has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
 			}
+			
 			String Lname=CustomerForm.getLastName();
-			// Check Here //
+			if ( !Checker.checkString(Lname)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "Last Name has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
 			
 			
 			String address = CustomerForm.getAddress();
 			// Check Here //
 			
 			String bussinesNumber = CustomerForm.getBussinesNumber();
-			//Check Here //
+			if ( !Checker.checkNumber(bussinesNumber)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "Bussines Number has invalid characters ",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
 			
 			String city = CustomerForm.getCity();
-			//Check Here //
+			if ( !Checker.checkString(city)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "City has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
 			
 			String contactNumber = CustomerForm.getContactNumber();
-			//Check Here //
+			if ( !Checker.checkNumber(contactNumber)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "Contact Number has invalid characters ",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
+			
 			String faxNumber = CustomerForm.getFaxNumber();
-			// Check Here //
+			if ( !Checker.checkNumber(faxNumber)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "Fax has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
 			
 			String customerID =	CustomerForm.getID();
 			// Check Here //
+			// i think we no need this check//
+			
 			String note =  CustomerForm.getNote();
 			// Check Here //
+			// i think we no need this check//
+			
 			String mobileNum = CustomerForm.getPhoneMobile();
-			// Check Here //
+			if ( !Checker.checkNumber(mobileNum)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "Mobile Number has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
+			
 			String primaryMail = CustomerForm.getPrimaryMail();
-			// Check Here //
+			if ( !Checker.checkEmailAddress(primaryMail)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "Primary Email has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
+
 			String secondaryMail = CustomerForm.getSecondaryMail();
-			// Check Here //
+			if ( !Checker.checkEmailAddress(secondaryMail)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "Primary Email has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
+			
 			String zipcode = CustomerForm.getZipCode();
 			// Check Here //
 			
