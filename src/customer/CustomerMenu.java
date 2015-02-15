@@ -6,8 +6,6 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -80,11 +78,11 @@ public class CustomerMenu extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				
 				try {
-					customerform.setID();
+					CustomerForm.setID();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				customerform.setVisible(true);
+				CustomerForm.setVisible(true);
 			}
 		});
 		
@@ -246,6 +244,9 @@ public class CustomerMenu extends JPanel {
 			
 		}
 		AllCustomers.insertItemAt(value, i);
+		if (AllCustomers.getItemCount()>0){
+			AllCustomers.setSelectedIndex(0);
+		}
 		AllCustomers.setSelectedIndex(0);
 		
 	}

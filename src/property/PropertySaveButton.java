@@ -148,7 +148,6 @@ public class PropertySaveButton extends Thread {
 						
 						
 						PropertyForm.setVisible(false);
-
 						PropertyMenu.UpdatePropertyList(plotName,plotNumber);
 						
 				    	

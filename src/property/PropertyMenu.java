@@ -59,7 +59,7 @@ public class PropertyMenu extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 					
-				propertyform.setVisible(true);
+				PropertyForm.setVisible(true);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -262,23 +262,9 @@ public static void setUpPropertyList(){
 	
 	
 	public static JPanel createPropertyMenu(){
-		
 		new PropertyMenu();
 		return PropertyPanel;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	
 	public static void main(String args[]){
 		
