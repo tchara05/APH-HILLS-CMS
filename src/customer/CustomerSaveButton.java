@@ -22,9 +22,7 @@ public class CustomerSaveButton extends Thread {
     * 
     * 
     * 
-    * */
-	
-	protected boolean edit = false;
+    */
 	public void run(){
 		
 			boolean checked = true;
@@ -32,7 +30,8 @@ public class CustomerSaveButton extends Thread {
 		    String country = CustomerForm.getCountry();
 		    
 			
-		   
+		  /**   Retrieve and check the data from the form **/
+		    
 			String nFname= Checker.clearString(CustomerForm.getFname());
 			if ( !Checker.checkString(nFname)){
 				JOptionPane.showMessageDialog(null,
@@ -144,33 +143,25 @@ public class CustomerSaveButton extends Thread {
 				closeAccount =1;
 			}
 			
-			
-			
+		/****************************************************************/	
 
 			try {
 				
 				
 			/** Remove in the finish **/	
 			DatabaseConnection	database= new DatabaseConnection();
-			ResultSet rst =null;
-			Statement st = null; 	
-			
-			
-			
-				
+			Statement st =database.getStatement();
 			/*************************/	
-				st = database.getStatement();
+				
 			
 			//	Statement st =	LogIn.database.getStatement();
-				
 				
 				
 				int countryID = getCountry(country,st);
 				if (countryID >0 && checked){
 					
 					
-					
-					
+					// Confirm Dialog //
 				    int response = JOptionPane.showConfirmDialog(null, "Do you want to save changes?", "Confirm",
 				        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				    if (response == JOptionPane.YES_OPTION) {
@@ -192,25 +183,22 @@ public class CustomerSaveButton extends Thread {
 							
 						
 							CustomerMenu.DeleteCustomerFromList();
-
-							
-							
 						}
+						
+						
+						
 						st.executeUpdate(query);
+						
 						new CustomerClearButton().start();
+						
 						JOptionPane.showMessageDialog(null,
 							    "Customer Added",
 							    "Information Message",
 							    JOptionPane.INFORMATION_MESSAGE);
+						
 						CustomerForm.setVisible(false);
-						
-						CustomerMenu.UpdateCustomerList(nFname,nLname);
-						
-				    	
+						CustomerMenu.UpdateCustomerList(nFname,nLname);	
 				    }
-					
-					
-
 				}else {
 					System.out.println("Invalid Character or Country Somewhere");
 				}
@@ -229,23 +217,12 @@ public class CustomerSaveButton extends Thread {
 		
 	}
 
-	
-	
-	
-	
-	
-
-	
-	
 	/**
 	 * 
 	 * We need this to retrieve the id of country from the database 
 	 * because they are in talbe.
 	 * 
 	 */
-	
-	
-	
 	private static int getCountry(String  country,Statement st) throws SQLException{
 		
 		int countryID=-1;

@@ -210,13 +210,11 @@ public class CustomerMenu extends JPanel {
 		
 		/** Remove in the finish **/	
 		DatabaseConnection database= new DatabaseConnection();
-		ResultSet rst =null;
 		Statement st = database.getStatement(); 	
-		
-			
 		/*************************/	
 		
 		//	Statement st = LogIn.database.getStatement();
+		ResultSet rst =null;
 		try {
 			rst = st.executeQuery("SELECT customerID, firstName , lastName FROM Customer ORDER BY firstName , lastName");
 			while (rst.next()){

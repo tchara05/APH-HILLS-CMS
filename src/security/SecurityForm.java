@@ -41,8 +41,11 @@ public class SecurityForm {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
-		
+	
+        JPanel panel_2 = new JPanel();
+		panel_2.setBorder(UIManager.getBorder("InternalFrame.border"));
+		panel_2.setBounds(394, 113, 66, 203);
+		contentPane.add(panel_2);
 	}
 
 }

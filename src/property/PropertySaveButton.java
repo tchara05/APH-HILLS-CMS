@@ -104,12 +104,7 @@ public class PropertySaveButton extends Thread {
 			
 			/** Remove in the finish **/	
 			DatabaseConnection	database= new DatabaseConnection();
-			ResultSet rst =null;
 			Statement st = null; 	
-			
-			
-			
-				
 			/*************************/	
 				st = database.getStatement();
 			
