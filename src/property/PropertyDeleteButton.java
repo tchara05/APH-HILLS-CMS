@@ -39,7 +39,7 @@ public class PropertyDeleteButton {
 	    		}
 	    		i++;
 	    		while(i<property.length()){
-	    			plotName = plotName+property.charAt(i);
+	    			plotNo = plotNo+property.charAt(i);
 	    			i++;
 	    		}
 	    		
