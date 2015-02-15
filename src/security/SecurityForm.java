@@ -1,54 +1,44 @@
 package security;
 
-import java.awt.Color;
-import java.awt.Toolkit;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.border.EmptyBorder;
 
-public class SecurityForm extends JPanel {
+public class SecurityForm extends JFrame {
 
-private JFrame frmSecurityForm;
-	
+	private JPanel contentPane;
+
+	/**
+	 * 
+	 * 
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		
-		SecurityForm window = new SecurityForm();
-		window.frmSecurityForm.setVisible(true);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SecurityForm frame = new SecurityForm();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
-	
+
+	/**
+	 * Create the frame.
+	 */
 	public SecurityForm() {
-		initialize();
-	}
-	
-	//test
-	private void initialize() {
-		
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            System.out.println("here");
-		            break;
-		        }
-		    }
-		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
-		}
-		//testing111222333
-		frmSecurityForm = new JFrame();
-		frmSecurityForm.setTitle("Security Menu");
-		frmSecurityForm.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		
-		frmSecurityForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmSecurityForm.getContentPane().setLayout(null);
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
-		JLabel lblNewLabel = new JLabel(image);
-		lblNewLabel.setBackground(Color.BLACK);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 	}
 
 }
