@@ -6,7 +6,7 @@ create table Customer (
 	lastName varchar (50),
 	address varchar (50),
 	primaryEmail varchar (50),
-	SecontaryEmail varchar (50),
+	secondaryEmail varchar (50),
 	countryID int,
 	city varchar (50),
 	zipCode int,
@@ -14,7 +14,7 @@ create table Customer (
 	mobilePhone int,
 	contactPhone int,
 	fax int,
-	closeAccount int default 1, --yes/no
+	closeAccount int default 0, --yes/no
 	informationMaterial int, --yes/no
 	note text,
 	CONSTRAINT bool CHECK (closeAccount= 1 or closeAcount = 0)

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import userMenus.LogIn;
 import extras.Checker;
@@ -168,39 +169,47 @@ public class CustomerSaveButton extends Thread {
 				int countryID = getCountry(country,st);
 				if (countryID >0 && checked){
 					
-					String query="";
-					if (!CustomerForm.edit){
-						query = "INSERT INTO CUSTOMER VALUES ('"+nFname+"','"+nLname+"','"+address+"','"+primaryMail+"','"+secondaryMail+"','"
-									+countryID+"','"+city+"','"+zipcode+"','"+bussinesNumber+"','"+mobileNum+"','"+contactNumber+
-									"','"+faxNumber+"','"+closeAccount+"','"+infoMaterial+"','"+note+"')";
-					}else{
-						//Query Update here //
-						
-						
-						 						
-						
-						query = "UPDATE Customer SET firstName = '" + nFname + "', lastName = '"+ nLname + "', address = '" + address +
-								"', primaryEmail ='" +primaryMail + "', secondaryEmail = '" + secondaryMail +"', countryID = '" +
-								countryID + "', city ='" + city +"', zipCode= '" + zipcode + "', bussinesPhone = '"+ bussinesNumber +
-								"', mobilePhone = '" +mobileNum + "', contactPhone ='" + contactNumber + "', fax = '" + faxNumber +
-								"', closeAccount = '" +closeAccount + "', informationMaterial = '"+ infoMaterial + "', note ='" +note +
-								"' WHERE  customerID = '"+CustomerForm.getID() +"'";
-						CustomerMenu.DeleteCustomerFromList();
+					
+					
+					
+				    int response = JOptionPane.showConfirmDialog(null, "Do you want to save changes?", "Confirm",
+				        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				    if (response == JOptionPane.YES_OPTION) {
+				      
+				    	String query="";
+						if (!CustomerForm.edit){
+							query = "INSERT INTO CUSTOMER VALUES ('"+nFname+"','"+nLname+"','"+address+"','"+primaryMail+"','"+secondaryMail+"','"
+										+countryID+"','"+city+"','"+zipcode+"','"+bussinesNumber+"','"+mobileNum+"','"+contactNumber+
+										"','"+faxNumber+"','"+closeAccount+"','"+infoMaterial+"','"+note+"')";
+						}else{
+											
+							
+							query = "UPDATE Customer SET firstName = '" + nFname + "', lastName = '"+ nLname + "', address = '" + address +
+									"', primaryEmail ='" +primaryMail + "', secondaryEmail = '" + secondaryMail +"', countryID = '" +
+									countryID + "', city ='" + city +"', zipCode= '" + zipcode + "', bussinesPhone = '"+ bussinesNumber +
+									"', mobilePhone = '" +mobileNum + "', contactPhone ='" + contactNumber + "', fax = '" + faxNumber +
+									"', closeAccount = '" +closeAccount + "', informationMaterial = '"+ infoMaterial + "', note ='" +note +
+									"' WHERE  customerID = '"+CustomerForm.getID() +"'";
+							CustomerMenu.DeleteCustomerFromList();
 
+							
+							
+						}
+						st.executeUpdate(query);
+						new CustomerClearButton().start();
+						JOptionPane.showMessageDialog(null,
+							    "Customer Added",
+							    "Information Message",
+							    JOptionPane.INFORMATION_MESSAGE);
+						CustomerForm.setVisible(false);
 						
+						CustomerMenu.UpdateCustomerList(nFname,nLname);
 						
-					}
+				    	
+				    }
 					
 					
-					st.executeUpdate(query);
-					new CustomerClearButton().start();
-					JOptionPane.showMessageDialog(null,
-						    "Customer Added",
-						    "Information Message",
-						    JOptionPane.INFORMATION_MESSAGE);
-					CustomerForm.setVisible(false);
-					
-					CustomerMenu.UpdateCustomerList(nFname,nLname);
+
 				}else {
 					System.out.println("Invalid Character or Country Somewhere");
 				}
