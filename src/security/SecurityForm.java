@@ -120,7 +120,12 @@ public class SecurityForm extends JFrame {
 		panel_2.setBounds(394, 113, 66, 203);
 		contentPane.add(panel_2);
 		
->>>>>>> FETCH_HEAD
+kjkjbkjbk
+
+
+
+
+
 		
 	}
 }
