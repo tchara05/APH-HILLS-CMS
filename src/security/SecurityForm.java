@@ -91,6 +91,15 @@ public class SecurityForm extends JFrame {
 		panel_2.setBorder(UIManager.getBorder("InternalFrame.border"));
 		panel_2.setBounds(394, 113, 66, 203);
 		contentPane.add(panel_2);
+<<<<<<< HEAD
+=======
+		
+kjkjbkjbk
+
+
+
+
+>>>>>>> 62717d917f4540497148175e4a3562618f2d965a
 
 		
 	}
