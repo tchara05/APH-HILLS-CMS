@@ -43,6 +43,8 @@ public class PropertyMenu extends JPanel {
 		PropertyPanel = new JPanel();
 		propertyform = new PropertyForm();
 	    AllProperties = new JComboBox<String>();
+	    
+	    setUpPropertyList();
 		
 		JLabel lblProperrty = new JLabel("Properties:");
 		lblPropertyDescriptions = new JLabel("");
@@ -209,7 +211,7 @@ public class PropertyMenu extends JPanel {
 	
 	
 	
-public static void setUpCustomerList(){
+public static void setUpPropertyList(){
 		
 		/** Remove in the finish **/	
 		DatabaseConnection database= new DatabaseConnection();
@@ -226,7 +228,6 @@ public static void setUpCustomerList(){
 				
 				AllProperties.addItem(rst.getString(3) +" " + rst.getString(2));
 			}
-			
 		} catch (SQLException e1) {
 			
 			e1.printStackTrace();
@@ -234,7 +235,7 @@ public static void setUpCustomerList(){
 		
 	}
 	
-	public static void UpdateCustomerList(String str1,String str2){
+	public static void UpdatePropertyList(String str1,String str2){
 		
 		int length = AllProperties.getItemCount();
 		String value = str1 +" " + str2;
@@ -250,7 +251,7 @@ public static void setUpCustomerList(){
 		AllProperties.setSelectedIndex(0);
 		
 	}
-	public static void DeleteCustomerFromList(){
+	public static void DeletePropertyFromList(){
 		
 		
 		if (AllProperties.getItemCount()>0){
@@ -258,22 +259,6 @@ public static void setUpCustomerList(){
 				AllProperties.setSelectedIndex(0);
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	public static JPanel createPropertyMenu(){

@@ -112,10 +112,7 @@ public class PropertyForm {
 		btnSave.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
 				new PropertySaveButton().start();
-				frmPropertyForm.setVisible(false);
-					
 			}
 		});
 
@@ -124,9 +121,6 @@ public class PropertyForm {
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
-				
 				PropertyClearButton.start();
 				frmPropertyForm.setVisible(false);
 			}
@@ -507,9 +501,9 @@ public class PropertyForm {
 	/*Property Form Visibility */
 	
 	
-	public void setVisible(boolean val){
+	public static void setVisible(boolean val){
 		
-		this.frmPropertyForm.setVisible(val);				
+		frmPropertyForm.setVisible(val);				
 	}
 	
 	
@@ -525,7 +519,6 @@ public class PropertyForm {
 	
 	
 	public static void setPlotNo(String val){
-		
 		txtPlotNo.setText(val);
 	}
 	

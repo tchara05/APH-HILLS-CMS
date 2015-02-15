@@ -136,22 +136,24 @@ public class PropertySaveButton extends Thread {
 						}else{
 											
 							// UpdateQuery Here //
-
-							
-							
 						}
+						
+						
 						st.executeUpdate(query);
 						PropertyClearButton.start();
 						JOptionPane.showMessageDialog(null,
-							    "Customer Added",
+							    "Preperty Added",
 							    "Information Message",
 							    JOptionPane.INFORMATION_MESSAGE);
-						CustomerForm.setVisible(false);
 						
-					//	CustomerMenu.UpdateCustomerList(nFname,nLname);
+						
+						PropertyForm.setVisible(false);
+
+						PropertyMenu.UpdatePropertyList(plotName,plotNumber);
 						
 				    	
 				    }
+				    
 					
 				}else {
 					System.out.println("Invalid Character or Country Somewhere");
