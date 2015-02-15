@@ -29,6 +29,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class PropertyForm {
 
@@ -505,252 +508,267 @@ public class PropertyForm {
 	
 	/*Property Form Visibility */
 	
-	
-	public static void setVisible(boolean val){
-		
-		frmPropertyForm.setVisible(val);				
+	public static void setVisible(boolean val) {
+
+		frmPropertyForm.setVisible(val);
 	}
-	
-	
-	
+
 	/* All Setters for the global variables */
-	
-	
-	public static void setPlotID(){
-		 /* This is base on a query of database */
+
+	public static void setPlotID() {
+
+		/** Remove in the finish **/
+		DatabaseConnection database = new DatabaseConnection();
+		Statement st = database.getStatement();
+		/*************************/
+		// Statement st = LogIn.database.getStatement();
+
+		ResultSet rs;
+		try {
+			rs = st.executeQuery("SELECT MAX(plotID)  FROM Property");
+
+			if (rs.next()) {
+				if (rs.getString(1) != null) {
+					txtPlotID.setText("" + (rs.getInt(1) + 1));
+				} else {
+					txtPlotID.setText("1");
+				}
+			} else {
+				txtPlotID.setText("1");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	
-	
-	
-	public static void setPlotNo(String val){
+
+	public static void setPlotNo(String val) {
 		txtPlotNo.setText(val);
 	}
-	
-	public static void setPlotName (String val){
+
+	public static void setPlotName(String val) {
 		txtPlotName.setText(val);
 	}
-	
-	public static void setPlotClass (String val){	
+
+	public static void setPlotClass(String val) {
 		txtClass.setText(val);
 	}
-	
-	public static void setParcel(String val){
+
+	public static void setParcel(String val) {
 		txtParcel.setText(val);
 	}
-	
-	public static void setLandUse(String val){
+
+	public static void setLandUse(String val) {
 		txtLandUse.setText(val);
 	}
-	
-	public static void setPerChange(String val){
+
+	public static void setPerChange(String val) {
 		txtPerChange.setText(val);
 	}
-	
-	public static void setPlots(String val){
+
+	public static void setPlots(String val) {
 		txtPlots.setText(val);
 	}
-	
-	public static void setStatus(String val){
+
+	public static void setStatus(String val) {
 		txtStatus.setText(val);
 	}
-	
-	public static void setPropertyDelivered(boolean val){
-	  chckbxPropertyDelivered.setSelected(val);
+
+	public static void setPropertyDelivered(boolean val) {
+		chckbxPropertyDelivered.setSelected(val);
 	}
-	
-	public static void setRentalGuarantte(boolean val){
-		chckbxRentalGuarantee.setSelected(val); 	
+
+	public static void setRentalGuarantte(boolean val) {
+		chckbxRentalGuarantee.setSelected(val);
 	}
-	public static void setCommitted(boolean val){
-		chckbxCommited.setSelected(val);	
-	
+
+	public static void setCommitted(boolean val) {
+		chckbxCommited.setSelected(val);
+
 	}
-	
-	public static void setRentalPlan(boolean val){
-		 chckbxRentalPlan.setSelected(val); 
+
+	public static void setRentalPlan(boolean val) {
+		chckbxRentalPlan.setSelected(val);
 	}
-	
-	public static void setFloors(String val){
-		 txtFloors.setText(val);
-		
+
+	public static void setFloors(String val) {
+		txtFloors.setText(val);
+
 	}
-	
-	public static void setBedrooms(String val){
-		
+
+	public static void setBedrooms(String val) {
+
 		txtBedrooms.setText(val);
 	}
-	
-	public static void setBathrooms(String val){
-	 txtBathrooms.setText(val);
+
+	public static void setBathrooms(String val) {
+		txtBathrooms.setText(val);
 	}
-	
-	public static void setDeedNo(String val){
+
+	public static void setDeedNo(String val) {
 		txtDeedNo.setText(val);
 	}
-	
 
-	public static void setTitleDeed(boolean val){
-		
+	public static void setTitleDeed(boolean val) {
+
 		TitleDeed.setSelected(val);
 	}
-	
-		
-	public static void setPool(boolean val){
-		 chckbxPool.setSelected(val) ;
+
+	public static void setPool(boolean val) {
+		chckbxPool.setSelected(val);
 	}
-	public static void setGarder(boolean val){
-		
+
+	public static void setGarder(boolean val) {
+
 		chckbxGarden.setSelected(val);
-		
+
 	}
-	public static void setParking(boolean val){
+
+	public static void setParking(boolean val) {
 		chckbxParking.setSelected(val);
 	}
-	
-	public static void setCentralHeading(boolean val){
+
+	public static void setCentralHeading(boolean val) {
 		chckbxCentralHeading.setSelected(val);
 	}
-	
-	public static void setPoolHeading(boolean val){
+
+	public static void setPoolHeading(boolean val) {
 		chckbxPoolHeading.setSelected(val);
 	}
-	
-	public static void setAirCondition(boolean val){
+
+	public static void setAirCondition(boolean val) {
 		chckbxAirCondition.setSelected(val);
 	}
-	
-	public static void setBasement(boolean val){
+
+	public static void setBasement(boolean val) {
 		chckbxBasement.setSelected(val);
 	}
-	
-	public static void settxtAreaDetails(String val){
-		
+
+	public static void settxtAreaDetails(String val) {
+
 		txtExtraDetails.setText(val);
-		
+
 	}
-	
-	
+
+	public static void setIDByEdit(String val) {
+		txtPlotID.setText(val);
+	}
+
 	/* All getters here */
-	
-	public static String getPlotID(){
-		 return txtPlotID.getText();
+
+	public static String getPlotID() {
+		return txtPlotID.getText();
 	}
-	
-	
-	public static String getPlotNo(){
-		 return txtPlotNo.getText();
+
+	public static String getPlotNo() {
+		return txtPlotNo.getText();
 	}
-	
-	public static String getPlotName (){
+
+	public static String getPlotName() {
 		return txtPlotName.getText();
 	}
-	
-	public static String getPlotClass (){	
+
+	public static String getPlotClass() {
 		return txtClass.getText();
 	}
-	
-	public static String getParcel(){
+
+	public static String getParcel() {
 		return txtParcel.getText();
 	}
-	
-	public static String getLandUse(){
-		return  txtLandUse.getText();
+
+	public static String getLandUse() {
+		return txtLandUse.getText();
 	}
-	
-	public static String getPercentage(){
-	 return	txtPerChange.getText();
+
+	public static String getPercentage() {
+		return txtPerChange.getText();
 	}
-	
-	public static String getPlots(){
+
+	public static String getPlots() {
 		return txtPlots.getText();
 	}
-	
-	public static String getStatus(){
+
+	public static String getStatus() {
 		return txtStatus.getText();
 	}
-	
-	public static boolean getPropertyDelivered(){
-	  return  chckbxPropertyDelivered.isSelected();
+
+	public static boolean getPropertyDelivered() {
+		return chckbxPropertyDelivered.isSelected();
 	}
-	
-	public static boolean getRentalGuarantte(){
-		return chckbxRentalGuarantee.isSelected(); 	
+
+	public static boolean getRentalGuarantte() {
+		return chckbxRentalGuarantee.isSelected();
 	}
-	public static boolean getCommitted(){
-		return chckbxCommited.isSelected();	
-	
+
+	public static boolean getCommitted() {
+		return chckbxCommited.isSelected();
+
 	}
-	
-	public static boolean getRentalPlan(){
-		 return chckbxRentalPlan.isSelected(); 
+
+	public static boolean getRentalPlan() {
+		return chckbxRentalPlan.isSelected();
 	}
-	
-	public static String getFloors(){
-		 return txtFloors.getText();
-		
+
+	public static String getFloors() {
+		return txtFloors.getText();
+
 	}
-	
-	public static String getBedrooms(){
-		
-	 return	txtBedrooms.getText();
+
+	public static String getBedrooms() {
+
+		return txtBedrooms.getText();
 	}
-	
-	public static String getBathrooms(){
+
+	public static String getBathrooms() {
 		return txtBathrooms.getText();
 	}
-	
-	public static String getDeedNo(){
+
+	public static String getDeedNo() {
 		return txtDeedNo.getText();
 	}
-	
-	
-	public static boolean getTitleDeed(){
-		
+
+	public static boolean getTitleDeed() {
+
 		return TitleDeed.isSelected();
-	}	
-		
-	public static boolean getPool(){
-		return chckbxPool.isSelected() ;
 	}
-	public static boolean getGarder(){
-		
+
+	public static boolean getPool() {
+		return chckbxPool.isSelected();
+	}
+
+	public static boolean getGarder() {
+
 		return chckbxGarden.isSelected();
-		
+
 	}
-	public static boolean getParking(){
-		 return chckbxParking.isSelected();
+
+	public static boolean getParking() {
+		return chckbxParking.isSelected();
 	}
-	
-	public static boolean getCentralHeading(){
+
+	public static boolean getCentralHeading() {
 		return chckbxCentralHeading.isSelected();
 	}
-	
-	public static boolean getPoolHeading(){
+
+	public static boolean getPoolHeading() {
 		return chckbxPoolHeading.isSelected();
 	}
-	
-	public static boolean getAirCondition(){
+
+	public static boolean getAirCondition() {
 		return chckbxAirCondition.isSelected();
 	}
-	
-	public static boolean getBasement(){
-		return  chckbxBasement.isSelected();
+
+	public static boolean getBasement() {
+		return chckbxBasement.isSelected();
 	}
-	
-	public static String getDetails(){
-		
+
+	public static String getDetails() {
+
 		return txtExtraDetails.getText();
-		
+
 	}
-	
-	
-	
-	
-	
+
 }
-
-
 	
 
 

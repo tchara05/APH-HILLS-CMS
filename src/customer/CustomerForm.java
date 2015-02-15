@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 import java.io.File;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 import javax.swing.border.LineBorder;
@@ -501,26 +502,31 @@ public class CustomerForm {
 		FaxNumber.setText(val);
 	}
 	
-	public static void setID() throws Exception{
-		
-		
-		//Statement st = LogIn.database.getStatement();
-		
-		//	Remove  later //
+	public static void setID() {
+
+		// Statement st = LogIn.database.getStatement();
+
+		// Remove later //
 		Statement st = database.getStatement();
-		ResultSet rs = st.executeQuery("SELECT MAX(customerID)  FROM Customer");
-		
-		if (rs.next()){
-			if (rs.getString(1)!=null){
-				txtID.setText(""+(rs.getInt(1)+1));
-			}else{
+		ResultSet rs;
+		try {
+			rs = st.executeQuery("SELECT MAX(customerID)  FROM Customer");
+
+			if (rs.next()) {
+				if (rs.getString(1) != null) {
+					txtID.setText("" + (rs.getInt(1) + 1));
+				} else {
+					txtID.setText("1");
+				}
+			} else {
 				txtID.setText("1");
 			}
-		}else{
-			txtID.setText("1");
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
+
 	}
 	
 	public static void setIDbyEdit(String val){

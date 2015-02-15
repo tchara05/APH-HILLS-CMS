@@ -52,13 +52,13 @@ public class PropertyMenu extends JPanel {
 		JButton btnAddNewProperty = new JButton("Add New Property");
 		btnAddNewProperty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+					
 			}
 		});
 		btnAddNewProperty.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					
+				PropertyForm.setPlotID();	
 				PropertyForm.setVisible(true);
 			}
 			@Override
@@ -225,16 +225,14 @@ public static void setUpPropertyList(){
 		
 		/** Remove in the finish **/	
 		DatabaseConnection database= new DatabaseConnection();
-		ResultSet rst =null;
-		Statement st = database.getStatement(); 	
-		
-			
+		Statement st = database.getStatement(); 		
 		/*************************/	
 		
 		//	Statement st = LogIn.database.getStatement();
+		ResultSet rst =null;
 		try {
 			rst = st.executeQuery("SELECT plotID, plotNumber , PlotName FROM Property ORDER BY plotName , plotNumber");
-			while (rst.next()){
+			while (rst.next()&&rst.getString(1)!=null){
 				
 				AllProperties.addItem(rst.getString(3) +" "+ rst.getString(2));
 			}
@@ -265,7 +263,7 @@ public static void setUpPropertyList(){
 		
 		
 		if (AllProperties.getItemCount()>0){
-				AllProperties.removeItemAt((AllProperties.getSelectedIndex()));
+			AllProperties.removeItemAt((AllProperties.getSelectedIndex()));
 				AllProperties.setSelectedIndex(0);
 		}
 	}

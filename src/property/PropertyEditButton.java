@@ -4,7 +4,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import customer.CustomerForm;
+
 import extras.DatabaseConnection;
+
+
+
+/** Issue Here 
+ * 
+ * We dont know yet about parcel, class, land use
+ * and some other things which maybe they will be dropdown lists
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * @author Theodoros
+ *
+ */
+
 
 
 public class PropertyEditButton extends Thread {
@@ -15,15 +34,17 @@ public class PropertyEditButton extends Thread {
 		public void run(){
 			
 			
-//			Statement st = LogIn.database.getStatement();
-			
 	
 			/** Remove in the finish **/	
 			DatabaseConnection	database= new DatabaseConnection();
-			Statement st = null; 	
+			Statement st = database.getStatement();	
 	
 			/*************************/	
-				st = database.getStatement();
+			
+			
+			
+			CustomerForm.edit=true;
+				
 			
 			//	Statement st =	LogIn.database.getStatement();	
 			
@@ -58,8 +79,6 @@ public class PropertyEditButton extends Thread {
 					
 				}
 				PropertyForm.setVisible(true);
-				PropertyForm.edit=true;
-				
 			} catch (SQLException e) {
 					e.printStackTrace();
 			}
@@ -67,8 +86,18 @@ public class PropertyEditButton extends Thread {
 		}
 		
 		
-		private static void setForm(ResultSet rst){
+		private static void setForm(ResultSet rst) throws SQLException{
 			
+			
+			
+			
+			
+			
+			if (rst.getInt(26)==1){
+				PropertyForm.setPoolHeading(true);
+			}else{
+				PropertyForm.setPoolHeading(false);
+			}
 			
 			
 			if (rst.getInt(25)==1){
@@ -98,39 +127,66 @@ public class PropertyEditButton extends Thread {
 				PropertyForm.setGarder(false);
 			}
 			
+			if (rst.getInt(21)==1){
+				PropertyForm.setParking(true);
+			}else{
+				PropertyForm.setParking(false);
+			}
 			
 			
+			if (rst.getInt(20)==1){
+				PropertyForm.setPool(true);
+			}else{
+				PropertyForm.setPool(false);
+			}
+			
+			if (rst.getInt(19)==1){
+				PropertyForm.setTitleDeed(true);
+			}else{
+				PropertyForm.setTitleDeed(false);
+			}
+
+			PropertyForm.setDeedNo(rst.getString(18));
+			PropertyForm.setBathrooms(rst.getString(17));
+			PropertyForm.setBedrooms(rst.getString(16));
+			PropertyForm.setFloors(rst.getString(15));
+			PropertyForm.setStatus(rst.getString(14));
+			
+		
+			if (rst.getInt(13)==1){
+				PropertyForm.setRentalPlan(true);
+			}else{
+				PropertyForm.setRentalPlan(false);
+			}
+			
+			if (rst.getInt(12)==1){
+				PropertyForm.setCommitted(true);
+			}else{
+				PropertyForm.setCommitted(false);
+			}
+			
+			if (rst.getInt(11)==1){
+				PropertyForm.setRentalGuarantte(true);
+			}else{
+				PropertyForm.setRentalGuarantte(false);
+			}
+			
+			if (rst.getInt(10)==1){
+				PropertyForm.setPropertyDelivered(true);
+			}else{
+				PropertyForm.setPropertyDelivered(false);
+			}
 			
 			
-			
-			
-			
-			
-			PropertyForm.setCommitted(val1);
-			PropertyForm.setDeedNo(val2);
-			PropertyForm.setFloors(val2);
-			
-			PropertyForm.setLandUse(val2);
-			PropertyForm.setParcel(val2);
-			PropertyForm.setParking(val1);
-			PropertyForm.setPerChange(val2);
-			PropertyForm.setPlotClass(val2);
-			PropertyForm.setPlotID();
-			PropertyForm.setPlotName(val2);
-			PropertyForm.setPlotNo(val2);
-			PropertyForm.setPlots(val2);
-			PropertyForm.setPool(val1);
-			PropertyForm.setPoolHeading(val1);
-			PropertyForm.setPropertyDelivered(val1);
-			PropertyForm.setRentalGuarantte(val1);
-			PropertyForm.setRentalPlan(val1);
-			PropertyForm.setStatus(val2);
-			PropertyForm.setTitleDeed(val1);
-			PropertyForm.settxtAreaDetails(val2);
-			
-			PropertyForm.setBathrooms(val2);
-			PropertyForm.setBedrooms(val2);
-			
+			PropertyForm.settxtAreaDetails(rst.getString(9));
+			PropertyForm.setPlots(rst.getString(8));
+			PropertyForm.setPerChange(rst.getString(7));
+			PropertyForm.setLandUse(rst.getString(6));
+			PropertyForm.setParcel(rst.getString(5));
+			PropertyForm.setPlotClass(rst.getString(4));
+			PropertyForm.setPlotName(rst.getString(3));
+			PropertyForm.setPlotNo(rst.getString(2));
+			PropertyForm.setIDByEdit(rst.getString(1));
 		}
 		
 		

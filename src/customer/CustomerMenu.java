@@ -77,11 +77,7 @@ public class CustomerMenu extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				try {
-					CustomerForm.setID();
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
+				CustomerForm.setID();
 				CustomerForm.setVisible(true);
 			}
 		});
@@ -217,8 +213,7 @@ public class CustomerMenu extends JPanel {
 		ResultSet rst =null;
 		try {
 			rst = st.executeQuery("SELECT customerID, firstName , lastName FROM Customer ORDER BY firstName , lastName");
-			while (rst.next()){
-				
+			while (rst.next()&&rst.getString(1)!=null){
 				AllCustomers.addItem(rst.getString(2) +" " + rst.getString(3));
 			}
 			
@@ -252,7 +247,7 @@ public class CustomerMenu extends JPanel {
 		
 		
 		if (AllCustomers.getItemCount()>0){
-				AllCustomers.removeItemAt((AllCustomers.getSelectedIndex()));
+			AllCustomers.removeItemAt((AllCustomers.getSelectedIndex()));
 				AllCustomers.setSelectedIndex(0);
 		}
 	}
