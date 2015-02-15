@@ -175,8 +175,18 @@ public class CustomerSaveButton extends Thread {
 									"','"+faxNumber+"','"+closeAccount+"','"+infoMaterial+"','"+note+"')";
 					}else{
 						//Query Update here //
-						//query = "UPDATE Customer SET firstName = '";
-						System.out.println(" I AM IN EDIT");
+						
+						
+						 						
+						
+						query = "UPDATE Customer SET firstName = '" + nFname + "', lastName = '"+ nLname + "', address = '" + address +
+								"', primaryEmail ='" +primaryMail + "', secondaryEmail = '" + secondaryMail +"', countryID = '" +
+								countryID + "', city ='" + city +"', zipCode= '" + zipcode + "', bussinesPhone = '"+ bussinesNumber +
+								"', mobilePhone = '" +mobileNum + "', contactPhone ='" + contactNumber + "', fax = '" + faxNumber +
+								"', closeAccount = '" +closeAccount + "', informationMaterial = '"+ infoMaterial + "', note ='" +note +
+								"' WHERE  customerID = '"+CustomerForm.getID() +"'";
+						CustomerMenu.DeleteCustomerFromList();
+
 						
 						
 					}
