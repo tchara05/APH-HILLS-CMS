@@ -5,3 +5,6 @@ bin/userMenus/AphroditeHillLogIn.class
 *.class
 *.class
 bin/userMenus/AphroditeHillLogIn$1.class
+*.class
+
+bin/userMenus/SecurityMenu.class

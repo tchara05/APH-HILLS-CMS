@@ -25,10 +25,10 @@ public class CustomerDeleteButton {
 	       JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);  
 	       if (response == JOptionPane.YES_OPTION) {
 	    	   
-	    	   
-	    	   String customer = (String)CustomerMenu.getSelectedCustomer();
+	    	    String customer = (String)CustomerMenu.getSelectedCustomer();
 	    		String Fname="";
 	    		String Lname="";
+	    		
 	    		int i = 0;
 	    		while (customer.charAt(i)!=' ' && i<customer.length()){
 	    			Fname = Fname + customer.charAt(i);
@@ -40,15 +40,12 @@ public class CustomerDeleteButton {
 	    			i++;
 	    		}
 	    		
-	    		
-	    		
 	    		CustomerMenu.DeleteCustomerFromList();
 	    		String query = "DELETE Customer WHERE firstName = '" + Fname + "' and lastName = '" + Lname+"'";
 	    		
 	    		try {
 	    			st.executeUpdate(query);
-	    		} catch (SQLException e) {
-	    			
+	    		} catch (SQLException e) {	
 	    			e.printStackTrace();
 	    		}
 	    		
