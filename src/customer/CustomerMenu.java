@@ -41,7 +41,7 @@ public class CustomerMenu extends JPanel {
 	public CustomerMenu() {
 		
 		customerform = new CustomerForm();
-		customerform.setVisible(false);
+		CustomerForm.setVisible(false);
 		
 		
 		CustomerPanel = new JPanel();

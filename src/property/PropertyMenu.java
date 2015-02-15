@@ -95,6 +95,11 @@ public class PropertyMenu extends JPanel {
 				
 				lblPropertyDescriptions.setText("");
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				PropertyDeleteButton.start();
+			}
 		});
 		
 		JButton btnEditProperrty = new JButton("Edit/View Property");
@@ -210,6 +215,11 @@ public class PropertyMenu extends JPanel {
 	}
 	
 	
+	public static Object getSelectedProperty(){
+		return AllProperties.getSelectedItem();
+	}
+	
+	
 	
 public static void setUpPropertyList(){
 		
@@ -226,7 +236,7 @@ public static void setUpPropertyList(){
 			rst = st.executeQuery("SELECT plotID, plotNumber , PlotName FROM Property ORDER BY plotName , plotNumber");
 			while (rst.next()){
 				
-				AllProperties.addItem(rst.getString(3) +" " + rst.getString(2));
+				AllProperties.addItem(rst.getString(3) +" "+ rst.getString(2));
 			}
 		} catch (SQLException e1) {
 			
