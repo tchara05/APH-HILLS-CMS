@@ -17,7 +17,7 @@ public class CustomerEditButton extends Thread {
 		
 		
 		/** Remove in the finish **/	
-		CustomerForm.edit=true;
+	
 		
 		Statement st =CustomerForm.database.getStatement(); 	
 		
@@ -32,13 +32,11 @@ public class CustomerEditButton extends Thread {
 		while (customer.charAt(i)!=' ' && i<customer.length()){
 			Fname = Fname + customer.charAt(i);
 			i++;
-			System.out.println(1);
 		}
 		i++;
 		while(i<customer.length()){
 			Lname = Lname+customer.charAt(i);
 			i++;
-			System.out.println(2);
 		}
 		
 		
@@ -75,7 +73,9 @@ public class CustomerEditButton extends Thread {
 				
 
 			}
+			
 			CustomerForm.setVisible(true);
+			CustomerForm.edit=true;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

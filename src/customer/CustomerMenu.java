@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -30,7 +32,6 @@ public class CustomerMenu extends JPanel {
 	private static JComboBox<String> AllCustomers;
 	private static JPanel CustomerPanel;
 	
-	
 
 	
 	
@@ -54,7 +55,7 @@ public class CustomerMenu extends JPanel {
 		AllCustomers = new JComboBox<String>();
 		
 		
-		UpDateCustomerList();
+		setUpCustomerList();
 	
 		
 		
@@ -78,6 +79,11 @@ public class CustomerMenu extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
+				try {
+					customerform.setID();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				customerform.setVisible(true);
 			}
 		});
@@ -115,6 +121,11 @@ public class CustomerMenu extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblCustomerDescriptions.setText("");
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				CustomerDeleteButton.start();
 			}
 		});
 		
@@ -197,7 +208,7 @@ public class CustomerMenu extends JPanel {
 		return AllCustomers.getSelectedItem();
 	}
 	
-	public static void UpDateCustomerList(){
+	public static void setUpCustomerList(){
 		
 		/** Remove in the finish **/	
 		DatabaseConnection database= new DatabaseConnection();
@@ -209,8 +220,9 @@ public class CustomerMenu extends JPanel {
 		
 		//	Statement st = LogIn.database.getStatement();
 		try {
-			rst = st.executeQuery("SELECT customerID, firstName , lastName FROM Customer");
+			rst = st.executeQuery("SELECT customerID, firstName , lastName FROM Customer ORDER BY firstName , lastName");
 			while (rst.next()){
+				
 				AllCustomers.addItem(rst.getString(2) +" " + rst.getString(3));
 			}
 			
@@ -219,6 +231,27 @@ public class CustomerMenu extends JPanel {
 			e1.printStackTrace();
 		}
 		
+	}
+	
+	public static void UpdateCustomerList(String str1,String str2){
+		
+		int length = AllCustomers.getItemCount();
+		String value = str1 +" " + str2;
+		int i =0;
+		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllCustomers.getItemAt(i) )>0){
+				i++;
+		}
+		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllCustomers.getItemAt(i) )==0){
+			i++;
+			
+		}
+		AllCustomers.insertItemAt(value, i);
+		AllCustomers.setSelectedIndex(0);
+		
+	}
+	public static void DeleteCustomerFromList(){
+		AllCustomers.removeItemAt((AllCustomers.getSelectedIndex()));
+		AllCustomers.setSelectedIndex(0);
 	}
 
 }

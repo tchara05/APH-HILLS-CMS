@@ -612,11 +612,6 @@ public class CustomerForm {
 	}
 	
 	public static void setVisible(boolean val){
-		try {
-			setID();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		frame.setVisible(val);	
 	}
 	

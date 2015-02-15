@@ -14,14 +14,14 @@ import extras.DatabaseConnection;
 public class CustomerSaveButton extends Thread {
 	
 	
-	/**
-	 * run method to start the threat running.
-	 * 
-	 * It does all the necessary checks
-	 * and call some function to execute queries
-	 * 
-	 * 
-	 */
+   /* To do Things :
+    * 
+    * We have to filter or string with Checker.clearString(str) before make any other check;
+    * 
+    * 
+    * 
+    * 
+    * */
 	
 	protected boolean edit = false;
 	public void run(){
@@ -30,8 +30,11 @@ public class CustomerSaveButton extends Thread {
 			
 		    String country = CustomerForm.getCountry();
 		    
-			String Fname = CustomerForm.getFname();
-			if ( !Checker.checkString(Fname)){
+			
+		    System.out.println(CustomerForm.getFname());
+			String nFname= Checker.clearString(CustomerForm.getFname());
+			
+			if ( !Checker.checkString(nFname)){
 				JOptionPane.showMessageDialog(null,
 			    "First Name has invalid characters",
 			    "Input warning",
@@ -39,8 +42,9 @@ public class CustomerSaveButton extends Thread {
 				checked = false;
 			}
 			
-			String Lname=CustomerForm.getLastName();
-			if ( !Checker.checkString(Lname)&& checked==false){
+			
+			String nLname = Checker.clearString(CustomerForm.getLastName());
+			if ( !Checker.checkString(nLname)&& checked==false){
 				JOptionPane.showMessageDialog(null,
 			    "Last Name has invalid characters",
 			    "Input warning",
@@ -51,7 +55,6 @@ public class CustomerSaveButton extends Thread {
 			
 			String address = CustomerForm.getAddress();
 			// Check Here //
-			
 			String bussinesNumber = CustomerForm.getBussinesNumber();
 			if ( !Checker.checkNumber(bussinesNumber)&& checked==false){
 				JOptionPane.showMessageDialog(null,
@@ -71,6 +74,7 @@ public class CustomerSaveButton extends Thread {
 			}
 			
 			String contactNumber = CustomerForm.getContactNumber();
+			contactNumber = contactNumber.trim();
 			if ( !Checker.checkNumber(contactNumber)&& checked==false){
 				JOptionPane.showMessageDialog(null,
 			    "Contact Number has invalid characters ",
@@ -80,6 +84,7 @@ public class CustomerSaveButton extends Thread {
 			}
 			
 			String faxNumber = CustomerForm.getFaxNumber();
+			faxNumber = faxNumber.trim();
 			if ( !Checker.checkNumber(faxNumber)&& checked==false){
 				JOptionPane.showMessageDialog(null,
 			    "Fax has invalid characters",
@@ -97,6 +102,7 @@ public class CustomerSaveButton extends Thread {
 			// i think we no need this check//
 			
 			String mobileNum = CustomerForm.getPhoneMobile();
+			mobileNum = mobileNum.trim();
 			if ( !Checker.checkNumber(mobileNum)&& checked==false){
 				JOptionPane.showMessageDialog(null,
 			    "Mobile Number has invalid characters",
@@ -106,6 +112,7 @@ public class CustomerSaveButton extends Thread {
 			}
 			
 			String primaryMail = CustomerForm.getPrimaryMail();
+			primaryMail = primaryMail.trim();
 			if ( !Checker.checkEmailAddress(primaryMail)&& checked==false){
 				JOptionPane.showMessageDialog(null,
 			    "Primary Email has invalid characters",
@@ -115,6 +122,7 @@ public class CustomerSaveButton extends Thread {
 			}
 
 			String secondaryMail = CustomerForm.getSecondaryMail();
+			secondaryMail = secondaryMail.trim();
 			if ( !Checker.checkEmailAddress(secondaryMail)&& checked==false){
 				JOptionPane.showMessageDialog(null,
 			    "Primary Email has invalid characters",
@@ -140,7 +148,9 @@ public class CustomerSaveButton extends Thread {
 			
 
 			try {
-			/** Remove in the finishe **/	
+				
+				
+			/** Remove in the finish **/	
 			DatabaseConnection	database= new DatabaseConnection();
 			ResultSet rst =null;
 			Statement st = null; 	
@@ -159,13 +169,16 @@ public class CustomerSaveButton extends Thread {
 				if (countryID >0 && checked){
 					
 					String query="";
-					if (!CustomerForm.edit)
-						query = "INSERT INTO CUSTOMER VALUES ('"+Fname+"','"+Lname+"','"+address+"','"+primaryMail+"','"+secondaryMail+"','"
+					if (!CustomerForm.edit){
+						query = "INSERT INTO CUSTOMER VALUES ('"+nFname+"','"+nLname+"','"+address+"','"+primaryMail+"','"+secondaryMail+"','"
 									+countryID+"','"+city+"','"+zipcode+"','"+bussinesNumber+"','"+mobileNum+"','"+contactNumber+
 									"','"+faxNumber+"','"+closeAccount+"','"+infoMaterial+"','"+note+"')";
-					else{
+					}else{
 						//Query Update here //
-						query = "UPDATE Customer SET firstName = '";
+						//query = "UPDATE Customer SET firstName = '";
+						System.out.println(" I AM IN EDIT");
+						
+						
 					}
 					
 					
@@ -176,7 +189,8 @@ public class CustomerSaveButton extends Thread {
 						    "Information Message",
 						    JOptionPane.INFORMATION_MESSAGE);
 					CustomerForm.setVisible(false);
-					CustomerMenu.UpDateCustomerList();
+					
+					CustomerMenu.UpdateCustomerList(nFname,nLname);
 				}else {
 					System.out.println("Invalid Character or Country Somewhere");
 				}
@@ -192,11 +206,14 @@ public class CustomerSaveButton extends Thread {
 			
 			/* If everything is ok, run the query for the database */
 			
-			System.out.println("I am here");
 			CustomerForm.edit=false;
-
 		
 	}
+
+	
+	
+	
+	
 	
 
 	
@@ -212,8 +229,6 @@ public class CustomerSaveButton extends Thread {
 	
 	private static int getCountry(String  country,Statement st) throws SQLException{
 		
-		
-	
 		int countryID=-1;
 		ResultSet result = st.executeQuery("SELECT countryID FROM Country WHERE countryName='"+country+"'");
 		if (result.next()){
@@ -223,12 +238,5 @@ public class CustomerSaveButton extends Thread {
 		}
 		return countryID;
 	}
-	
 		
 }
-
-/** To Do Things:
- * 
- * 	We must implement the query and check int
- * 
- */

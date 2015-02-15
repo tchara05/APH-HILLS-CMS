@@ -17,7 +17,7 @@ create table Customer (
 	closeAccount int default 1, --yes/no
 	informationMaterial int, --yes/no
 	note text,
-	CONSTRAINT bool CHECK (closeAccount= 1 or docStatus = 0)
+	CONSTRAINT bool CHECK (closeAccount= 1 or closeAcount = 0)
 
 );
 
