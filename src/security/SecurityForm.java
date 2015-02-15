@@ -38,7 +38,7 @@ private JFrame frmSecurityForm;
 		} catch (Exception e) {
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
 		}
-		//testing111222333
+		
 		frmSecurityForm = new JFrame();
 		frmSecurityForm.setTitle("Security Menu");
 		frmSecurityForm.setSize(Toolkit.getDefaultToolkit().getScreenSize());
