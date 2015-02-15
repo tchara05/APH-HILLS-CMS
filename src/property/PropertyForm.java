@@ -52,7 +52,6 @@ public class PropertyForm {
 	private static JTextField txtBathrooms;
 	private static JTextField txtDeedNo;
 	private static JCheckBox TitleDeed;
-	private static JCheckBox chckbxGrandViewRights;
 	private static JCheckBox chckbxPool ;
 	private static JCheckBox chckbxGarden;
 	private static JCheckBox chckbxParking ;
@@ -62,10 +61,7 @@ public class PropertyForm {
 	private static JCheckBox chckbxBasement;
 	private static JTextArea txtExtraDetails;
 	
-	// Button Fuctionalities //
-	private static PropertySaveButton save = new PropertySaveButton();
-	private static PropertyClearButton clear = new PropertyClearButton();
-
+	protected static boolean edit =false;
 	/**
 	 * Launch the application.
 	 */
@@ -117,7 +113,7 @@ public class PropertyForm {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				save.start();
+				new PropertySaveButton().start();
 				frmPropertyForm.setVisible(false);
 					
 			}
@@ -131,7 +127,7 @@ public class PropertyForm {
 				
 				
 				
-				clear.start();
+				PropertyClearButton.start();
 				frmPropertyForm.setVisible(false);
 			}
 		});
@@ -144,7 +140,7 @@ public class PropertyForm {
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				clear.start();
+				PropertyClearButton.start();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(frmPropertyForm.getContentPane());
@@ -217,8 +213,6 @@ public class PropertyForm {
 		
 	    TitleDeed = new JCheckBox("TitleDeed");
 		
-		 chckbxGrandViewRights = new JCheckBox("Grand View Rights to PRM");
-		
 		 chckbxPool = new JCheckBox("Pool");
 		
 		 chckbxGarden = new JCheckBox("Garden");
@@ -265,16 +259,15 @@ public class PropertyForm {
 							.addContainerGap(299, Short.MAX_VALUE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(chckbxGrandViewRights)
-								.addComponent(TitleDeed)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(TitleDeed)
+									.addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+									.addComponent(chckbxAirCondition))
 								.addComponent(chckbxPool)
 								.addComponent(chckbxPoolHeading)
-								.addComponent(chckbxParking))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(chckbxBasement)
-								.addComponent(chckbxAirCondition))
-							.addGap(13))
+								.addComponent(chckbxParking)
+								.addComponent(chckbxBasement))
+							.addContainerGap())
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(lblExtraFeatures)
 							.addContainerGap(275, Short.MAX_VALUE))
@@ -308,11 +301,9 @@ public class PropertyForm {
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(TitleDeed)
-						.addComponent(chckbxBasement))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(chckbxGrandViewRights)
 						.addComponent(chckbxAirCondition))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxBasement)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(chckbxPool)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -323,7 +314,7 @@ public class PropertyForm {
 					.addComponent(chckbxCentralHeading)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(chckbxGarden)
-					.addContainerGap(49, Short.MAX_VALUE))
+					.addContainerGap(54, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
@@ -606,9 +597,6 @@ public class PropertyForm {
 		TitleDeed.setSelected(val);
 	}
 	
-	public static void setGrandView(boolean val){
-		chckbxGrandViewRights.setSelected(val);
-	}
 		
 	public static void setPool(boolean val){
 		 chckbxPool.setSelected(val) ;
@@ -672,7 +660,7 @@ public class PropertyForm {
 		return  txtLandUse.getText();
 	}
 	
-	public static String getPerChange(){
+	public static String getPercentage(){
 	 return	txtPerChange.getText();
 	}
 	
@@ -718,16 +706,11 @@ public class PropertyForm {
 		return txtDeedNo.getText();
 	}
 	
-
 	
 	public static boolean getTitleDeed(){
 		
 		return TitleDeed.isSelected();
-	}
-	
-	public static boolean getGrandView(){
-		return chckbxGrandViewRights.isSelected();
-	}
+	}	
 		
 	public static boolean getPool(){
 		return chckbxPool.isSelected() ;
@@ -757,7 +740,7 @@ public class PropertyForm {
 		return  chckbxBasement.isSelected();
 	}
 	
-	public static String gettxtAreaDetails(){
+	public static String getDetails(){
 		
 		return txtExtraDetails.getText();
 		

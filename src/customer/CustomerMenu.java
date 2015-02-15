@@ -250,9 +250,12 @@ public class CustomerMenu extends JPanel {
 		
 	}
 	public static void DeleteCustomerFromList(){
-		AllCustomers.removeItemAt((AllCustomers.getSelectedIndex()));
-		if (AllCustomers.getItemCount()>0)
-		AllCustomers.setSelectedIndex(0);
+		
+		
+		if (AllCustomers.getItemCount()>0){
+				AllCustomers.removeItemAt((AllCustomers.getSelectedIndex()));
+				AllCustomers.setSelectedIndex(0);
+		}
 	}
 
 }

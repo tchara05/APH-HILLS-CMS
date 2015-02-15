@@ -15,7 +15,7 @@ create table Customer (
 	contactPhone int,
 	fax int,
 	closeAccount int default 0, --yes/no
-	informationMaterial int, --yes/no
+	informationMaterial int default 0, --yes/no
 	note text,
 	CONSTRAINT bool CHECK (closeAccount= 1 or closeAcount = 0)
 

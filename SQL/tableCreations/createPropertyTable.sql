@@ -29,5 +29,5 @@ create table Property (
 	centralHeading integer not null, --yes/no
 	basement integer not null, --yes/no
 	airCondition integer not null, --yes/no
-	keysID integer not null --yes/no
+	
 );

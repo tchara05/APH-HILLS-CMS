@@ -32,9 +32,8 @@ public class CustomerSaveButton extends Thread {
 		    String country = CustomerForm.getCountry();
 		    
 			
-		    System.out.println(CustomerForm.getFname());
+		   
 			String nFname= Checker.clearString(CustomerForm.getFname());
-			
 			if ( !Checker.checkString(nFname)){
 				JOptionPane.showMessageDialog(null,
 			    "First Name has invalid characters",
@@ -190,6 +189,8 @@ public class CustomerSaveButton extends Thread {
 									"', mobilePhone = '" +mobileNum + "', contactPhone ='" + contactNumber + "', fax = '" + faxNumber +
 									"', closeAccount = '" +closeAccount + "', informationMaterial = '"+ infoMaterial + "', note ='" +note +
 									"' WHERE  customerID = '"+CustomerForm.getID() +"'";
+							
+						
 							CustomerMenu.DeleteCustomerFromList();
 
 							
@@ -223,7 +224,6 @@ public class CustomerSaveButton extends Thread {
 				e.printStackTrace();
 			}
 			
-			/* If everything is ok, run the query for the database */
 			
 			CustomerForm.edit=false;
 		

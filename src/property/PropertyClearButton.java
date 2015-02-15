@@ -1,10 +1,10 @@
 package property;
 
 
-public class PropertyClearButton extends Thread {
+public class PropertyClearButton  {
 	
 	
-	public  void run(){
+	public static void start(){
 	
 		boolean val1 = false;
 		String val2 = "";
@@ -20,7 +20,6 @@ public class PropertyClearButton extends Thread {
 		PropertyForm.setDeedNo(val2);
 		PropertyForm.setFloors(val2);
 		PropertyForm.setGarder(val1);
-		PropertyForm.setGrandView(val1);
 		PropertyForm.setLandUse(val2);
 		PropertyForm.setParcel(val2);
 		PropertyForm.setParking(val1);
@@ -38,6 +37,9 @@ public class PropertyClearButton extends Thread {
 		PropertyForm.setStatus(val2);
 		PropertyForm.setTitleDeed(val1);
 		PropertyForm.settxtAreaDetails(val2);
+		
+		
+		PropertyForm.edit = false;
 		
 	}
 	

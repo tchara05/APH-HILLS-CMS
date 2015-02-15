@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -13,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import extras.DatabaseConnection;
 
 
 
@@ -25,7 +30,7 @@ public class PropertyMenu extends JPanel {
 	 * Create the panel.
 	 */
 	
-	private JComboBox<String> AllProperties;
+	private static JComboBox<String> AllProperties;
 	private PropertyForm propertyform;
 	private JTextField txtPropertySearch;
 	private JLabel lblPropertyDescriptions;
@@ -202,12 +207,93 @@ public class PropertyMenu extends JPanel {
 
 	}
 	
+	
+	
+public static void setUpCustomerList(){
+		
+		/** Remove in the finish **/	
+		DatabaseConnection database= new DatabaseConnection();
+		ResultSet rst =null;
+		Statement st = database.getStatement(); 	
+		
+			
+		/*************************/	
+		
+		//	Statement st = LogIn.database.getStatement();
+		try {
+			rst = st.executeQuery("SELECT plotID, plotNumber , PlotName FROM Property ORDER BY plotName , plotNumber");
+			while (rst.next()){
+				
+				AllProperties.addItem(rst.getString(3) +" " + rst.getString(2));
+			}
+			
+		} catch (SQLException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	public static void UpdateCustomerList(String str1,String str2){
+		
+		int length = AllProperties.getItemCount();
+		String value = str1 +" " + str2;
+		int i =0;
+		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllProperties.getItemAt(i) )>0){
+				i++;
+		}
+		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllProperties.getItemAt(i) )==0){
+			i++;
+			
+		}
+		AllProperties.insertItemAt(value, i);
+		AllProperties.setSelectedIndex(0);
+		
+	}
+	public static void DeleteCustomerFromList(){
+		
+		
+		if (AllProperties.getItemCount()>0){
+				AllProperties.removeItemAt((AllProperties.getSelectedIndex()));
+				AllProperties.setSelectedIndex(0);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static JPanel createPropertyMenu(){
 		
 		new PropertyMenu();
 		return PropertyPanel;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	public static void main(String args[]){
 		
