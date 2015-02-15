@@ -67,20 +67,49 @@ public class PropertyEditButton extends Thread {
 		}
 		
 		
-		private static void setForm(Statement rst){
+		private static void setForm(ResultSet rst){
+			
+			
+			
+			if (rst.getInt(25)==1){
+				PropertyForm.setAirCondition(true);
+			}else{
+				PropertyForm.setAirCondition(false);
+			}
+			
+			
+			if (rst.getInt(24)==1){
+				PropertyForm.setBasement(true);
+			}else{
+				PropertyForm.setBasement(false);
+			}
+			
+			
+			if (rst.getInt(23)==1){
+				PropertyForm.setCentralHeading(true);
+			}else{
+				PropertyForm.setCentralHeading(false);
+			}
+			
+			
+			if (rst.getInt(22)==1){
+				PropertyForm.setGarder(true);
+			}else{
+				PropertyForm.setGarder(false);
+			}
 			
 			
 			
 			
-			PropertyForm.setAirCondition(val1);
-			PropertyForm.setBasement(val1);
-			PropertyForm.setBathrooms(val2);
-			PropertyForm.setBedrooms(val2);
-			PropertyForm.setCentralHeading(val1);
+			
+			
+			
+			
+			
 			PropertyForm.setCommitted(val1);
 			PropertyForm.setDeedNo(val2);
 			PropertyForm.setFloors(val2);
-			PropertyForm.setGarder(val1);
+			
 			PropertyForm.setLandUse(val2);
 			PropertyForm.setParcel(val2);
 			PropertyForm.setParking(val1);
@@ -98,6 +127,9 @@ public class PropertyEditButton extends Thread {
 			PropertyForm.setStatus(val2);
 			PropertyForm.setTitleDeed(val1);
 			PropertyForm.settxtAreaDetails(val2);
+			
+			PropertyForm.setBathrooms(val2);
+			PropertyForm.setBedrooms(val2);
 			
 		}
 		
