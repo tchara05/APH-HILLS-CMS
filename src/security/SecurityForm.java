@@ -39,6 +39,7 @@ public class SecurityForm extends JFrame {
 	 * Create the frame.
 	 */
 	public SecurityForm() {
+		System.out.println("edw");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 603, 387);
 		contentPane = new JPanel();
