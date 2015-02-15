@@ -15,10 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import javax.swing.UIManager;
 
 import extras.*;
 
@@ -83,6 +85,20 @@ public class PropertyForm {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		
+	
+		
 		frmPropertyForm = new JFrame();
 		frmPropertyForm.setTitle("Property Form");
 		
@@ -232,42 +248,31 @@ public class PropertyForm {
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblDeedNumber)
-								.addComponent(lblNumberOfBathrooms)
-								.addComponent(lblBedrooms)
-								.addComponent(lblNumberOfFloors))
-							.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtBathrooms, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtDeedNo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtBedrooms, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtFloors, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap(61, Short.MAX_VALUE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(chckbxCentralHeading)
-							.addContainerGap(242, Short.MAX_VALUE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(chckbxGarden)
-							.addContainerGap(299, Short.MAX_VALUE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(TitleDeed)
-									.addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-									.addComponent(chckbxAirCondition))
-								.addComponent(chckbxPool)
-								.addComponent(chckbxPoolHeading)
-								.addComponent(chckbxParking)
-								.addComponent(chckbxBasement))
-							.addContainerGap())
-						.addGroup(gl_panel_1.createSequentialGroup()
+						.addComponent(lblDeedNumber)
+						.addComponent(lblNumberOfBathrooms)
+						.addComponent(lblNumberOfFloors)
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 							.addComponent(lblExtraFeatures)
-							.addContainerGap(275, Short.MAX_VALUE))
-						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addComponent(chckbxPool)
+								.addGap(56)))
+						.addComponent(TitleDeed)
+						.addComponent(chckbxPoolHeading)
+						.addComponent(chckbxBasement)
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 							.addComponent(lblStandarFeatures)
-							.addContainerGap(253, Short.MAX_VALUE))))
+							.addComponent(lblBedrooms)))
+					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtBathrooms, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtDeedNo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtBedrooms, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtFloors, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxGarden)
+						.addComponent(chckbxParking)
+						.addComponent(chckbxCentralHeading)
+						.addComponent(chckbxAirCondition))
+					.addContainerGap(38, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -294,21 +299,21 @@ public class PropertyForm {
 					.addComponent(lblExtraFeatures)
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(TitleDeed)
+						.addComponent(chckbxBasement)
 						.addComponent(chckbxAirCondition))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(chckbxBasement)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(chckbxPool)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(chckbxPoolHeading)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(chckbxParking)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(chckbxCentralHeading)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(chckbxGarden)
-					.addContainerGap(54, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(chckbxGarden)
+						.addComponent(chckbxPool))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(TitleDeed)
+						.addComponent(chckbxCentralHeading))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(chckbxParking)
+						.addComponent(chckbxPoolHeading))
+					.addContainerGap(81, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
