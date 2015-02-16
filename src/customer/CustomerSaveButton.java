@@ -123,14 +123,15 @@ public class CustomerSaveButton extends Thread {
 
 			String secondaryMail = CustomerForm.getSecondaryMail();
 			secondaryMail = secondaryMail.trim();
-			if ( !Checker.checkEmailAddress(secondaryMail)||!(nFname.isEmpty())){
-				JOptionPane.showMessageDialog(null,
-			    "Secondary Email has invalid characters",
-			    "Input warning",
-			    JOptionPane.WARNING_MESSAGE);
-				checked = false;
+			if(!secondaryMail.isEmpty()){
+					if ( !Checker.checkEmailAddress(secondaryMail)){
+						JOptionPane.showMessageDialog(null,
+					    "Secondary Email has invalid characters",
+					    "Input warning",
+					    JOptionPane.WARNING_MESSAGE);
+						checked = false;
+					}
 			}
-			
 			String zipcode = CustomerForm.getZipCode();
 		
 			
