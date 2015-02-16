@@ -1,11 +1,8 @@
-
 package security;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,10 +13,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 public class SecurityForm {
 
@@ -33,27 +29,33 @@ public class SecurityForm {
 	 * 
 	 * Launch the application.
 	 */
+	
+	protected static boolean edit =false;
+	
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
-		
+
 		SecurityForm window = new SecurityForm();
 		window.frame.setVisible(true);
+		
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public SecurityForm() {
+		
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @return 
 	 */
-	private void initialize() {
+	public void initialize() { 
 		
-		public String geta() {
-			return "aaa";
-		}
+		
+	
 		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -78,72 +80,75 @@ public class SecurityForm {
 		contentPane.setLayout(null);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(346, 178, 632, 42);
-		contentPane.add(panel);
-		
-		JLabel lblNewLabel = new JLabel("Add New Key Contract");
-		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 25));
-		panel.add(lblNewLabel);
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
-		panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_1.setBounds(346, 231, 444, 206);
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		panel_1.setBounds(346, 231, 368, 206);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		txtkeyID = new JTextField();
 		txtkeyID.setEnabled(false);
 		txtkeyID.setEditable(false);
-		txtkeyID.setBounds(232, 28, 109, 30);
+		txtkeyID.setBounds(132, 33, 143, 30);
 		panel_1.add(txtkeyID);
 		txtkeyID.setColumns(10);
 		
 		txtpropertyID = new JTextField();
-		txtpropertyID.setBounds(232, 114, 109, 30);
+		txtpropertyID.setBounds(132, 139, 143, 30);
 		panel_1.add(txtpropertyID);
 		txtpropertyID.setColumns(10);
 		
 		JLabel keyLabel = new JLabel("Key ID :");
 		keyLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
-		keyLabel.setBounds(36, 30, 86, 17);
+		keyLabel.setBounds(36, 40, 86, 17);
 		panel_1.add(keyLabel);
 		
 		JLabel propertyLabel = new JLabel("Property ID :");
 		propertyLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
-		propertyLabel.setBounds(36, 122, 79, 14);
+		propertyLabel.setBounds(36, 147, 79, 14);
 		panel_1.add(propertyLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("*\u03A4his field is automatically filled");
 		lblNewLabel_2.setFont(new Font("Calibri", Font.ITALIC, 11));
-		lblNewLabel_2.setBounds(232, 69, 152, 14);
+		lblNewLabel_2.setBounds(132, 69, 152, 14);
 		panel_1.add(lblNewLabel_2);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.LIGHT_GRAY);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-		panel_2.setBounds(800, 230, 178, 206);
+		panel_2.setBounds(724, 231, 178, 206);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JButton saveButton = new JButton("Add Contract");
-		saveButton.setBounds(30, 84, 116, 23);
+		saveButton.setBounds(30, 65, 116, 31);
 		panel_2.add(saveButton);
 		
 		JButton goBackButton = new JButton("Go Back");
-		goBackButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		goBackButton.setBounds(30, 118, 116, 23);
+		goBackButton.setBounds(30, 149, 116, 31);
 		panel_2.add(goBackButton);
 		
-		JButton clearButton = new JButton("Exit");
-		clearButton.setBounds(30, 152, 116, 23);
+		JButton clearButton = new JButton("Clear");
+		clearButton.setBounds(30, 107, 116, 31);
 		panel_2.add(clearButton);
 		
-	
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Add New Key Contract", TitledBorder.LEFT, TitledBorder.TOP, null, null));
+		panel_3.setBounds(306, 188, 635, 287);
+		contentPane.add(panel_3);
+		
 	}
+	
+		public static String getPropertyID() {
+			return txtpropertyID.getText();
+		}
+		
+		public static void setPropertyID(String value) {
+			txtpropertyID.setText(value);
+		}
+		
+		public static void setVisible(boolean value) {
+			frame.setVisible(value);
+		}
 }
