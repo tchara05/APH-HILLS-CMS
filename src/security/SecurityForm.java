@@ -1,3 +1,4 @@
+
 package security;
 
 import java.awt.BorderLayout;
@@ -22,10 +23,10 @@ import javax.swing.border.LineBorder;
 
 public class SecurityForm {
 
-	private JFrame frame;
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private static JFrame frame;
+	private static JPanel contentPane;
+	private static JTextField txtkeyID;
+	private static JTextField txtpropertyID;
 
 	/**
 	 * 
@@ -33,17 +34,9 @@ public class SecurityForm {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SecurityForm window = new SecurityForm();
-					window.frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		
+		SecurityForm window = new SecurityForm();
+		window.frame.setVisible(true);
 	}
 
 	/**
@@ -57,6 +50,10 @@ public class SecurityForm {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		public String geta() {
+			return "aaa";
+		}
 		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -97,27 +94,27 @@ public class SecurityForm {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setEditable(false);
-		textField.setBounds(232, 28, 109, 30);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		txtkeyID = new JTextField();
+		txtkeyID.setEnabled(false);
+		txtkeyID.setEditable(false);
+		txtkeyID.setBounds(232, 28, 109, 30);
+		panel_1.add(txtkeyID);
+		txtkeyID.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(232, 114, 109, 30);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		txtpropertyID = new JTextField();
+		txtpropertyID.setBounds(232, 114, 109, 30);
+		panel_1.add(txtpropertyID);
+		txtpropertyID.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Key ID :");
-		lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(36, 30, 86, 17);
-		panel_1.add(lblNewLabel_1);
+		JLabel keyLabel = new JLabel("Key ID :");
+		keyLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
+		keyLabel.setBounds(36, 30, 86, 17);
+		panel_1.add(keyLabel);
 		
-		JLabel lblPropertyId = new JLabel("Property ID :");
-		lblPropertyId.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblPropertyId.setBounds(36, 122, 79, 14);
-		panel_1.add(lblPropertyId);
+		JLabel propertyLabel = new JLabel("Property ID :");
+		propertyLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
+		propertyLabel.setBounds(36, 122, 79, 14);
+		panel_1.add(propertyLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("*\u03A4his field is automatically filled");
 		lblNewLabel_2.setFont(new Font("Calibri", Font.ITALIC, 11));
@@ -126,27 +123,27 @@ public class SecurityForm {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.LIGHT_GRAY);
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 		panel_2.setBounds(800, 230, 178, 206);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JButton btnAddContract = new JButton("Add Contract");
-		btnAddContract.setBounds(30, 84, 116, 23);
-		panel_2.add(btnAddContract);
+		JButton saveButton = new JButton("Add Contract");
+		saveButton.setBounds(30, 84, 116, 23);
+		panel_2.add(saveButton);
 		
-		JButton btnGoBack = new JButton("Go Back");
-		btnGoBack.addActionListener(new ActionListener() {
+		JButton goBackButton = new JButton("Go Back");
+		goBackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnGoBack.setBounds(30, 118, 116, 23);
-		panel_2.add(btnGoBack);
+		goBackButton.setBounds(30, 118, 116, 23);
+		panel_2.add(goBackButton);
 		
-		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(30, 152, 116, 23);
-		panel_2.add(btnExit);
+		JButton clearButton = new JButton("Exit");
+		clearButton.setBounds(30, 152, 116, 23);
+		panel_2.add(clearButton);
 		
-		
+	
 	}
 }
