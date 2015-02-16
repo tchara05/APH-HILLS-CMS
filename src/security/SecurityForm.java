@@ -1,11 +1,8 @@
-
 package security;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,8 +13,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
@@ -33,27 +28,33 @@ public class SecurityForm {
 	 * 
 	 * Launch the application.
 	 */
+	
+	protected static boolean edit =false;
+	
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
-		
+
 		SecurityForm window = new SecurityForm();
 		window.frame.setVisible(true);
+		
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public SecurityForm() {
+		
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @return 
 	 */
-	private void initialize() {
+	public void initialize() { 
 		
-		public String geta() {
-			return "aaa";
-		}
+		
+	
 		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -133,10 +134,6 @@ public class SecurityForm {
 		panel_2.add(saveButton);
 		
 		JButton goBackButton = new JButton("Go Back");
-		goBackButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		goBackButton.setBounds(30, 118, 116, 23);
 		panel_2.add(goBackButton);
 		
@@ -144,6 +141,13 @@ public class SecurityForm {
 		clearButton.setBounds(30, 152, 116, 23);
 		panel_2.add(clearButton);
 		
-	
 	}
+	
+		public static String getPropertyID() {
+			return txtpropertyID.getText();
+		}
+		
+		public static void setVisible(boolean value) {
+			frame.setVisible(value);
+		}
 }
