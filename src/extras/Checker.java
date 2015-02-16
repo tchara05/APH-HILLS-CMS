@@ -82,6 +82,8 @@ public class Checker extends Thread {
 		 System.out.println(clearString("          Theodoros Charalambous        "));
 		 System.out.println(clearString("Theodoros Charalambous"));
 		 
+		 String customer ="1 Koutalas";
+		 customer = customer.substring(2);
 		 
 		 
 	 }

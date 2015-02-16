@@ -19,12 +19,13 @@ public class PropertyDeleteButton {
 		Statement st = database.getStatement();
 		/*************************/
 
+		
 		// Confirm Dialog Here //
 		int response = JOptionPane.showConfirmDialog(null,
 				"Do you want to continue?", "Confirm",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		
 		if (response == JOptionPane.YES_OPTION) {
-
 			String property = (String) PropertyMenu.getSelectedProperty();
 			String plotName = "";
 			String plotNo = "";

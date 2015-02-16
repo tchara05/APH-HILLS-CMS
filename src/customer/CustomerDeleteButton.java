@@ -29,6 +29,8 @@ public class CustomerDeleteButton {
 			String Lname = "";
 			
 			if (customer != null) {
+				customer = customer.substring(2);
+				
 				int i = 0;
 				while (customer.charAt(i) != ' ' && i < customer.length()) {
 					Fname = Fname + customer.charAt(i);

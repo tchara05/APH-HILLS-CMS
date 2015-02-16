@@ -11,12 +11,18 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import extras.Checker;
 import extras.DatabaseConnection;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 
 public class CustomerMenu extends JPanel {
@@ -25,10 +31,14 @@ public class CustomerMenu extends JPanel {
 	// Graphical Variables //
 
 	private static CustomerForm customerform;
-	private static JLabel lblCustomerDescriptions;	
-	private static JTextField txtCustomerSearch;
 	private static JComboBox<String> AllCustomers;
 	private static JPanel CustomerPanel;
+	private JTextField FirstName;
+	private JTextField LastName;
+	private JTextField Email;
+	private JTextField CustomerID;
+	private JTextField contactNumber;
+	private JTextField MobilePhone;
 	
 
 	
@@ -48,9 +58,18 @@ public class CustomerMenu extends JPanel {
 		
 		
 		JLabel lblAllCustomers = new JLabel("All Customers:");
-		lblCustomerDescriptions = new JLabel("");
 		
 		AllCustomers = new JComboBox<String>();
+		AllCustomers.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				
+				String str =(String)AllCustomers.getSelectedItem();
+				setDetails(str);
+			
+			}
+		});
+				
+				
 		
 		
 		setUpCustomerList();
@@ -60,20 +79,7 @@ public class CustomerMenu extends JPanel {
 		
 		JButton btnAddNewCustomer = new JButton("Add New Customer");
 		btnAddNewCustomer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				 
-				lblCustomerDescriptions.setText("<html>Button Description: <br><br>" +
-						"Adding new customer into the database" +
-						" with all his information.<html>");
-				
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-				lblCustomerDescriptions.setText("");
-			}
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
@@ -85,18 +91,7 @@ public class CustomerMenu extends JPanel {
 		
 		JButton btnEditCustomer = new JButton("Edit/View Customer");
 		btnEditCustomer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-				lblCustomerDescriptions.setText("<html>Button Description:<br><br>" +
-						"Edit the the selected customer from the dropdown list.<html>");
-				
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblCustomerDescriptions.setText("");
-			}
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				new CustomerEditButton().start();
@@ -106,16 +101,7 @@ public class CustomerMenu extends JPanel {
 		
 		JButton btnDeleteCustomer = new JButton("Delete Customer");
 		btnDeleteCustomer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-				lblCustomerDescriptions.setText("<html>Button Description:<br><br>" +
-						"Deleting the selected customer if the customer have no relationship with any contract.<html>");
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblCustomerDescriptions.setText("");
-			}
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
@@ -125,12 +111,41 @@ public class CustomerMenu extends JPanel {
 		
 		JButton btnShowCustomerDetais = new JButton("Show Customer Details");
 		
-		JLabel lblSearchCustomerBy = new JLabel("Search Customer by Name");
+		FirstName = new JTextField();
+		FirstName.setEditable(false);
+		FirstName.setColumns(15);
 		
-		txtCustomerSearch = new JTextField();
-		txtCustomerSearch.setColumns(10);
+		LastName = new JTextField();
+		LastName.setEditable(false);
+		LastName.setColumns(15);
 		
-		JButton btnSearch = new JButton("Search");
+		Email = new JTextField();
+		Email.setEditable(false);
+		Email.setColumns(15);
+		
+		JLabel lblFirstName = new JLabel("First Name:");
+		
+		JLabel lblLastname = new JLabel("Last Name:");
+		
+		JLabel lblNewLabel = new JLabel("Primary Email:");
+		
+		JLabel lblNewLabel_1 = new JLabel("Customer ID:");
+		
+		CustomerID = new JTextField();
+		CustomerID.setEditable(false);
+		CustomerID.setColumns(10);
+		
+		contactNumber = new JTextField();
+		contactNumber.setEditable(false);
+		contactNumber.setColumns(10);
+		
+		JLabel lblContactPhone = new JLabel("Contact Phone:");
+		
+		JLabel lblMobilePhone = new JLabel("Mobile Phone:");
+		
+		MobilePhone = new JTextField();
+		MobilePhone.setEditable(false);
+		MobilePhone.setColumns(15);
 		
 		
 		GroupLayout gl_CustomerPanel = new GroupLayout(CustomerPanel);
@@ -141,22 +156,34 @@ public class CustomerMenu extends JPanel {
 					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblAllCustomers)
 						.addGroup(gl_CustomerPanel.createSequentialGroup()
-							.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(txtCustomerSearch, Alignment.LEADING)
-										.addComponent(AllCustomers, Alignment.LEADING, 0, 227, Short.MAX_VALUE))
-									.addComponent(lblSearchCustomerBy))
-								.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))
-							.addGap(67)
-							.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblCustomerDescriptions, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(btnEditCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnDeleteCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnShowCustomerDetais, 0, 0, Short.MAX_VALUE)
-									.addComponent(btnAddNewCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-					.addGap(13))
+							.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addGroup(Alignment.LEADING, gl_CustomerPanel.createSequentialGroup()
+									.addComponent(lblMobilePhone)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(MobilePhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblLastname, Alignment.LEADING)
+								.addComponent(lblNewLabel_1, Alignment.LEADING)
+								.addGroup(Alignment.LEADING, gl_CustomerPanel.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(AllCustomers, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(gl_CustomerPanel.createSequentialGroup()
+										.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblNewLabel)
+											.addComponent(lblFirstName)
+											.addComponent(lblContactPhone))
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(FirstName)
+											.addComponent(Email)
+											.addComponent(LastName)
+											.addComponent(CustomerID)
+											.addComponent(contactNumber)))))
+							.addGap(78)
+							.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnEditCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnDeleteCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnShowCustomerDetais, 0, 0, Short.MAX_VALUE)
+								.addComponent(btnAddNewCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addGap(78))
 		);
 		gl_CustomerPanel.setVerticalGroup(
 			gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
@@ -165,27 +192,36 @@ public class CustomerMenu extends JPanel {
 					.addComponent(lblAllCustomers)
 					.addGap(18)
 					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(AllCustomers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddNewCustomer))
+						.addComponent(btnAddNewCustomer)
+						.addComponent(AllCustomers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(btnDeleteCustomer)
+					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnDeleteCustomer)
+						.addComponent(lblNewLabel_1)
+						.addComponent(CustomerID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(btnEditCustomer)
+					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnEditCustomer)
+						.addComponent(LastName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblFirstName))
 					.addGap(18)
-					.addComponent(btnShowCustomerDetais)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_CustomerPanel.createSequentialGroup()
-							.addGap(118)
-							.addComponent(lblSearchCustomerBy)
-							.addGap(18)
-							.addComponent(txtCustomerSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnSearch)
-							.addContainerGap(61, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, gl_CustomerPanel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblCustomerDescriptions, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-							.addGap(70))))
+					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnShowCustomerDetais)
+						.addComponent(lblLastname)
+						.addComponent(Email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(FirstName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel))
+					.addGap(18)
+					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(contactNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblContactPhone))
+					.addGap(18)
+					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblMobilePhone)
+						.addComponent(MobilePhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(90))
 		);
 		CustomerPanel.setLayout(gl_CustomerPanel);
 		
@@ -214,7 +250,7 @@ public class CustomerMenu extends JPanel {
 		try {
 			rst = st.executeQuery("SELECT customerID, firstName , lastName FROM Customer ORDER BY firstName , lastName");
 			while (rst.next()&&rst.getString(1)!=null){
-				AllCustomers.addItem(rst.getString(2) +" " + rst.getString(3));
+				AllCustomers.addItem(rst.getString(1) + " " +rst.getString(2) +" " + rst.getString(3));
 			}
 			
 		} catch (SQLException e1) {
@@ -255,11 +291,57 @@ public class CustomerMenu extends JPanel {
 	}
 	public static void DeleteCustomerFromList(){
 		
-		
 		if (AllCustomers.getItemCount()>0){
 			AllCustomers.removeItemAt((AllCustomers.getSelectedIndex()));
 		}
 		
 	}
-
+	
+	public void setDetails(String customer){
+		
+		/** Remove in the finish **/	
+		DatabaseConnection database= new DatabaseConnection();
+		Statement st = database.getStatement(); 	
+		/*************************/	
+		
+		//	Statement st = LogIn.database.getStatement();
+			ResultSet rst =null;
+			customer =customer.substring(2);
+			String Fname ="";
+			String Lname ="";
+			int i = 0;
+			while (customer.charAt(i) != ' ' && i < customer.length()) {
+				Fname = Fname + customer.charAt(i);
+				i++;
+			}
+			i++;
+			while (i < customer.length()) {
+				Lname = Lname + customer.charAt(i);
+				i++;
+			}
+			String query="SELECT customerID , firstName , lastName, primaryEmail, contactPhone, mobilePhone FROM Customer" +
+						 "WHERE	customerID = '"+id +"' and firstName = '"+Fname+"' and lastName = '" + Lname + "'";
+			try {
+				rst = st.executeQuery(query);
+				if (rst.next()&&rst.getString(1)!=null){
+					
+					CustomerID.setText(rst.getString(1));
+					FirstName.setText(rst.getString(2));
+					LastName.setText(rst.getString(3));
+					Email.setText(rst.getString(4));
+					contactNumber.setText(rst.getString(5));
+					MobilePhone.setText(rst.getString(6));
+					
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("Cannot execute query in customer details filling fields");
+				e.printStackTrace();
+			}
+		
+	}
+	
+	
+	
+	
 }
