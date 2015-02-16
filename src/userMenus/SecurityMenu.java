@@ -8,7 +8,9 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 
 public class SecurityMenu extends JPanel {
+	
 	private JTextField textField;
+	private static JComboBox<String> AllContracts;
 
 	/**
 	 * Create the panel.
@@ -49,14 +51,21 @@ public class SecurityMenu extends JPanel {
 		lblNewLabel_1.setBounds(28, 62, 113, 14);
 		add(lblNewLabel_1);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(28, 82, 285, 128);
-		add(label);
-		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(28, 83, 285, 20);
-		add(comboBox);
+		AllContracts = new JComboBox<String>();
+		AllContracts.setBounds(28, 83, 285, 20);
+		add(AllContracts);
 		
 		
 	}
+	public static Object getSelectedContract(){
+		return AllContracts.getSelectedItem();
+	}
+	
+	public static void DeletePropertyFromList(){
+		if (AllContracts.getItemCount()>0){
+				AllContracts.removeItemAt((AllContracts.getSelectedIndex()));
+		}
+	}
+	
+	
 }
