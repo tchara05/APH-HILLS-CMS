@@ -15,7 +15,7 @@ public class email {
 	static String d_password = "...";// o kwdikos mas 
 	static String d_host = "smtp.gmail.com";// o host
 	static String d_port = "465";// to port
-	static String m_to = "cparthen@hol.gr";//to email pou phgenei
+	static String m_to = "....";//to email pou phgenei
 	static String m_subject = "To email einai etoimo ";
 	static String m_text = "Hey, this is a test email.";
     
