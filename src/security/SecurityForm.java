@@ -147,6 +147,10 @@ public class SecurityForm {
 			return txtpropertyID.getText();
 		}
 		
+		public static void setPropertyID(String value) {
+			txtpropertyID.setText(value);
+		}
+		
 		public static void setVisible(boolean value) {
 			frame.setVisible(value);
 		}
