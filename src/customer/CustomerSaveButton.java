@@ -131,7 +131,13 @@ public class CustomerSaveButton extends Thread {
 			}
 			
 			String zipcode = CustomerForm.getZipCode();
-			// Check Here //
+			if ( !Checker.checkNumber(zipcode)&& checked==false){
+				JOptionPane.showMessageDialog(null,
+			    "Zip code has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
 			
 			short infoMaterial = 0; 
 			if   (CustomerForm.getInformationMaterial()){
