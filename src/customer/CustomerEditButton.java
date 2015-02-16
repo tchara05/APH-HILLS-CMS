@@ -42,6 +42,7 @@ public class CustomerEditButton extends Thread {
 			CustomerForm.edit=true;
 			
 		} catch (SQLException e) {
+			System.out.println("Can execute the query EditCustomer");
 			e.printStackTrace();
 		}
 		

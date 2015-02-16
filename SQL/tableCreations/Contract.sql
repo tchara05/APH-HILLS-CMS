@@ -8,7 +8,7 @@ create table Contract (
 	contractID integer identity primary key,
 	customerID integer not null,
 	plotID integer not null,
-	customerPercentage float not null,
-	active integer not null,
-	CONSTRAINT bool CHECK (active = 1 or docStatus = 0)
+	customerPerct float not null,
+	active integer not null by default 1,
+	CONSTRAINT bool CHECK (active = 1 or active = 0)
 );

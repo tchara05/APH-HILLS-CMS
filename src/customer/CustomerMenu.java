@@ -222,6 +222,13 @@ public class CustomerMenu extends JPanel {
 			e1.printStackTrace();
 		}
 		
+		try {
+			AllCustomers.setSelectedIndex(0);
+		}catch(Exception e){
+			System.out.println("Empty Customer List");
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static void UpdateCustomerList(String str1,String str2){
@@ -236,20 +243,23 @@ public class CustomerMenu extends JPanel {
 			i++;
 			
 		}
-		AllCustomers.insertItemAt(value, i);
-		if (AllCustomers.getItemCount()>0){
-			AllCustomers.setSelectedIndex(0);
-		}
-		AllCustomers.setSelectedIndex(0);
 		
+		AllCustomers.insertItemAt(value, i);
+		try{
+			AllCustomers.setSelectedIndex(0);
+		}catch(Exception e){
+			
+			System.out.println("Empty Customer List");
+			e.printStackTrace();
+		}
 	}
 	public static void DeleteCustomerFromList(){
 		
 		
 		if (AllCustomers.getItemCount()>0){
 			AllCustomers.removeItemAt((AllCustomers.getSelectedIndex()));
-				AllCustomers.setSelectedIndex(0);
 		}
+		
 	}
 
 }

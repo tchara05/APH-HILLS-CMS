@@ -27,6 +27,7 @@ public class CustomerDeleteButton {
 			String customer = (String) CustomerMenu.getSelectedCustomer();
 			String Fname = "";
 			String Lname = "";
+			
 			if (customer != null) {
 				int i = 0;
 				while (customer.charAt(i) != ' ' && i < customer.length()) {
@@ -46,6 +47,7 @@ public class CustomerDeleteButton {
 				try {
 					st.executeUpdate(query);
 				} catch (SQLException e) {
+					System.out.println("Cant execute the query in CustomerDelete");
 					e.printStackTrace();
 				}
 

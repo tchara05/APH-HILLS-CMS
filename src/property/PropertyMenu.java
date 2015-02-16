@@ -238,10 +238,16 @@ public static void setUpPropertyList(){
 				AllProperties.addItem(rst.getString(3) +" "+ rst.getString(2));
 			}
 		} catch (SQLException e1) {
-			
+			System.out.println("Can execute the query in setUpPropertyList");
 			e1.printStackTrace();
 		}
-		
+		try {
+			AllProperties.setSelectedIndex(0);
+		}catch(Exception e){
+			System.out.println("Empty Property List");
+			e.printStackTrace();
+		}
+				
 	}
 	
 	public static void UpdatePropertyList(String str1,String str2){
@@ -257,16 +263,16 @@ public static void setUpPropertyList(){
 			
 		}
 		AllProperties.insertItemAt(value, i);
-		AllProperties.setSelectedIndex(0);
 		
 	}
 	public static void DeletePropertyFromList(){
 		
 		
 		if (AllProperties.getItemCount()>0){
-			AllProperties.removeItemAt((AllProperties.getSelectedIndex()));
-				AllProperties.setSelectedIndex(0);
+				AllProperties.removeItemAt((AllProperties.getSelectedIndex()));
 		}
+		
+		
 	}
 	
 	
