@@ -33,7 +33,8 @@ public class CustomerSaveButton extends Thread {
 		  /**   Retrieve and check the data from the form **/
 		    
 			String nFname= Checker.clearString(CustomerForm.getFname());
-			if ( !Checker.checkString(nFname)){
+			nFname=Checker.clearString(nFname);
+			if ( !Checker.checkString(nFname)||(nFname.isEmpty())){
 				JOptionPane.showMessageDialog(null,
 			    "First Name has invalid characters",
 			    "Input warning",
@@ -43,7 +44,8 @@ public class CustomerSaveButton extends Thread {
 			
 			
 			String nLname = Checker.clearString(CustomerForm.getLastName());
-			if ( !Checker.checkString(nLname)&& checked==false){
+			nLname=Checker.clearString(nLname);
+			if ( !Checker.checkString(nLname)||(nLname.isEmpty())){
 				JOptionPane.showMessageDialog(null,
 			    "Last Name has invalid characters",
 			    "Input warning",
@@ -53,18 +55,10 @@ public class CustomerSaveButton extends Thread {
 			
 			
 			String address = CustomerForm.getAddress();
-			// Check Here //
-			String bussinesNumber = CustomerForm.getBussinesNumber();
-			if ( !Checker.checkNumber(bussinesNumber)&& checked==false){
-				JOptionPane.showMessageDialog(null,
-			    "Bussines Number has invalid characters ",
-			    "Input warning",
-			    JOptionPane.WARNING_MESSAGE);
-				checked = false;
-			}
 			
 			String city = CustomerForm.getCity();
-			if ( !Checker.checkString(city)&& checked==false){
+			city=Checker.clearString(city);
+			if ( !Checker.checkString(city)||(city.isEmpty())){
 				JOptionPane.showMessageDialog(null,
 			    "City has invalid characters",
 			    "Input warning",
@@ -72,9 +66,20 @@ public class CustomerSaveButton extends Thread {
 				checked = false;
 			}
 			
+			String bussinesNumber = CustomerForm.getBussinesNumber();
+			if ( !Checker.checkNumber(bussinesNumber)){
+				JOptionPane.showMessageDialog(null,
+			    "Bussines Number has invalid characters ",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
+			
+		
+			
 			String contactNumber = CustomerForm.getContactNumber();
 			contactNumber = contactNumber.trim();
-			if ( !Checker.checkNumber(contactNumber)&& checked==false){
+			if ( !Checker.checkNumber(contactNumber)){
 				JOptionPane.showMessageDialog(null,
 			    "Contact Number has invalid characters ",
 			    "Input warning",
@@ -84,7 +89,7 @@ public class CustomerSaveButton extends Thread {
 			
 			String faxNumber = CustomerForm.getFaxNumber();
 			faxNumber = faxNumber.trim();
-			if ( !Checker.checkNumber(faxNumber)&& checked==false){
+			if ( !Checker.checkNumber(faxNumber)){
 				JOptionPane.showMessageDialog(null,
 			    "Fax has invalid characters",
 			    "Input warning",
@@ -93,16 +98,12 @@ public class CustomerSaveButton extends Thread {
 			}
 			
 			String customerID =	CustomerForm.getID();
-			// Check Here //
-			// i think we no need this check//
-			
 			String note =  CustomerForm.getNote();
-			// Check Here //
-			// i think we no need this check//
+			
 			
 			String mobileNum = CustomerForm.getPhoneMobile();
 			mobileNum = mobileNum.trim();
-			if ( !Checker.checkNumber(mobileNum)&& checked==false){
+			if ( !Checker.checkNumber(mobileNum)){
 				JOptionPane.showMessageDialog(null,
 			    "Mobile Number has invalid characters",
 			    "Input warning",
@@ -112,7 +113,7 @@ public class CustomerSaveButton extends Thread {
 			
 			String primaryMail = CustomerForm.getPrimaryMail();
 			primaryMail = primaryMail.trim();
-			if ( !Checker.checkEmailAddress(primaryMail)&& checked==false){
+			if ( !Checker.checkEmailAddress(primaryMail)){
 				JOptionPane.showMessageDialog(null,
 			    "Primary Email has invalid characters",
 			    "Input warning",
@@ -122,22 +123,17 @@ public class CustomerSaveButton extends Thread {
 
 			String secondaryMail = CustomerForm.getSecondaryMail();
 			secondaryMail = secondaryMail.trim();
-			if ( !Checker.checkEmailAddress(secondaryMail)&& checked==false){
-				JOptionPane.showMessageDialog(null,
-			    "Primary Email has invalid characters",
-			    "Input warning",
-			    JOptionPane.WARNING_MESSAGE);
-				checked = false;
+			if(!secondaryMail.isEmpty()){
+					if ( !Checker.checkEmailAddress(secondaryMail)){
+						JOptionPane.showMessageDialog(null,
+					    "Secondary Email has invalid characters",
+					    "Input warning",
+					    JOptionPane.WARNING_MESSAGE);
+						checked = false;
+					}
 			}
-			
 			String zipcode = CustomerForm.getZipCode();
-			if ( !Checker.checkNumber(zipcode)&& checked==false){
-				JOptionPane.showMessageDialog(null,
-			    "Zip code has invalid characters",
-			    "Input warning",
-			    JOptionPane.WARNING_MESSAGE);
-				checked = false;
-			}
+		
 			
 			short infoMaterial = 0; 
 			if   (CustomerForm.getInformationMaterial()){

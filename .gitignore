@@ -8,3 +8,5 @@ bin/userMenus/AphroditeHillLogIn$1.class
 *.class
 
 bin/userMenus/SecurityMenu.class
+
+bin/property/PropertyForm.class
