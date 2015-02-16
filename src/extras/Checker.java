@@ -10,7 +10,7 @@ public class Checker extends Thread {
 		 char[] chars = t.toCharArray();
 
 		    for (char c : chars) {
-		        if(!Character.isLetter(c)) {
+		        if(!Character.isLetter(c)&&(c!=' ')) {
 		            return false;
 		        }
 		    }
