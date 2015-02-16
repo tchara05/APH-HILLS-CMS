@@ -1,6 +1,9 @@
 package extras;
 
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
 
@@ -9,10 +12,10 @@ import java.util.*;
 public class email {    
 	
 	static String d_email = "pparthenhs@gmail.com";//to email mas 
-	static String d_password = ".....";// o kwdikos mas 
+	static String d_password = "...";// o kwdikos mas 
 	static String d_host = "smtp.gmail.com";// o host
 	static String d_port = "465";// to port
-	static String m_to = "......";//to email pou phgenei
+	static String m_to = "cparthen@hol.gr";//to email pou phgenei
 	static String m_subject = "To email einai etoimo ";
 	static String m_text = "Hey, this is a test email.";
     
@@ -44,22 +47,40 @@ public class email {
         	
            Authenticator auth = new SMTPAuthenticator();
            Session session = Session.getInstance(props,auth); 
-            
               
-            MimeMessage msg = new MimeMessage(session);
+            Message msg = new MimeMessage(session);
+             
+            	msg.setSubject(m_subject);
+            	msg.setFrom(new InternetAddress(d_email));
+            	msg.addRecipient(Message.RecipientType.TO, new InternetAddress(m_to));
             
+            BodyPart messageBodyPart = new MimeBodyPart();
+            
+            	messageBodyPart.setText(m_text);
+            
+            Multipart multipart = new MimeMultipart();
+
+            multipart.addBodyPart(messageBodyPart);
+            
+            messageBodyPart = new MimeBodyPart();
+            
+            String file = "C:/Users/Panos/Desktop/EPL222.1.AB325898.docx";
+            
+            String fileName = "EPL222.1.AB325898.docx";
+            
+            DataSource source = new FileDataSource(file);
+            
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(fileName);
+            multipart.addBodyPart(messageBodyPart);
+
             msg.setText(m_text);
             
-            msg.setSubject(m_subject);
-            
-            msg.setFrom(new InternetAddress(d_email));
-            
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(m_to));
-            
+            msg.setContent(multipart);
+          
+          
             Transport.send(msg);
-            
-            
-            
+   
         } catch (Exception mex) {
             mex.printStackTrace();
         }
