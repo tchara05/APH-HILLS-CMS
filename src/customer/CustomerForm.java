@@ -36,6 +36,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.TitledBorder;
 
 public class CustomerForm {
 	// Graphical Variables  Data //
@@ -135,23 +136,224 @@ public class CustomerForm {
 		lblImage.setText("image");
 		lblImage.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		
-		JLabel lblCustomerForm = new JLabel("Customer Form:");
-		lblCustomerForm.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Customer Form", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(52)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 959, GroupLayout.PREFERRED_SIZE)
+					.addGap(35)
+					.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(47, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(54)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 628, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(51, Short.MAX_VALUE))
+		);
+		panel_2.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(Color.GRAY));
+		panel.setBackground(UIManager.getColor("Button.background"));
+		panel.setBounds(42, 43, 402, 452);
+		panel_2.add(panel);
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Customer Information", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setForeground(Color.GRAY);
+	    panel.setLayout(null);
+	    
+	    JPanel panel_4 = new JPanel();
+	    panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+	    panel_4.setBackground(Color.LIGHT_GRAY);
+	    panel_4.setBounds(26, 30, 349, 399);
+	    panel.add(panel_4);
+	    panel_4.setLayout(null);
+	    
+	    txtNote = new JTextArea();
+	    txtNote.setBounds(10, 277, 326, 111);
+	    panel_4.add(txtNote);
+	    txtNote.setText("Add any notes here..");
+	    txtNote.setLineWrap(true);
+	    
+	    JLabel lblCustomerId = new JLabel("Customer ID:");
+	    lblCustomerId.setBounds(10, 18, 69, 16);
+	    panel_4.add(lblCustomerId);
+	    lblCustomerId.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    
+	    JLabel lblFirstName = new JLabel("First Name:");
+	    lblFirstName.setBounds(10, 52, 62, 16);
+	    panel_4.add(lblFirstName);
+	    lblFirstName.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    
+	    	
+	    	JLabel lblLastname = new JLabel("Last Name:");
+	    	lblLastname.setBounds(10, 88, 60, 16);
+	    	panel_4.add(lblLastname);
+	    	lblLastname.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	
+	    	JLabel lblAddress = new JLabel("Address:");
+	    	lblAddress.setBounds(13, 127, 47, 16);
+	    	panel_4.add(lblAddress);
+	    	lblAddress.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	
+	    	JLabel lblCity = new JLabel("City:");
+	    	lblCity.setBounds(10, 166, 22, 16);
+	    	panel_4.add(lblCity);
+	    	lblCity.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	
+	    	JLabel lblZipPosta = new JLabel("Zip Code:");
+	    	lblZipPosta.setBounds(10, 205, 50, 16);
+	    	panel_4.add(lblZipPosta);
+	    	lblZipPosta.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	
+	    	
+	    	JLabel lblCountry = new JLabel("Country:");
+	    	lblCountry.setBounds(10, 245, 43, 16);
+	    	panel_4.add(lblCountry);
+	    	lblCountry.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	
+	    	txtID = new JTextField();
+	    	txtID.setEnabled(false);
+	    	txtID.setBounds(105, 11, 231, 28);
+	    	panel_4.add(txtID);
+	    	txtID.setColumns(10);
+	    	
+	    	txtFname = new JTextField();
+	    	txtFname.setBounds(105, 45, 231, 28);
+	    	panel_4.add(txtFname);
+	    	txtFname.setColumns(10);
+	    	
+	    	txtLastName = new JTextField();
+	    	txtLastName.setBounds(105, 81, 231, 28);
+	    	panel_4.add(txtLastName);
+	    	txtLastName.setColumns(10);
+	    	
+	    	txtAddress = new JTextField();
+	    	txtAddress.setBounds(105, 120, 231, 28);
+	    	panel_4.add(txtAddress);
+	    	txtAddress.setColumns(10);
+	    	
+	    	txtCity = new JTextField();
+	    	txtCity.setBounds(105, 159, 231, 28);
+	    	panel_4.add(txtCity);
+	    	txtCity.setColumns(10);
+	    	
+	    	txtZipCode = new JTextField();
+	    	txtZipCode.setBounds(105, 198, 231, 28);
+	    	panel_4.add(txtZipCode);
+	    	txtZipCode.setColumns(10);
+	    	
+	    	Country = new JComboBox<String>();
+	    	Country.setBounds(105, 238, 231, 28);
+	    	panel_4.add(Country);
+	    
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setBounds(476, 43, 445, 452);
+	    panel_2.add(panel_1);
+	    panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Customer Contact Details", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setLayout(null);
 		
-		JLabel lblCustomerInformation = new JLabel("Customer Information:");
-		lblCustomerInformation.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		JPanel panel_5 = new JPanel();
+		panel_5.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		panel_5.setBackground(Color.LIGHT_GRAY);
+		panel_5.setBounds(23, 30, 394, 397);
+		panel_1.add(panel_5);
+		panel_5.setLayout(null);
 		
-		JLabel lblCustomerContactDetails = new JLabel("Customer Contact Details:");
-		lblCustomerContactDetails.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		chckbxInformationMaterial = new JCheckBox("Information Material");
+		chckbxInformationMaterial.setBounds(20, 328, 123, 23);
+		panel_5.add(chckbxInformationMaterial);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(Color.GRAY));
+		chckbxCloseAccound = new JCheckBox("Close Accound");
+		chckbxCloseAccound.setBounds(20, 289, 95, 23);
+		panel_5.add(chckbxCloseAccound);
+		
+		txtSeconadaryMail = new JTextField();
+		txtSeconadaryMail.setBounds(165, 52, 216, 30);
+		panel_5.add(txtSeconadaryMail);
+		txtSeconadaryMail.setColumns(10);
+		
+		txtPhoneMobile = new JTextField();
+		txtPhoneMobile.setBounds(165, 93, 216, 30);
+		panel_5.add(txtPhoneMobile);
+		txtPhoneMobile.setColumns(10);
+		
+		txtBussinesNumber = new JTextField();
+		txtBussinesNumber.setBounds(165, 134, 216, 30);
+		panel_5.add(txtBussinesNumber);
+		txtBussinesNumber.setColumns(10);
+		
+		ContactNumber = new JTextField();
+		ContactNumber.setBounds(165, 175, 216, 30);
+		panel_5.add(ContactNumber);
+		ContactNumber.setColumns(10);
+		
+		FaxNumber = new JTextField();
+		FaxNumber.setBounds(165, 216, 216, 30);
+		panel_5.add(FaxNumber);
+		FaxNumber.setColumns(10);
+		
+		txtPrimaryMail = new JTextField();
+		txtPrimaryMail.setBounds(165, 11, 216, 30);
+		panel_5.add(txtPrimaryMail);
+		txtPrimaryMail.setColumns(10);
+		
+		JLabel lblSecondaryEmail = new JLabel("Secondary Email:");
+		lblSecondaryEmail.setBounds(20, 61, 123, 14);
+		panel_5.add(lblSecondaryEmail);
+		lblSecondaryEmail.setFont(new Font("Calibri", Font.PLAIN, 12));
+		
+		JLabel lblFaxNumber = new JLabel("Fax Number:");
+		lblFaxNumber.setBounds(20, 225, 107, 14);
+		panel_5.add(lblFaxNumber);
+		lblFaxNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
+		
+		JLabel lblContactPhoneNumber = new JLabel("Contact Phone Number:");
+		lblContactPhoneNumber.setBounds(20, 184, 153, 14);
+		panel_5.add(lblContactPhoneNumber);
+		lblContactPhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
+		
+		JLabel lblBussinesPhoneNumber = new JLabel("Bussines Phone Number:");
+		lblBussinesPhoneNumber.setBounds(20, 143, 181, 14);
+		panel_5.add(lblBussinesPhoneNumber);
+		lblBussinesPhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
+		
+		JLabel lblMobilePhoneNumber = new JLabel("Mobile Phone Number:");
+		lblMobilePhoneNumber.setBounds(20, 101, 135, 14);
+		panel_5.add(lblMobilePhoneNumber);
+		
+		JLabel lblPrimaryEmail = new JLabel("Primary Email:");
+		lblPrimaryEmail.setBounds(20, 20, 107, 14);
+		panel_5.add(lblPrimaryEmail);
+		lblPrimaryEmail.setFont(new Font("Calibri", Font.PLAIN, 12));
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.LIGHT_GRAY);
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		panel_3.setForeground(Color.WHITE);
+		panel_3.setBounds(42, 526, 850, 66);
+		panel_2.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.setFont(new Font("Calibri", Font.PLAIN, 12));
+		btnSave.setBounds(22, 20, 104, 30);
+		panel_3.add(btnSave);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.setFont(new Font("Calibri", Font.PLAIN, 12));
+		btnClear.setBounds(149, 20, 109, 30);
+		panel_3.add(btnClear);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Calibri", Font.PLAIN, 12));
+		btnBack.setBounds(283, 21, 110, 29);
+		panel_3.add(btnBack);
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -160,295 +362,17 @@ public class CustomerForm {
 				setVisible(false);
 			}
 		});
-		
-		JButton btnSave = new JButton("Save");
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new CustomerSaveButton().start();
-			}
-		});
-		
-		JButton btnClear = new JButton("Clear");
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				new CustomerClearButton().start();
 			}
 		});
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(78)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnClear, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lblCustomerForm)
-								.addComponent(lblCustomerInformation)
-								.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
-							.addGap(44)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblCustomerContactDetails)
-								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 453, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-							.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
-							.addGap(83))))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(38)
-							.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(62)
-							.addComponent(lblCustomerForm)
-							.addGap(19)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblCustomerInformation)
-								.addComponent(lblCustomerContactDetails))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 496, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-					.addGap(37)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnBack)
-						.addComponent(btnSave)
-						.addComponent(btnClear))
-					.addGap(167))
-		);
-		
-		JLabel lblPrimaryEmail = new JLabel("Primary Email:");
-		
-		txtPrimaryMail = new JTextField();
-		txtPrimaryMail.setColumns(10);
-		
-		JLabel lblSecondaryEmail = new JLabel("Secondary Email:");
-		
-		txtSeconadaryMail = new JTextField();
-		txtSeconadaryMail.setColumns(10);
-		
-		JLabel lblMobilePhoneNumber = new JLabel("Mobile Phone Number:");
-		
-		txtPhoneMobile = new JTextField();
-		txtPhoneMobile.setColumns(10);
-		
-		JLabel lblBussinesPhoneNumber = new JLabel("Bussines Phone Number:");
-		
-		txtBussinesNumber = new JTextField();
-		txtBussinesNumber.setColumns(10);
-		
-		JLabel lblContactPhoneNumber = new JLabel("Contact Phone Number:");
-		
-		ContactNumber = new JTextField();
-		ContactNumber.setColumns(10);
-		
-		JLabel lblFaxNumber = new JLabel("Fax Number:");
-		
-		FaxNumber = new JTextField();
-		FaxNumber.setColumns(10);
-		
-		chckbxCloseAccound = new JCheckBox("Close Accound");
-		
-		chckbxInformationMaterial = new JCheckBox("Information Material");
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblPrimaryEmail)
-										.addComponent(lblSecondaryEmail)
-										.addComponent(lblMobilePhoneNumber))
-									.addGap(25)
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtPhoneMobile, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-										.addComponent(txtSeconadaryMail, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-										.addComponent(txtPrimaryMail, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblBussinesPhoneNumber)
-										.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-											.addComponent(lblContactPhoneNumber)
-											.addComponent(lblFaxNumber)
-											.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-												.addComponent(chckbxCloseAccound)
-												.addGap(34))))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(ContactNumber, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-										.addComponent(txtBussinesNumber, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-										.addComponent(FaxNumber, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))))
-							.addContainerGap(76, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(chckbxInformationMaterial)
-							.addContainerGap(285, Short.MAX_VALUE))))
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(29)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPrimaryEmail)
-						.addComponent(txtPrimaryMail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblSecondaryEmail)
-						.addComponent(txtSeconadaryMail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtPhoneMobile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblMobilePhoneNumber))
-					.addGap(18)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblBussinesPhoneNumber)
-						.addComponent(txtBussinesNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(ContactNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblContactPhoneNumber))
-					.addGap(18)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(FaxNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblFaxNumber))
-					.addGap(48)
-					.addComponent(chckbxCloseAccound)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(chckbxInformationMaterial)
-					.addContainerGap(101, Short.MAX_VALUE))
-		);
-		panel_1.setLayout(gl_panel_1);
-		
-		JLabel lblFirstName = new JLabel("First Name:");
-		
-		txtFname = new JTextField();
-		txtFname.setColumns(10);
-	
-		
-		JLabel lblLastname = new JLabel("Last Name");
-		
-		txtLastName = new JTextField();
-		txtLastName.setColumns(10);
-		
-		JLabel lblAddress = new JLabel("Address:");
-		
-		txtAddress = new JTextField();
-		txtAddress.setColumns(10);
-		
-		JLabel lblCity = new JLabel("City:");
-		
-		txtCity = new JTextField();
-		txtCity.setColumns(10);
-		
-		Country = new JComboBox<String>();
-		
-		
-		JLabel lblCountry = new JLabel("Country:");
-		
-		JLabel lblZipPosta = new JLabel("Zip Code:");
-		
-		txtZipCode = new JTextField();
-		txtZipCode.setColumns(10);
-		
-		JLabel lblNote = new JLabel("Note:");
-		
-	    txtNote = new JTextArea();
-	    txtNote.setLineWrap(true);
-		
-		JLabel lblCustomerId = new JLabel("Customer ID:");
-		
-		txtID = new JTextField();
-		txtID.setEditable(false);
-		txtID.setColumns(10);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(22)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNote)
-						.addComponent(txtNote, GroupLayout.PREFERRED_SIZE, 369, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-									.addGroup(gl_panel.createSequentialGroup()
-										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-											.addGroup(gl_panel.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-													.addComponent(lblCustomerId)
-													.addComponent(lblLastname)
-													.addComponent(lblAddress)
-													.addComponent(lblFirstName)))
-											.addComponent(lblCity))
-										.addGap(18))
-									.addGroup(gl_panel.createSequentialGroup()
-										.addComponent(lblCountry)
-										.addGap(47)))
-								.addComponent(lblZipPosta))
-							.addGap(36)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(txtZipCode)
-								.addComponent(Country, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(txtCity)
-								.addComponent(txtAddress)
-								.addComponent(txtLastName)
-								.addComponent(txtFname)
-								.addComponent(txtID, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))))
-					.addContainerGap(35, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(35)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCustomerId)
-						.addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblFirstName)
-						.addComponent(txtFname, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblLastname)
-						.addComponent(txtLastName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblAddress)
-						.addComponent(txtAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtCity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCity))
-					.addGap(12)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtZipCode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblZipPosta))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(Country, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCountry))
-					.addGap(12)
-					.addComponent(lblNote)
-					.addGap(18)
-					.addComponent(txtNote, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-					.addGap(31))
-		);
-		panel.setLayout(gl_panel);
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new CustomerSaveButton().start();
+			}
+		});
 		frame.getContentPane().setLayout(groupLayout);
 	
 	}
@@ -620,5 +544,4 @@ public class CustomerForm {
 	public static void setVisible(boolean val){
 		frame.setVisible(val);	
 	}
-	
 }
