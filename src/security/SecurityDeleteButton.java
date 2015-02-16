@@ -6,6 +6,8 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import userMenus.SecurityMenu;
+
 import extras.DatabaseConnection;
 
 public class SecurityDeleteButton {
@@ -19,12 +21,13 @@ public class SecurityDeleteButton {
 				"Do you want to continue?", "Confirm",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if (response == JOptionPane.YES_OPTION) {
-			// choosing the contract you want to delete
+			
 			String keyID = "";
-			// String keyID = (String)SecurityMenu.getSellectedContract();
+			keyID = (String)SecurityMenu.getSelectedContract();
 
 			if (keyID != null) {
-				// deleting the contract from the list
+				
+				SecurityMenu.DeletePropertyFromList();
 				String query = "";
 				query = "DELETE KeyContract WHERE keysID = '" + keyID;
 

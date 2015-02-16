@@ -5,6 +5,8 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import userMenus.SecurityMenu;
+
 import extras.DatabaseConnection;
 
 public class SecuritySaveButton extends Thread {
@@ -51,9 +53,7 @@ public class SecuritySaveButton extends Thread {
 							JOptionPane.INFORMATION_MESSAGE);
 
 					SecurityForm.setVisible(false);
-
-					// SecurityMenu.UpdateSecurityList(keyID);
-
+					SecurityMenu.UpdateContractList(propertyID);
 				}
 
 			}
