@@ -19,14 +19,20 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import extras.DatabaseConnection;
-
+/*
+ * We have to make status fields and add the id to dropdowlist
+ * filter the dropdown list to remove the id with Checker.StringRemoveID
+ * 
+ * 
+ * 
+ * 
+ */
 
 
 public class PropertyMenu extends JPanel {
 
 	
 	
-	private static final long serialVersionUID = -6335457457980522343L;
 	/**
 	 * Create the panel.
 	 */
@@ -255,7 +261,7 @@ public static void setUpPropertyList(){
 		int length = AllProperties.getItemCount();
 		String value = str1 +" " + str2;
 		int i =0;
-		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllProperties.getItemAt(i) )>0){
+		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllProperties.getItemAt(i))>0){
 				i++;
 		}
 		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllProperties.getItemAt(i) )==0){

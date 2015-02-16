@@ -24,9 +24,15 @@ public class CustomerEditButton extends Thread {
 		String customer = (String) CustomerMenu.getSelectedCustomer();
 		String Fname = "";
 		String Lname = "";
+		String id = "";
 		int i = 0;
 		if (customer != null) {
-			while (customer.charAt(i) != ' ' && i < customer.length()) {
+			while (i<customer.length()&&customer.charAt(i)!=' ' ){
+				id = id +customer.charAt(i);
+				i++;		
+			}
+			i++;
+			while (i<customer.length()&&customer.charAt(i) != ' ' ) {
 				Fname = Fname + customer.charAt(i);
 				i++;
 			}
@@ -36,11 +42,13 @@ public class CustomerEditButton extends Thread {
 				i++;
 			}
 			try {
+				
 				rst = st.executeQuery("SELECT * FROM Customer WHERE firstName='"
-						+ Fname + "' and lastName ='" + Lname + "'");
+						+ Fname + "' and lastName ='" + Lname + "' and customerID = '" + id +"'");
+				
+				
 				if (rst.next() && (rst.getString(1) != null)) {
 					setForm(rst);
-
 				}
 				CustomerForm.setVisible(true);
 				CustomerForm.edit = true;

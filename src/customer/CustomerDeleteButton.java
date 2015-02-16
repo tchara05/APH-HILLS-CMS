@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
 
 import extras.DatabaseConnection;
 
-public class CustomerDeleteButton {
+public class CustomerDeleteButton extends Thread {
 
-	public static void start() {
+	public void run() {
 
 		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
@@ -27,12 +27,16 @@ public class CustomerDeleteButton {
 			String customer = (String) CustomerMenu.getSelectedCustomer();
 			String Fname = "";
 			String Lname = "";
-			
+			String id = "";
+
 			if (customer != null) {
-				customer = customer.substring(2);
-				
 				int i = 0;
-				while (customer.charAt(i) != ' ' && i < customer.length()) {
+				while (i < customer.length() && customer.charAt(i) != ' ') {
+					id = id + customer.charAt(i);
+					i++;
+				}
+				i++;
+				while (i < customer.length() && customer.charAt(i) != ' ') {
 					Fname = Fname + customer.charAt(i);
 					i++;
 				}
@@ -49,7 +53,8 @@ public class CustomerDeleteButton {
 				try {
 					st.executeUpdate(query);
 				} catch (SQLException e) {
-					System.out.println("Cant execute the query in CustomerDelete");
+					System.out
+							.println("Cant execute the query in CustomerDelete");
 					e.printStackTrace();
 				}
 

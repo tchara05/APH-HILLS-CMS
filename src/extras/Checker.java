@@ -75,6 +75,16 @@ public class Checker extends Thread {
 				return str;
 	 }
 	 
+	 public static String removeStringID(String s){
+		 
+		 int i=0;
+		 while(i<s.length()&&s.charAt(i)!=' '){
+			 i++;
+		 }
+		 
+		 return s.substring(i+1);
+		 
+	 }
 	 
 	 public static void main(String args[]){
 		 

@@ -11,16 +11,13 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import java.awt.Font;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Color;
-import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
@@ -357,15 +354,14 @@ public class CustomerForm {
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
+				CustomerClearButton.start();
 				setVisible(false);
 			}
 		});
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new CustomerClearButton().start();
+				CustomerClearButton.start();
 			}
 		});
 		btnSave.addActionListener(new ActionListener() {

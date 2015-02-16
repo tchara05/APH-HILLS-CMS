@@ -190,6 +190,7 @@ public class CustomerSaveButton extends Thread {
 						
 						
 						st.executeUpdate(query);
+						CustomerMenu.UpdateCustomerList(CustomerForm.getID(),nFname,nLname);	
 						
 						new CustomerClearButton().start();
 						
@@ -199,7 +200,7 @@ public class CustomerSaveButton extends Thread {
 							    JOptionPane.INFORMATION_MESSAGE);
 						
 						CustomerForm.setVisible(false);
-						CustomerMenu.UpdateCustomerList(nFname,nLname);	
+						
 				    }
 				}else {
 					System.out.println("Invalid Character or Country Somewhere");

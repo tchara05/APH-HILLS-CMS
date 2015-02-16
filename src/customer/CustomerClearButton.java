@@ -1,10 +1,10 @@
 package customer;
 
 
-public class CustomerClearButton extends Thread {
+public class CustomerClearButton{
 	
 	
-	public void run(){	
+	public static void start(){	
 			String val ="";
 			CustomerForm.setAddress(val);
 			CustomerForm.setBussinesNumber(val);
