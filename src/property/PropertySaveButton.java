@@ -17,27 +17,110 @@ public class PropertySaveButton extends Thread {
 		boolean checked = true;
 
 		String plotName = PropertyForm.getPlotName();
-		if (!Checker.checkString(plotName) && checked) {
+		plotName=Checker.clearString(plotName);
+		if ( !Checker.checkString(plotName)||(plotName.isEmpty())){
 			JOptionPane.showMessageDialog(null,
-					"Plot Name has invalid characters", "Inane warning",
-					JOptionPane.WARNING_MESSAGE);
+		    "Plot Name has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
 			checked = false;
 		}
+		
 
 		// Check Variables Below //
 		String plotNumber = PropertyForm.getPlotNo();
+		if ( !Checker.checkNumber(plotNumber)){
+			JOptionPane.showMessageDialog(null,
+		    "Plot Number has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
+			checked = false;
+		}
+		
 		String propertyClass = PropertyForm.getPlotClass();
+		
 		String parcel = PropertyForm.getParcel();
+		parcel=Checker.clearString(parcel);
+		
 		String landUse = PropertyForm.getLandUse();
+		if ( !Checker.checkNumber(landUse)){
+			JOptionPane.showMessageDialog(null,
+		    "Land Use has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
+			checked = false;
+		}
+		
 		String percentage = PropertyForm.getPercentage();
+		if ( !Checker.checkNumber(percentage)){
+			JOptionPane.showMessageDialog(null,
+		    "Percentage has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
+			checked = false;
+		}
+		
 		String plots = PropertyForm.getPlots();
+		if(!plots.isEmpty()){
+			if ( !Checker.checkNumber(plots)){
+				JOptionPane.showMessageDialog(null,
+			    "Plots has invalid characters",
+			    "Input warning",
+			    JOptionPane.WARNING_MESSAGE);
+				checked = false;
+			}
+		}
+		
+		
 		String details = PropertyForm.getDetails();
+		
 		String status = PropertyForm.getStatus();
+		status=Checker.clearString(status);
+		if ( !Checker.checkString(status)||(status.isEmpty())){
+			JOptionPane.showMessageDialog(null,
+		    "Status has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
+			checked = false;
+		}
+		
 		String floorsNo = PropertyForm.getFloors();
+		if ( !Checker.checkNumber(floorsNo)){
+			JOptionPane.showMessageDialog(null,
+		    "Floors Number has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
+			checked = false;
+		}
+		
 		String berdroomsNo = PropertyForm.getBedrooms();
+		if ( !Checker.checkNumber(berdroomsNo)){
+			JOptionPane.showMessageDialog(null,
+		    "Bedrooms Number has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
+			checked = false;
+		}
+		
 		String bathroomsNo = PropertyForm.getBathrooms();
+		if ( !Checker.checkNumber(bathroomsNo)){
+			JOptionPane.showMessageDialog(null,
+		    "Bathrooms Number has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
+			checked = false;
+		}
+		
 		String deedNum = PropertyForm.getDeedNo();
+		if ( !Checker.checkNumber(deedNum)){
+			JOptionPane.showMessageDialog(null,
+		    "Deed Number has invalid characters",
+		    "Input warning",
+		    JOptionPane.WARNING_MESSAGE);
+			checked = false;
+		}
 
+		
 		short rentalGarante = 0;
 		if (PropertyForm.getRentalGuarantte()) {
 			rentalGarante = 1;
