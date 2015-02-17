@@ -32,6 +32,7 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 
 public class PropertyForm {
 
@@ -42,7 +43,6 @@ public class PropertyForm {
 	private static JTextField txtPlotID;
 	private static JTextField txtPlotNo;
 	private static JTextField txtPlotName;
-	private static JTextField txtClass;
 	private static JTextField txtParcel;
 	private static JTextField txtLandUse;
 	private static JTextField txtPerChange;
@@ -65,6 +65,8 @@ public class PropertyForm {
 	private static JCheckBox chckbxAirCondition ;
 	private static JCheckBox chckbxBasement;
 	private static JTextArea txtExtraDetails;
+	
+	private static JComboBox AllClasses;
 	
 	protected static boolean edit =false;
 	/**
@@ -106,6 +108,11 @@ public class PropertyForm {
 		frmPropertyForm.setTitle("Property Form");
 		
 		frmPropertyForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		AllClasses = new JComboBox<String>();
+		String query = "SELECT  * FROM Class";
+		ListManager.setUpTwoColumnsList(AllClasses, query);
+		
 		
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		
@@ -344,9 +351,6 @@ public class PropertyForm {
 		
 		JLabel lblClass = new JLabel("Property Class:");
 		
-		txtClass = new JTextField();
-		txtClass.setColumns(15);
-		
 		JLabel lblParcel = new JLabel("Parcel:");
 		
 		txtParcel = new JTextField();
@@ -376,6 +380,8 @@ public class PropertyForm {
 		panel.setBorder(new LineBorder(Color.GRAY));
 		
 		JLabel lblOtherInfo = new JLabel("Other Info:");
+		
+		
 		GroupLayout gl_panelDetails = new GroupLayout(panelDetails);
 		gl_panelDetails.setHorizontalGroup(
 			gl_panelDetails.createParallelGroup(Alignment.LEADING)
@@ -395,20 +401,20 @@ public class PropertyForm {
 								.addComponent(lblN)
 								.addComponent(lblPlots))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtPerChange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtClass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtPlotName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtPlotNo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtParcel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtLandUse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtPlotID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(txtPerChange)
+								.addComponent(txtPlotName)
+								.addComponent(txtPlotNo)
+								.addComponent(txtParcel)
+								.addComponent(txtLandUse)
+								.addComponent(txtPlots)
+								.addComponent(txtPlotID)
+								.addComponent(AllClasses, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addGap(62)
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblOtherInfo)
 								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(85, Short.MAX_VALUE))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		gl_panelDetails.setVerticalGroup(
 			gl_panelDetails.createParallelGroup(Alignment.LEADING)
@@ -431,7 +437,7 @@ public class PropertyForm {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblClass)
-								.addComponent(txtClass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(12)
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
 								.addComponent(txtParcel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -533,17 +539,15 @@ public class PropertyForm {
 		try {
 			rs = st.executeQuery("SELECT MAX(plotID)  FROM Property");
 
-			if (rs.next()) {
-				if (rs.getString(1) != null) {
+			if (rs.next() && rs.getString(1)!=null) {
+				
 					txtPlotID.setText("" + (rs.getInt(1) + 1));
-				} else {
-					txtPlotID.setText("1");
-				}
+
 			} else {
 				txtPlotID.setText("1");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("PlotID set query");
 			e.printStackTrace();
 		}
 	}
@@ -556,8 +560,8 @@ public class PropertyForm {
 		txtPlotName.setText(val);
 	}
 
-	public static void setPlotClass(String val) {
-		txtClass.setText(val);
+	public static void setPlotClass(int val) {
+		AllClasses.setSelectedIndex(val);
 	}
 
 	public static void setParcel(String val) {
@@ -674,8 +678,8 @@ public class PropertyForm {
 		return txtPlotName.getText();
 	}
 
-	public static String getPlotClass() {
-		return txtClass.getText();
+	public static int getPlotClass() {
+		return AllClasses.getSelectedIndex();
 	}
 
 	public static String getParcel() {
@@ -773,7 +777,6 @@ public class PropertyForm {
 		return txtExtraDetails.getText();
 
 	}
-
 }
 	
 

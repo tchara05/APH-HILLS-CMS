@@ -23,7 +23,7 @@ public class PropertyClearButton  {
 		PropertyForm.setParcel(val2);
 		PropertyForm.setParking(val1);
 		PropertyForm.setPerChange(val2);
-		PropertyForm.setPlotClass(val2);
+		PropertyForm.setPlotClass(0);
 		PropertyForm.setPlotID();
 		PropertyForm.setPlotName(val2);
 		PropertyForm.setPlotNo(val2);

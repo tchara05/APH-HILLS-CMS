@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -27,6 +27,7 @@ import extras.DatabaseConnection;
  * 
  * 
  */
+import extras.ListManager;
 
 
 public class PropertyMenu extends JPanel {
@@ -39,8 +40,6 @@ public class PropertyMenu extends JPanel {
 	
 	private static JComboBox<String> AllProperties;
 	private PropertyForm propertyform;
-	private JTextField txtPropertySearch;
-	private JLabel lblPropertyDescriptions;
 	private static JPanel PropertyPanel;
 		
 	
@@ -50,11 +49,10 @@ public class PropertyMenu extends JPanel {
 		PropertyPanel = new JPanel();
 		propertyform = new PropertyForm();
 	    AllProperties = new JComboBox<String>();
-	    
-	    setUpPropertyList();
+	    String query = "SELECT plotID, plotNumber , PlotName FROM Property ORDER BY plotName , plotNumber";
+	    ListManager.setUpThreeList(AllProperties, query);
 		
 		JLabel lblProperrty = new JLabel("Properties:");
-		lblPropertyDescriptions = new JLabel("");
 		
 		JButton btnAddNewProperty = new JButton("Add New Property");
 		btnAddNewProperty.addActionListener(new ActionListener() {
@@ -68,40 +66,12 @@ public class PropertyMenu extends JPanel {
 				PropertyForm.setPlotID();	
 				PropertyForm.setVisible(true);
 			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				String description = "<html>Button Description:<br><br> Adding new property into " +
-									 "datababe with all its features!<html>";
-				
-				
-				lblPropertyDescriptions.setText(description);
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-				lblPropertyDescriptions.setText("");
-			}
+
 		});
 		
 		JButton btnNewButton = new JButton("Delete Property");
 		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-				String description = "<html>Button Description:<br><br> Delete the selected property " +
-						 "from database if it has " +
-						 "no connection with any Customer!<html>";
-						
-				lblPropertyDescriptions.setText(description);
-				
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-				lblPropertyDescriptions.setText("");
-			}
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
@@ -111,81 +81,54 @@ public class PropertyMenu extends JPanel {
 		
 		JButton btnEditProperrty = new JButton("Edit/View Property");
 		btnEditProperrty.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				String description = "<html>Button Description:<br><br> The property form shows with  " +
-						 "all features and details about " +
-						 "the selected property!<html>";
-						
-				lblPropertyDescriptions.setText(description);
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblPropertyDescriptions.setText("");
-			}
+
 		});
 		
-		
-		txtPropertySearch = new JTextField();
-		txtPropertySearch.setColumns(10);
-		
-		JLabel lblSearchPropertyBy = new JLabel("Search Property by Name:");
+		JLabel lblSearchPropertyBy = new JLabel("Search Property:");
 		
 		JButton button = new JButton("Search");
 		
-		JButton btnShowPropertyReport = new JButton("Show Report");
-		btnShowPropertyReport.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				String description = "<html>Button Description:<br><br> Shows all owners and details of  " +
-						 "the selected property!" +
-						 "<html>";
-						
-				lblPropertyDescriptions.setText(description);
-				
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblPropertyDescriptions.setText("");
-			}
-		});
+		JComboBox<String> AllParcels= new JComboBox<String>();
+		
+		JComboBox<String> AllClasses = new JComboBox<String>();
+		
+		JLabel lblParcels = new JLabel("Parcels:");
+//		query = "SELECT parcelNo, parcellName, parcelOwner FROM Parcel";
+//		ListManager.setUpList(AllParcels, query);
+		query = "SELECT propertyClassNo, className FROM Class";
+		ListManager.setUpTwoColumnsList(AllClasses, query);
+		
+		JLabel lblNewLabel = new JLabel("Classses:");
 		
 		
 		GroupLayout gl_PropertyPanel = new GroupLayout(PropertyPanel);
 		gl_PropertyPanel.setHorizontalGroup(
 			gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_PropertyPanel.createSequentialGroup()
-					.addGap(30)
-					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_PropertyPanel.createSequentialGroup()
-							.addComponent(lblProperrty)
-							.addContainerGap(474, Short.MAX_VALUE))
-						.addGroup(gl_PropertyPanel.createSequentialGroup()
-							.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_PropertyPanel.createSequentialGroup()
-									.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(txtPropertySearch, Alignment.LEADING)
-										.addComponent(AllProperties, Alignment.LEADING, 0, 209, Short.MAX_VALUE))
-									.addGap(79))
-								.addGroup(gl_PropertyPanel.createSequentialGroup()
-									.addComponent(lblSearchPropertyBy)
-									.addGap(128))
-								.addGroup(gl_PropertyPanel.createSequentialGroup()
-									.addComponent(button, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-									.addGap(132)))
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(30)
 							.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_PropertyPanel.createSequentialGroup()
-									.addComponent(lblPropertyDescriptions, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap())
+								.addComponent(lblSearchPropertyBy)
+								.addComponent(lblProperrty)
 								.addGroup(gl_PropertyPanel.createSequentialGroup()
 									.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(btnShowPropertyReport, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnEditProperrty, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnAddNewProperty, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
-									.addContainerGap())))))
+										.addComponent(AllParcels, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(AllProperties, Alignment.LEADING, 0, 209, Short.MAX_VALUE)
+										.addComponent(button, Alignment.LEADING))
+									.addGap(18)
+									.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblNewLabel)
+										.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.TRAILING)
+											.addComponent(AllClasses, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+											.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING, false)
+												.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(btnAddNewProperty, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+												.addComponent(btnEditProperrty, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))))))
+						.addGroup(gl_PropertyPanel.createSequentialGroup()
+							.addGap(38)
+							.addComponent(lblParcels)))
+					.addContainerGap(61, Short.MAX_VALUE))
 		);
 		gl_PropertyPanel.setVerticalGroup(
 			gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
@@ -196,25 +139,23 @@ public class PropertyMenu extends JPanel {
 					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(AllProperties, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnAddNewProperty))
-					.addGap(18)
-					.addComponent(btnNewButton)
-					.addGap(18)
-					.addComponent(btnEditProperrty)
-					.addGap(18)
-					.addComponent(btnShowPropertyReport)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_PropertyPanel.createSequentialGroup()
-							.addGap(75)
-							.addComponent(lblSearchPropertyBy)
-							.addGap(18)
-							.addComponent(txtPropertySearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(button))
-						.addGroup(gl_PropertyPanel.createSequentialGroup()
-							.addGap(43)
-							.addComponent(lblPropertyDescriptions, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)))
-					.addGap(115))
+					.addComponent(btnNewButton)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnEditProperrty)
+					.addGap(40)
+					.addComponent(lblSearchPropertyBy)
+					.addGap(22)
+					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblParcels)
+						.addComponent(lblNewLabel))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(95)
+					.addComponent(button)
+					.addGap(26))
 		);
 		PropertyPanel.setLayout(gl_PropertyPanel);
 			
@@ -226,59 +167,15 @@ public class PropertyMenu extends JPanel {
 		return AllProperties.getSelectedItem();
 	}
 	
-	
-	
-public static void setUpPropertyList(){
-		
-		/** Remove in the finish **/	
-		DatabaseConnection database= new DatabaseConnection();
-		Statement st = database.getStatement(); 		
-		/*************************/	
-		
-		//	Statement st = LogIn.database.getStatement();
-		ResultSet rst =null;
-		try {
-			rst = st.executeQuery("SELECT plotID, plotNumber , PlotName FROM Property ORDER BY plotName , plotNumber");
-			while (rst.next()&&rst.getString(1)!=null){
-				
-				AllProperties.addItem(rst.getString(3) +" "+ rst.getString(2));
-			}
-		} catch (SQLException e1) {
-			System.out.println("Can execute the query in setUpPropertyList");
-			e1.printStackTrace();
-		}
-		try {
-			AllProperties.setSelectedIndex(0);
-		}catch(Exception e){
-			System.out.println("Empty Property List");
-			e.printStackTrace();
-		}
-				
-	}
-	
-	public static void UpdatePropertyList(String str1,String str2){
-		
-		int length = AllProperties.getItemCount();
-		String value = str1 +" " + str2;
-		int i =0;
-		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllProperties.getItemAt(i))>0){
-				i++;
-		}
-		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllProperties.getItemAt(i) )==0){
-			i++;
-			
-		}
-		AllProperties.insertItemAt(value, i);
-		
-	}
+
 	public static void DeletePropertyFromList(){
 		
+		ListManager.DeleteFromList(AllProperties);
+	}
+	
+	public static void UpdatePropertyFormList(String id, String name , String number){
 		
-		if (AllProperties.getItemCount()>0){
-				AllProperties.removeItemAt((AllProperties.getSelectedIndex()));
-		}
-		
-		
+		ListManager.UpdateList(id, name, number,AllProperties);
 	}
 	
 	
@@ -291,7 +188,4 @@ public static void setUpPropertyList(){
 		
 		new PropertyMenu().setVisible(true);
 	}
-
-
-
 }

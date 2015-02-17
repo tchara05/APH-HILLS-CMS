@@ -1,12 +1,12 @@
 package customer;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
 import extras.DatabaseConnection;
+import extras.ListManager;
 
 public class CustomerDeleteButton extends Thread {
 
@@ -14,7 +14,6 @@ public class CustomerDeleteButton extends Thread {
 
 		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
-		ResultSet rst = null;
 		Statement st = database.getStatement();
 		/*************************/
 
@@ -25,30 +24,14 @@ public class CustomerDeleteButton extends Thread {
 		if (response == JOptionPane.YES_OPTION) {
 
 			String customer = (String) CustomerMenu.getSelectedCustomer();
-			String Fname = "";
-			String Lname = "";
-			String id = "";
 
 			if (customer != null) {
-				int i = 0;
-				while (i < customer.length() && customer.charAt(i) != ' ') {
-					id = id + customer.charAt(i);
-					i++;
-				}
-				i++;
-				while (i < customer.length() && customer.charAt(i) != ' ') {
-					Fname = Fname + customer.charAt(i);
-					i++;
-				}
-				i++;
-				while (i < customer.length()) {
-					Lname = Lname + customer.charAt(i);
-					i++;
-				}
+				
+				
+				String[] Customer = ListManager.SplitThreeItem(customer);
 
 				CustomerMenu.DeleteCustomerFromList();
-				String query = "DELETE Customer WHERE firstName = '" + Fname
-						+ "' and lastName = '" + Lname + "'";
+				String query = "DELETE Customer WHERE  and customerID ='"+Customer[0]+"'";
 
 				try {
 					st.executeUpdate(query);

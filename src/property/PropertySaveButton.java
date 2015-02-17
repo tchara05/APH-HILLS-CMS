@@ -37,11 +37,11 @@ public class PropertySaveButton extends Thread {
 			checked = false;
 		}
 		
-		String propertyClass = PropertyForm.getPlotClass();
+		int propertyClass = PropertyForm.getPlotClass();
 		
 		String parcel = PropertyForm.getParcel();
+	
 		parcel=Checker.clearString(parcel);
-		
 		String landUse = PropertyForm.getLandUse();
 		if ( !Checker.checkNumber(landUse)){
 			JOptionPane.showMessageDialog(null,
@@ -173,7 +173,7 @@ public class PropertySaveButton extends Thread {
 		if (PropertyForm.getPoolHeading()) {
 			poolHeading = 1;
 		}
-
+		
 		try {
 
 			/** Remove in the finish **/
@@ -221,7 +221,8 @@ public class PropertySaveButton extends Thread {
 							JOptionPane.INFORMATION_MESSAGE);
 
 					PropertyForm.setVisible(false);
-					PropertyMenu.UpdatePropertyList(plotName, plotNumber);
+					String id = PropertyForm.getPlotID();
+					PropertyMenu.UpdatePropertyFormList(id,plotName, plotNumber);
 					PropertyForm.edit = false;
 
 				}

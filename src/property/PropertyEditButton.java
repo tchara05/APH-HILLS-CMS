@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import customer.CustomerForm;
 
 import extras.DatabaseConnection;
+import extras.ListManager;
 
 /**
  * Issue Here
@@ -35,31 +36,17 @@ public class PropertyEditButton extends Thread {
 
 		/*************************/
 
-		CustomerForm.edit = true;
+		PropertyForm.edit = true;
 
 		// Statement st = LogIn.database.getStatement();
 
 		ResultSet rst = null;
 
 		String property = (String) PropertyMenu.getSelectedProperty();
-		String plotName = "";
-		String plotNo = "";
-		int i = 0;
-
 		if (property != null) {
-			while (property.charAt(i) != ' ' && i < property.length()) {
-				plotName = plotNo + property.charAt(i);
-				i++;
-			}
-			i++;
-			while (i < property.length()) {
-				plotNo = plotNo + property.charAt(i);
-				i++;
-			}
-
+			String[] Property = ListManager.SplitThreeItem(property);
 			try {
-				rst = st.executeQuery("SELECT * FROM Property WHERE plotName='"
-						+ plotName + "' and plotNo ='" + plotNo + "'");
+				rst = st.executeQuery("SELECT * FROM Property WHERE and PlotID ='" + Property[2] +"'");
 				if (rst.next() && (rst.getString(1) != null)) {
 
 					new PropertySaveButton().start();
@@ -160,7 +147,9 @@ public class PropertyEditButton extends Thread {
 		PropertyForm.setPerChange(rst.getString(7));
 		PropertyForm.setLandUse(rst.getString(6));
 		PropertyForm.setParcel(rst.getString(5));
-		PropertyForm.setPlotClass(rst.getString(4));
+		
+		int  classes= rst.getInt(4);
+		PropertyForm.setPlotClass(classes);
 		PropertyForm.setPlotName(rst.getString(3));
 		PropertyForm.setPlotNo(rst.getString(2));
 		PropertyForm.setIDByEdit(rst.getString(1));

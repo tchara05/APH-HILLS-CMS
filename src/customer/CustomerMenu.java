@@ -17,6 +17,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import extras.Checker;
 import extras.DatabaseConnection;
+import extras.ListManager;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
@@ -49,7 +51,9 @@ public class CustomerMenu extends JPanel {
 		JLabel lblAllCustomers = new JLabel("All Customers:");
 
 		AllCustomers = new JComboBox<String>();
-		setUpCustomerList();
+	
+		String query ="SELECT customerID, firstName , lastName FROM Customer ORDER BY firstName , lastName";
+		ListManager.setUpThreeList(AllCustomers, query);
 		AllCustomers.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				String str = (String) AllCustomers.getSelectedItem();
@@ -209,74 +213,16 @@ public class CustomerMenu extends JPanel {
 	public static Object getSelectedCustomer() {
 		return AllCustomers.getSelectedItem();
 	}
+	
 
-	public static void setUpCustomerList() {
-
-		/** Remove in the finish **/
-		DatabaseConnection database = new DatabaseConnection();
-		Statement st = database.getStatement();
-		/*************************/
-
-		// Statement st = LogIn.database.getStatement();
-		ResultSet rst = null;
-		try {
-			rst = st.executeQuery("SELECT customerID, firstName , lastName FROM Customer ORDER BY firstName , lastName");
-			while (rst.next() && rst.getString(1) != null) {
-				AllCustomers.addItem(rst.getString(1) + " " + rst.getString(2)
-						+ " " + rst.getString(3));
-			}
-
-		} catch (SQLException e1) {
-			System.out.println("Set up list custoemr exception");
-			e1.printStackTrace();
-		}	
-
-		try {
-			AllCustomers.setSelectedIndex(0);
-		} catch (Exception e) {
-			System.out.println("Empty Customer List");
-			e.printStackTrace();
-		}
-
+	public static void UpdateCustomerList(String id,String nFname ,String nLname){
+			ListManager.UpdateList(id, nFname, nLname, AllCustomers);
 	}
-
-	public static void UpdateCustomerList(String id,String str1, String str2) {
-
-		int length = AllCustomers.getItemCount();
-		String value = str1 + " " + str2;
-		int i = 0;
-		String testing= (String) AllCustomers.getItemAt(i);
-		while (i < length
-				&& String.CASE_INSENSITIVE_ORDER.compare(value,Checker.removeStringID(testing)) >0) {
-			i++;
-			testing= (String) AllCustomers.getItemAt(i);
-		}
-		testing= (String) AllCustomers.getItemAt(i);
-		while (i < length
-				&& String.CASE_INSENSITIVE_ORDER.compare(value,Checker.removeStringID(testing)) == 0) {
-			i++;
-			testing= (String) AllCustomers.getItemAt(i);
-		}
-		
-		String finalValue =id+" " + value;
-		AllCustomers.insertItemAt( finalValue, i);
-		try {
-			AllCustomers.setSelectedIndex(0);
-		} catch (Exception e) {
-
-			System.out.println("Empty Customer List");
-			e.printStackTrace();
-		}
+	
+	public static void DeleteCustomerFromList(){
+			ListManager.DeleteFromList(AllCustomers);
 	}
-
-	public static void DeleteCustomerFromList() {
-
-		if (AllCustomers.getItemCount() > 0) {
-			AllCustomers.removeItemAt((AllCustomers.getSelectedIndex()));
-		}
-
-	}
-
+	
 	public void setDetails(String customer) {
 
 		/** Remove in the finish **/
@@ -291,30 +237,11 @@ public class CustomerMenu extends JPanel {
 			return;
 		}
 
-		String Fname = "";
-		String Lname = "";
-		String id = "";
-		int i = 0;
-		while (i < customer.length() && customer.charAt(i) != ' ') {
-			id = id + customer.charAt(i);
-			i++;
-		}
-		i++;
-		while ((i < customer.length() && customer.charAt(i) != ' ')) {
-			Fname = Fname + customer.charAt(i);
-			i++;
-		}
-		i++;
-		while (i < customer.length()) {
-			Lname = Lname + customer.charAt(i);
-			i++;
-		}
+		String[] Customer = ListManager.SplitThreeItem(customer);
 
-		String query ="SELECT customerID, firstName, lastName, primaryEmail, contactPhone, mobilePhone FROM Customer WHERE firstName='"
-				+ Fname + "' and lastName ='" + Lname + "' and customerID = '" + id +"'";
-		
-		
-	
+		String query ="SELECT customerID, firstName, lastName, primaryEmail, contactPhone, mobilePhone FROM" +
+				" Customer WHERE customerID = '" + Customer[0] +"'";
+			
 		try {
 			rst = st.executeQuery(query);
 			if(rst.next() && rst.getString(1)!=null) {

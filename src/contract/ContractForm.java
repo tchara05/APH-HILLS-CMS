@@ -56,9 +56,9 @@ public class ContractForm {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(46)
+					.addGap(274)
 					.addComponent(lblContractForm, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-					.addGap(924)
+					.addGap(696)
 					.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(26, Short.MAX_VALUE))
 		);
@@ -66,7 +66,7 @@ public class ContractForm {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(46)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblContractForm, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(641, Short.MAX_VALUE))
@@ -74,5 +74,4 @@ public class ContractForm {
 		frame.getContentPane().setLayout(groupLayout);
 		
 	}
-
 }
