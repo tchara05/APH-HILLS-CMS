@@ -263,11 +263,11 @@ public class CustomerForm {
 		panel_5.setLayout(null);
 		
 		chckbxInformationMaterial = new JCheckBox("Information Material");
-		chckbxInformationMaterial.setBounds(20, 328, 123, 23);
+		chckbxInformationMaterial.setBounds(20, 328, 153, 23);
 		panel_5.add(chckbxInformationMaterial);
 		
 		chckbxCloseAccound = new JCheckBox("Close Accound");
-		chckbxCloseAccound.setBounds(20, 289, 95, 23);
+		chckbxCloseAccound.setBounds(20, 289, 153, 23);
 		panel_5.add(chckbxCloseAccound);
 		
 		txtSeconadaryMail = new JTextField();
@@ -321,7 +321,8 @@ public class CustomerForm {
 		lblBussinesPhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
 		
 		JLabel lblMobilePhoneNumber = new JLabel("Mobile Phone Number:");
-		lblMobilePhoneNumber.setBounds(20, 101, 135, 14);
+		lblMobilePhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
+		lblMobilePhoneNumber.setBounds(20, 101, 153, 14);
 		panel_5.add(lblMobilePhoneNumber);
 		
 		JLabel lblPrimaryEmail = new JLabel("Primary Email:");
@@ -333,7 +334,7 @@ public class CustomerForm {
 		panel_3.setBackground(Color.LIGHT_GRAY);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 		panel_3.setForeground(Color.WHITE);
-		panel_3.setBounds(42, 526, 850, 66);
+		panel_3.setBounds(42, 526, 879, 66);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		
