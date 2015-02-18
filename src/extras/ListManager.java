@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JList;
 
 public class ListManager  {
 	
@@ -69,6 +71,30 @@ public class ListManager  {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void UpdateList(String id,String str1, String str2,DefaultListModel list) {
+
+		int length = list.capacity();
+		String value = str1 + " " + str2;
+		int i = 0;
+		String testing= (String) list.get(i);
+		while (i < length
+				&& String.CASE_INSENSITIVE_ORDER.compare(value,Checker.removeStringID(testing)) >0) {
+			i++;
+			testing= (String) list.get(i);
+		}
+		testing= (String) list.get(i);
+		while (i < length
+				&& String.CASE_INSENSITIVE_ORDER.compare(value,Checker.removeStringID(testing)) == 0) {
+			i++;
+			testing= (String) list.get(i);
+		}
+		
+		String finalValue =id+" " + value;
+		list.add( i,finalValue);
+
+	}
+	
 	
 	public static void setUpTwoColumnsList(JComboBox<String> list,String query){
 		
@@ -171,7 +197,64 @@ public class ListManager  {
 		
 		return customer;
 	}
+	public static void SetUpThreeList(DefaultListModel<String> list,String query){
+		/** Remove in the finish **/
+		DatabaseConnection database = new DatabaseConnection();
+		Statement st = database.getStatement();
+		/*************************/
+		try {
+			ResultSet rst = st.executeQuery(query);
+			while (rst.next()&&rst.getString(1)!=null){
+				list.addElement(rst.getString(1)+" "+rst.getString(2)+" "+rst.getString(3));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("From Set Up Three List Query");
+			e.printStackTrace();
+		}
+		
+		
+	}
+	public static String[] removeShare(String item){
+		
+		int i = item.length()-1;
+		String[] newItem ={"",""};
+		while (i >-1 && item.charAt(i) != ' ') {
+			i--;
+		}
+		for(int j=0;j<=i;j++){
+			newItem[1] =newItem[1] + item.charAt(j);
+		}
+		
+		for(int j = i+1; j<item.length();j++){
+			newItem[0] = newItem[0] + item.charAt(j);
+		}
 
+		System.out.println(newItem[0]);
+		System.out.println(newItem[1]);
+		
+		return newItem;
+		
+	}
+	
+	
+	
+	public static String SlitOneItem(String s){
+		
+		String result = "";
+		int i=0;
+		while (i<s.length()&& s.charAt(i)!=' '){
+			result = result + s.charAt(i);
+			i++;
+		}
+		
+		return result;
+		
+	}
+	
+
+	
+	
 
 
 }

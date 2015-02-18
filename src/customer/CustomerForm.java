@@ -367,7 +367,7 @@ public class CustomerForm {
 		});
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new CustomerSaveButton().start();
+			 	new CustomerSaveButton().start();
 			}
 		});
 		frame.getContentPane().setLayout(groupLayout);

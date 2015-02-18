@@ -39,7 +39,7 @@ public class CustomerMenu extends JPanel {
 	private JTextField MobilePhone;
 
 	/**
-	 * Create the panel.
+	 * Create the panel.  
 	 */
 	public CustomerMenu() {
 
