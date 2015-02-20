@@ -6,12 +6,16 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import contract.ContractMenu;
+
 import customer.CustomerMenu;
 import extras.DatabaseConnection;
+import extras.ListManager;
+import extras.Messages;
 
-public class PropertyDeleteButton {
+public class PropertyDeleteButton extends Thread {
 
-	public static void start() {
+	public void run() {
 
 		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
@@ -19,55 +23,40 @@ public class PropertyDeleteButton {
 		Statement st = database.getStatement();
 		/*************************/
 
-		
 		// Confirm Dialog Here //
 		int response = JOptionPane.showConfirmDialog(null,
 				"Do you want to continue?", "Confirm",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-		
+
 		if (response == JOptionPane.YES_OPTION) {
-			String property = (String) PropertyMenu.getSelectedProperty();
-			String plotName = "";
-			String plotNo = "";
+			String property = (String) PropertyMenu.AllProperties.getSelectedItem();
+	
 			int i = 0;
 
 			if (property != null) {
-				while (property != null && property.charAt(i) != ' '
-						&& i < property.length()) {
-					plotName = plotName + property.charAt(i);
-					i++;
-				}
-				i++;
-				while (property != null && i < property.length()) {
-					plotNo = plotNo + property.charAt(i);
-					i++;
-				}
-
-				PropertyMenu.DeletePropertyFromList();
-				String query = "DELETE Property WHERE plotName = '" + plotName
-						+ "' and plotNumber = '" + plotNo + "'";
+			     ListManager.DeleteFromList(PropertyMenu.AllProperties);
+				ContractMenu.AllProperties.removeItem(property);
+				
+				String Property[] = ListManager.SplitThreeItem(property);
+				System.out.println(Property[0]);
+				System.out.println(Property[1]);
+				ContractMenu.AllProperties.removeItem(property);
+				String query = "DELETE Property WHERE plotID='" + Property[0] + "'";
 
 				try {
 					st.executeUpdate(query);
 				} catch (SQLException e) {
-
+					System.out.println("Cant Delete Property");
 					e.printStackTrace();
 				}
 
-				JOptionPane.showMessageDialog(null, "Property Deleted",
-						"Information Message", JOptionPane.INFORMATION_MESSAGE);
-
+				Messages.showSaveMessage("Property Deleted");
 			} else {
-				JOptionPane.showMessageDialog(null, "Nothing To Delete",
-						"Information Message", JOptionPane.INFORMATION_MESSAGE);
+				Messages.showWarningMessage("Nothing to delete");
 
 			}
 		}
 
 	}
-	
-	
-	
-	
 
 }

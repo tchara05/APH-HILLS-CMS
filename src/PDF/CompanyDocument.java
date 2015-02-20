@@ -346,7 +346,7 @@ public class CompanyDocument {
 	
 	public static void main(String args[]) throws Exception{
 		
-		int typeTest = 1;
+		int typeTest = 2;
 		CompanyDocument t = new CompanyDocument(typeTest);
 		Document document = new Document();
 		PdfWriter.getInstance(document, new FileOutputStream("home.test.pdf"));

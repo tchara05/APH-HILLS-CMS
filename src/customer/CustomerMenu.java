@@ -29,7 +29,7 @@ public class CustomerMenu extends JPanel {
 
 	@SuppressWarnings("unused")
 	private static CustomerForm customerform;
-	private static JComboBox<String> AllCustomers;
+	public static JComboBox<String> AllCustomers;
 	private static JPanel CustomerPanel;
 	private JTextField PrimaryMail;
 	private JTextField FirstName;
@@ -86,7 +86,6 @@ public class CustomerMenu extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				new CustomerDeleteButton().start();
 			}
 		});
@@ -215,13 +214,9 @@ public class CustomerMenu extends JPanel {
 	}
 	
 
-	public static void UpdateCustomerList(String id,String nFname ,String nLname){
-			ListManager.UpdateList(id, nFname, nLname, AllCustomers);
-	}
 	
-	public static void DeleteCustomerFromList(){
-			ListManager.DeleteFromList(AllCustomers);
-	}
+			
+	
 	
 	public void setDetails(String customer) {
 

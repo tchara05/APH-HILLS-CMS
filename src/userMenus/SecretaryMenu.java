@@ -10,10 +10,19 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import contract.ContractForm;
+import contract.ContractMenu;
 
 import property.PropertyMenu;
 
 import customer.CustomerMenu;
+import extras.ListManager;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 
 
@@ -68,6 +77,8 @@ public class SecretaryMenu {
 		lblSecretaryMenu.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		
 		GroupLayout groupLayout = new GroupLayout(frmSecretaryMenu.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -95,14 +106,17 @@ public class SecretaryMenu {
 					.addContainerGap(168, Short.MAX_VALUE))
 		);
 		
-		JPanel ContractPanel = new JPanel();
-		tabbedPane.addTab("Contract Menu", null, ContractPanel, null);
-		
 		JPanel PropertyPanel = PropertyMenu.createPropertyMenu();
 		tabbedPane.addTab("Property Menu", null, PropertyPanel, null);
 		
 		JPanel CustomerPanel = CustomerMenu.createCustumerMenu();
 		tabbedPane.addTab("Customer Menu", null, CustomerPanel, null);
+		
+		JPanel ContractPanel = ContractMenu.createContractMenu();
+		
+		
+		tabbedPane.addTab("Contract Menu", null, ContractPanel);
+
 		
 		
 		

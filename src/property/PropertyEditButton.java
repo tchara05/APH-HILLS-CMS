@@ -42,7 +42,7 @@ public class PropertyEditButton extends Thread {
 
 		ResultSet rst = null;
 
-		String property = (String) PropertyMenu.getSelectedProperty();
+		String property = (String) PropertyMenu.AllProperties.getSelectedItem();
 		if (property != null) {
 			String[] Property = ListManager.SplitThreeItem(property);
 			try {

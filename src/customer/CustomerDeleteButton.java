@@ -1,12 +1,14 @@
 package customer;
 
 import java.sql.SQLException;
+import extras.Messages;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
+import contract.ContractForm;
+import extras.ListManager;
 
 import extras.DatabaseConnection;
-import extras.ListManager;
 
 public class CustomerDeleteButton extends Thread {
 
@@ -29,9 +31,9 @@ public class CustomerDeleteButton extends Thread {
 				
 				
 				String[] Customer = ListManager.SplitThreeItem(customer);
-
-				CustomerMenu.DeleteCustomerFromList();
-				String query = "DELETE Customer WHERE  and customerID ='"+Customer[0]+"'";
+				String s = ListManager.DeleteFromList(CustomerMenu.AllCustomers);
+				ListManager.DeleteFromList(ContractForm.AllCustomers, s);
+				String query = "DELETE Customer WHERE  customerID ='"+Customer[0]+"'";
 
 				try {
 					st.executeUpdate(query);
@@ -41,12 +43,11 @@ public class CustomerDeleteButton extends Thread {
 					e.printStackTrace();
 				}
 
-				JOptionPane.showMessageDialog(null, "Customer Deleted",
-						"Information Message", JOptionPane.INFORMATION_MESSAGE);
+				Messages.showWarningMessage("Customer Deleted");
+				
 
 			} else {
-				JOptionPane.showMessageDialog(null, "Nothing To Deleted",
-						"Information Message", JOptionPane.INFORMATION_MESSAGE);
+				Messages.showWarningMessage("Nothing To Delete");
 
 			}
 		}
