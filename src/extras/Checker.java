@@ -82,25 +82,6 @@ public class Checker {
 
 	}
 
-	public static boolean checkTotalPercentage(int perce) {
-		if (perce != 100) {
-			return false;
-		} else {
-			return true;
-		}
 
-	}
-
-	public static void main(String args[]) {
-
-		System.out.println("            Theodoros Charalambous        ");
-		System.out
-				.println(clearString("          Theodoros Charalambous        "));
-		System.out.println(clearString("Theodoros Charalambous"));
-
-		String customer = "1 Koutalas";
-		customer = customer.substring(2);
-
-	}
 
 }

@@ -33,10 +33,6 @@ public class SecretaryMenu {
 
 	
 
-	
-	
-	
-
 	/**
 	 * Launch the application.
 	 */
@@ -106,6 +102,9 @@ public class SecretaryMenu {
 					.addContainerGap(168, Short.MAX_VALUE))
 		);
 		
+		
+		
+		// Inserting the tapped //
 		JPanel PropertyPanel = PropertyMenu.createPropertyMenu();
 		tabbedPane.addTab("Property Menu", null, PropertyPanel, null);
 		
@@ -113,8 +112,6 @@ public class SecretaryMenu {
 		tabbedPane.addTab("Customer Menu", null, CustomerPanel, null);
 		
 		JPanel ContractPanel = ContractMenu.createContractMenu();
-		
-		
 		tabbedPane.addTab("Contract Menu", null, ContractPanel);
 
 		
@@ -124,7 +121,6 @@ public class SecretaryMenu {
 		
 		
 	}
-	
 	
 	public void setVisible(boolean visible){
 		this.frmSecretaryMenu.setVisible(visible);

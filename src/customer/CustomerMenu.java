@@ -18,6 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import extras.Checker;
 import extras.DatabaseConnection;
 import extras.ListManager;
+import extras.Query;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
@@ -25,8 +26,7 @@ import java.awt.event.ItemEvent;
 @SuppressWarnings("serial")
 public class CustomerMenu extends JPanel {
 
-	// Graphical Variables //
-
+	// Graphical Input Variables //
 	@SuppressWarnings("unused")
 	private static CustomerForm customerform;
 	public static JComboBox<String> AllCustomers;
@@ -37,59 +37,41 @@ public class CustomerMenu extends JPanel {
 	private JTextField CustomerID;
 	private JTextField contactNumber;
 	private JTextField MobilePhone;
+	
+	// Buttons Variables //
+	private JButton btnAddNewCustomer;
+	private JButton btnDeleteCustomer;
+	private JButton btnEditCustomer;
 
-	/**
-	 * Create the panel.  
-	 */
+
 	public CustomerMenu() {
 
 		customerform = new CustomerForm();
 		CustomerForm.setVisible(false);
-
 		CustomerPanel = new JPanel();
 
+		
+		// Labels //
 		JLabel lblAllCustomers = new JLabel("All Customers:");
+		JLabel lblFirstName = new JLabel("First Name:");
+		JLabel lblLastname = new JLabel("Last Name:");
+		JLabel lblNewLabel = new JLabel("Primary Email:");
+		JLabel lblNewLabel_1 = new JLabel("Customer ID:");
+		JLabel lblContactPhone = new JLabel("Contact Phone:");
+		JLabel lblMobilePhone = new JLabel("Mobile Phone:");
 
+		
+		//DropDown List //
 		AllCustomers = new JComboBox<String>();
+		ListManager.setUpThreeList(AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
+		
+		
+		// Buttons //
+		btnAddNewCustomer = new JButton("Add New Customer");
+		btnEditCustomer = new JButton("Edit/View Customer");
+		btnDeleteCustomer = new JButton("Delete Customer");
 	
-		String query ="SELECT customerID, firstName , lastName FROM Customer ORDER BY firstName , lastName";
-		ListManager.setUpThreeList(AllCustomers, query);
-		AllCustomers.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				String str = (String) AllCustomers.getSelectedItem();
-				setDetails(str);
-			}
-		});
-
-		JButton btnAddNewCustomer = new JButton("Add New Customer");
-		btnAddNewCustomer.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// CustomerClearButton.start();
-				CustomerForm.setID();
-				CustomerForm.setVisible(true);
-			}
-		});
-
-		JButton btnEditCustomer = new JButton("Edit/View Customer");
-		btnEditCustomer.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				new CustomerEditButton().start();
-			}
-		});
-
-		JButton btnDeleteCustomer = new JButton("Delete Customer");
-		btnDeleteCustomer.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				new CustomerDeleteButton().start();
-			}
-		});
-
+		//Text Box //
 		PrimaryMail = new JTextField();
 		PrimaryMail.setEditable(false);
 		PrimaryMail.setColumns(15);
@@ -102,14 +84,6 @@ public class CustomerMenu extends JPanel {
 		LastName.setEditable(false);
 		LastName.setColumns(15);
 
-		JLabel lblFirstName = new JLabel("First Name:");
-
-		JLabel lblLastname = new JLabel("Last Name:");
-
-		JLabel lblNewLabel = new JLabel("Primary Email:");
-
-		JLabel lblNewLabel_1 = new JLabel("Customer ID:");
-
 		CustomerID = new JTextField();
 		CustomerID.setEditable(false);
 		CustomerID.setColumns(10);
@@ -117,10 +91,6 @@ public class CustomerMenu extends JPanel {
 		contactNumber = new JTextField();
 		contactNumber.setEditable(false);
 		contactNumber.setColumns(10);
-
-		JLabel lblContactPhone = new JLabel("Contact Phone:");
-
-		JLabel lblMobilePhone = new JLabel("Mobile Phone:");
 
 		MobilePhone = new JTextField();
 		MobilePhone.setEditable(false);
@@ -198,11 +168,47 @@ public class CustomerMenu extends JPanel {
 						.addComponent(MobilePhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(90))
 		);
-		CustomerPanel.setLayout(gl_CustomerPanel);
 		
-
+		
+		CustomerPanel.setLayout(gl_CustomerPanel);
+		addButtonsFuctionalities();
 	}
+	
+	private void addButtonsFuctionalities(){
+		
+		btnDeleteCustomer.addMouseListener(new MouseAdapter() {
 
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new CustomerDeleteButton().start();
+			}
+		});
+		
+		btnEditCustomer.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new CustomerEditButton().start();
+			}
+		});
+		
+		btnAddNewCustomer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CustomerForm.setID();
+				CustomerForm.setVisible(true);
+			}
+		});
+		
+		AllCustomers.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				String str = (String) AllCustomers.getSelectedItem();
+				setDetails(str);
+			}
+		});
+		
+	}
+	
 	public static JPanel createCustumerMenu() {
 		new CustomerMenu();
 		return CustomerPanel;
@@ -212,20 +218,11 @@ public class CustomerMenu extends JPanel {
 	public static Object getSelectedCustomer() {
 		return AllCustomers.getSelectedItem();
 	}
-	
 
-	
-			
-	
-	
 	public void setDetails(String customer) {
 
-		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
-		/*************************/
-
-		// Statement st = LogIn.database.getStatement();
 		ResultSet rst = null;
 
 		if (customer == null) {

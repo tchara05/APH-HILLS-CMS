@@ -7,6 +7,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 import extras.DatabaseConnection;
+import extras.ListManager;
 
 import userMenus.LogIn;
 
@@ -14,37 +15,18 @@ public class CustomerEditButton extends Thread {
 
 	public void run() {
 
-		// Statement st = LogIn.database.getStatement();
-
-		/** Remove in the finish **/
-		Statement st = CustomerForm.database.getStatement();
-		/*************************/
-
+		DatabaseConnection database= new DatabaseConnection();
+		Statement st = database.getStatement();
 		ResultSet rst = null;
+		
 		String customer = (String) CustomerMenu.getSelectedCustomer();
-		String Fname = "";
-		String Lname = "";
-		String id = "";
-		int i = 0;
+		
 		if (customer != null) {
-			while (i<customer.length()&&customer.charAt(i)!=' ' ){
-				id = id +customer.charAt(i);
-				i++;		
-			}
-			i++;
-			while (i<customer.length()&&customer.charAt(i) != ' ' ) {
-				Fname = Fname + customer.charAt(i);
-				i++;
-			}
-			i++;
-			while (i < customer.length()) {
-				Lname = Lname + customer.charAt(i);
-				i++;
-			}
+			String[] Customer = ListManager.SplitThreeItem(customer);
 			try {
 				
 				rst = st.executeQuery("SELECT * FROM Customer WHERE firstName='"
-						+ Fname + "' and lastName ='" + Lname + "' and customerID = '" + id +"'");
+						+ Customer[1] + "' and lastName ='" + Customer[2] + "' and customerID = '" + Customer[0] +"'");
 				
 				
 				if (rst.next() && (rst.getString(1) != null)) {
@@ -65,29 +47,32 @@ public class CustomerEditButton extends Thread {
 
 	private static void setForm(ResultSet rst) throws SQLException {
 
-		CustomerForm.setAddress(rst.getString(4));
-		CustomerForm.setBussinesNumber(rst.getString(10));
-		CustomerForm.setCity(rst.getString(8));
-		CustomerForm.setContactNumber(rst.getString(12));
-		CustomerForm.setFaxNumber(rst.getString(13));
-		CustomerForm.setFname(rst.getString(2));
-		CustomerForm.setLastName(rst.getString(3));
-		CustomerForm.setNote(rst.getString(16));
-		CustomerForm.setPhoneMobile(rst.getString(11));
-		CustomerForm.setPrimaryMail(rst.getString(5));
-		CustomerForm.setSecondaryMail(rst.getString(6));
-		CustomerForm.setZipCode(rst.getString(9));
-		CustomerForm.setIDbyEdit(rst.getString(1));
-
+		
+		CustomerForm.txtAddress.setText(rst.getString(4));
+		CustomerForm.txtBussinesNumber.setText(rst.getString(10));
+		CustomerForm.txtCity.setText(rst.getString(8));
+		CustomerForm.txtContactNumber.setText(rst.getString(12));
+		CustomerForm.txtFaxNumber.setText(rst.getString(13));
+		CustomerForm.txtFname.setText(rst.getString(2));
+		CustomerForm.txtLastName.setText(rst.getString(3));
+		CustomerForm.txtNote.setText(rst.getString(16));
+		CustomerForm.txtPhoneMobile.setText(rst.getString(11));
+		CustomerForm.txtPrimaryMail.setText(rst.getString(5));
+		CustomerForm.txtSeconadaryMail.setText(rst.getString(6));
+		CustomerForm.txtZipCode.setText(rst.getString(9));
+		CustomerForm.txtID.setText(rst.getString(1));
+		CustomerForm.Country.setSelectedIndex(rst.getShort(7));
+		
+		
 		if (rst.getInt(14) == 0) {
-			CustomerForm.setCloseAccound(false);
+			CustomerForm.chckbxCloseAccound.setSelected(false);
 		} else
-			CustomerForm.setCloseAccound(true);
+			CustomerForm.chckbxCloseAccound.setSelected(true);
 
 		if (rst.getInt(15) == 0) {
-			CustomerForm.setInformationMaterial(false);
+			CustomerForm.chckbxInformationMaterial.setSelected(false);
 		} else {
-			CustomerForm.setInformationMaterial(true);
+			CustomerForm.chckbxInformationMaterial.setSelected(true);
 		}
 
 	}

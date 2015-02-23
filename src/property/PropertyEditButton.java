@@ -65,94 +65,93 @@ public class PropertyEditButton extends Thread {
 	private static void setForm(ResultSet rst) throws SQLException {
 
 		if (rst.getInt(26) == 1) {
-			PropertyForm.setPoolHeading(true);
+			PropertyForm.chckbxPoolHeading.setSelected(true);
 		} else {
-			PropertyForm.setPoolHeading(false);
+			PropertyForm.chckbxPoolHeading.setSelected(false);
 		}
 
 		if (rst.getInt(25) == 1) {
-			PropertyForm.setAirCondition(true);
+			PropertyForm.chckbxAirCondition.setSelected(true);
 		} else {
-			PropertyForm.setAirCondition(false);
+			PropertyForm.chckbxAirCondition.setSelected(false);
 		}
 
 		if (rst.getInt(24) == 1) {
-			PropertyForm.setBasement(true);
+			PropertyForm.chckbxBasement.setSelected(true);
 		} else {
-			PropertyForm.setBasement(false);
+			PropertyForm.chckbxBasement.setSelected(false);
 		}
 
 		if (rst.getInt(23) == 1) {
-			PropertyForm.setCentralHeading(true);
+			PropertyForm.chckbxCentralHeading.setSelected(true);
 		} else {
-			PropertyForm.setCentralHeading(false);
+			PropertyForm.chckbxCentralHeading.setSelected(false);
 		}
 
 		if (rst.getInt(22) == 1) {
-			PropertyForm.setGarder(true);
+			PropertyForm.chckbxGarden.setSelected(true);
 		} else {
-			PropertyForm.setGarder(false);
+			PropertyForm.chckbxGarden.setSelected(false);
 		}
 
 		if (rst.getInt(21) == 1) {
-			PropertyForm.setParking(true);
+			PropertyForm.chckbxParking.setSelected(true);
 		} else {
-			PropertyForm.setParking(false);
+			PropertyForm.chckbxParking.setSelected(false);
 		}
 
 		if (rst.getInt(20) == 1) {
-			PropertyForm.setPool(true);
+			PropertyForm.chckbxPool.setSelected(true);
 		} else {
-			PropertyForm.setPool(false);
+			PropertyForm.chckbxPool.setSelected(false);
 		}
 
 		if (rst.getInt(19) == 1) {
-			PropertyForm.setTitleDeed(true);
+			PropertyForm.TitleDeed.setSelected(true);
 		} else {
-			PropertyForm.setTitleDeed(false);
+			PropertyForm.TitleDeed.setSelected(false);
 		}
 
-		PropertyForm.setDeedNo(rst.getString(18));
-		PropertyForm.setBathrooms(rst.getString(17));
-		PropertyForm.setBedrooms(rst.getString(16));
-		PropertyForm.setFloors(rst.getString(15));
-		PropertyForm.setStatus(rst.getString(14));
+		PropertyForm.txtDeedNo.setText(rst.getString(18));
+		PropertyForm.txtBathrooms.setText(rst.getString(17));
+		PropertyForm.txtBedrooms.setText(rst.getString(16));
+		PropertyForm.txtFloors.setText(rst.getString(15));
+		PropertyForm.txtStatus.setText(rst.getString(14));
 
 		if (rst.getInt(13) == 1) {
-			PropertyForm.setRentalPlan(true);
+			PropertyForm.chckbxRentalPlan.setSelected(true);
 		} else {
-			PropertyForm.setRentalPlan(false);
+			PropertyForm.chckbxRentalPlan.setSelected(false);
 		}
 
 		if (rst.getInt(12) == 1) {
-			PropertyForm.setCommitted(true);
+			PropertyForm.chckbxCommited.setSelected(true);
 		} else {
-			PropertyForm.setCommitted(false);
+			PropertyForm.chckbxCommited.setSelected(false);
 		}
 
 		if (rst.getInt(11) == 1) {
-			PropertyForm.setRentalGuarantte(true);
+			PropertyForm.chckbxRentalGuarantee.setSelected(true);
 		} else {
-			PropertyForm.setRentalGuarantte(false);
+			PropertyForm.chckbxRentalGuarantee.setSelected(false);
 		}
 
 		if (rst.getInt(10) == 1) {
-			PropertyForm.setPropertyDelivered(true);
+			PropertyForm.chckbxPropertyDelivered.setSelected(true);
 		} else {
-			PropertyForm.setPropertyDelivered(false);
+			PropertyForm.chckbxPropertyDelivered.setSelected(false);
 		}
 
-		PropertyForm.settxtAreaDetails(rst.getString(9));
-		PropertyForm.setPlots(rst.getString(8));
-		PropertyForm.setPerChange(rst.getString(7));
-		PropertyForm.setLandUse(rst.getString(6));
-		PropertyForm.setParcel(rst.getString(5));
-		
+		PropertyForm.txtExtraDetails.setText(rst.getString(9));
+		PropertyForm.txtPlots.setText(rst.getString(8));
+		PropertyForm.txtPerChange.setText(rst.getString(7));
+		PropertyForm.txtLandUse.setText(rst.getString(6));
+		PropertyForm.txtParcel.setText(rst.getString(5));
 		int  classes= rst.getInt(4);
-		PropertyForm.setPlotClass(classes);
-		PropertyForm.setPlotName(rst.getString(3));
-		PropertyForm.setPlotNo(rst.getString(2));
-		PropertyForm.setIDByEdit(rst.getString(1));
+		PropertyForm.AllClasses.setSelectedIndex(classes);
+		PropertyForm.txtPlotName.setText(rst.getString(3));
+		PropertyForm.txtPlotNo.setText(rst.getString(2));
+		PropertyForm.txtPlotID.setText(rst.getString(1));
 	}
 
 }

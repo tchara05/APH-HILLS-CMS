@@ -12,12 +12,9 @@ public class ListManager {
 
 	public static void setUpThreeList(JComboBox<String> list, String query) {
 
-		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
-		/*************************/
 		list.removeAll();
-		// Statement st = LogIn.database.getStatement();
 		ResultSet rst = null;
 		try {
 			rst = st.executeQuery(query);
@@ -39,7 +36,6 @@ public class ListManager {
 		}
 
 	}
-
 	public static void UpdateList(String id, String str1, String str2,
 			JComboBox<String> list) {
 
@@ -71,11 +67,8 @@ public class ListManager {
 			e.printStackTrace();
 		}
 	}
+	public static void UpdateList(String id, String str1, String str2,DefaultListModel list) {
 
-	public static void UpdateList(String id, String str1, String str2,
-			DefaultListModel list) {
-
-		
 		int length = list.getSize();
 		String value = str1 + " " + str2;
 
@@ -106,13 +99,9 @@ public class ListManager {
 
 	public static void setUpTwoColumnsList(JComboBox<String> list, String query) {
 
-		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
 		ResultSet rst = null;
-		/*************************/
-
-		// Statement st = LogIn.database.getStatement();
 
 		try {
 			rst = st.executeQuery(query);
@@ -148,7 +137,6 @@ public class ListManager {
 			list.removeElement(s);
 		}
 	}
-
 	public static String[] SplitThreeItem(String item) {
 
 		String Fname = "";
@@ -178,9 +166,7 @@ public class ListManager {
 
 		return customer;
 	}
-
 	public static String[] SplitTwoItem(String item) {
-
 		String Fname = "";
 		String id = "";
 		int i = 0;
@@ -201,15 +187,13 @@ public class ListManager {
 
 		return customer;
 	}
-
 	public static void SetUpThreeList(DefaultListModel<String> list,
 			String query) {
 		
 		list.clear();
-		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
-		/*************************/
+		
 		try {
 			ResultSet rst = st.executeQuery(query);
 			while (rst.next() && rst.getString(1) != null) {
@@ -223,7 +207,6 @@ public class ListManager {
 		}
 
 	}
-
 	public static String[] removeShare(String item) {
 
 		int i = item.length() - 1;
@@ -242,9 +225,7 @@ public class ListManager {
 		return newItem;
 
 	}
-
 	public static String SplitOneItem(String s) {
-
 		String result = "";
 		int i = 0;
 		while (i < s.length() && s.charAt(i) != ' ') {
@@ -254,7 +235,6 @@ public class ListManager {
 		return result;
 
 	}
-
 	public static boolean checkPercentage(int prc) {
 
 		if (prc != 100) {

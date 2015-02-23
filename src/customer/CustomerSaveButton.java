@@ -26,40 +26,40 @@ public class CustomerSaveButton extends Thread {
 
 		boolean checked = true;
 
-		String country = CustomerForm.getCountry();
+		String country = (String)CustomerForm.Country.getSelectedItem();
 
 		/** Retrieve and check the data from the form **/
 
-		String nFname = Checker.clearString(CustomerForm.getFname());
+		String nFname = Checker.clearString(CustomerForm.txtFname.getText());
 		nFname = Checker.clearString(nFname);
 		if (!Checker.checkString(nFname) || (nFname.isEmpty())) {
 			Messages.showWarningMessage("First Name has invalid characters");
 			checked = false;
 		}
 
-		String nLname = Checker.clearString(CustomerForm.getLastName());
+		String nLname = Checker.clearString(CustomerForm.txtLastName.getText());
 		nLname = Checker.clearString(nLname);
 		if (!Checker.checkString(nLname) || (nLname.isEmpty())) {
 			Messages.showWarningMessage("Last Name has invalid characters");
 			checked = false;
 		}
 
-		String address = CustomerForm.getAddress();
+		String address = CustomerForm.txtAddress.getText();
 
-		String city = CustomerForm.getCity();
+		String city = CustomerForm.txtCity.getText();
 		city = Checker.clearString(city);
 		if (!Checker.checkString(city) || (city.isEmpty())) {
 			Messages.showWarningMessage("City has invalid characters");
 			checked = false;
 		}
 
-		String bussinesNumber = CustomerForm.getBussinesNumber();
+		String bussinesNumber = CustomerForm.txtBussinesNumber.getText();
 		if (!Checker.checkNumber(bussinesNumber)) {
 			Messages.showWarningMessage("Business Number has invalid characters");
 			checked = false;
 		}
 
-		String contactNumber = CustomerForm.getContactNumber();
+		String contactNumber = CustomerForm.txtContactNumber.getText();
 		contactNumber = contactNumber.trim();
 		if (!Checker.checkNumber(contactNumber)) {
 			Messages.showWarningMessage("Contact Number has invalid characters");
@@ -67,31 +67,31 @@ public class CustomerSaveButton extends Thread {
 			checked = false;
 		}
 
-		String faxNumber = CustomerForm.getFaxNumber();
+		String faxNumber = CustomerForm.txtFaxNumber.getText();
 		faxNumber = faxNumber.trim();
 		if (!Checker.checkNumber(faxNumber)) {
 			Messages.showWarningMessage("Fax number has invalid characters");
 			checked = false;
 		}
 
-		String customerID = CustomerForm.getID();
-		String note = CustomerForm.getNote();
+		String customerID = CustomerForm.txtID.getText();
+		String note = CustomerForm.txtNote.getText();
 
-		String mobileNum = CustomerForm.getPhoneMobile();
+		String mobileNum = CustomerForm.txtPhoneMobile.getText();
 		mobileNum = mobileNum.trim();
 		if (!Checker.checkNumber(mobileNum)) {
 			Messages.showWarningMessage("Mobile Number has invalid characters");
 			checked = false;
 		}
 
-		String primaryMail = CustomerForm.getPrimaryMail();
+		String primaryMail = CustomerForm.txtPrimaryMail.getText();
 		primaryMail = primaryMail.trim();
 		if (!Checker.checkEmailAddress(primaryMail)) {
 			Messages.showWarningMessage("Primary Email has invalid characters");
 			checked = false;
 		}
 
-		String secondaryMail = CustomerForm.getSecondaryMail();
+		String secondaryMail = CustomerForm.txtSeconadaryMail.getText();
 		secondaryMail = secondaryMail.trim();
 		if (!secondaryMail.isEmpty()) {
 			if (!Checker.checkEmailAddress(secondaryMail)) {
@@ -99,15 +99,15 @@ public class CustomerSaveButton extends Thread {
 				checked = false;
 			}
 		}
-		String zipcode = CustomerForm.getZipCode();
+		String zipcode = CustomerForm.txtZipCode.getText();
 
 		short infoMaterial = 0;
-		if (CustomerForm.getInformationMaterial()) {
+		if (CustomerForm.chckbxInformationMaterial.isSelected()) {
 			infoMaterial = 1;
 		}
 
 		short closeAccount = 0;
-		if (CustomerForm.getCloseAccound()) {
+		if (CustomerForm.chckbxCloseAccound.isSelected()) {
 			closeAccount = 1;
 		}
 
@@ -115,16 +115,15 @@ public class CustomerSaveButton extends Thread {
 
 		try {
 
-			/** Remove in the finish **/
+		
 			DatabaseConnection database = new DatabaseConnection();
 			Statement st = database.getStatement();
-			/*************************/
-
-			// Statement st = LogIn.database.getStatement();
 
 			int countryID = getCountry(country, st);
 			if (countryID > 0 && checked) {
 
+				
+				
 				// Confirm Dialog //
 				int response = JOptionPane
 						.showConfirmDialog(null,
@@ -159,14 +158,14 @@ public class CustomerSaveButton extends Thread {
 								+ "', informationMaterial = '" + infoMaterial
 								+ "', note ='" + note
 								+ "' WHERE  customerID = '"
-								+ CustomerForm.getID() + "'";
+								+ CustomerForm.txtID.getText() + "'";
 
 						ListManager.DeleteFromList(CustomerMenu.AllCustomers);
 					}
 
 					st.executeUpdate(query);
-					ListManager.UpdateList(CustomerForm.getID(),nFname,  nLname, CustomerMenu.AllCustomers);
-					ListManager.UpdateList(CustomerForm.getID(),nFname,nLname,ContractForm.AllCustomers);
+					ListManager.UpdateList(CustomerForm.txtID.getText(),nFname,  nLname, CustomerMenu.AllCustomers);
+					ListManager.UpdateList(CustomerForm.txtID.getText(),nFname,nLname,ContractForm.AllCustomers);
 					new CustomerClearButton().start();
 					Messages.showSaveMessage("Customer added");
 				

@@ -6,25 +6,25 @@ public class CustomerClearButton{
 	
 	public static void start(){	
 			String val ="";
-			CustomerForm.setAddress(val);
-			CustomerForm.setBussinesNumber(val);
-			CustomerForm.setCity(val);
-			CustomerForm.setCloseAccound(false);
-			CustomerForm.setContactNumber(val);
-			CustomerForm.setFaxNumber(val);
-			CustomerForm.setFname(val);
+			CustomerForm.chckbxCloseAccound.setSelected(false);
+			CustomerForm.chckbxInformationMaterial.setSelected(false);
+			CustomerForm.txtAddress.setText("");
+			CustomerForm.txtBussinesNumber.setText("");
+			CustomerForm.txtCity.setText("");
+			CustomerForm.txtContactNumber.setText("");
+			CustomerForm.txtFaxNumber.setText("");
 			try {
 				CustomerForm.setID() ;
 			} catch (Exception e) {
 				
 			}
-			CustomerForm.setInformationMaterial(false);
-			CustomerForm.setLastName(val);
-			CustomerForm.setNote(val);
-			CustomerForm.setPhoneMobile(val);
-			CustomerForm.setPrimaryMail(val);
-			CustomerForm.setSecondaryMail(val);
-			CustomerForm.setZipCode(val);
+			CustomerForm.txtFname.setText("");
+			CustomerForm.txtLastName.setText("");
+			CustomerForm.txtNote.setText("");
+			CustomerForm.txtPhoneMobile.setText("");
+			CustomerForm.txtPrimaryMail.setText("");
+			CustomerForm.txtSeconadaryMail.setText("");
+			CustomerForm.txtZipCode.setText("");
 			CustomerForm.edit=false;
 			
 	}

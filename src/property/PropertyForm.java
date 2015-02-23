@@ -37,60 +37,113 @@ import javax.swing.JComboBox;
 public class PropertyForm {
 
 	
-	//Graphical variables //
+	//Graphical input  variables //
+	public static JFrame frmPropertyForm;
 	
-	private static JFrame frmPropertyForm;
-	private static JTextField txtPlotID;
-	private static JTextField txtPlotNo;
-	private static JTextField txtPlotName;
-	private static JTextField txtParcel;
-	private static JTextField txtLandUse;
-	private static JTextField txtPerChange;
-	private static JTextField txtPlots;
-	private static JTextField txtStatus;
-	private static JCheckBox  chckbxPropertyDelivered;
-	private static JCheckBox chckbxRentalGuarantee; 	
-	private static JCheckBox chckbxCommited;	
-	private static JCheckBox chckbxRentalPlan; 
-	private static JTextField txtFloors;
-	private static JTextField txtBedrooms;
-	private static JTextField txtBathrooms;
-	private static JTextField txtDeedNo;
-	private static JCheckBox TitleDeed;
-	private static JCheckBox chckbxPool ;
-	private static JCheckBox chckbxGarden;
-	private static JCheckBox chckbxParking ;
-	private static JCheckBox chckbxCentralHeading ;
-	private static JCheckBox chckbxPoolHeading ;
-	private static JCheckBox chckbxAirCondition ;
-	private static JCheckBox chckbxBasement;
-	private static JTextArea txtExtraDetails;
+	// Text Boxes Variable: //
+	public static JTextField txtPlotID;
+	public static JTextField txtPlotNo;
+	public static JTextField txtPlotName;
+	public static JTextField txtParcel;
+	public static JTextField txtLandUse;
+	public static JTextField txtPerChange;
+	public static JTextField txtPlots;
+	public static JTextField txtStatus;
+	public static JTextField txtFloors;
+	public static JTextField txtBedrooms;
+	public static JTextField txtBathrooms;
+	public static JTextField txtDeedNo;
 	
-	private static JComboBox AllClasses;
-	
+	//CheckBoxes Variable : //
+	public static JCheckBox  chckbxPropertyDelivered;
+	public static JCheckBox chckbxRentalGuarantee; 	
+	public static JCheckBox chckbxCommited;	
+	public static JCheckBox chckbxRentalPlan; 
+	public static JCheckBox TitleDeed;
+	public static JCheckBox chckbxPool ;
+	public static JCheckBox chckbxGarden;
+	public static JCheckBox chckbxParking ;
+	public static JCheckBox chckbxCentralHeading ;
+	public static JCheckBox chckbxPoolHeading ;
+	public static JCheckBox chckbxAirCondition ;
+	public static JCheckBox chckbxBasement;
+	public static JTextArea txtExtraDetails;
+	public static JComboBox AllClasses;
 	protected static boolean edit =false;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-					PropertyForm window = new PropertyForm();
-					window.frmPropertyForm.setVisible(true);
-
-	}
-
-	/**
-	 * Create the application.
-	 */
+	
+	// Buttons Variables //
+	private  JButton btnBack;
+	private JButton btnSave;
+	private JButton btnClear;
+	
+	
+	
+	
+	
+	
 	public PropertyForm() {
 		initialize();
+		addButtonsFuctionalities();
+		
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	public static void setVisible(boolean val) {
+		frmPropertyForm.setVisible(val);
+	}
+	
+	public static void setPlotID() {
+
+		DatabaseConnection database = new DatabaseConnection();
+		Statement st = database.getStatement();
+		ResultSet rs;
+		try {
+			rs = st.executeQuery("SELECT MAX(plotID)  FROM Property");
+
+			if (rs.next() && rs.getString(1)!=null) {
+				
+					txtPlotID.setText("" + (rs.getInt(1) + 1));
+
+			} else {
+				txtPlotID.setText("1");
+			}
+		} catch (SQLException e) {
+			System.out.println("PlotID set query");
+			e.printStackTrace();
+		}
+	}
+	
+	private void addButtonsFuctionalities(){
+		
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PropertyClearButton.start();
+				frmPropertyForm.setVisible(false);
+			}
+		});
+		
+		
+		btnClear.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PropertyClearButton.start();
+			}
+		});
+		
+		btnSave.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PropertySaveButton().start();
+			}
+		});
+		
+		
+	}
+	
 	private void initialize() {
 		
+		
+		//Look and Feel : //
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -98,24 +151,32 @@ public class PropertyForm {
 		            break;
 		        }
 		    }
-		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
-		}
-		
-	
+		} catch (Exception e) {}
 		
 		frmPropertyForm = new JFrame();
 		frmPropertyForm.setTitle("Property Form");
-		
 		frmPropertyForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+	
+		// Panels //
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(Color.GRAY));
+		JPanel panelDetails = new JPanel();
+		panelDetails.setBorder(new LineBorder(Color.GRAY));
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(Color.GRAY));
 		
+		// Buttons : //
+		btnSave = new JButton("Save");
+		btnBack = new JButton("Back");
+		btnClear = new JButton("Clear");
+
+		// DropDownList: //
 		AllClasses = new JComboBox<String>();
-		String query = "SELECT  * FROM Class";
-		ListManager.setUpTwoColumnsList(AllClasses, query);
+		ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
 		
 		
+		// Labels For Outer Panel 1: //
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
-		
 		JLabel lblFormTitle = new JLabel(image);
 		
 		JLabel lblNewLabel = new JLabel("Insert New Property");
@@ -125,44 +186,12 @@ public class PropertyForm {
 		JLabel lblPropertyDetails = new JLabel("Property Details:");
 		lblPropertyDetails.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
-		JPanel panelDetails = new JPanel();
-		panelDetails.setBorder(new LineBorder(Color.GRAY));
-		
 		JLabel lblFeatures = new JLabel("Features:");
 		lblFeatures.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(Color.GRAY));
 		
-		JButton btnSave = new JButton("Save");
-		btnSave.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				new PropertySaveButton().start();
-			}
-		});
-
+		//Outer Panel Positions : //
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				PropertyClearButton.start();
-				frmPropertyForm.setVisible(false);
-			}
-		});
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JButton btnClear = new JButton("Clear");
-		btnClear.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				PropertyClearButton.start();
-			}
-		});
 		GroupLayout groupLayout = new GroupLayout(frmPropertyForm.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -211,47 +240,41 @@ public class PropertyForm {
 					.addGap(265))
 		);
 		
-		JLabel lblNumberOfFloors = new JLabel("Number of Floors:");
 		
+		
+		// Labels For Panel 2 //
+		JLabel lblNumberOfFloors = new JLabel("Number of Floors:");
 		JLabel lblBedrooms = new JLabel("Number of Bedrooms:");
 		
 		JLabel lblNumberOfBathrooms = new JLabel("Number of Bathrooms:");
-		
 		JLabel lblDeedNumber = new JLabel("Deed Number:");
-		
-		txtFloors = new JTextField();
-		txtFloors.setColumns(10);
-		
-		txtBedrooms = new JTextField();
-		txtBedrooms.setColumns(10);
-		
-		txtBathrooms = new JTextField();
-		txtBathrooms.setColumns(10);
-		
-		txtDeedNo = new JTextField();
-		txtDeedNo.setColumns(10);
-		
-	    TitleDeed = new JCheckBox("TitleDeed");
-		
-		 chckbxPool = new JCheckBox("Pool");
-		
-		 chckbxGarden = new JCheckBox("Garden");
-		
-		chckbxParking = new JCheckBox("Parking");
-		
-		 chckbxCentralHeading = new JCheckBox("Central Heading");
-		
-		 chckbxPoolHeading = new JCheckBox("Pool Heading");
-		
-		 chckbxAirCondition = new JCheckBox("Air-Condition Units");
-		
-		 chckbxBasement = new JCheckBox("Basement");
 		
 		JLabel lblExtraFeatures = new JLabel("Extra Features:");
 		lblExtraFeatures.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		
 		JLabel lblStandarFeatures = new JLabel("Standart Features:");
 		lblStandarFeatures.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		
+		// Text - Check Boxes For Panel 2: //
+		txtFloors = new JTextField();
+		txtFloors.setColumns(10);
+		txtBedrooms = new JTextField();
+		txtBedrooms.setColumns(10);
+		txtBathrooms = new JTextField();
+		txtBathrooms.setColumns(10);
+		txtDeedNo = new JTextField();
+		txtDeedNo.setColumns(10);
+	    TitleDeed = new JCheckBox("TitleDeed");
+		chckbxPool = new JCheckBox("Pool");
+		chckbxGarden = new JCheckBox("Garden");
+		chckbxParking = new JCheckBox("Parking");
+		chckbxCentralHeading = new JCheckBox("Central Heading");
+		chckbxPoolHeading = new JCheckBox("Pool Heading");
+	    chckbxAirCondition = new JCheckBox("Air-Condition Units");
+	    chckbxBasement = new JCheckBox("Basement");
+		
+		
+		// Panel 2 Positioning: //
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -333,55 +356,48 @@ public class PropertyForm {
 		);
 		panel_1.setLayout(gl_panel_1);
 		
-		JLabel lblPlotID = new JLabel("Plot ID:");
 		
+		// Labels For Panel 1: //
+		JLabel lblPlotID = new JLabel("Plot ID:");
+		JLabel lblNo = new JLabel("Plot Number:");
+		JLabel lblName = new JLabel("Plot Name:");
+		JLabel lblClass = new JLabel("Property Class:");	
+		JLabel lblParcel = new JLabel("Parcel:");
+		JLabel lblLand = new JLabel("Land Use:");
+		JLabel lblN = new JLabel("Percentage");
+		JLabel lblPlots = new JLabel("Plots:");
+		JLabel lblDetails = new JLabel("Details:");
+		JLabel lblOtherInfo = new JLabel("Other Info:");
+		
+		
+		// Text Boxes For Panel 1 : //
 		txtPlotID = new JTextField();
 		txtPlotID.setEditable(false);
 		txtPlotID.setColumns(15);
 		
-		JLabel lblNo = new JLabel("Plot Number:");
-		
 		txtPlotNo = new JTextField();
 		txtPlotNo.setColumns(15);
-		
-		JLabel lblName = new JLabel("Plot Name:");
-		
+	
 		txtPlotName = new JTextField();
 		txtPlotName.setColumns(15);
-		
-		JLabel lblClass = new JLabel("Property Class:");
-		
-		JLabel lblParcel = new JLabel("Parcel:");
-		
+			
 		txtParcel = new JTextField();
 		txtParcel.setColumns(15);
-		
-		JLabel lblLand = new JLabel("Land Use:");
 		
 		txtLandUse = new JTextField();
 		txtLandUse.setColumns(15);
 		
-		JLabel lblN = new JLabel("Percentage");
-		
 		txtPerChange = new JTextField();
 		txtPerChange.setColumns(15);
-		
-		JLabel lblPlots = new JLabel("Plots:");
 		
 		txtPlots = new JTextField();
 		txtPlots.setColumns(15);
 		
-		JLabel lblDetails = new JLabel("Details:");
-		
-		 txtExtraDetails = new JTextArea();
+		txtExtraDetails = new JTextArea();
 		txtExtraDetails.setLineWrap(true);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(Color.GRAY));
-		
-		JLabel lblOtherInfo = new JLabel("Other Info:");
-		
-		
+	
+		// Panel 1 Positions: //
 		GroupLayout gl_panelDetails = new GroupLayout(panelDetails);
 		gl_panelDetails.setHorizontalGroup(
 			gl_panelDetails.createParallelGroup(Alignment.LEADING)
@@ -462,16 +478,16 @@ public class PropertyForm {
 					.addContainerGap())
 		);
 		
-		 chckbxPropertyDelivered = new JCheckBox("Property Delivered");
-		
-		 chckbxRentalGuarantee = new JCheckBox("Rental Guarantee");
-		
-		 chckbxCommited = new JCheckBox("Committed");
-		
-		 chckbxRentalPlan = new JCheckBox("Rental Plan");
-		
+		//Labels For Inner Panel: //
 		JLabel lblPropertyStatus = new JLabel("Property Status:");
 		
+		//Check Boxes For Inner Panel : //
+		 chckbxPropertyDelivered = new JCheckBox("Property Delivered");
+		 chckbxRentalGuarantee = new JCheckBox("Rental Guarantee");
+		 chckbxCommited = new JCheckBox("Committed");
+		 chckbxRentalPlan = new JCheckBox("Rental Plan");
+		
+		// Text Boxes For Inner Panel: //
 		txtStatus = new JTextField();
 		txtStatus.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -513,270 +529,21 @@ public class PropertyForm {
 		);
 		panel.setLayout(gl_panel);
 		panelDetails.setLayout(gl_panelDetails);
+		
+		
+		
 		frmPropertyForm.getContentPane().setLayout(groupLayout);
 		frmPropertyForm.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 	}
 	
-	
-	/*Property Form Visibility */
-	
-	public static void setVisible(boolean val) {
-
-		frmPropertyForm.setVisible(val);
-	}
-
-	/* All Setters for the global variables */
-
-	public static void setPlotID() {
-
-		/** Remove in the finish **/
-		DatabaseConnection database = new DatabaseConnection();
-		Statement st = database.getStatement();
-		/*************************/
-		// Statement st = LogIn.database.getStatement();
-
-		ResultSet rs;
-		try {
-			rs = st.executeQuery("SELECT MAX(plotID)  FROM Property");
-
-			if (rs.next() && rs.getString(1)!=null) {
-				
-					txtPlotID.setText("" + (rs.getInt(1) + 1));
-
-			} else {
-				txtPlotID.setText("1");
-			}
-		} catch (SQLException e) {
-			System.out.println("PlotID set query");
-			e.printStackTrace();
-		}
-	}
-
-	public static void setPlotNo(String val) {
-		txtPlotNo.setText(val);
-	}
-
-	public static void setPlotName(String val) {
-		txtPlotName.setText(val);
-	}
-
-	public static void setPlotClass(int val) {
-		AllClasses.setSelectedIndex(val);
-	}
-
-	public static void setParcel(String val) {
-		txtParcel.setText(val);
-	}
-
-	public static void setLandUse(String val) {
-		txtLandUse.setText(val);
-	}
-
-	public static void setPerChange(String val) {
-		txtPerChange.setText(val);
-	}
-
-	public static void setPlots(String val) {
-		txtPlots.setText(val);
-	}
-
-	public static void setStatus(String val) {
-		txtStatus.setText(val);
-	}
-
-	public static void setPropertyDelivered(boolean val) {
-		chckbxPropertyDelivered.setSelected(val);
-	}
-
-	public static void setRentalGuarantte(boolean val) {
-		chckbxRentalGuarantee.setSelected(val);
-	}
-
-	public static void setCommitted(boolean val) {
-		chckbxCommited.setSelected(val);
+	public static void main(String[] args) {
+		
+					PropertyForm window = new PropertyForm();
+					PropertyForm.setVisible(true);
 
 	}
 
-	public static void setRentalPlan(boolean val) {
-		chckbxRentalPlan.setSelected(val);
-	}
 
-	public static void setFloors(String val) {
-		txtFloors.setText(val);
-
-	}
-
-	public static void setBedrooms(String val) {
-
-		txtBedrooms.setText(val);
-	}
-
-	public static void setBathrooms(String val) {
-		txtBathrooms.setText(val);
-	}
-
-	public static void setDeedNo(String val) {
-		txtDeedNo.setText(val);
-	}
-
-	public static void setTitleDeed(boolean val) {
-
-		TitleDeed.setSelected(val);
-	}
-
-	public static void setPool(boolean val) {
-		chckbxPool.setSelected(val);
-	}
-
-	public static void setGarder(boolean val) {
-
-		chckbxGarden.setSelected(val);
-
-	}
-
-	public static void setParking(boolean val) {
-		chckbxParking.setSelected(val);
-	}
-
-	public static void setCentralHeading(boolean val) {
-		chckbxCentralHeading.setSelected(val);
-	}
-
-	public static void setPoolHeading(boolean val) {
-		chckbxPoolHeading.setSelected(val);
-	}
-
-	public static void setAirCondition(boolean val) {
-		chckbxAirCondition.setSelected(val);
-	}
-
-	public static void setBasement(boolean val) {
-		chckbxBasement.setSelected(val);
-	}
-
-	public static void settxtAreaDetails(String val) {
-
-		txtExtraDetails.setText(val);
-
-	}
-
-	public static void setIDByEdit(String val) {
-		txtPlotID.setText(val);
-	}
-
-	/* All getters here */
-
-	public static String getPlotID() {
-		return txtPlotID.getText();
-	}
-
-	public static String getPlotNo() {
-		return txtPlotNo.getText();
-	}
-
-	public static String getPlotName() {
-		return txtPlotName.getText();
-	}
-
-	public static int getPlotClass() {
-		return AllClasses.getSelectedIndex();
-	}
-
-	public static String getParcel() {
-		return txtParcel.getText();
-	}
-
-	public static String getLandUse() {
-		return txtLandUse.getText();
-	}
-
-	public static String getPercentage() {
-		return txtPerChange.getText();
-	}
-
-	public static String getPlots() {
-		return txtPlots.getText();
-	}
-
-	public static String getStatus() {
-		return txtStatus.getText();
-	}
-
-	public static boolean getPropertyDelivered() {
-		return chckbxPropertyDelivered.isSelected();
-	}
-
-	public static boolean getRentalGuarantte() {
-		return chckbxRentalGuarantee.isSelected();
-	}
-
-	public static boolean getCommitted() {
-		return chckbxCommited.isSelected();
-
-	}
-
-	public static boolean getRentalPlan() {
-		return chckbxRentalPlan.isSelected();
-	}
-
-	public static String getFloors() {
-		return txtFloors.getText();
-
-	}
-
-	public static String getBedrooms() {
-
-		return txtBedrooms.getText();
-	}
-
-	public static String getBathrooms() {
-		return txtBathrooms.getText();
-	}
-
-	public static String getDeedNo() {
-		return txtDeedNo.getText();
-	}
-
-	public static boolean getTitleDeed() {
-
-		return TitleDeed.isSelected();
-	}
-
-	public static boolean getPool() {
-		return chckbxPool.isSelected();
-	}
-
-	public static boolean getGarder() {
-
-		return chckbxGarden.isSelected();
-
-	}
-
-	public static boolean getParking() {
-		return chckbxParking.isSelected();
-	}
-
-	public static boolean getCentralHeading() {
-		return chckbxCentralHeading.isSelected();
-	}
-
-	public static boolean getPoolHeading() {
-		return chckbxPoolHeading.isSelected();
-	}
-
-	public static boolean getAirCondition() {
-		return chckbxAirCondition.isSelected();
-	}
-
-	public static boolean getBasement() {
-		return chckbxBasement.isSelected();
-	}
-
-	public static String getDetails() {
-
-		return txtExtraDetails.getText();
-
-	}
 }
 	
 

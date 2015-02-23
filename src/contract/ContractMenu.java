@@ -13,14 +13,19 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import customer.CustomerMenu;
 
 import extras.ListManager;
+import extras.Query;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ContractMenu extends JPanel {
 	public static JComboBox<String> AllProperties ;
-	protected static JComboBox<String> AllClasses ;
-	protected static JComboBox<String> AllParcels ;
+	public static JComboBox<String> AllClasses ;
+	public static JComboBox<String> AllParcels ;
 	private static ContractForm contractform ;
+	private JButton btnFilter;
+	private JButton btnEditContract;
+	private JButton btnAddNewContract;
 		
 	
 	public ContractMenu(){
@@ -28,30 +33,32 @@ public class ContractMenu extends JPanel {
 		panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		contractform = new ContractForm();
 	
+		//DropDown List: //
 		 AllProperties = new JComboBox<String>();
-		 String query = "SELECT plotID, plotName , plotNumber FROM Property ORDER BY plotName , plotNumber";
-		 ListManager.setUpThreeList(AllProperties, query);
+		 ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 		 AllParcels = new JComboBox<String>();
 		 AllClasses = new JComboBox<String>();
 		 
+		 
+		// Labels // 
 		JLabel label_1 = new JLabel("Class:");
 		JLabel label = new JLabel("Plot:");
 		JLabel label_2 = new JLabel("Parcel:");
 		
-		
-		JButton btnFilter = new JButton("Filter");
-		
-		JButton btnEditContract = new JButton("Edit Contract");
-		
-		JButton btnAddNewContract = new JButton("Add New Contract");
+		// Buttons: //
+		btnFilter = new JButton("Filter");
+		btnEditContract = new JButton("Edit Contract");
+		btnAddNewContract = new JButton("Add New Contract");
 		btnAddNewContract.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ContractForm.setVisible(true);
 				
-				
 			}
 		});
+		
+		
+		//Panel Positions : //
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

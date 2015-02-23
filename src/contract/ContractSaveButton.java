@@ -27,7 +27,7 @@ public class ContractSaveButton extends Thread {
 		while (!ContractForm.AllOwners.isEmpty()){
 			String[] customer = ListManager.removeShare(ContractForm.AllOwners.remove(0));
 			String[] Customer = ListManager.SplitThreeItem(customer[1]);
-			String query = "INSERT INTO Contract VALUES ('"+Customer[0] +"','"+ContractForm.getPlotID()+"','"
+			String query = "INSERT INTO Contract VALUES ('"+Customer[0] +"','"+ContractForm.txtPlotID.getText()+"','"
 							+customer[0]+"','"+active+"')";
 			ListManager.UpdateList(Customer[0], Customer[1], Customer[2],ContractForm.AllCustomers);
 			try {

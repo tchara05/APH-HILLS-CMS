@@ -24,6 +24,7 @@ import extras.Checker;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
+import extras.Query;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,19 +36,35 @@ import javax.swing.JCheckBox;
 public class ContractForm {
 
 	private static JFrame frame;
-	private static JTextField txtContractID;
-	private static JTextField txtMail;
-	private static JTextField txtContactPhone;
-	private static JTextField txtMobilePhone;
-	private static JTextField txtSharing;
-	public static DefaultListModel<String> AllCustomers;
-	protected static DefaultListModel<String> AllOwners;
-	private static JCheckBox chckActive;
+	
+	// Text Boxes: //
+	public static JTextField txtContractID;
+	public static JTextField txtMail;
+	public static JTextField txtContactPhone;
+	public static JTextField txtMobilePhone;
+	public static JTextField txtSharing;
+	public static JTextField txtPlotID;
+	public static JTextField txtPlotName;
+	private static JTextField txtPlotNumber;
+	
+	// Check Box: //
+	public static JCheckBox chckActive;
+	
+	// Variables: //
 	protected static int totalShare=0;
 	protected static boolean edit = false;
-	private static JTextField txtPlotID;
-	private static JTextField txtPlotName;
-	private static JTextField txtPlotNumber;
+	
+	//List for scroll; //
+	public static DefaultListModel<String> AllCustomers;
+	public static DefaultListModel<String> AllOwners;
+	public JList<String> Owners;
+	public JList<String> Customers;
+
+	// Buttons: //
+	private JButton btnRight;
+	private JButton btnLeft;
+	private JButton btnBack;
+	private JButton btnSave;
 
 	public static void main(String[] args) {
 		
@@ -61,11 +78,7 @@ public class ContractForm {
 	}
 
 	private void initialize() {
-		frame = new JFrame();
-		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		JScrollPane CustomersPane = new JScrollPane();
-		JScrollPane OwnerPane = new JScrollPane();
+		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -78,11 +91,38 @@ public class ContractForm {
 		}
 		
 		
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
+		frame = new JFrame();
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
+		// Scroll Panels: //
+		JScrollPane CustomersPane = new JScrollPane();
+		JScrollPane OwnerPane = new JScrollPane();
+		
+		// Panels: //
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		JPanel panel_2 = new JPanel();
+		
+		// Buttons: //
+		btnRight = new JButton(">>");
+		btnBack = new JButton("Back");
+		btnSave = new JButton("Save");
+		btnLeft = new JButton("<<");
+		
+		// Labels For Panel 1: //
+		JLabel label_9 = new JLabel("Contract ID:");
+		JLabel label_3 = new JLabel("Primary Email:");
+		JLabel label_4 = new JLabel("Contact Phone:");
+		JLabel label_5 = new JLabel("Mobile Phone:");
+		JLabel label_6 = new JLabel("Percentage:");
+		JLabel label_7 = new JLabel("%");
+		JLabel label_8 = new JLabel("Customer:");
+		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		JLabel label_10 = new JLabel(image);
 		
+		
+		// Panel 1 Positions: //
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -105,22 +145,13 @@ public class ContractForm {
 					.addGap(170))
 		);
 		
-		JLabel label_9 = new JLabel("Contract ID:");
-		
+
+		// Text Boxes For Panel 1: //
 		txtContractID = new JTextField();
 		txtContractID.setEditable(false);
 		txtContractID.setColumns(10);
 		setContractID();
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		
-		JLabel label_3 = new JLabel("Primary Email:");
-		
-		JLabel label_4 = new JLabel("Contact Phone:");
-		
-		JLabel label_5 = new JLabel("Mobile Phone:");
-		
+	
 		txtMail = new JTextField();
 		txtMail.setEditable(false);
 		txtMail.setColumns(10);
@@ -134,19 +165,17 @@ public class ContractForm {
 		txtMobilePhone.setColumns(10);
 		
 		
+		//Model List Initialize //
 		AllCustomers = new DefaultListModel<String>();
 		AllOwners = new DefaultListModel<String>();
-		final JList Owners = new JList(AllOwners);
-		final JList Customers = new JList(AllCustomers);
-		String query ="SELECT customerID, firstName , lastName FROM Customer ORDER BY firstName , lastName";
-		ListManager.SetUpThreeList(AllCustomers, query);
+		ListManager.SetUpThreeList(AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
 		
-		
+		 Owners=new JList<String>(AllCustomers); 
+		 Customers= new JList<String>(AllOwners);
+
 
 		
-		
-		
-		
+		// JList //
 		Customers.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -156,50 +185,11 @@ public class ContractForm {
 				
 			}
 		});
-		JButton btnRight = new JButton(">>");
-		btnRight.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				String share =  txtSharing.getText();
-				
-				if (Checker.checkNumber(share)){
-					String customer =AllCustomers.remove(Customers.getSelectedIndex());
-					totalShare = totalShare + Integer.parseInt(share);
-					AllOwners.addElement(customer + " " +share);
-					txtSharing.setText("");
-					Messages.showWarningMessage("" + totalShare);
-				}else{
-					Messages.showWarningMessage("Percentage is not valid");
-				}
-				
-			}
-		});
-		JButton btnLeft = new JButton("<<");
-		btnLeft.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-					String customer = AllOwners.remove(Owners.getSelectedIndex());
-					String[] Customer = ListManager.removeShare(customer);
-					String[] sameCustomer =ListManager.SplitThreeItem(Customer[1]);
-					ListManager.UpdateList(sameCustomer[0], sameCustomer[1], sameCustomer[2],AllCustomers);
-					totalShare = totalShare  - Integer.parseInt(Customer[0]);
-				
-					
-				}
-		});
 
-		
-		JLabel label_6 = new JLabel("Percentage:");
-		
+	
+		// Variables //
 		txtSharing = new JTextField();
 		txtSharing.setColumns(5);
-		
-		JLabel label_7 = new JLabel("%");
-		
-	
-		
-		JLabel label_8 = new JLabel("Customer:");
 		
 	    chckActive = new JCheckBox("Active");
 		chckActive.setSelected(true);
@@ -292,38 +282,31 @@ public class ContractForm {
 		CustomersPane.setViewportView(Customers);
 		panel_1.setLayout(gl_panel_1);
 		
-		JButton btnBack = new JButton("Back");
+
 		
-		JButton btnSave = new JButton("Save");
-		btnSave.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (totalShare==100){
-					new ContractSaveButton().start();
-				}else{
-					Messages.showWarningMessage("The owners percentage is not 100 %");
-				}
-				
-			}
-		});
 		
+	
+		// Labels For Panel 2 //
 		JLabel lblPlotid = new JLabel("PlotID:");
+		JLabel lblPlotName = new JLabel("Plot Name:");
+		JLabel lblPlotNumberr = new JLabel("Plot Number:");
+	
 		
+		// Text Boxes For Pane 2 //
 		txtPlotID = new JTextField();
 		txtPlotID.setEditable(false);
 		txtPlotID.setColumns(10);
-		
-		JLabel lblPlotName = new JLabel("Plot Name:");
 		
 		txtPlotName = new JTextField();
 		txtPlotName.setEditable(false);
 		txtPlotName.setColumns(10);
 		
-		JLabel lblPlotNumberr = new JLabel("Plot Number:");
-		
 		txtPlotNumber = new JTextField();
 		txtPlotNumber.setEditable(false);
 		txtPlotNumber.setColumns(10);
+		
+		
+		// Panel 2 Positions: //
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -385,16 +368,62 @@ public class ContractForm {
 		frame.getContentPane().setLayout(groupLayout);
 		frame.setVisible(false);
 		
-	}
-	
-	
-	private static void setTextFields(String str){
+		addButtonsFuctionalities();
 		
-		/** Remove in the finish **/
+	}
+	private void addButtonsFuctionalities(){
+		
+		btnRight.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String share =  txtSharing.getText();
+				
+				if (Checker.checkNumber(share)){
+					String customer =AllCustomers.remove(Customers.getSelectedIndex());
+					totalShare = totalShare + Integer.parseInt(share);
+					AllOwners.addElement(customer + " " +share);
+					txtSharing.setText("");
+					Messages.showWarningMessage("" + totalShare);
+				}else{
+					Messages.showWarningMessage("Percentage is not valid");
+				}
+				
+			}
+		});
+
+		btnLeft.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					String customer = AllOwners.remove(Owners.getSelectedIndex());
+					String[] Customer = ListManager.removeShare(customer);
+					String[] sameCustomer =ListManager.SplitThreeItem(Customer[1]);
+					ListManager.UpdateList(sameCustomer[0], sameCustomer[1], sameCustomer[2],AllCustomers);
+					totalShare = totalShare  - Integer.parseInt(Customer[0]);
+				
+					
+				}
+		});
+
+		btnSave.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (totalShare==100){
+					new ContractSaveButton().start();
+				}else{
+					Messages.showWarningMessage("The owners percentage is not 100 %");
+				}
+				
+			}
+		});
+		
+		
+		
+	}
+
+	private static void setTextFields(String str){
 		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
-		/*************************/
-		
 		str = ListManager.SplitOneItem(str);
 		
 		try {
@@ -408,7 +437,6 @@ public class ContractForm {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -416,10 +444,9 @@ public class ContractForm {
 	}
 	private static void setContractID() {
 
-		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
-		/*************************/
+
 
 		ResultSet rs;
 		try {
@@ -436,7 +463,6 @@ public class ContractForm {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -457,7 +483,6 @@ public class ContractForm {
 		setPropertyTextFields(property);
 		frame.setVisible(val);
 	}
-	
 	public static void setPropertyTextFields(String property){
 		
 		String[] Property = ListManager.SplitThreeItem(property);
@@ -465,10 +490,6 @@ public class ContractForm {
 		txtPlotNumber.setText(Property[2]);
 		txtPlotName.setText(Property[1]);
 		
-	}
-	
-	public static String getPlotID(){
-		return txtPlotID.getText();
 	}
 
 }

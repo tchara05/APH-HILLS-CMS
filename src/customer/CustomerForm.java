@@ -36,81 +36,52 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 
 public class CustomerForm {
+	
+	
 	// Graphical Variables  Data //
-	private static JFrame frame;
-	private static JTextField txtFname;
-	private static JTextField txtLastName;
-	private static JTextField txtAddress;
-	private static JTextField txtCity;
-	private static JTextField txtZipCode;
-	private static JTextField txtPrimaryMail;
-	private static JTextField txtSeconadaryMail;
-	private static JTextField txtPhoneMobile;
-	private static JTextField txtBussinesNumber;
-	private static JTextField ContactNumber;
-	private static JTextField FaxNumber;
-	private static JTextField txtID;
-	private static JComboBox<String> Country;
-	private static JTextArea txtNote;
-	private static JCheckBox chckbxCloseAccound;	
-	private static JCheckBox chckbxInformationMaterial;
+	public static JFrame frame;
+	public static JTextField txtFname;
+	public static JTextField txtLastName;
+	public static JTextField txtAddress;
+	public static JTextField txtCity;
+	public static JTextField txtZipCode;
+	public static JTextField txtPrimaryMail;
+	public static JTextField txtSeconadaryMail;
+	public static JTextField txtPhoneMobile;
+	public static JTextField txtBussinesNumber;
+	public static JTextField txtContactNumber;
+	public static JTextField txtFaxNumber;
+	public static JTextField txtID;
+	public static JComboBox<String> Country;
+	public static JTextArea txtNote;
+	public static JCheckBox chckbxCloseAccound;	
+	public static JCheckBox chckbxInformationMaterial;
 	
 	public static boolean edit = false;
-
-
 	
-	//Remove when finished //
-	 static DatabaseConnection 	database= new DatabaseConnection();
+	// Button Veriables //
+	 private JButton btnSave;
+	 private JButton btnClear;
+	 private JButton btnBack;
 	
 	
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		
 					CustomerForm window = new CustomerForm();
 					CustomerForm.setVisible(true);
 					
 	}
-
-	/**
-	 * Create the application.
-	 */
+	
 	public CustomerForm() {
 		initialize();
+		setUpClassesList();
+		addButtonsFuctionalities();
 		
 		
-		try{
-			
-			/** Remove in the finish **/	
-			database= new DatabaseConnection();
-			ResultSet rst =null;
-			Statement st = database.getStatement(); 	
-			
-				
-			/*************************/	
-			
-			//	Statement st = LogIn.database.getStatement();
-			
-			
-			ResultSet rs = st.executeQuery("SELECT countryName FROM Country");	
-			
-			
-			while (rs.next()){
-				Country.addItem(rs.getString(1));
-			}
-			
-			
-		}catch (Exception e){
-			e.printStackTrace();
-			
-		}
+		
 		
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		
 		try {
@@ -285,15 +256,15 @@ public class CustomerForm {
 		panel_5.add(txtBussinesNumber);
 		txtBussinesNumber.setColumns(10);
 		
-		ContactNumber = new JTextField();
-		ContactNumber.setBounds(165, 175, 216, 30);
-		panel_5.add(ContactNumber);
-		ContactNumber.setColumns(10);
+		txtContactNumber = new JTextField();
+		txtContactNumber.setBounds(165, 175, 216, 30);
+		panel_5.add(txtContactNumber);
+		txtContactNumber.setColumns(10);
 		
-		FaxNumber = new JTextField();
-		FaxNumber.setBounds(165, 216, 216, 30);
-		panel_5.add(FaxNumber);
-		FaxNumber.setColumns(10);
+		txtFaxNumber = new JTextField();
+		txtFaxNumber.setBounds(165, 216, 216, 30);
+		panel_5.add(txtFaxNumber);
+		txtFaxNumber.setColumns(10);
 		
 		txtPrimaryMail = new JTextField();
 		txtPrimaryMail.setBounds(165, 11, 216, 30);
@@ -338,20 +309,74 @@ public class CustomerForm {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JButton btnSave = new JButton("Save");
+		btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Calibri", Font.PLAIN, 12));
 		btnSave.setBounds(22, 20, 104, 30);
 		panel_3.add(btnSave);
 		
-		JButton btnClear = new JButton("Clear");
+		btnClear = new JButton("Clear");
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 12));
 		btnClear.setBounds(149, 20, 109, 30);
 		panel_3.add(btnClear);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 12));
 		btnBack.setBounds(283, 21, 110, 29);
 		panel_3.add(btnBack);
+		
+		
+		frame.getContentPane().setLayout(groupLayout);
+	
+	}
+
+	public static void setID() {
+
+		DatabaseConnection database= new DatabaseConnection();
+		Statement st = database.getStatement();
+		ResultSet rs = null;
+		try {
+			rs = st.executeQuery("SELECT MAX(customerID)  FROM Customer");
+
+			if (rs.next()) {
+				if (rs.getString(1) != null) {
+					txtID.setText("" + (rs.getInt(1) + 1));
+				} else {
+					txtID.setText("1");
+				}
+			} else {
+				txtID.setText("1");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void setVisible(boolean val){
+		frame.setVisible(val);	
+	}
+	
+	private static void setUpClassesList(){
+
+		try{
+			
+			DatabaseConnection database= new DatabaseConnection();
+			Statement st = database.getStatement(); 	
+			ResultSet rs = st.executeQuery("SELECT countryName FROM Country");	
+			while (rs.next()){
+				Country.addItem(rs.getString(1));
+			}
+			
+			
+		}catch (Exception e){
+			e.printStackTrace();
+			
+		}
+		
+	}
+	
+	private void addButtonsFuctionalities(){
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -370,175 +395,6 @@ public class CustomerForm {
 			 	new CustomerSaveButton().start();
 			}
 		});
-		frame.getContentPane().setLayout(groupLayout);
-	
 	}
-	
-	
-	/* All setters for global variables */
-	public static void setFname(String val){
-		txtFname.setText(val);
-	
-	}
-	
-	public static void setLastName(String val){
-		txtLastName.setText(val);
-	}
-	
-	public static void setAddress(String val){
-		txtAddress.setText(val);
-	}
-	
-	public static void setCity(String val){
-	 txtCity.setText(val);
-	}
-	
-	public static void setZipCode(String val){
-		txtZipCode.setText(val);
-	}
-	
-	public static void setPrimaryMail(String val){
-		txtPrimaryMail.setText(val);
-	}
-	public static void setSecondaryMail(String val){
-		txtSeconadaryMail.setText(val);
-	}
-	
-	
-	public static void setPhoneMobile(String val){
-		txtPhoneMobile.setText(val);
-	}
-	
-	
-	public static void setBussinesNumber(String val){
-		txtBussinesNumber.setText(val);
-	}
-	
-	
-	public static void setContactNumber(String val){
-		ContactNumber.setText(val);
-	}
-	
-	public static void setFaxNumber(String val){
-		FaxNumber.setText(val);
-	}
-	
-	public static void setID() {
 
-		// Statement st = LogIn.database.getStatement();
-
-		// Remove later //
-		Statement st = database.getStatement();
-		ResultSet rs;
-		try {
-			rs = st.executeQuery("SELECT MAX(customerID)  FROM Customer");
-
-			if (rs.next()) {
-				if (rs.getString(1) != null) {
-					txtID.setText("" + (rs.getInt(1) + 1));
-				} else {
-					txtID.setText("1");
-				}
-			} else {
-				txtID.setText("1");
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-	
-	public static void setIDbyEdit(String val){
-		txtID.setText(val);
-	}
-	
-	
-	public static void setNote(String val){
-		txtNote.setText(val);
-	}
-	
-	public static void setCloseAccound(boolean val){
-		chckbxCloseAccound.setSelected(val);	
-	}
-	
-	public static void setInformationMaterial(boolean val){
-			chckbxInformationMaterial.setSelected(val);
-	}
-	
-	/*All getters for the global variable */
-	
-	
-	public static String getFname(){
-		return txtFname.getText();
-	
-	}
-	
-	public static String getLastName(){
-		return txtLastName.getText();
-	}
-	
-	public static String getAddress(){
-		return txtAddress.getText();
-	}
-	
-	public static String getCity(){
-		return txtCity.getText();
-	}
-	
-	public static String getZipCode(){
-		return txtZipCode.getText();
-	}
-	
-	public static String getPrimaryMail(){
-		return txtPrimaryMail.getText();
-	}
-	public static String getSecondaryMail(){
-		return txtSeconadaryMail.getText();
-	}
-	
-	
-	public static String getPhoneMobile(){
-		return txtPhoneMobile.getText();
-	}
-	
-	
-	public static String getBussinesNumber(){
-		return txtBussinesNumber.getText();
-	}
-	
-	
-	public static String getContactNumber(){
-		return ContactNumber.getText();
-	}
-	
-	public static String getFaxNumber(){
-		return FaxNumber.getText();
-	}
-	
-	public static String getID(){
-		return txtID.getText();
-	}
-	
-	
-	public static String getNote(){
-		return txtNote.getText();
-	}
-	
-	public static boolean getCloseAccound(){
-		return chckbxCloseAccound.isSelected();	
-	}
-	
-	public static boolean getInformationMaterial(){
-		return	chckbxInformationMaterial.isSelected();
-	}
-	
-	public static String getCountry(){
-		return Country.getSelectedItem() + "";
-	}
-	
-	public static void setVisible(boolean val){
-		frame.setVisible(val);	
-	}
 }

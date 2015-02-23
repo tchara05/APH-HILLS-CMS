@@ -1,6 +1,5 @@
 package property;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -8,7 +7,6 @@ import javax.swing.JOptionPane;
 
 import contract.ContractMenu;
 
-import customer.CustomerMenu;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
@@ -17,11 +15,8 @@ public class PropertyDeleteButton extends Thread {
 
 	public void run() {
 
-		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
-		ResultSet rst = null;
 		Statement st = database.getStatement();
-		/*************************/
 
 		// Confirm Dialog Here //
 		int response = JOptionPane.showConfirmDialog(null,

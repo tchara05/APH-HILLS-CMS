@@ -5,39 +5,32 @@ public class PropertyClearButton  {
 	
 	
 	public static void start(){
-	
-		boolean val1 = false;
-		String val2 = "";
 		
-		
-		PropertyForm.setAirCondition(val1);
-		PropertyForm.setBasement(val1);
-		PropertyForm.setBathrooms(val2);
-		PropertyForm.setBedrooms(val2);
-		PropertyForm.setCentralHeading(val1);
-		PropertyForm.setCommitted(val1);
-		PropertyForm.setDeedNo(val2);
-		PropertyForm.setFloors(val2);
-		PropertyForm.setGarder(val1);
-		PropertyForm.setLandUse(val2);
-		PropertyForm.setParcel(val2);
-		PropertyForm.setParking(val1);
-		PropertyForm.setPerChange(val2);
-		PropertyForm.setPlotClass(0);
+		PropertyForm.chckbxAirCondition.setSelected(false);
+		PropertyForm.chckbxBasement.setSelected(false);
+		PropertyForm.chckbxCentralHeading.setSelected(false);
+		PropertyForm.chckbxCommited.setSelected(false);
+		PropertyForm.chckbxGarden.setSelected(false);
+		PropertyForm.chckbxParking.setSelected(false);
+		PropertyForm.chckbxPool.setSelected(false);
+		PropertyForm.chckbxPoolHeading.setSelected(false);
+		PropertyForm.chckbxPropertyDelivered.setSelected(false);
+		PropertyForm.TitleDeed.setSelected(false);
+		PropertyForm.txtBathrooms.setText("");
+		PropertyForm.txtBedrooms.setText("");
+		PropertyForm.txtDeedNo.setText("");
+		PropertyForm.txtExtraDetails.setText("");
 		PropertyForm.setPlotID();
-		PropertyForm.setPlotName(val2);
-		PropertyForm.setPlotNo(val2);
-		PropertyForm.setPlots(val2);
-		PropertyForm.setPool(val1);
-		PropertyForm.setPoolHeading(val1);
-		PropertyForm.setPropertyDelivered(val1);
-		PropertyForm.setRentalGuarantte(val1);
-		PropertyForm.setRentalPlan(val1);
-		PropertyForm.setStatus(val2);
-		PropertyForm.setTitleDeed(val1);
-		PropertyForm.settxtAreaDetails(val2);
-		
-		
+		PropertyForm.txtPlotName.setText("");
+		PropertyForm.txtPlotNo.setText("");
+		PropertyForm.txtPlots.setText("");
+		PropertyForm.txtStatus.setText("");
+		PropertyForm.txtFloors.setText("");
+		PropertyForm.txtLandUse.setText("");
+		PropertyForm.txtParcel.setText("");
+		PropertyForm.txtPerChange.setText("");
+		PropertyForm.chckbxRentalGuarantee.setSelected(false);
+		PropertyForm.chckbxRentalPlan.setSelected(false);
 		PropertyForm.edit = false;
 		
 	}
