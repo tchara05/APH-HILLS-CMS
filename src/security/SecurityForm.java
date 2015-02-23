@@ -150,17 +150,17 @@ public class SecurityForm {
 		
 		JButton saveButton = new JButton("Add Contract");
 		saveButton.setFont(new Font("Calibri", Font.PLAIN, 14));
-		saveButton.setBounds(32, 238, 116, 31);
+		saveButton.setBounds(32, 230, 116, 31);
 		panel_2.add(saveButton);
 		
 		JButton goBackButton = new JButton("Go Back");
 		goBackButton.setFont(new Font("Calibri", Font.PLAIN, 14));
-		goBackButton.setBounds(32, 322, 116, 31);
+		goBackButton.setBounds(32, 319, 116, 31);
 		panel_2.add(goBackButton);
 		
 		JButton clearButton = new JButton("Clear");
 		clearButton.setFont(new Font("Calibri", Font.PLAIN, 14));
-		clearButton.setBounds(32, 280, 116, 31);
+		clearButton.setBounds(32, 277, 116, 31);
 		panel_2.add(clearButton);
 		
 		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
