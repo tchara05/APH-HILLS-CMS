@@ -90,7 +90,7 @@ public class SecurityForm {
 		contentPane.setLayout(null);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Add New Key Contract", TitledBorder.LEFT, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128)), "Add New Key Contract", TitledBorder.LEFT, TitledBorder.TOP, null, null));
 		panel_3.setBounds(357, 143, 635, 447);
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);
@@ -125,8 +125,8 @@ public class SecurityForm {
 		panel_1.add(propertyLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("*\u03A4his field is automatically filled");
-		lblNewLabel_2.setFont(new Font("Calibri", Font.ITALIC, 11));
-		lblNewLabel_2.setBounds(132, 69, 152, 14);
+		lblNewLabel_2.setFont(new Font("Calibri", Font.ITALIC, 12));
+		lblNewLabel_2.setBounds(132, 69, 199, 14);
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblPop = new JLabel("Customer Pop up Notes :");
@@ -149,14 +149,17 @@ public class SecurityForm {
 		panel_2.setLayout(null);
 		
 		JButton saveButton = new JButton("Add Contract");
+		saveButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 		saveButton.setBounds(32, 238, 116, 31);
 		panel_2.add(saveButton);
 		
 		JButton goBackButton = new JButton("Go Back");
+		goBackButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 		goBackButton.setBounds(32, 322, 116, 31);
 		panel_2.add(goBackButton);
 		
 		JButton clearButton = new JButton("Clear");
+		clearButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 		clearButton.setBounds(32, 280, 116, 31);
 		panel_2.add(clearButton);
 		
