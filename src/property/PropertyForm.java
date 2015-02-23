@@ -490,6 +490,8 @@ public class PropertyForm {
 		// Text Boxes For Inner Panel: //
 		txtStatus = new JTextField();
 		txtStatus.setColumns(10);
+		
+		// Positions: //
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
