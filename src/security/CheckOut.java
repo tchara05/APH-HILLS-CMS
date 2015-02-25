@@ -23,7 +23,7 @@ import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 
-public class ServiceForm {
+public class CheckOut {
 
 	private JFrame frmService;
 	private JTextField textField;
@@ -37,7 +37,7 @@ public class ServiceForm {
 	 */
 	public static void main(String[] args) {
 		
-		ServiceForm window = new ServiceForm();
+		CheckOut window = new CheckOut();
 		window.frmService.setVisible(true);
 				
 		
@@ -46,7 +46,7 @@ public class ServiceForm {
 	/**
 	 * Create the application.
 	 */
-	public ServiceForm() {
+	public CheckOut() {
 		initialize();
 	}
 
