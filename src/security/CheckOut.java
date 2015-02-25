@@ -73,7 +73,7 @@ public class CheckOut {
 		frmService.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128)), "Add a Service ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128)), "Check out a Service", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(132, 82, 1085, 569);
 		frmService.getContentPane().add(panel);
 		panel.setLayout(null);
