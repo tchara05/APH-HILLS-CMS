@@ -13,6 +13,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -20,13 +22,17 @@ import javax.swing.JButton;
 
 public class CheckOut {
 
-	private JFrame frmService;
-	private JTextField txtAvailability;
-	private JTextField txtKey;
-	private JTextField txtPerson;
-	private JTextField txtPropertyId;
-	private JTextField txtKeyId;
+	public static JFrame frmService;
+	public static JTextField txtAvailability;
+	public static JTextField txtKey;
+	public static JTextField txtPerson;
+	public static JTextField txtPropertyId;
+	public static JTextField txtKeyId;
+	public static JComboBox<String> comboBoxKey;
+	public static JTextArea txtDetails;
+	public static JButton btnCheckOut;
 
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		CheckOut window = new CheckOut();
 		window.frmService.setVisible(true);
@@ -148,7 +154,7 @@ public class CheckOut {
 		lblimage.setBounds(25, 126, 134, 115);
 		buttonPanel.add(lblimage);
 
-		JComboBox<String> comboBoxKey = new JComboBox<String>();
+		comboBoxKey = new JComboBox<String>();
 		comboBoxKey.setModel(new DefaultComboBoxModel(new String[] {
 				"key ID - A", "key ID - B", "key ID - C" }));
 		comboBoxKey.setBounds(130, 84, 223, 30);
@@ -184,7 +190,7 @@ public class CheckOut {
 		scrollPane.setBounds(32, 385, 321, 88);
 		keyPanel.add(scrollPane);
 
-		JTextArea txtDetails = new JTextArea();
+		txtDetails = new JTextArea();
 		scrollPane.setViewportView(txtDetails);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -206,7 +212,12 @@ public class CheckOut {
 		btnSearchNotes.setBounds(141, 206, 211, 30);
 		notesPanel.add(btnSearchNotes);
 
-		JButton btnCheckOut = new JButton("Check out Key");
+		btnCheckOut = new JButton("Check out Key");
+		btnCheckOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CheckOutButton().start();
+			}
+		});
 		btnCheckOut.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnCheckOut.setBounds(33, 354, 114, 33);
 		buttonPanel.add(btnCheckOut);
@@ -220,5 +231,26 @@ public class CheckOut {
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnBack.setBounds(33, 442, 114, 33);
 		buttonPanel.add(btnBack);
+		
+	}
+	
+	public static String getKeyID() {
+		return txtKey.getText();
+	}
+	
+	public static String getSpecificKey() {
+		return (String)comboBoxKey.getSelectedItem().toString();
+	}
+	
+	public static String getPickUpPerson() {
+		return txtPerson.getText();
+	}
+	
+	public static String getDetails() {
+		return txtDetails.getText();
+	}
+
+	public static void setVisible(boolean b) {
+		frmService.setVisible(b);
 	}
 }
