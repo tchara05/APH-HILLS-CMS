@@ -38,7 +38,7 @@ import extras.DatabaseConnection;
 public class LogIn {
 
 	private JFrame frmAphroditeHill;
-	private JTextField txtUserName;
+	public static JTextField txtUserName;
 	private JPasswordField txtPassword;
 	private JFrame menu;
 	public static DatabaseConnection  database;
@@ -226,5 +226,15 @@ public class LogIn {
 		frmAphroditeHill.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmAphroditeHill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	public static String getUsername() {
+		//return txtUserName.getText();
+		return "marios";
+	}
+	
+	
+	
+	
+	
 	
 }
