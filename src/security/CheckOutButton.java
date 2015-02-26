@@ -25,8 +25,8 @@ public class CheckOutButton extends Thread {
 		String pickUpPerson = CheckOut.getPickUpPerson();
 		String details = CheckOut.getDetails();
 		String securityPerson = LogIn.getUsername();
-		String checkOutTime = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
-		String checkOutDate = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
+		String checkOutDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+		String checkOutTime = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
 		String checkInTime = "Key is not checked in yet";
 		String checkInDate = "Key is not checked in yet";
 

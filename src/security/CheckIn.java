@@ -15,14 +15,16 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JList;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CheckIn {
 
-	private JFrame frmCheckIn;
-	private JTextField txtSearch;
-	private JTextField txtPerson;
-	private JTextField txtTime;
-	private JTextField txtDate;
+	public static JFrame frmCheckIn;
+	public static JTextField txtSearch;
+	public static JTextField txtPerson;
+	public static JTextField txtTime;
+	public static JTextField txtDate;
 
 	public static void main(String[] args) {
 		CheckIn window = new CheckIn();
@@ -148,6 +150,11 @@ public class CheckIn {
 		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 
 		JButton btnCheckIn = new JButton("Check in this Key");
+		btnCheckIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CheckInButton().start();
+			}
+		});
 		btnCheckIn.setBounds(77, 365, 149, 33);
 		buttonPanel.add(btnCheckIn);
 		btnCheckIn.setFont(new Font("Calibri", Font.PLAIN, 14));
