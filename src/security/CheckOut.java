@@ -1,8 +1,6 @@
 package security;
 
-import java.awt.EventQueue;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -15,221 +13,212 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.Font;
-
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 
 public class CheckOut {
 
 	private JFrame frmService;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField txtAvailability;
+	private JTextField txtKey;
+	private JTextField txtPerson;
+	private JTextField txtPropertyId;
+	private JTextField txtKeyId;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		
 		CheckOut window = new CheckOut();
 		window.frmService.setVisible(true);
-				
-		
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public CheckOut() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
-		
+
 		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
 		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
+			// If Nimbus is not available, you can set the GUI to another look
+			// and feel.
 		}
-		
-		
+
 		frmService = new JFrame();
 		frmService.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmService.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmService.getContentPane().setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128)), "Check out a Key", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(132, 82, 1085, 569);
-		frmService.getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(204, 204, 255));
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 128)));
-		panel_1.setBounds(458, 34, 384, 503);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Key ID :");
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel.setBounds(32, 37, 60, 14);
-		panel_1.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Specific Key :");
-		lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(32, 92, 88, 14);
-		panel_1.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Pick up Person :");
-		lblNewLabel_2.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(32, 197, 101, 14);
-		panel_1.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("More Details :");
-		lblNewLabel_3.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(32, 360, 101, 14);
-		panel_1.add(lblNewLabel_3);
-		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"key ID - A", "key ID - B", "key ID - C"}));
-		comboBox.setBounds(130, 84, 223, 30);
-		panel_1.add(comboBox);
-		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setBounds(130, 137, 223, 30);
-		panel_1.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel_4 = new JLabel("Availability :");
-		lblNewLabel_4.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel_4.setBounds(32, 145, 101, 14);
-		panel_1.add(lblNewLabel_4);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(130, 29, 223, 30);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(130, 189, 223, 30);
-		panel_1.add(textField_2);
-		textField_2.setColumns(10);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(32, 385, 321, 88);
-		panel_1.add(scrollPane);
-		
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
-		
+
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBorder(new TitledBorder(new LineBorder(
+				new Color(0, 0, 128)), "Check out a Key", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
+		mainPanel.setBounds(132, 82, 1085, 569);
+		frmService.getContentPane().add(mainPanel);
+		mainPanel.setLayout(null);
+
+		JPanel keyPanel = new JPanel();
+		keyPanel.setBackground(new Color(204, 204, 255));
+		keyPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		keyPanel.setBounds(458, 34, 384, 503);
+		mainPanel.add(keyPanel);
+		keyPanel.setLayout(null);
+
+		JPanel notesPanel = new JPanel();
+		notesPanel.setBackground(new Color(204, 204, 255));
+		notesPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		notesPanel.setBounds(38, 34, 392, 503);
+		mainPanel.add(notesPanel);
+		notesPanel.setLayout(null);
+
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setBackground(new Color(204, 204, 255));
+		buttonPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		buttonPanel.setBounds(871, 34, 183, 503);
+		mainPanel.add(buttonPanel);
+		buttonPanel.setLayout(null);
+
+		JLabel lblKey = new JLabel("Key ID :");
+		lblKey.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblKey.setBounds(32, 37, 60, 14);
+		keyPanel.add(lblKey);
+
+		JLabel lblSpecificKey = new JLabel("Specific Key :");
+		lblSpecificKey.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblSpecificKey.setBounds(32, 92, 88, 14);
+		keyPanel.add(lblSpecificKey);
+
+		JLabel lblPerson = new JLabel("Pick up Person :");
+		lblPerson.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblPerson.setBounds(32, 197, 101, 14);
+		keyPanel.add(lblPerson);
+
+		JLabel lblDetails = new JLabel("More Details :");
+		lblDetails.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblDetails.setBounds(32, 360, 101, 14);
+		keyPanel.add(lblDetails);
+
+		JLabel lblAvailability = new JLabel("Availability :");
+		lblAvailability.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblAvailability.setBounds(32, 145, 101, 14);
+		keyPanel.add(lblAvailability);
+
 		JLabel lblNote = new JLabel("Note :");
 		lblNote.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblNote.setBounds(32, 252, 73, 14);
-		panel_1.add(lblNote);
-		
-		JTextArea txtrTheseFieldsAre = new JTextArea();
-		txtrTheseFieldsAre.setFont(new Font("Calibri", Font.PLAIN, 14));
-		txtrTheseFieldsAre.setEditable(false);
-		txtrTheseFieldsAre.setText("These fields are automatically filled\r\nwhen you press the save button:\r\n      - Your login username\r\n      - Check out time\r\n      - Check out date");
-		txtrTheseFieldsAre.setBounds(129, 247, 224, 102);
-		panel_1.add(txtrTheseFieldsAre);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(204, 204, 255));
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 128)));
-		panel_2.setBounds(38, 34, 392, 503);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JLabel lblNewLabel_5 = new JLabel("Please, check any pop up Notes given by the customer:");
-		lblNewLabel_5.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblNewLabel_5.setBounds(28, 25, 338, 14);
-		panel_2.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("Search pop up Notes using one of the two search methdos");
-		lblNewLabel_6.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel_6.setBounds(38, 50, 341, 14);
-		panel_2.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel(" as shown below:");
-		lblNewLabel_7.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel_7.setBounds(36, 67, 259, 14);
-		panel_2.add(lblNewLabel_7);
-		
+		keyPanel.add(lblNote);
+
+		JLabel lblNotes = new JLabel(
+				"Please, check any pop up Notes given by the customer:");
+		lblNotes.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblNotes.setBounds(28, 25, 338, 14);
+		notesPanel.add(lblNotes);
+
+		JLabel lblNotes1 = new JLabel(
+				"Search pop up Notes using one of the two search methdos");
+		lblNotes1.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblNotes1.setBounds(38, 50, 341, 14);
+		notesPanel.add(lblNotes1);
+
+		JLabel lblNotes2 = new JLabel(" as shown below:");
+		lblNotes2.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblNotes2.setBounds(36, 67, 259, 14);
+		notesPanel.add(lblNotes2);
+
 		JLabel lblPropertyId = new JLabel("Property ID :");
 		lblPropertyId.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblPropertyId.setBounds(43, 113, 88, 14);
-		panel_2.add(lblPropertyId);
-		
-		JLabel lblNewLabel_8 = new JLabel("Key ID :");
-		lblNewLabel_8.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNewLabel_8.setBounds(43, 170, 69, 14);
-		panel_2.add(lblNewLabel_8);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(141, 105, 211, 30);
-		panel_2.add(textField_3);
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(141, 154, 211, 30);
-		panel_2.add(textField_4);
-		textField_4.setColumns(10);
-		
-		JButton btnSearchPopUp = new JButton("Search pop up Notes");
-		btnSearchPopUp.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnSearchPopUp.setBounds(141, 206, 211, 30);
-		panel_2.add(btnSearchPopUp);
-		
+		notesPanel.add(lblPropertyId);
+
+		JLabel lblKeyId = new JLabel("Key ID :");
+		lblKeyId.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblKeyId.setBounds(43, 170, 69, 14);
+		notesPanel.add(lblKeyId);
+
+		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
+
+		JLabel lblimage = new JLabel(image);
+		lblimage.setBounds(25, 126, 134, 115);
+		buttonPanel.add(lblimage);
+
+		JComboBox<String> comboBoxKey = new JComboBox<String>();
+		comboBoxKey.setModel(new DefaultComboBoxModel(new String[] {
+				"key ID - A", "key ID - B", "key ID - C" }));
+		comboBoxKey.setBounds(130, 84, 223, 30);
+		keyPanel.add(comboBoxKey);
+
+		txtAvailability = new JTextField();
+		txtAvailability.setEnabled(false);
+		txtAvailability.setBounds(130, 137, 223, 30);
+		keyPanel.add(txtAvailability);
+		txtAvailability.setColumns(10);
+
+		txtKey = new JTextField();
+		txtKey.setBounds(130, 29, 223, 30);
+		keyPanel.add(txtKey);
+		txtKey.setColumns(10);
+
+		txtPerson = new JTextField();
+		txtPerson.setBounds(130, 189, 223, 30);
+		keyPanel.add(txtPerson);
+		txtPerson.setColumns(10);
+
+		txtPropertyId = new JTextField();
+		txtPropertyId.setBounds(141, 105, 211, 30);
+		notesPanel.add(txtPropertyId);
+		txtPropertyId.setColumns(10);
+
+		txtKeyId = new JTextField();
+		txtKeyId.setBounds(141, 154, 211, 30);
+		notesPanel.add(txtKeyId);
+		txtKeyId.setColumns(10);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(32, 385, 321, 88);
+		keyPanel.add(scrollPane);
+
+		JTextArea txtDetails = new JTextArea();
+		scrollPane.setViewportView(txtDetails);
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(43, 258, 309, 212);
-		panel_2.add(scrollPane_1);
-		
-		JTextArea textArea_1 = new JTextArea();
-		scrollPane_1.setViewportView(textArea_1);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(204, 204, 255));
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 128)));
-		panel_3.setBounds(871, 34, 183, 503);
-		panel.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JButton btnNewButton = new JButton("Check out Key");
-		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnNewButton.setBounds(33, 354, 114, 33);
-		panel_3.add(btnNewButton);
-		
+		notesPanel.add(scrollPane_1);
+
+		JTextArea txtNotes = new JTextArea();
+		scrollPane_1.setViewportView(txtNotes);
+
+		JTextArea txtMessage = new JTextArea();
+		txtMessage.setFont(new Font("Calibri", Font.PLAIN, 14));
+		txtMessage.setEditable(false);
+		txtMessage.setText("These fields are automatically filled\r\nwhen you press the save button:\r\n      - Your login username\r\n      - Check out time\r\n      - Check out date");
+		txtMessage.setBounds(129, 247, 224, 102);
+		keyPanel.add(txtMessage);
+
+		JButton btnSearchNotes = new JButton("Search pop up Notes");
+		btnSearchNotes.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnSearchNotes.setBounds(141, 206, 211, 30);
+		notesPanel.add(btnSearchNotes);
+
+		JButton btnCheckOut = new JButton("Check out Key");
+		btnCheckOut.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnCheckOut.setBounds(33, 354, 114, 33);
+		buttonPanel.add(btnCheckOut);
+
 		JButton btnClear = new JButton("Clear");
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnClear.setBounds(33, 398, 114, 33);
-		panel_3.add(btnClear);
-		
-		JButton btnNewButton_1 = new JButton("Go Back");
-		btnNewButton_1.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnNewButton_1.setBounds(33, 442, 114, 33);
-		panel_3.add(btnNewButton_1);
-		
-		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
-		
-		JLabel lblNewLabel_9 = new JLabel(image);
-		lblNewLabel_9.setBounds(25, 126, 134, 115);
-		panel_3.add(lblNewLabel_9);
+		buttonPanel.add(btnClear);
+
+		JButton btnBack = new JButton("Go Back");
+		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnBack.setBounds(33, 442, 114, 33);
+		buttonPanel.add(btnBack);
 	}
 }
