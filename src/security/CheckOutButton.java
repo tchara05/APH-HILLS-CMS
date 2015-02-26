@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import security.CheckOut;
 import extras.DatabaseConnection;
 import userMenus.LogIn;
-import security.checkOutClearButton;
+import security.CheckOutClearButton;
 
 public class CheckOutButton extends Thread {
 
@@ -54,7 +54,7 @@ public class CheckOutButton extends Thread {
 
 				stment.executeUpdate(query);
 
-				new checkOutClearButton().start();
+				new CheckOutClearButton().start();
 
 				JOptionPane.showMessageDialog(null, "Key Checked Out",
 						"Information Message", JOptionPane.INFORMATION_MESSAGE);

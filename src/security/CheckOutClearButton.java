@@ -2,7 +2,7 @@ package security;
 
 import security.CheckOut;
 
-public class checkOutClearButton {
+public class CheckOutClearButton {
 	
 	public static void start() {
 		
