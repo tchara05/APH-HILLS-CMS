@@ -23,29 +23,20 @@ import javax.swing.JTextArea;
 public class CheckIn {
 
 	private JFrame frmCheckIn;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtSearch;
+	private JTextField txtPerson;
+	private JTextField txtTime;
+	private JTextField txtDate;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		CheckIn window = new CheckIn();
 		window.frmCheckIn.setVisible(true);
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public CheckIn() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -63,120 +54,126 @@ public class CheckIn {
 		frmCheckIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCheckIn.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128)), "Check in a Key", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(338, 80, 674, 573);
-		frmCheckIn.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128)), "Check in a Key", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		mainPanel.setBounds(338, 80, 674, 573);
+		frmCheckIn.getContentPane().add(mainPanel);
+		mainPanel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(204, 204, 255));
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 128)));
-		panel_1.setBounds(35, 37, 277, 310);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		JPanel listPanel = new JPanel();
+		listPanel.setBackground(new Color(204, 204, 255));
+		listPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		listPanel.setBounds(35, 37, 277, 310);
+		mainPanel.add(listPanel);
+		listPanel.setLayout(null);
 		
-		JLabel lblListOfCheck = new JLabel("List of Check out Keys :");
-		lblListOfCheck.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblListOfCheck.setBounds(25, 28, 164, 14);
-		panel_1.add(lblListOfCheck);
+		JPanel searchPanel = new JPanel();
+		searchPanel.setBackground(new Color(204, 204, 255));
+		searchPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		searchPanel.setBounds(35, 376, 277, 168);
+		mainPanel.add(searchPanel);
+		searchPanel.setLayout(null);
 		
-		JButton btnSelectedKeyInfo = new JButton("View info of the selected Key");
-		btnSelectedKeyInfo.setBounds(25, 255, 223, 31);
-		panel_1.add(btnSelectedKeyInfo);
-		btnSelectedKeyInfo.setFont(new Font("Calibri", Font.PLAIN, 14));
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setBackground(new Color(204, 204, 255));
+		buttonPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		buttonPanel.setBounds(340, 37, 302, 507);
+		mainPanel.add(buttonPanel);
+		buttonPanel.setLayout(null);
 		
-		JList list = new JList();
-		list.setBounds(25, 53, 223, 179);
-		panel_1.add(list);
-		btnSelectedKeyInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		JList listKeys = new JList();
+		listKeys.setBounds(25, 53, 223, 179);
+		listPanel.add(listKeys);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(204, 204, 255));
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 128)));
-		panel_2.setBounds(35, 376, 277, 168);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
+		JLabel lblList = new JLabel("List of Check out Keys :");
+		lblList.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblList.setBounds(25, 28, 164, 14);
+		listPanel.add(lblList);
 		
-		JLabel lblNewLabel = new JLabel("Search a Key manually :");
-		lblNewLabel.setBounds(28, 26, 159, 17);
-		panel_2.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
+		JLabel lblSearch = new JLabel("Search a Key manually :");
+		lblSearch.setBounds(28, 26, 159, 17);
+		searchPanel.add(lblSearch);
+		lblSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
-		textField = new JTextField();
-		textField.setBounds(28, 54, 220, 31);
-		panel_2.add(textField);
-		textField.setColumns(10);
+		JLabel lblInfo = new JLabel("Information about this Key :");
+		lblInfo.setBounds(27, 129, 203, 17);
+		buttonPanel.add(lblInfo);
+		lblInfo.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
-		JButton btnViewInfoOf = new JButton("View info of the given Key");
-		btnViewInfoOf.setBounds(28, 108, 220, 31);
-		panel_2.add(btnViewInfoOf);
-		btnViewInfoOf.setFont(new Font("Calibri", Font.PLAIN, 14));
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(204, 204, 255));
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 128)));
-		panel_3.setBounds(340, 37, 302, 507);
-		panel.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JLabel lblInfoAboutThis = new JLabel("Information about this Key :");
-		lblInfoAboutThis.setBounds(27, 148, 203, 17);
-		panel_3.add(lblInfoAboutThis);
-		lblInfoAboutThis.setFont(new Font("Calibri", Font.PLAIN, 14));
-		
-		JButton btnCheckInThis = new JButton("Check in this Key");
-		btnCheckInThis.setBounds(27, 343, 244, 31);
-		panel_3.add(btnCheckInThis);
-		btnCheckInThis.setFont(new Font("Calibri", Font.PLAIN, 14));
-		
-		JTextArea txtrTheseFieldsAre = new JTextArea();
-		txtrTheseFieldsAre.setBounds(27, 385, 244, 102);
-		txtrTheseFieldsAre.setText("These fields are automatically filled\r\nwhen you press the check in button :\r\n- Check in time\r\n- Check in date");
-		txtrTheseFieldsAre.setFont(new Font("Calibri", Font.PLAIN, 14));
-		txtrTheseFieldsAre.setEditable(false);
-		panel_3.add(txtrTheseFieldsAre);
-		
-		JLabel lblService = new JLabel("Pick up person :");
-		lblService.setBounds(27, 193, 93, 14);
-		panel_3.add(lblService);
-		lblService.setFont(new Font("Calibri", Font.PLAIN, 14));
+		JLabel lblPerson = new JLabel("Pick up person :");
+		lblPerson.setBounds(27, 165, 93, 14);
+		buttonPanel.add(lblPerson);
+		lblPerson.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		JLabel lblCheckInTime = new JLabel("Check in time :");
-		lblCheckInTime.setBounds(27, 231, 93, 14);
-		panel_3.add(lblCheckInTime);
+		lblCheckInTime.setBounds(27, 203, 93, 14);
+		buttonPanel.add(lblCheckInTime);
 		lblCheckInTime.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
-		JLabel lblCheckInTime_1 = new JLabel("Check in date :");
-		lblCheckInTime_1.setBounds(27, 271, 93, 14);
-		panel_3.add(lblCheckInTime_1);
-		lblCheckInTime_1.setFont(new Font("Calibri", Font.PLAIN, 14));
+		JLabel lblCheckInDate = new JLabel("Check in date :");
+		lblCheckInDate.setBounds(27, 243, 93, 14);
+		buttonPanel.add(lblCheckInDate);
+		lblCheckInDate.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(122, 185, 149, 31);
-		textField_1.setEditable(false);
-		panel_3.add(textField_1);
-		textField_1.setColumns(10);
+		JTextArea txtInfo = new JTextArea();
+		txtInfo.setBounds(27, 277, 244, 77);
+		txtInfo.setText("These fields are automatically filled\r\nwhen you press the check in button :\r\n       - Check in time\r\n       - Check in date");
+		txtInfo.setFont(new Font("Calibri", Font.PLAIN, 14));
+		txtInfo.setEditable(false);
+		buttonPanel.add(txtInfo);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(122, 223, 149, 31);
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		panel_3.add(textField_2);
+		txtSearch = new JTextField();
+		txtSearch.setBounds(28, 54, 220, 31);
+		searchPanel.add(txtSearch);
+		txtSearch.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(122, 263, 149, 31);
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		panel_3.add(textField_3);
+		txtPerson = new JTextField();
+		txtPerson.setBounds(122, 157, 149, 31);
+		txtPerson.setEditable(false);
+		buttonPanel.add(txtPerson);
+		txtPerson.setColumns(10);
+		
+		txtTime = new JTextField();
+		txtTime.setBounds(122, 195, 149, 31);
+		txtTime.setEditable(false);
+		txtTime.setColumns(10);
+		buttonPanel.add(txtTime);
+		
+		txtDate = new JTextField();
+		txtDate.setBounds(122, 235, 149, 31);
+		txtDate.setEditable(false);
+		txtDate.setColumns(10);
+		buttonPanel.add(txtDate);
 		
 		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 		
-		JLabel lblNewLabel_1 = new JLabel(image);
-		lblNewLabel_1.setBounds(56, 26, 195, 107);
-		panel_3.add(lblNewLabel_1);
+		JButton btnCheckIn = new JButton("Check in this Key");
+		btnCheckIn.setBounds(77, 365, 149, 33);
+		buttonPanel.add(btnCheckIn);
+		btnCheckIn.setFont(new Font("Calibri", Font.PLAIN, 14));
+		
+		JLabel lblimage = new JLabel(image);
+		lblimage.setBounds(56, 11, 195, 107);
+		buttonPanel.add(lblimage);
+		
+		JButton btnSelect = new JButton("View info of the selected Key");
+		btnSelect.setBounds(25, 255, 223, 31);
+		listPanel.add(btnSelect);
+		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 14));
+		
+		JButton btnSearch = new JButton("View info of the given Key");
+		btnSearch.setBounds(28, 108, 220, 31);
+		searchPanel.add(btnSearch);
+		btnSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.setBounds(77, 409, 149, 33);
+		buttonPanel.add(btnClear);
+		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
+		
+		JButton btnBack = new JButton("Go Back");
+		btnBack.setBounds(77, 450, 149, 33);
+		buttonPanel.add(btnBack);
+		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 	}
 }

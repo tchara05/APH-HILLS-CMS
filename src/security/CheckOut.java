@@ -73,7 +73,7 @@ public class CheckOut {
 		frmService.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128)), "Check out a Service", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128)), "Check out a Key", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(132, 82, 1085, 569);
 		frmService.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -146,7 +146,7 @@ public class CheckOut {
 		JTextArea txtrTheseFieldsAre = new JTextArea();
 		txtrTheseFieldsAre.setFont(new Font("Calibri", Font.PLAIN, 14));
 		txtrTheseFieldsAre.setEditable(false);
-		txtrTheseFieldsAre.setText("These fields are automatically filled\r\nwhen you press the save button:\r\n- Your login username\r\n- Check out time\r\n- Check out date");
+		txtrTheseFieldsAre.setText("These fields are automatically filled\r\nwhen you press the save button:\r\n      - Your login username\r\n      - Check out time\r\n      - Check out date");
 		txtrTheseFieldsAre.setBounds(129, 247, 224, 102);
 		panel_1.add(txtrTheseFieldsAre);
 		
@@ -211,7 +211,7 @@ public class CheckOut {
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Insert Service");
+		JButton btnNewButton = new JButton("Check out Key");
 		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnNewButton.setBounds(33, 354, 114, 33);
 		panel_3.add(btnNewButton);
