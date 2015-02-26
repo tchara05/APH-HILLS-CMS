@@ -155,8 +155,7 @@ public class CheckOut {
 		buttonPanel.add(lblimage);
 
 		comboBoxKey = new JComboBox<String>();
-		comboBoxKey.setModel(new DefaultComboBoxModel(new String[] {
-				"key ID - A", "key ID - B", "key ID - C" }));
+		comboBoxKey.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C"}));
 		comboBoxKey.setBounds(130, 84, 223, 30);
 		keyPanel.add(comboBoxKey);
 

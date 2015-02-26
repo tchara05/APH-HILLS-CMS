@@ -25,6 +25,7 @@ public class CheckIn {
 	public static JTextField txtPerson;
 	public static JTextField txtTime;
 	public static JTextField txtDate;
+	public static JTextField txtSpecificKey;
 
 	public static void main(String[] args) {
 		CheckIn window = new CheckIn();
@@ -57,7 +58,7 @@ public class CheckIn {
 		mainPanel.setBorder(new TitledBorder(new LineBorder(
 				new Color(0, 0, 128)), "Check in a Key", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 0, 0)));
-		mainPanel.setBounds(338, 80, 674, 573);
+		mainPanel.setBounds(338, 80, 674, 603);
 		frmCheckIn.getContentPane().add(mainPanel);
 		mainPanel.setLayout(null);
 
@@ -71,14 +72,14 @@ public class CheckIn {
 		JPanel searchPanel = new JPanel();
 		searchPanel.setBackground(new Color(204, 204, 255));
 		searchPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-		searchPanel.setBounds(35, 376, 277, 168);
+		searchPanel.setBounds(35, 376, 277, 191);
 		mainPanel.add(searchPanel);
 		searchPanel.setLayout(null);
 
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBackground(new Color(204, 204, 255));
 		buttonPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-		buttonPanel.setBounds(340, 37, 302, 507);
+		buttonPanel.setBounds(340, 37, 302, 530);
 		mainPanel.add(buttonPanel);
 		buttonPanel.setLayout(null);
 
@@ -118,7 +119,7 @@ public class CheckIn {
 		lblCheckInDate.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JTextArea txtInfo = new JTextArea();
-		txtInfo.setBounds(27, 277, 244, 77);
+		txtInfo.setBounds(27, 287, 244, 77);
 		txtInfo.setText("These fields are automatically filled\r\nwhen you press the check in button :\r\n       - Check in time\r\n       - Check in date");
 		txtInfo.setFont(new Font("Calibri", Font.PLAIN, 14));
 		txtInfo.setEditable(false);
@@ -146,6 +147,11 @@ public class CheckIn {
 		txtDate.setEditable(false);
 		txtDate.setColumns(10);
 		buttonPanel.add(txtDate);
+		
+		txtSpecificKey = new JTextField();
+		txtSpecificKey.setBounds(28, 96, 220, 29);
+		searchPanel.add(txtSpecificKey);
+		txtSpecificKey.setColumns(10);
 
 		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 
@@ -155,7 +161,7 @@ public class CheckIn {
 				new CheckInButton().start();
 			}
 		});
-		btnCheckIn.setBounds(77, 365, 149, 33);
+		btnCheckIn.setBounds(77, 385, 149, 33);
 		buttonPanel.add(btnCheckIn);
 		btnCheckIn.setFont(new Font("Calibri", Font.PLAIN, 14));
 
@@ -169,17 +175,22 @@ public class CheckIn {
 		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnSearch = new JButton("View info of the given Key");
-		btnSearch.setBounds(28, 108, 220, 31);
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CheckInSearchInfo().start();
+			}
+		});
+		btnSearch.setBounds(28, 136, 220, 31);
 		searchPanel.add(btnSearch);
 		btnSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnClear = new JButton("Clear");
-		btnClear.setBounds(77, 409, 149, 33);
+		btnClear.setBounds(77, 429, 149, 33);
 		buttonPanel.add(btnClear);
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnBack = new JButton("Go Back");
-		btnBack.setBounds(77, 450, 149, 33);
+		btnBack.setBounds(77, 473, 149, 33);
 		buttonPanel.add(btnBack);
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 	}
