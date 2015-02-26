@@ -2,11 +2,8 @@ package security;
 
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.JOptionPane;
-
 import userMenus.SecurityMenu;
-
 import extras.DatabaseConnection;
 
 public class SecuritySaveButton extends Thread {
@@ -14,15 +11,19 @@ public class SecuritySaveButton extends Thread {
 	public void run() {
 
 		boolean checked = true;
-		String propertyID = SecurityForm.getPropertyID();
 
+/*
 		if (propertyID.isEmpty()) {
 			JOptionPane.showMessageDialog(null,
 					"Property ID field is not filled.", "Warning",
 					JOptionPane.WARNING_MESSAGE);
 			checked = false;
 		}
-
+*/
+		
+		String txtpropertyID = SecurityForm.txtpropertyID.getText();
+		String txtNotes = SecurityForm.txtAreaNotes.getText();
+		
 		try {
 
 			DatabaseConnection database = new DatabaseConnection();
@@ -42,18 +43,19 @@ public class SecuritySaveButton extends Thread {
 					String query = "";
 
 					// insert query here
-					query = "";
+					query = "INSERT INTO KEYCONTRACT VALUES ('" + txtpropertyID + "','"
+							+ txtNotes + "')";
 
 					stment.executeUpdate(query);
 
-					// SecurityClearButton.start();
+					SecurityClearButton.start();
 
 					JOptionPane.showMessageDialog(null, "Key Contract Added",
 							"Information Message",
 							JOptionPane.INFORMATION_MESSAGE);
 
-					SecurityForm.setVisible(false);
-					SecurityMenu.UpdateContractList(propertyID);
+					//SecurityForm.setVisible(false);
+					
 				}
 
 			}

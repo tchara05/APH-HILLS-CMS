@@ -222,6 +222,12 @@ public class CheckOut {
 		buttonPanel.add(btnCheckOut);
 
 		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent e) {
+				new CheckOutClearButton().start();
+			}
+		});
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnClear.setBounds(33, 398, 114, 33);
 		buttonPanel.add(btnClear);

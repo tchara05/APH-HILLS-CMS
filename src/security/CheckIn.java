@@ -185,6 +185,12 @@ public class CheckIn {
 		btnSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent e) {
+				new CheckInClearButton().start();
+			}
+		});
 		btnClear.setBounds(77, 429, 149, 33);
 		buttonPanel.add(btnClear);
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));

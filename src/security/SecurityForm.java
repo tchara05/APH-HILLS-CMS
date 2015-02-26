@@ -16,13 +16,16 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SecurityForm {
 
-	private static JFrame frame;
-	private static JPanel contentPane;
-	private static JTextField txtkeyID;
-	private static JTextField txtpropertyID;
+	public static JFrame frame;
+	public static JPanel contentPane;
+	public static JTextField txtkeyID;
+	public static JTextField txtpropertyID;
+	public static JTextArea txtAreaNotes;
 
 	protected static boolean edit = false;
 
@@ -115,7 +118,7 @@ public class SecurityForm {
 		scrollPane.setBounds(36, 223, 295, 127);
 		insertPanel.add(scrollPane);
 
-		JTextArea txtAreaNotes = new JTextArea();
+		txtAreaNotes = new JTextArea();
 		scrollPane.setViewportView(txtAreaNotes);
 
 		txtkeyID = new JTextField();
@@ -131,6 +134,11 @@ public class SecurityForm {
 		txtpropertyID.setColumns(10);
 
 		JButton btnAdd = new JButton("Add Contract");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SecuritySaveButton().start();
+			}
+		});
 		btnAdd.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnAdd.setBounds(32, 230, 116, 31);
 		btnPanel.add(btnAdd);
@@ -141,6 +149,11 @@ public class SecurityForm {
 		btnPanel.add(btnBack);
 
 		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SecurityClearButton().start();
+			}
+		});
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnClear.setBounds(32, 277, 116, 31);
 		btnPanel.add(btnClear);

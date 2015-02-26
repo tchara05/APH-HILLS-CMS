@@ -6,8 +6,8 @@ public class SecurityClearButton {
 		
 		String value = "";
 		
-		SecurityForm.setPropertyID(value);
+		SecurityForm.txtpropertyID.setText(value);
+		SecurityForm.txtAreaNotes.setText(value);
 		
 	}
-
 }

@@ -35,11 +35,9 @@ public class CheckInSearchInfo extends Thread {
 
 				// insert query here
 				rst = stment.executeQuery("SELECT * FROM SERVICE WHERE keyID = '"
-								+ keyID  + "'");
+								+ keyID + "' and specificKey = '" + specificKey + "'");
 				
 				rst.next();
-				
-				//+ "' and specificKey = '" + specificKey
 				
 				CheckIn.txtPerson.setText(rst.getString("pickUpPerson"));
 				CheckIn.txtTime.setText(rst.getString("checkOutTime"));
