@@ -12,7 +12,9 @@ public class CheckOutClearButton {
 		CheckOut.txtAvailability.setText(value);
 		CheckOut.txtPerson.setText(value);
 		CheckOut.txtDetails.setText(value);
+		CheckOut.txtNotes.setText(value);
+		CheckOut.txtKeyId.setText(value);
+		CheckOut.txtPropertyId.setText(value);
 		
 	}
-
 }

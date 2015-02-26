@@ -31,6 +31,7 @@ public class CheckOut {
 	public static JComboBox<String> comboBoxKey;
 	public static JTextArea txtDetails;
 	public static JButton btnCheckOut;
+	public static JTextArea txtNotes;
 
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
@@ -181,7 +182,7 @@ public class CheckOut {
 		txtPropertyId.setColumns(10);
 
 		txtKeyId = new JTextField();
-		txtKeyId.setBounds(141, 154, 211, 30);
+		txtKeyId.setBounds(141, 162, 211, 30);
 		notesPanel.add(txtKeyId);
 		txtKeyId.setColumns(10);
 
@@ -196,7 +197,7 @@ public class CheckOut {
 		scrollPane_1.setBounds(43, 258, 309, 212);
 		notesPanel.add(scrollPane_1);
 
-		JTextArea txtNotes = new JTextArea();
+		txtNotes = new JTextArea();
 		scrollPane_1.setViewportView(txtNotes);
 
 		JTextArea txtMessage = new JTextArea();
@@ -207,8 +208,13 @@ public class CheckOut {
 		keyPanel.add(txtMessage);
 
 		JButton btnSearchNotes = new JButton("Search pop up Notes");
+		btnSearchNotes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SearchNotesButton().start();
+			}
+		});
 		btnSearchNotes.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnSearchNotes.setBounds(141, 206, 211, 30);
+		btnSearchNotes.setBounds(141, 217, 211, 30);
 		notesPanel.add(btnSearchNotes);
 
 		btnCheckOut = new JButton("Check out Key");
