@@ -108,12 +108,12 @@ public class CheckIn {
 		buttonPanel.add(lblPerson);
 		lblPerson.setFont(new Font("Calibri", Font.PLAIN, 14));
 
-		JLabel lblCheckInTime = new JLabel("Check in time :");
+		JLabel lblCheckInTime = new JLabel("Check out time :");
 		lblCheckInTime.setBounds(27, 203, 93, 14);
 		buttonPanel.add(lblCheckInTime);
 		lblCheckInTime.setFont(new Font("Calibri", Font.PLAIN, 14));
 
-		JLabel lblCheckInDate = new JLabel("Check in date :");
+		JLabel lblCheckInDate = new JLabel("Check out date :");
 		lblCheckInDate.setBounds(27, 243, 93, 14);
 		buttonPanel.add(lblCheckInDate);
 		lblCheckInDate.setFont(new Font("Calibri", Font.PLAIN, 14));
@@ -126,6 +126,7 @@ public class CheckIn {
 		buttonPanel.add(txtInfo);
 
 		txtSearch = new JTextField();
+		txtSearch.setText("key ID");
 		txtSearch.setBounds(28, 54, 220, 31);
 		searchPanel.add(txtSearch);
 		txtSearch.setColumns(10);
@@ -149,6 +150,7 @@ public class CheckIn {
 		buttonPanel.add(txtDate);
 		
 		txtSpecificKey = new JTextField();
+		txtSpecificKey.setText("specific key (A,B,C)");
 		txtSpecificKey.setBounds(28, 96, 220, 29);
 		searchPanel.add(txtSpecificKey);
 		txtSpecificKey.setColumns(10);
