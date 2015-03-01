@@ -1,10 +1,15 @@
 package security;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.JOptionPane;
+
 import userMenus.SecurityMenu;
 import extras.DatabaseConnection;
+import extras.Checker;
 
 public class SecuritySaveButton extends Thread {
 
@@ -24,6 +29,14 @@ public class SecuritySaveButton extends Thread {
 		String txtpropertyID = SecurityForm.txtpropertyID.getText();
 		String txtNotes = SecurityForm.txtAreaNotes.getText();
 		
+		
+		
+		try {
+			System.out.println(checker(txtpropertyID));
+		} catch (SQLException e1) {
+			System.out.print("1");
+		}
+	
 		try {
 
 			DatabaseConnection database = new DatabaseConnection();
@@ -66,4 +79,34 @@ public class SecuritySaveButton extends Thread {
 			e.printStackTrace();
 		}
 	}
+
+
+	public boolean checker(String s) throws SQLException {
+		
+		if(Checker.checkNumber(s)){
+			
+			int id=Integer.parseInt(s);
+			try{
+				DatabaseConnection database = new DatabaseConnection();
+				Statement st = database.getStatement();
+				ResultSet rst = null;
+				
+				
+				rst = st.executeQuery("SELECT plotID FROM Property WHERE plotID='" + id+"'");
+						
+					if (rst.next()){
+						return true;
+					}
+			
+				
+			} catch (NullPointerException e) {
+	
+				e.printStackTrace();
+			}
+		
+		}
+		return false;
+	
+}
+
 }
