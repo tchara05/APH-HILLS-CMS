@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import userMenus.SecurityMenu;
 import extras.DatabaseConnection;
 import extras.Checker;
+import extras.Messages;
 
 public class SecuritySaveButton extends Thread {
 
@@ -32,7 +33,10 @@ public class SecuritySaveButton extends Thread {
 		
 		
 		try {
-			System.out.println(checker(txtpropertyID));
+			if(!checker(txtpropertyID)){
+				Messages.showWarningMessage("ID not found ");
+				checked=false;
+			}
 		} catch (SQLException e1) {
 			System.out.print("1");
 		}
@@ -81,7 +85,7 @@ public class SecuritySaveButton extends Thread {
 	}
 
 
-	public boolean checker(String s) throws SQLException {
+	private boolean checker(String s) throws SQLException {
 		
 		if(Checker.checkNumber(s)){
 			
