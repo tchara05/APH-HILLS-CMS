@@ -19,7 +19,7 @@ public class CustomerEditButton extends Thread {
 		Statement st = database.getStatement();
 		ResultSet rst = null;
 		
-		String customer = (String) CustomerMenu.getSelectedCustomer();
+		String customer = (String) CustomerMenu.AllCustomers.getSelectedItem();
 		
 		if (customer != null) {
 			String[] Customer = ListManager.SplitThreeItem(customer);

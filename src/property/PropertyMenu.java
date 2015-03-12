@@ -142,7 +142,7 @@ public class PropertyMenu extends JPanel {
 	
 	
 	
-
+	// Adding events //
 	private void addButtonsFuctionalities(){
 		btnAddNewProperty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

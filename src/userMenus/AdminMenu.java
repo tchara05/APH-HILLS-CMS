@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.GroupLayout.Alignment;
 
+import contract.ContractMenu;
+
+import panels.mainAdminPanel;
 import property.PropertyMenu;
 
 import customer.CustomerMenu;
@@ -23,9 +26,6 @@ public class AdminMenu {
 
 	private JFrame frame;
 	/** Main Class **/
-	
-	
-	
 
 	public static void main(String[] args) {
 
@@ -87,7 +87,9 @@ public class AdminMenu {
 					.addContainerGap(168, Short.MAX_VALUE))
 		);
 		
-		JPanel ContractPanel = new JPanel();
+		
+		// All Menu Panels //
+		JPanel ContractPanel = ContractMenu.createContractMenu();
 		tabbedPane.addTab("Contract Menu", null, ContractPanel, null);
 		
 		JPanel PropertyPanel = PropertyMenu.createPropertyMenu();
@@ -97,9 +99,10 @@ public class AdminMenu {
 		tabbedPane.addTab("Customer Menu", null, CustomerPanel, null);
 		
 		JPanel accountMenu = accountantPanel.createAccountantMenu();
-		tabbedPane.addTab("AccountMenu", null, accountMenu, null);
+		tabbedPane.addTab("Accountant Menu", null, accountMenu, null);
 		
-		
+		JPanel AdminPanel = mainAdminPanel.createAdminMenu();
+		tabbedPane.addTab("Admin Menu", null, AdminPanel, null);
 		
 		
 		frame.getContentPane().setLayout(groupLayout);

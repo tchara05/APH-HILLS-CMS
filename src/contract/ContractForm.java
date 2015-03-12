@@ -170,8 +170,8 @@ public class ContractForm {
 		AllOwners = new DefaultListModel<String>();
 		ListManager.SetUpThreeList(AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
 		
-		 Owners=new JList<String>(AllCustomers); 
-		 Customers= new JList<String>(AllOwners);
+		 Owners=new JList<String>(AllOwners); 
+		 Customers= new JList<String>(AllCustomers);
 
 
 		

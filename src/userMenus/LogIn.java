@@ -140,9 +140,6 @@ public class LogIn {
 				try {
 					database= new DatabaseConnection();
 					ResultSet rst =null;
-					
-					
-					
 					rst = database.getStatement().executeQuery(query);
 					
 					System.out.println("I executed query");

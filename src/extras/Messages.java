@@ -9,12 +9,8 @@ public class Messages {
 			JOptionPane.showMessageDialog(null,
 				    msg,
 				    "Input warning",
-				    JOptionPane.WARNING_MESSAGE);
-			
-		 
-		 
+				    JOptionPane.WARNING_MESSAGE); 
 	 }
-	 
 	 public static void showSaveMessage(String msg){
 		 
 			JOptionPane.showMessageDialog(null, msg,

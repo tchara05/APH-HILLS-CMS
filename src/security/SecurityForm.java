@@ -18,14 +18,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class SecurityForm {
 
 	public static JFrame frame;
 	public static JPanel contentPane;
 	public static JTextField txtkeyID;
-	public static JTextField txtpropertyID;
 	public static JTextArea txtAreaNotes;
+	public static JComboBox<String> PropertyList;
 
 	protected static boolean edit = false;
 
@@ -127,11 +128,10 @@ public class SecurityForm {
 		txtkeyID.setBounds(132, 33, 199, 30);
 		insertPanel.add(txtkeyID);
 		txtkeyID.setColumns(10);
-
-		txtpropertyID = new JTextField();
-		txtpropertyID.setBounds(132, 114, 199, 30);
-		insertPanel.add(txtpropertyID);
-		txtpropertyID.setColumns(10);
+		
+		PropertyList = new JComboBox<String>();
+		PropertyList.setBounds(135, 117, 196, 27);
+		insertPanel.add(PropertyList);
 
 		JButton btnAdd = new JButton("Add Contract");
 		btnAdd.addActionListener(new ActionListener() {
@@ -159,13 +159,6 @@ public class SecurityForm {
 		btnPanel.add(btnClear);
 	}
 
-	public static String getPropertyID() {
-		return txtpropertyID.getText();
-	}
-
-	public static void setPropertyID(String value) {
-		txtpropertyID.setText(value);
-	}
 
 	public static void setVisible(boolean value) {
 		frame.setVisible(value);

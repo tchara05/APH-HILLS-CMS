@@ -376,6 +376,8 @@ public class CustomerForm {
 		
 	}
 	
+	
+	// adding events //
 	private void addButtonsFuctionalities(){
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override

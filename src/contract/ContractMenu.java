@@ -19,17 +19,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ContractMenu extends JPanel {
+	
+	//The Box //
+	private static JPanel panel;
+	
 	public static JComboBox<String> AllProperties ;
 	public static JComboBox<String> AllClasses ;
 	public static JComboBox<String> AllParcels ;
 	private static ContractForm contractform ;
+	
+	//Buttons //
 	private JButton btnFilter;
 	private JButton btnEditContract;
 	private JButton btnAddNewContract;
 		
 	
 	public ContractMenu(){
-		JPanel panel = new JPanel();
+		 panel = new JPanel();
 		panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		contractform = new ContractForm();
 	
@@ -134,7 +140,8 @@ public class ContractMenu extends JPanel {
 	}
 	
 	public static JPanel createContractMenu() {
-		return new ContractMenu();
+		 new ContractMenu();
+		 return panel;
 	}
 
 }

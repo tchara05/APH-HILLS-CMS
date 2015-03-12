@@ -27,19 +27,9 @@ public class SecuritySaveButton extends Thread {
 		}
 */
 		
-		String txtpropertyID = SecurityForm.txtpropertyID.getText();
+		
 		String txtNotes = SecurityForm.txtAreaNotes.getText();
-		
-		
-		
-		try {
-			if(!checker(txtpropertyID)){
-				Messages.showWarningMessage("ID not found ");
-				checked=false;
-			}
-		} catch (SQLException e1) {
-			System.out.print("1");
-		}
+		String txtpropertyID="";
 	
 		try {
 

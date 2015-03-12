@@ -26,11 +26,16 @@ import java.awt.event.ItemEvent;
 @SuppressWarnings("serial")
 public class CustomerMenu extends JPanel {
 
-	// Graphical Input Variables //
+	
 	@SuppressWarnings("unused")
-	private static CustomerForm customerform;
-	public static JComboBox<String> AllCustomers;
+	
+	// This is the hole box //
 	private static JPanel CustomerPanel;
+	private static CustomerForm customerform;
+	
+	// Graphical Input Variables //
+	public static JComboBox<String> AllCustomers;
+	
 	private JTextField PrimaryMail;
 	private JTextField FirstName;
 	private JTextField LastName;
@@ -50,7 +55,6 @@ public class CustomerMenu extends JPanel {
 		CustomerForm.setVisible(false);
 		CustomerPanel = new JPanel();
 
-		
 		// Labels //
 		JLabel lblAllCustomers = new JLabel("All Customers:");
 		JLabel lblFirstName = new JLabel("First Name:");
@@ -60,11 +64,9 @@ public class CustomerMenu extends JPanel {
 		JLabel lblContactPhone = new JLabel("Contact Phone:");
 		JLabel lblMobilePhone = new JLabel("Mobile Phone:");
 
-		
 		//DropDown List //
 		AllCustomers = new JComboBox<String>();
 		ListManager.setUpThreeList(AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
-		
 		
 		// Buttons //
 		btnAddNewCustomer = new JButton("Add New Customer");
@@ -174,6 +176,9 @@ public class CustomerMenu extends JPanel {
 		addButtonsFuctionalities();
 	}
 	
+	
+	
+	//Events Added //
 	private void addButtonsFuctionalities(){
 		
 		btnDeleteCustomer.addMouseListener(new MouseAdapter() {
@@ -209,15 +214,14 @@ public class CustomerMenu extends JPanel {
 		
 	}
 	
+	
+	// Reuturns the hole box //
 	public static JPanel createCustumerMenu() {
 		new CustomerMenu();
 		return CustomerPanel;
-
 	}
 
-	public static Object getSelectedCustomer() {
-		return AllCustomers.getSelectedItem();
-	}
+	
 
 	public void setDetails(String customer) {
 
@@ -246,7 +250,6 @@ public class CustomerMenu extends JPanel {
 				MobilePhone.setText(rst.getString(6));
 				
 			}
-
 		} catch (SQLException e) {
 			System.out.println("Cannot execute query in customer details filling fields");
 			e.printStackTrace();

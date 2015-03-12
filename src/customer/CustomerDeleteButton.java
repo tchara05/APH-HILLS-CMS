@@ -25,7 +25,7 @@ public class CustomerDeleteButton extends Thread {
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if (response == JOptionPane.YES_OPTION) {
 
-			String customer = (String) CustomerMenu.getSelectedCustomer();
+			String customer = (String) CustomerMenu.AllCustomers.getSelectedItem();
 
 			if (customer != null) {
 				
