@@ -18,12 +18,12 @@ public class ContractSaveButton extends Thread {
 		/*************************/
 		
 		int length = ContractForm.AllOwners.getSize();;
-		boolean act = ContractForm.getActive();
+		boolean act = ContractForm.chckActive.isSelected();
 		int active = 0;
 		if (act){
 			active =1;
 		}
-		String contractID = ContractForm.getContractID();
+		String contractID = ContractForm.txtContractID.getText();
 		while (!ContractForm.AllOwners.isEmpty()){
 			String[] customer = ListManager.removeShare(ContractForm.AllOwners.remove(0));
 			String[] Customer = ListManager.SplitThreeItem(customer[1]);

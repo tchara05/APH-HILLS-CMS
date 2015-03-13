@@ -56,8 +56,9 @@ public class ListManager {
 			i++;
 			testing = (String) list.getItemAt(i);
 		}
-
+		
 		String finalValue = id + " " + value;
+	
 		list.insertItemAt(finalValue, i);
 		try {
 			list.setSelectedIndex(0);

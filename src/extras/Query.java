@@ -12,4 +12,5 @@ public class Query {
 														"FROM Customer " +
 														"ORDER BY firstName , lastName";
 
+	public static final String PARCEL_NO_NAME="SELECT parcelNo, parcelName FROM Parcel";
 }

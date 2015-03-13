@@ -51,8 +51,8 @@ public class ContractForm {
 	public static JCheckBox chckActive;
 	
 	// Variables: //
-	protected static int totalShare=0;
-	protected static boolean edit = false;
+	public static int totalShare=0;
+	public static boolean edit = false;
 	
 	//List for scroll; //
 	public static DefaultListModel<String> AllCustomers;
@@ -371,6 +371,8 @@ public class ContractForm {
 		addButtonsFuctionalities();
 		
 	}
+	
+	// Add Events to Buttons//
 	private void addButtonsFuctionalities(){
 		
 		btnRight.addMouseListener(new MouseAdapter() {
@@ -442,6 +444,8 @@ public class ContractForm {
 		
 		
 	}
+	
+	
 	private static void setContractID() {
 
 		DatabaseConnection database = new DatabaseConnection();
@@ -467,22 +471,16 @@ public class ContractForm {
 		}
 
 	}
-	public static String getContractID(){
-		return txtContractID.getText();
-	}
-	public static boolean getActive(){
-		return chckActive.isSelected();
-	}
+
 	public static void setVisible(boolean val){
-		
 		String property ="";
-		
 		try{
 			 property = (String)ContractMenu.AllProperties.getSelectedItem();
 		}catch(Exception e){System.out.println("Nohing"); }
 		setPropertyTextFields(property);
 		frame.setVisible(val);
 	}
+	
 	public static void setPropertyTextFields(String property){
 		
 		String[] Property = ListManager.SplitThreeItem(property);

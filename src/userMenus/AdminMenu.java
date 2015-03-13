@@ -13,9 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.GroupLayout.Alignment;
 
+import admin.mainAdminPanel;
+
+import logistics.accountantPanel;
+
 import contract.ContractMenu;
 
-import panels.mainAdminPanel;
 import property.PropertyMenu;
 
 import customer.CustomerMenu;

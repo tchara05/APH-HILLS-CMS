@@ -11,6 +11,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 
+import logistics.accountantPanel;
+
 
 public class AccountantMenu {
 

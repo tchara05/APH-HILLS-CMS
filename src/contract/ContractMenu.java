@@ -36,7 +36,7 @@ public class ContractMenu extends JPanel {
 	
 	public ContractMenu(){
 		 panel = new JPanel();
-		panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		 panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		contractform = new ContractForm();
 	
 		//DropDown List: //
@@ -44,7 +44,8 @@ public class ContractMenu extends JPanel {
 		 ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 		 AllParcels = new JComboBox<String>();
 		 AllClasses = new JComboBox<String>();
-		 
+		 ListManager.setUpTwoColumnsList(AllClasses,Query.CLASS_NO_NAME);
+		 ListManager.setUpTwoColumnsList(AllParcels,Query.PARCEL_NO_NAME);
 		 
 		// Labels // 
 		JLabel label_1 = new JLabel("Class:");
