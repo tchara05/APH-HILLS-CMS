@@ -476,13 +476,13 @@ public class ContractForm {
 		String property ="";
 		try{
 			 property = (String)ContractMenu.AllProperties.getSelectedItem();
-		}catch(Exception e){System.out.println("Nohing"); }
+		}catch(Exception e){
+		System.out.println("Nohing"); }
 		setPropertyTextFields(property);
 		frame.setVisible(val);
 	}
 	
 	public static void setPropertyTextFields(String property){
-		
 		String[] Property = ListManager.SplitThreeItem(property);
 		txtPlotID.setText(Property[0]);
 		txtPlotNumber.setText(Property[2]);

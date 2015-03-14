@@ -1,5 +1,7 @@
 package customer;
 
+import java.awt.Color;
+
 
 public class CustomerClearButton{
 	
@@ -19,12 +21,18 @@ public class CustomerClearButton{
 				
 			}
 			CustomerForm.txtFname.setText("");
+			CustomerForm.txtFname.setBackground(Color.WHITE);
 			CustomerForm.txtLastName.setText("");
+			CustomerForm.txtLastName.setBackground(Color.WHITE);
 			CustomerForm.txtNote.setText("");
 			CustomerForm.txtPhoneMobile.setText("");
+			CustomerForm.txtPhoneMobile.setBackground(Color.WHITE);
 			CustomerForm.txtPrimaryMail.setText("");
+			CustomerForm.txtPrimaryMail.setBackground(Color.WHITE);
 			CustomerForm.txtSeconadaryMail.setText("");
+			CustomerForm.txtSeconadaryMail.setBackground(Color.WHITE);
 			CustomerForm.txtZipCode.setText("");
+			CustomerForm.txtZipCode.setBackground(Color.WHITE);
 			CustomerForm.edit=false;
 			
 	}

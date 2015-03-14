@@ -12,7 +12,6 @@ public class ContractEditButton extends Thread{
 		ContractForm.edit = true;
 		
 		
-		
 	}
 
 }

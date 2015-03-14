@@ -1,5 +1,7 @@
 package property;
 
+import java.awt.Color;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -82,8 +84,8 @@ public class PropertySaveButton extends Thread {
 			checked = false;
 		}
 
-		String berdroomsNo = PropertyForm.txtBedrooms.getText();
-		if (!Checker.checkNumber(berdroomsNo)) {
+		String bedroomsNo = PropertyForm.txtBedrooms.getText();
+		if (!Checker.checkNumber(bedroomsNo)) {
 			String msg = "Bedrooms number has invalid characters";
 			Messages.showWarningMessage(msg);
 			checked = false;
@@ -91,8 +93,7 @@ public class PropertySaveButton extends Thread {
 
 		String bathroomsNo = PropertyForm.txtBathrooms.getText();
 		if (!Checker.checkNumber(bathroomsNo)) {
-			String msg = "Bathrooms number has invalid characters";
-			Messages.showWarningMessage(msg);
+			PropertyForm.txtBathrooms.setBackground(Color.YELLOW);
 			checked = false;
 		}
 
@@ -155,16 +156,19 @@ public class PropertySaveButton extends Thread {
 		if (PropertyForm.chckbxPoolHeading.isSelected()) {
 			poolHeading = 1;
 		}
+		
+		if (!checked){
+			Messages.showWarningMessage("Complete All Details");
+		}
+		
+		
 
 		try {
 
-			/** Remove in the finish **/
+			
 			DatabaseConnection database = new DatabaseConnection();
 			Statement st = null;
-			/*************************/
 			st = database.getStatement();
-
-			// Statement st = LogIn.database.getStatement();
 
 			if (checked) {
 
@@ -185,24 +189,40 @@ public class PropertySaveButton extends Thread {
 								+ "','" + propertyDelivered + "','"
 								+ rentalGarante + "','" + committed + "','"
 								+ rentalPlan + "','" + status + "','"
-								+ floorsNo + "','" + berdroomsNo + "','"
+								+ floorsNo + "','" + bedroomsNo + "','"
 								+ bathroomsNo + "','" + deedNum + "','"
 								+ titleDeed + "','" + pool + "','" + parking
 								+ "','" + garden + "','" + centralHeading
 								+ "','" + basement + "','" + airCondition
 								+ "','" + poolHeading + "')";
 					} else {
-						// 	Need query Here //
+						query = "UPDATE Property SET plotNumber='"+plotNumber
+								+"', plotName='"+plotName+"', propertyClassNo='"+propertyClass
+								+"', parcelNo='" +parcel+"', landUse='"+landUse+"',percentage= '"
+								+percentage+"', plots='"+plots+"', details='"+details+"',propertyDelivered='"
+								+propertyDelivered+"', rentalGuarantee='"+rentalGarante+"', committedProperty='"
+								+committed+"',rentalPlan ='"+rentalPlan+"',propertyStatus='"+status
+								+"', numberOfFloors='"+floorsNo+"',numberOfBedrooms ='"+bedroomsNo
+								+"', numberOfBathrooms ='"+bathroomsNo +"', deedNumber='"+deedNum
+								+"', titleDeed ='"+titleDeed+"', poolProperty ='"+pool+"', parking='"
+								+parking +"', garden ='"+garden+"', centralHeading ='"+centralHeading
+								+"', basement='"+basement+"', airCondition ='"+airCondition
+								+"', poolHeading ='"+poolHeading+"' WHERE plotID='"+ PropertyForm.txtPlotID.getText()
+								+"'";
+						
+								ListManager.DeleteFromList(PropertyMenu.AllProperties);		
 					}
 
+				
 					st.executeUpdate(query);
-					PropertyClearButton.start();
+					
 
 					PropertyForm.setVisible(false);
 					String id = PropertyForm.txtPlotID.getText();
 					ListManager.UpdateList(id, plotName, plotNumber, PropertyMenu.AllProperties);
 					ListManager.UpdateList(id, plotName, plotNumber, ContractMenu.AllProperties);
 					PropertyForm.edit = false;
+					new PropertyClearButton().start();
 					Messages.showSaveMessage("Property Added");
 				}
 

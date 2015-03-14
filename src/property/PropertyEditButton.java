@@ -11,34 +11,16 @@ import customer.CustomerForm;
 import extras.DatabaseConnection;
 import extras.ListManager;
 
-/**
- * Issue Here
- * 
- * We dont know yet about parcel, class, land use and some other things which
- * maybe they will be dropdown lists
- * 
- * 
- * 
- * 
- * 
- * 
- * @author Theodoros
- * 
- */
 
 public class PropertyEditButton extends Thread {
 
 	public void run() {
 
-		/** Remove in the finish **/
 		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
-
-		/*************************/
-
+		
 		PropertyForm.edit = true;
 
-		// Statement st = LogIn.database.getStatement();
 
 		ResultSet rst = null;
 
@@ -46,11 +28,11 @@ public class PropertyEditButton extends Thread {
 		if (property != null) {
 			String[] Property = ListManager.SplitThreeItem(property);
 			try {
-				rst = st.executeQuery("SELECT * FROM Property WHERE and PlotID ='" + Property[2] +"'");
+				rst = st.executeQuery("SELECT * FROM Property WHERE PlotID ='" + Property[0] +"'");
 				if (rst.next() && (rst.getString(1) != null)) {
-
-					new PropertySaveButton().start();
+					setForm(rst);
 				}
+				
 				PropertyForm.setVisible(true);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -148,7 +130,16 @@ public class PropertyEditButton extends Thread {
 		PropertyForm.txtLandUse.setText(rst.getString(6));
 		PropertyForm.txtParcel.setText(rst.getString(5));
 		int  classes= rst.getInt(4);
-		PropertyForm.AllClasses.setSelectedIndex(classes);
+		int i;
+		for (i =0; i<PropertyForm.AllClasses.getItemCount();i++){
+			
+			String classess[]=ListManager.SplitTwoItem((String)PropertyForm.AllClasses.getItemAt(i));
+			if (Integer.parseInt(classess[0])==classes){
+				break;
+			}
+		}
+
+		PropertyForm.AllClasses.setSelectedIndex(i);
 		PropertyForm.txtPlotName.setText(rst.getString(3));
 		PropertyForm.txtPlotNo.setText(rst.getString(2));
 		PropertyForm.txtPlotID.setText(rst.getString(1));

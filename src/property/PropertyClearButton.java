@@ -1,5 +1,7 @@
 package property;
 
+import java.awt.Color;
+
 
 public class PropertyClearButton  {
 	
@@ -17,6 +19,7 @@ public class PropertyClearButton  {
 		PropertyForm.chckbxPropertyDelivered.setSelected(false);
 		PropertyForm.TitleDeed.setSelected(false);
 		PropertyForm.txtBathrooms.setText("");
+		PropertyForm.txtBathrooms.setBackground(Color.WHITE);
 		PropertyForm.txtBedrooms.setText("");
 		PropertyForm.txtDeedNo.setText("");
 		PropertyForm.txtExtraDetails.setText("");

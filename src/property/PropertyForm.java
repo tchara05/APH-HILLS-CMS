@@ -101,7 +101,7 @@ public class PropertyForm {
 
 			if (rs.next() && rs.getString(1)!=null) {
 				
-					txtPlotID.setText("" + (rs.getInt(1) + 1));
+					txtPlotID.setText((rs.getInt(1) + 1)+"");
 
 			} else {
 				txtPlotID.setText("1");
@@ -375,6 +375,7 @@ public class PropertyForm {
 		txtPlotID.setEditable(false);
 		txtPlotID.setColumns(15);
 		
+		
 		txtPlotNo = new JTextField();
 		txtPlotNo.setColumns(15);
 	
@@ -538,11 +539,16 @@ public class PropertyForm {
 		frmPropertyForm.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 	}
 	
+	
+
+	
+	
+	
+	
 	public static void main(String[] args) {
 		
 					PropertyForm window = new PropertyForm();
 					PropertyForm.setVisible(true);
-
 	}
 
 

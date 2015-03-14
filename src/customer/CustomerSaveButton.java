@@ -1,5 +1,6 @@
 package customer;
 
+import java.awt.Color;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,14 +34,14 @@ public class CustomerSaveButton extends Thread {
 		String nFname = Checker.clearString(CustomerForm.txtFname.getText());
 		nFname = Checker.clearString(nFname);
 		if (!Checker.checkString(nFname) || (nFname.isEmpty())) {
-			Messages.showWarningMessage("First Name has invalid characters");
+			CustomerForm.txtFname.setBackground(Color.YELLOW);
 			checked = false;
 		}
 
 		String nLname = Checker.clearString(CustomerForm.txtLastName.getText());
 		nLname = Checker.clearString(nLname);
 		if (!Checker.checkString(nLname) || (nLname.isEmpty())) {
-			Messages.showWarningMessage("Last Name has invalid characters");
+			CustomerForm.txtLastName.setBackground(Color.YELLOW);
 			checked = false;
 		}
 
@@ -49,20 +50,20 @@ public class CustomerSaveButton extends Thread {
 		String city = CustomerForm.txtCity.getText();
 		city = Checker.clearString(city);
 		if (!Checker.checkString(city) || (city.isEmpty())) {
-			Messages.showWarningMessage("City has invalid characters");
+			
 			checked = false;
 		}
 
 		String bussinesNumber = CustomerForm.txtBussinesNumber.getText();
 		if (!Checker.checkNumber(bussinesNumber)) {
-			Messages.showWarningMessage("Business Number has invalid characters");
+			
 			checked = false;
 		}
 
 		String contactNumber = CustomerForm.txtContactNumber.getText();
 		contactNumber = contactNumber.trim();
 		if (!Checker.checkNumber(contactNumber)) {
-			Messages.showWarningMessage("Contact Number has invalid characters");
+			
 
 			checked = false;
 		}
@@ -70,7 +71,7 @@ public class CustomerSaveButton extends Thread {
 		String faxNumber = CustomerForm.txtFaxNumber.getText();
 		faxNumber = faxNumber.trim();
 		if (!Checker.checkNumber(faxNumber)) {
-			Messages.showWarningMessage("Fax number has invalid characters");
+			
 			checked = false;
 		}
 
@@ -80,14 +81,14 @@ public class CustomerSaveButton extends Thread {
 		String mobileNum = CustomerForm.txtPhoneMobile.getText();
 		mobileNum = mobileNum.trim();
 		if (!Checker.checkNumber(mobileNum)) {
-			Messages.showWarningMessage("Mobile Number has invalid characters");
+			
 			checked = false;
 		}
 
 		String primaryMail = CustomerForm.txtPrimaryMail.getText();
 		primaryMail = primaryMail.trim();
 		if (!Checker.checkEmailAddress(primaryMail)) {
-			Messages.showWarningMessage("Primary Email has invalid characters");
+			
 			checked = false;
 		}
 
@@ -95,7 +96,7 @@ public class CustomerSaveButton extends Thread {
 		secondaryMail = secondaryMail.trim();
 		if (!secondaryMail.isEmpty()) {
 			if (!Checker.checkEmailAddress(secondaryMail)) {
-				Messages.showWarningMessage("Secondary Email has invalid characters");
+				
 				checked = false;
 			}
 		}
@@ -111,6 +112,14 @@ public class CustomerSaveButton extends Thread {
 			closeAccount = 1;
 		}
 
+		
+		
+		
+		
+		if (!checked){
+			Messages.showWarningMessage("Complete All Details");
+			
+		}
 		/****************************************************************/
 
 		try {

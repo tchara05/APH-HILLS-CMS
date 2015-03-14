@@ -45,7 +45,7 @@ public class ContractMenu extends JPanel {
 		 AllParcels = new JComboBox<String>();
 		 AllClasses = new JComboBox<String>();
 		 ListManager.setUpTwoColumnsList(AllClasses,Query.CLASS_NO_NAME);
-		 ListManager.setUpTwoColumnsList(AllParcels,Query.PARCEL_NO_NAME);
+		// ListManager.setUpTwoColumnsList(AllParcels,Query.PARCEL_NO_NAME);
 		 
 		// Labels // 
 		JLabel label_1 = new JLabel("Class:");

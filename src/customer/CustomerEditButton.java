@@ -28,7 +28,6 @@ public class CustomerEditButton extends Thread {
 				rst = st.executeQuery("SELECT * FROM Customer WHERE firstName='"
 						+ Customer[1] + "' and lastName ='" + Customer[2] + "' and customerID = '" + Customer[0] +"'");
 				
-				
 				if (rst.next() && (rst.getString(1) != null)) {
 					setForm(rst);
 				}
