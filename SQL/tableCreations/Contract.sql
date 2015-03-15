@@ -10,5 +10,5 @@ create table Contract (
 	plotID integer not null,
 	customerPerct float not null,
 	active integer not null by default 1,
-	CONSTRAINT bool CHECK (active = 1 or active = 0)
+	CONSTRAINT activeCheck CHECK (active = 1 or active = 0)
 );

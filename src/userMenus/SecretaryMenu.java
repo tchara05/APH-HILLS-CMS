@@ -37,17 +37,13 @@ public class SecretaryMenu {
 				
 	}
 
-	/**
-	 * Create the application.
-	 */
+
 	public SecretaryMenu() {
 		initialize();
 
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		frmSecretaryMenu = new JFrame();
 		frmSecretaryMenu.setTitle("Secretary Menu");

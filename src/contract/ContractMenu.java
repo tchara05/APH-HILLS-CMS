@@ -8,15 +8,23 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import property.PropertyMenu;
 
 import customer.CustomerMenu;
 
+import extras.DatabaseConnection;
 import extras.ListManager;
+import extras.Messages;
 import extras.Query;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ContractMenu extends JPanel {
 	
@@ -45,7 +53,7 @@ public class ContractMenu extends JPanel {
 		 AllParcels = new JComboBox<String>();
 		 AllClasses = new JComboBox<String>();
 		 ListManager.setUpTwoColumnsList(AllClasses,Query.CLASS_NO_NAME);
-		// ListManager.setUpTwoColumnsList(AllParcels,Query.PARCEL_NO_NAME);
+		 ListManager.setUpTwoColumnsList(AllParcels,Query.PARCEL_NO_NAME);
 		 
 		// Labels // 
 		JLabel label_1 = new JLabel("Class:");
@@ -56,13 +64,7 @@ public class ContractMenu extends JPanel {
 		btnFilter = new JButton("Filter");
 		btnEditContract = new JButton("Edit Contract");
 		btnAddNewContract = new JButton("Add New Contract");
-		btnAddNewContract.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ContractForm.setVisible(true);
-				
-			}
-		});
+		
 		
 		
 		//Panel Positions : //
@@ -137,6 +139,8 @@ public class ContractMenu extends JPanel {
 					.addContainerGap(130, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
+		
+		addButtonsFuctionalities();
 
 	}
 	
@@ -145,4 +149,58 @@ public class ContractMenu extends JPanel {
 		 return panel;
 	}
 
+	
+	private void addButtonsFuctionalities(){
+		
+		btnAddNewContract.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+
+				if (existContract()){
+				
+				int response = JOptionPane.showConfirmDialog(null,
+						"There is already a contract for that property\n" +
+						"Deactive current contract and continue with a\n new contract?", "Confirm",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.YES_OPTION) {
+					ContractForm.setVisible(true);
+				}
+				
+				}else{
+					ContractForm.setVisible(true);
+				}
+				
+			}
+		});
+		
+		
+	}
+	
+	public boolean existContract() {
+		
+		DatabaseConnection database = new DatabaseConnection();
+		Statement st = database.getStatement();
+
+		String plot = (String)ContractMenu.AllProperties.getSelectedItem();
+		String Plot[]=ListManager.SplitTwoItem(plot);
+		String query="SELECT contractID, plotID FROM Contract WHERE plotID='"+Plot[0]+"'";
+		ResultSet rst;
+		try {
+			rst = st.executeQuery(query);
+			if (rst.next()){
+				if (Plot[0].equals(rst.getString(2))){
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("Existing Contract");
+			e.printStackTrace();
+		}
+		
+		
+	return false;
+	}
+	
 }
