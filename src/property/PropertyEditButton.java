@@ -98,8 +98,8 @@ public class PropertyEditButton extends Thread {
 		PropertyForm.txtBathrooms.setText(rst.getString(17));
 		PropertyForm.txtBedrooms.setText(rst.getString(16));
 		PropertyForm.txtFloors.setText(rst.getString(15));
-		PropertyForm.txtStatus.setText(rst.getString(14));
 
+		
 		if (rst.getInt(13) == 1) {
 			PropertyForm.chckbxRentalPlan.setSelected(true);
 		} else {
@@ -128,21 +128,46 @@ public class PropertyEditButton extends Thread {
 		PropertyForm.txtPlots.setText(rst.getString(8));
 		PropertyForm.txtPerChange.setText(rst.getString(7));
 		PropertyForm.txtLandUse.setText(rst.getString(6));
-		PropertyForm.txtParcel.setText(rst.getString(5));
+		PropertyForm.txtPlotName.setText(rst.getString(3));
+		PropertyForm.txtPlotNo.setText(rst.getString(2));
+		PropertyForm.txtPlotID.setText(rst.getString(1));
+		
+		
+		setDropDownListEdit(rst);
+	}
+	
+	
+    private static void setDropDownListEdit(ResultSet rst) throws SQLException{
+		
 		int  classes= rst.getInt(4);
 		int i;
 		for (i =0; i<PropertyForm.AllClasses.getItemCount();i++){
-			
 			String classess[]=ListManager.SplitTwoItem((String)PropertyForm.AllClasses.getItemAt(i));
 			if (Integer.parseInt(classess[0])==classes){
 				break;
 			}
 		}
-
 		PropertyForm.AllClasses.setSelectedIndex(i);
-		PropertyForm.txtPlotName.setText(rst.getString(3));
-		PropertyForm.txtPlotNo.setText(rst.getString(2));
-		PropertyForm.txtPlotID.setText(rst.getString(1));
-	}
+		
+		for (i =0; i<PropertyForm.AllParcels.getItemCount();i++){
+			
+			String parcels[]=ListManager.SplitTwoItem((String)PropertyForm.AllParcels.getItemAt(i));
+			if (Integer.parseInt(parcels[0])==classes){
+				break;
+			}
+		}	
+		PropertyForm.AllParcels.setSelectedIndex(i);	
+		
+		for (i =0; i<PropertyForm.AllStatus.getItemCount();i++){
+			
+			String status[]=ListManager.SplitTwoItem((String)PropertyForm.AllStatus.getItemAt(i));
+			if (Integer.parseInt(status[0])==classes){
+				break;
+			}
+		}
+		PropertyForm.AllStatus.setSelectedIndex(i);	
+		
+	}	
+	
 
 }

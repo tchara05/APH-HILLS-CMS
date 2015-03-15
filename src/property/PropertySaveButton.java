@@ -40,9 +40,13 @@ public class PropertySaveButton extends Thread {
 
 		String[] propertyClasses = ListManager.SplitTwoItem((String)PropertyForm.AllClasses.getSelectedItem());
 		int propertyClass = Integer.parseInt(propertyClasses[0]);
-		String parcel = PropertyForm.txtParcel.getText();
-
-		parcel = Checker.clearString(parcel);
+		
+		
+		String propertyParcel[] =ListManager.SplitTwoItem((String)PropertyForm.AllParcels.getSelectedItem());
+		String parcel=propertyParcel[0];
+		
+		String propertyStatus[] =ListManager.SplitTwoItem((String)PropertyForm.AllStatus.getSelectedItem());
+		String status=propertyStatus[0];
 
 		String landUse = PropertyForm.txtLandUse.getText();
 		if (!Checker.checkNumber(landUse)) {
@@ -68,14 +72,6 @@ public class PropertySaveButton extends Thread {
 		}
 
 		String details = PropertyForm.txtExtraDetails.getText();
-
-		String status = PropertyForm.txtStatus.getText();
-		status = Checker.clearString(status);
-		if ( status.isEmpty()) {
-			String msg = "Status has invalid characters";
-			Messages.showWarningMessage(msg);
-			checked = false;
-		}
 
 		String floorsNo = PropertyForm.txtFloors.getText();
 		if (!Checker.checkNumber(floorsNo)) {

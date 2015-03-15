@@ -30,12 +30,6 @@ public class SecretaryMenu {
 
 	private JFrame frmSecretaryMenu;
 	
-
-	
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		
 					SecretaryMenu window = new SecretaryMenu();

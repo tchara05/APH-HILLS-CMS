@@ -44,11 +44,9 @@ public class PropertyForm {
 	public static JTextField txtPlotID;
 	public static JTextField txtPlotNo;
 	public static JTextField txtPlotName;
-	public static JTextField txtParcel;
 	public static JTextField txtLandUse;
 	public static JTextField txtPerChange;
 	public static JTextField txtPlots;
-	public static JTextField txtStatus;
 	public static JTextField txtFloors;
 	public static JTextField txtBedrooms;
 	public static JTextField txtBathrooms;
@@ -68,15 +66,21 @@ public class PropertyForm {
 	public static JCheckBox chckbxAirCondition ;
 	public static JCheckBox chckbxBasement;
 	public static JTextArea txtExtraDetails;
-	public static JComboBox AllClasses;
-	protected static boolean edit =false;
+	
+	
+	
+	//DropDowns //
+	public static JComboBox<String> AllClasses;
+	public static JComboBox<String> AllStatus;
+	public static JComboBox<String> AllParcels;
+	
+	public static boolean edit =false;
+	
 	
 	// Buttons Variables //
 	private  JButton btnBack;
 	private JButton btnSave;
 	private JButton btnClear;
-	
-	
 	
 	
 	
@@ -381,9 +385,6 @@ public class PropertyForm {
 	
 		txtPlotName = new JTextField();
 		txtPlotName.setColumns(15);
-			
-		txtParcel = new JTextField();
-		txtParcel.setColumns(15);
 		
 		txtLandUse = new JTextField();
 		txtLandUse.setColumns(15);
@@ -396,6 +397,9 @@ public class PropertyForm {
 		
 		txtExtraDetails = new JTextArea();
 		txtExtraDetails.setLineWrap(true);
+		
+		 AllParcels = new JComboBox<String>();
+		 ListManager.setUpTwoColumnsList(AllParcels, Query.PARCEL_NO_NAME);
 		
 	
 		// Panel 1 Positions: //
@@ -419,10 +423,10 @@ public class PropertyForm {
 								.addComponent(lblPlots))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(AllParcels, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(txtPerChange)
 								.addComponent(txtPlotName)
 								.addComponent(txtPlotNo)
-								.addComponent(txtParcel)
 								.addComponent(txtLandUse)
 								.addComponent(txtPlots)
 								.addComponent(txtPlotID)
@@ -457,8 +461,8 @@ public class PropertyForm {
 								.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(12)
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtParcel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblParcel))
+								.addComponent(lblParcel)
+								.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblLand, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
@@ -488,10 +492,8 @@ public class PropertyForm {
 		 chckbxCommited = new JCheckBox("Committed");
 		 chckbxRentalPlan = new JCheckBox("Rental Plan");
 		
-		// Text Boxes For Inner Panel: //
-		txtStatus = new JTextField();
-		txtStatus.setColumns(10);
-		
+		AllStatus = new JComboBox();
+		ListManager.setUpTwoColumnsList(AllStatus, Query.STATUS_NO_NAME);
 		// Positions: //
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -504,13 +506,12 @@ public class PropertyForm {
 								.addComponent(chckbxRentalGuarantee)
 								.addComponent(chckbxCommited)
 								.addComponent(chckbxRentalPlan)
-								.addComponent(chckbxPropertyDelivered))
-							.addPreferredGap(ComponentPlacement.RELATED))
+								.addComponent(chckbxPropertyDelivered)))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(17)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblPropertyStatus)
-								.addComponent(txtStatus, GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))))
+								.addComponent(AllStatus, 0, 155, Short.MAX_VALUE)
+								.addComponent(lblPropertyStatus))))
 					.addGap(32))
 		);
 		gl_panel.setVerticalGroup(
@@ -526,9 +527,9 @@ public class PropertyForm {
 					.addComponent(chckbxRentalPlan)
 					.addGap(12)
 					.addComponent(lblPropertyStatus)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(26, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(AllStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		panelDetails.setLayout(gl_panelDetails);
@@ -537,6 +538,16 @@ public class PropertyForm {
 		
 		frmPropertyForm.getContentPane().setLayout(groupLayout);
 		frmPropertyForm.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		
+		
+		try{
+			AllParcels.setSelectedIndex(0);
+			AllStatus.setSelectedIndex(0);
+			AllClasses.setSelectedIndex(0);
+		}catch(Exception e){
+			System.out.println("Nothing");
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -550,8 +561,6 @@ public class PropertyForm {
 					PropertyForm window = new PropertyForm();
 					PropertyForm.setVisible(true);
 	}
-
-
 }
 	
 

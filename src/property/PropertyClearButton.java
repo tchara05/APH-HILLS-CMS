@@ -27,15 +27,15 @@ public class PropertyClearButton  {
 		PropertyForm.txtPlotName.setText("");
 		PropertyForm.txtPlotNo.setText("");
 		PropertyForm.txtPlots.setText("");
-		PropertyForm.txtStatus.setText("");
 		PropertyForm.txtFloors.setText("");
 		PropertyForm.txtLandUse.setText("");
-		PropertyForm.txtParcel.setText("");
 		PropertyForm.txtPerChange.setText("");
 		PropertyForm.chckbxRentalGuarantee.setSelected(false);
 		PropertyForm.chckbxRentalPlan.setSelected(false);
 		PropertyForm.edit = false;
-		
+		PropertyForm.AllStatus.setSelectedIndex(0);
+		PropertyForm.AllClasses.setSelectedIndex(0);
+		PropertyForm.AllParcels.setSelectedIndex(0);
 	}
 	
 	
