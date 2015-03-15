@@ -5,7 +5,7 @@ drop table Contract;
 
 
 create table Contract (
-	contractID integer identity primary key,
+	contractID integer primary key,
 	customerID integer not null,
 	plotID integer not null,
 	customerPerct float not null,
