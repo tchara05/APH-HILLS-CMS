@@ -16,21 +16,17 @@ public class SecuritySaveButton extends Thread {
 	public void run() {
 
 		boolean checked = true;
-
-/*
-		if (propertyID.isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"Property ID field is not filled.", "Warning",
-					JOptionPane.WARNING_MESSAGE);
-			checked = false;
-		}
-*/
-		
 		
 		String txtNotes = SecurityForm.txtAreaNotes.getText();
-		String txtpropertyID= "";
+		String txtpropertyID=SecurityForm.txtPropertyID.getText();
 		
-		//if(checker())
+		try {
+			checked=checker(txtpropertyID );
+		} catch (SQLException e1) {
+			
+			e1.printStackTrace();
+		}
+		
 	
 		try {
 
@@ -66,6 +62,11 @@ public class SecuritySaveButton extends Thread {
 					
 				}
 
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Property ID is Emprty or not exist",
+						"Warning Message",
+						JOptionPane.WARNING_MESSAGE);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

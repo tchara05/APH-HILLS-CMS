@@ -26,9 +26,10 @@ public class SecurityForm {
 	public static JPanel contentPane;
 	public static JTextField txtkeyID;
 	public static JTextArea txtAreaNotes;
-	public static JComboBox<String> PropertyList;
-
+	public static JTextField txtPropertyID;
 	protected static boolean edit = false;
+	
+	
 
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
@@ -129,9 +130,10 @@ public class SecurityForm {
 		insertPanel.add(txtkeyID);
 		txtkeyID.setColumns(10);
 		
-		PropertyList = new JComboBox<String>();
-		PropertyList.setBounds(135, 117, 196, 27);
-		insertPanel.add(PropertyList);
+		txtPropertyID = new JTextField();
+		txtPropertyID.setBounds(132, 114, 199, 30);
+		insertPanel.add(txtPropertyID);
+		txtPropertyID.setColumns(10);
 
 		JButton btnAdd = new JButton("Add Contract");
 		btnAdd.addActionListener(new ActionListener() {
