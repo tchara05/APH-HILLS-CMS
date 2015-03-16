@@ -12,7 +12,7 @@ public class SearchNotesButton extends Thread {
 
 	@SuppressWarnings("static-access")
 	public void run() {
-
+	
 		int method = 2;
 		boolean checked=true;
 		
@@ -20,34 +20,38 @@ public class SearchNotesButton extends Thread {
 		String keyID = CheckOut.txtKeyId.getText();
 		String propertyID = CheckOut.txtPropertyId.getText();
 		
-		System.out.println(keyID);
-		
-		
-		
+				
 		if(keyID.compareTo("") != 0){
 			method = 0;
 		
 			try {
 				if (!checker(keyID)){
-					Messages.showWarningMessage("Key ID not found ");
+					Messages.showWarningMessage("Key ID not Found ");
 					checked=false;
+					CheckOutClearButton.start(1);
 				}
 			} catch (SQLException e1) {
 				System.out.print("2222");
 			}
-		}else{
+			
+		}else if (propertyID.compareTo("") != 0) {
 		
-			if(propertyID.compareTo("") != 0)
 				method = 1;
 			try {
 				if (!checker2(propertyID)){
-					Messages.showWarningMessage("property ID not found ");
+					Messages.showWarningMessage("Property ID not Found ");
 					checked=false;
+					CheckOutClearButton.start(1);
 				}
 			} catch (SQLException e1) {
 				System.out.print("3333");
 			}
 			
+		}
+		else{
+			Messages.showWarningMessage("Property ID and Key ID are Empty");
+			checked=false;
+			CheckOutClearButton.start(1);
 		}
 		
 
