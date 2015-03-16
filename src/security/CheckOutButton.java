@@ -36,62 +36,78 @@ public class CheckOutButton extends Thread {
 		String checkInDate = "Key is not checked in yet";
 
 		boolean flag=true;
-		//
-		pickUpPerson=Checker.clearString(pickUpPerson);
-		if(!Checker.checkString(pickUpPerson)){
-			Messages.showWarningMessage("PickUp Person not found");
-		}
 		
-		
+
 		if(keyID.compareTo("") != 0){
 			try {
 				if (!checker(keyID)){
 					Messages.showWarningMessage("Key ID not found ");
 					flag=false;
+				}else{
+					System.out.print(cheked2(keyID,specificKey));
 				}
 			} catch (SQLException e1) {
 				System.out.print("2222");
 			}
 		}
-		System.out.print(flag);
-		try {
-
-			DatabaseConnection database = new DatabaseConnection();
-			Statement stment = null;
-
-			stment = database.getStatement();
-
-			int response = JOptionPane.showConfirmDialog(null,
-					"Do you want to Check Out this Key?", "Confirm",
-					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-			if (response == JOptionPane.YES_OPTION) {
-
-				String query = "";
-
-				// insert query here
-				query = "INSERT INTO SERVICE VALUES ('" + keyID + "','"
-						+ specificKey + "','" + pickUpPerson + "','"
-						+ securityPerson + "','" + checkOutTime + "','"
-						+ checkOutDate + "','" + checkInTime + "','"
-						+ checkInDate + "','" + details + "')";
-
-				stment.executeUpdate(query);
-
-				new CheckOutClearButton().start(0);
-
-				JOptionPane.showMessageDialog(null, "Key Checked Out",
-						"Information Message", JOptionPane.INFORMATION_MESSAGE);
-
-				//CheckOut.setVisible(false);
-				// SecurityMenu.UpdateContractList(propertyID);
+		else{
+			Messages.showWarningMessage("Key ID is Empty");
+			flag=false;
+		}
+		
+		
+		pickUpPerson=Checker.clearString(pickUpPerson);
+		if(!Checker.checkString(pickUpPerson) ){ 
+			Messages.showWarningMessage("PickUp Person has Invalid characters found");
+			flag=false;
+		}
+		
+		if( pickUpPerson.compareTo("")==0  ){
+			Messages.showWarningMessage("PickUp Person is Empty");
+			flag=false;
+		}
+		
+		
+		if(flag){
+			try {
+	
+				DatabaseConnection database = new DatabaseConnection();
+				Statement stment = null;
+	
+				stment = database.getStatement();
+	
+				int response = JOptionPane.showConfirmDialog(null,
+						"Do you want to Check Out this Key?", "Confirm",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	
+				if (response == JOptionPane.YES_OPTION) {
+	
+					String query = "";
+	
+					// insert query here
+					query = "INSERT INTO SERVICE VALUES ('" + keyID + "','"
+							+ specificKey + "','" + pickUpPerson + "','"
+							+ securityPerson + "','" + checkOutTime + "','"
+							+ checkOutDate + "','" + checkInTime + "','"
+							+ checkInDate + "','" + details + "')";
+	
+					stment.executeUpdate(query);
+	
+					new CheckOutClearButton().start(0);
+	
+					JOptionPane.showMessageDialog(null, "Key Checked Out",
+							"Information Message", JOptionPane.INFORMATION_MESSAGE);
+	
+					//CheckOut.setVisible(false);
+					// SecurityMenu.UpdateContractList(propertyID);
+				}
+	
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+	
+				e.printStackTrace();
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NullPointerException e) {
-
-			e.printStackTrace();
 		}
 	}
 	
@@ -119,6 +135,35 @@ public class CheckOutButton extends Thread {
 			}
 		
 		}
+		return false;
+
+	}
+
+	
+	
+	private boolean cheked2(String s,String p) throws SQLException {
+		
+		
+			int id=Integer.parseInt(s);
+			String temp="Key is not checked in yet";
+			try{
+				DatabaseConnection database = new DatabaseConnection();
+				Statement st = database.getStatement();
+				ResultSet rst = null;
+			
+				rst = st.executeQuery("SELECT * FROM Service WHERE keyID='" + id+"'specificKey='"+ p +"'checkInTime="+ temp +"'");
+						
+					if (rst.next()){
+						return true;
+					}
+			
+				
+			} catch (NullPointerException e) {
+
+				e.printStackTrace();
+			}
+		
+		
 		return false;
 
 	}

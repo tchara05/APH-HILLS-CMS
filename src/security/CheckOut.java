@@ -239,6 +239,11 @@ public class CheckOut {
 		buttonPanel.add(btnClear);
 
 		JButton btnBack = new JButton("Go Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmService.setVisible(false);
+			}
+		});
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnBack.setBounds(33, 442, 114, 33);
 		buttonPanel.add(btnBack);
