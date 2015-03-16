@@ -9,11 +9,8 @@ public class SecuritySearchKey extends Thread {
 
 	public void run() {
 
-		String keyID = "3";
-		System.out.println(keyID);
-		String specificKey = CheckIn.txtSpecificKey.getText();
-		boolean  flag=true;
-		
+		String keyID = Securitymenu.txtSearchKey.getText();
+
 		try {
 
 			DatabaseConnection database = new DatabaseConnection();
@@ -22,29 +19,18 @@ public class SecuritySearchKey extends Thread {
 
 			stment = database.getStatement();
 
-			// int response = JOptionPane.showConfirmDialog(null,
-			// "Do you want to Check In this Key?", "Confirm",
-			// JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			// insert query here
+			rst = stment.executeQuery("SELECT * FROM KeyContract WHERE keyID = '"
+					+ keyID +  "'");
+			
+			if(rst.next())
+				Securitymenu.txtShowIfFound.setText("Key Found: " + rst.getString("keyID"));
+			else
+				Securitymenu.txtShowIfFound.setText("Key not Found");
 
-			//if (response == JOptionPane.YES_OPTION) {
-
-			if(flag){
-				// insert query here
-				rst = stment.executeQuery("SELECT * FROM SERVICE WHERE keyID = '"
-								+ keyID + "' and specificKey = '" + specificKey + "'");
-				
-				rst.next();
-				
-				CheckIn.txtPerson.setText(rst.getString("pickUpPerson"));
-				CheckIn.txtTime.setText(rst.getString("checkOutTime"));
-				CheckIn.txtDate.setText(rst.getString("checkOutDate"));
-
-			//}
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-
 			e.printStackTrace();
 		}
 	}

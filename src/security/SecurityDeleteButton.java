@@ -6,7 +6,6 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-
 import extras.DatabaseConnection;
 
 public class SecurityDeleteButton {
@@ -20,15 +19,16 @@ public class SecurityDeleteButton {
 				"Do you want to continue?", "Confirm",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if (response == JOptionPane.YES_OPTION) {
-			
+
 			String keyID = "";
-			keyID = (String)Securitymenu.getSelectedContract();
+			keyID = Securitymenu.txtSearchKey.getText();
+			//keyID = (String) Securitymenu.getSelectedContract();
 
 			if (keyID != null) {
-				
-				Securitymenu.DeletePropertyFromList();
+
+				Securitymenu.DeleteKeyContractFromList();
 				String query = "";
-				query = "DELETE KeyContract WHERE keysID = '" + keyID;
+				query = "DELETE KeyContract WHERE keyID = '" + keyID + "'";
 
 				try {
 					stment.executeUpdate(query);

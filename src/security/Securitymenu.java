@@ -24,6 +24,7 @@ public class Securitymenu extends JPanel {
 	private static CheckIn checkIn;
 	private static CheckOut checkOut;
 	private static SecurityForm securityForm;
+	private static SecuritySearchKey search;
 	private static JPanel panel;
 	
 	public Securitymenu() {
@@ -42,8 +43,17 @@ public class Securitymenu extends JPanel {
 		});
 
 		JButton btnDeleteContract = new JButton("Delete Key Contract");
+		btnDeleteContract.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SecurityDeleteButton().start();
+			}
+		});
 
 		JButton btnEditContract = new JButton("Edit/View Key Contract");
+		btnEditContract.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 
 		JLabel lblSearch = new JLabel("Search Contract By KeyID:");
 
@@ -51,6 +61,11 @@ public class Securitymenu extends JPanel {
 		txtSearchKey.setColumns(10);
 
 		JButton btnSearchKey = new JButton("Search");
+		btnSearchKey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SecuritySearchKey().start();
+			}
+		});
 
 		JLabel lblkeyContracts = new JLabel("Key Contracts:");
 
@@ -73,7 +88,7 @@ public class Securitymenu extends JPanel {
 		txtShowIfFound = new JTextField();
 		txtShowIfFound.setEnabled(false);
 		txtShowIfFound.setEditable(false);
-		txtShowIfFound.setText("key not found");
+		txtShowIfFound.setText("Key not Found");
 		txtShowIfFound.setColumns(10);
 		
 		GroupLayout groupLayout = new GroupLayout(panel);
@@ -148,7 +163,7 @@ public class Securitymenu extends JPanel {
 		return AllContracts.getSelectedItem();
 	}
 
-	public static void DeletePropertyFromList() {
+	public static void DeleteKeyContractFromList() {
 
 		if (AllContracts.getItemCount() > 0) {
 			AllContracts.removeItemAt((AllContracts.getSelectedIndex()));
