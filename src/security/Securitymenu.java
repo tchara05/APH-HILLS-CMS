@@ -31,9 +31,10 @@ public class Securitymenu extends JPanel {
 		
 		checkOut = new CheckOut();
 		checkIn = new CheckIn();
-		
 		database = new DatabaseConnection();
 		panel=new JPanel();
+
+		
 
 		JButton btnAddContract = new JButton("Add New Key Contract");
 		btnAddContract.addActionListener(new ActionListener() {
@@ -155,6 +156,10 @@ public class Securitymenu extends JPanel {
 					.addComponent(btnCheckIn, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 		);
 		panel.setLayout(groupLayout);
+		
+		
+		
+		setUpContractList();
 	}
 	
 	
@@ -178,13 +183,12 @@ public class Securitymenu extends JPanel {
 		ResultSet rset = null;
 
 		try {
-			rset = stment
-					.executeQuery("SELECT keysID, propertyID FROM keyContract ORDER BY keysID");
+			rset = stment.executeQuery("SELECT keyID FROM KeyContract ORDER BY keyID");
 
 			while (rset.next() && rset.getString(1) != null) {
-				AllContracts.addItem(rset.getString(1) + " "
-						+ rset.getString(2));
+				AllContracts.addItem(rset.getString(1));
 			}
+			
 
 		} catch (SQLException e1) {
 			System.out.println("Can execute the query in setUpContractList");

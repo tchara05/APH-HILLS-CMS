@@ -87,9 +87,9 @@ public class SecuritySaveButton extends Thread {
 				ResultSet rst = null;
 				
 				
-				rst = st.executeQuery("SELECT plotID FROM Property WHERE plotID='" + id+"'");
+				rst = st.executeQuery("SELECT plotID FROM Property WHERE plotID ='" + id + "'");
 						
-					if (rst.next()){
+					if (rst.next()) {
 						return true;
 					}
 			
