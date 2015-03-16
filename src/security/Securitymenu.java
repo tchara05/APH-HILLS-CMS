@@ -33,7 +33,7 @@ public class Securitymenu extends JPanel {
 		checkIn = new CheckIn();
 		database = new DatabaseConnection();
 		panel=new JPanel();
-
+		securityForm = new SecurityForm();
 		
 
 		JButton btnAddContract = new JButton("Add New Key Contract");
@@ -46,7 +46,7 @@ public class Securitymenu extends JPanel {
 		JButton btnDeleteContract = new JButton("Delete Key Contract");
 		btnDeleteContract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new SecurityDeleteButton().start();
+				SecurityDeleteButton.start();
 			}
 		});
 
@@ -195,28 +195,12 @@ public class Securitymenu extends JPanel {
 			e1.printStackTrace();
 		}
 		try {
-			AllContracts.setSelectedIndex(0);
 		} catch (Exception e) {
 			System.out.println("Empty Contract List");
 			e.printStackTrace();
 		}
 	}
 	
-	public static void UpdateContractList(String str){
-		
-		int length = AllContracts.getItemCount();
-		String value = str;
-		int i = 0;
-		
-		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllContracts.getItemAt(i) )>0){
-			i++;
-		}
-		while (i<length && String.CASE_INSENSITIVE_ORDER.compare(value,(String)AllContracts.getItemAt(i) )==0){
-			i++;	
-		}
-		
-		AllContracts.insertItemAt(value, i);
-	}
 	public static JPanel createSecurityMenu(){
 		new Securitymenu();
 		return panel ;

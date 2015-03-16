@@ -1,5 +1,6 @@
 package security;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -17,25 +18,44 @@ public class SecurityDeleteButton {
 		int response = JOptionPane.showConfirmDialog(null,
 				"Do you want to continue?", "Confirm",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		
 		if (response == JOptionPane.YES_OPTION) {
 
 			String keyID = "";
 			keyID = Securitymenu.txtSearchKey.getText();
-			//keyID = (String) Securitymenu.getSelectedContract();
+			
+			String keyID_fromList = "";
+			keyID_fromList = (String)Securitymenu.getSelectedContract();
 
-			if (keyID != null) {
-
-				Securitymenu.DeleteKeyContractFromList();
+			if ((!keyID.equals("")) || (!keyID_fromList.equals(""))) {
+		
+				if(keyID.equals("")) {
+					keyID = keyID_fromList.substring(0, keyID_fromList.length());
+				}
+				System.out.println(keyID);
+				
+				String queryChecker = "";
+				queryChecker = "SELECT * FROM KeyContract WHERE keyID = '"
+						+ keyID +  "'";
+				
 				String query = "";
 				query = "DELETE KeyContract WHERE keyID = '" + keyID + "'";
 
 				try {
-					stment.executeUpdate(query);
+					ResultSet rst = stment.executeQuery(queryChecker);
+					if(!rst.next())
+						JOptionPane.showMessageDialog(null, "Key not found",
+								"Warning message", JOptionPane.WARNING_MESSAGE);
+					else {
+						stment.executeUpdate(query);
+						JOptionPane.showMessageDialog(null, "Key Contract Deleted",
+								"Information Message", JOptionPane.INFORMATION_MESSAGE);
+						Securitymenu.AllContracts.removeAllItems();
+						Securitymenu.setUpContractList();
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null, "Key Contract Deleted",
-						"Information Message", JOptionPane.INFORMATION_MESSAGE);
 
 			} else {
 				JOptionPane.showMessageDialog(null,

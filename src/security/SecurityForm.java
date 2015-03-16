@@ -22,7 +22,7 @@ import javax.swing.JComboBox;
 
 public class SecurityForm {
 
-	public static JFrame frame;
+	public JFrame frame;
 	public static JPanel contentPane;
 	public static JTextField txtkeyID;
 	public static JTextArea txtAreaNotes;
@@ -144,6 +144,11 @@ public class SecurityForm {
 		btnPanel.add(btnAdd);
 
 		JButton btnBack = new JButton("Go Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+			}
+		});
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnBack.setBounds(32, 319, 116, 31);
 		btnPanel.add(btnBack);
@@ -159,8 +164,4 @@ public class SecurityForm {
 		btnPanel.add(btnClear);
 	}
 
-
-	public static void setVisible(boolean value) {
-		frame.setVisible(value);
-	}
 }

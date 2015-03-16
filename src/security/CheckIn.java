@@ -198,6 +198,11 @@ public class CheckIn {
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnBack = new JButton("Go Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmCheckIn.setVisible(false);
+			}
+		});
 		btnBack.setBounds(77, 473, 149, 33);
 		buttonPanel.add(btnBack);
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
