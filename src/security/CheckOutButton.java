@@ -105,8 +105,7 @@ public class CheckOutButton extends Thread {
 				DatabaseConnection database = new DatabaseConnection();
 				Statement st = database.getStatement();
 				ResultSet rst = null;
-				
-				
+			
 				rst = st.executeQuery("SELECT keyID FROM KeyContract WHERE keyID='" + id+"'");
 						
 					if (rst.next()){

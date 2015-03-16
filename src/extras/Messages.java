@@ -17,4 +17,10 @@ public class Messages {
 					"Information Message",
 					JOptionPane.INFORMATION_MESSAGE);
 	 }		
+	 public static void showErrorMessage(String msg){
+		 JOptionPane.showMessageDialog(null,
+				    msg,
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE);	
+	 }
 }

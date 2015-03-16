@@ -5,18 +5,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
-
-import extras.DatabaseConnection;
 import extras.ListManager;
-
-import userMenus.LogIn;
 
 public class CustomerEditButton extends Thread {
 
 	public void run() {
 
-		DatabaseConnection database= new DatabaseConnection();
-		Statement st = database.getStatement();
+		synchronized(CustomerMenu.database){
+		Statement st = CustomerMenu.database.getStatement();
 		ResultSet rst = null;
 		
 		String customer = (String) CustomerMenu.AllCustomers.getSelectedItem();
@@ -41,6 +37,7 @@ public class CustomerEditButton extends Thread {
 		} else {
 			JOptionPane.showMessageDialog(null, "Nothing To Edit",
 					"Information Message", JOptionPane.INFORMATION_MESSAGE);
+		}
 		}
 	}
 

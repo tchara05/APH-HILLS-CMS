@@ -32,8 +32,11 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.MatteBorder;
 
+import security.SecurityMen;
+
 import extras.Checker;
 import extras.DatabaseConnection;
+import extras.Messages;
 
 public class LogIn {
 
@@ -41,6 +44,10 @@ public class LogIn {
 	public static JTextField txtUserName;
 	private JPasswordField txtPassword;
 	private JFrame menu;
+
+	// Button //
+	JButton btnLogIn;
+	
 	public static DatabaseConnection  database;
 
 	/**
@@ -78,12 +85,10 @@ public class LogIn {
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
 		}
 
-		
 		frmAphroditeHill = new JFrame();
 		frmAphroditeHill.setTitle("Aphrodite Hill");
 		frmAphroditeHill.setBackground(Color.GRAY);
 		frmAphroditeHill.getContentPane().setForeground(new Color(0, 0, 0));
-		
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(30, 144, 255), new Color(0, 0, 0)));
@@ -117,68 +122,19 @@ public class LogIn {
 					.addGap(289))
 		);
 		
+		// TextBoxes
+		txtUserName = new JTextField();
+		txtUserName.setColumns(10);
+		txtPassword = new JPasswordField();
+		
+		
+		//Labels //
+		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 15));
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setFont(new Font("Calibri", Font.PLAIN, 15));
 		
-		txtUserName = new JTextField();
-		txtUserName.setColumns(10);
-		
-		txtPassword = new JPasswordField();
-		
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 15));
-		
-		JButton btnLogIn = new JButton("Log In");
-		btnLogIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				String username = txtUserName.getText();
-				String password = txtPassword.getText();
-				String query="SELECT * FROM SystemUsers WHERE username='"+username+"' AND passwords = '"+password+"'";
-				
-				
-				try {
-					database= new DatabaseConnection();
-					ResultSet rst =null;
-					rst = database.getStatement().executeQuery(query);
-					
-					System.out.println("I executed query");
-					
-					
-					if (rst.next()){
-						 String rights = rst.getString(4);
-						 if (rights.equals("a")){
-							 frmAphroditeHill.setVisible(false);
-							  new AdminMenu().setVisible(true);
-						 }else if (rights.equals("b")){
-							 frmAphroditeHill.setVisible(false);
-							 new SecretaryMenu().setVisible(true);
-						 }else if (rights.equals("c")){
-							 frmAphroditeHill.setVisible(false);
-							 new SecurityMenu().setVisible(true);
-						 }else if(rights.equals("d")){
-							 frmAphroditeHill.setVisible(false);
-							 new AccountantMenu().setVisible(true);
-						 }
-				
-					}else{
-						
-						JOptionPane.showMessageDialog(null,
-							    "Wrong User Name or Password",
-							    "Error",
-							    JOptionPane.ERROR_MESSAGE);	
-
-				   }
-					
-				}catch(Exception p){
-					
-					p.printStackTrace();
-					
-				}
-				
-			}
-		});
-		
+		btnLogIn = new JButton("Log In");
 		JButton btnHelp = new JButton("Help");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -222,15 +178,62 @@ public class LogIn {
 		frmAphroditeHill.getContentPane().setLayout(groupLayout);
 		frmAphroditeHill.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmAphroditeHill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		addButtonFuctionalities();
 	}
 	
-	public static String getUsername() {
-		//return txtUserName.getText();
+	// Buttons Fuctionalities //
+	private void addButtonFuctionalities(){
+	btnLogIn.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			String username = txtUserName.getText();
+			String password = txtPassword.getText();
+			String query="SELECT * FROM SystemUsers WHERE userName='"+username+"' AND passwords = '"+password+"'";
+			
+			try {
+				ResultSet rst =null;
+			
+				// Concurrency //
+				synchronized(database){
+					rst = database.getStatement().executeQuery(query);
+					System.out.println("I executed query");
+				}
+				
+				if (rst.next()){
+					 String rights = rst.getString(3);
+					 if (rights.equals("a")){
+						 frmAphroditeHill.setVisible(false);
+						  new AdminMenu().setVisible(true);
+					 }else if (rights.equals("b")){
+						 frmAphroditeHill.setVisible(false);
+						 new SecretaryMenu().setVisible(true);
+					 }else if (rights.equals("c")){
+						 frmAphroditeHill.setVisible(false);
+						 new SecurityMenu().setVisible(true);
+					 }else if(rights.equals("d")){
+						 frmAphroditeHill.setVisible(false);
+						 new AccountantMenu().setVisible(true);
+					 }
+			
+				}else{
+					
+					Messages.showErrorMessage("Error Username Or Password");
+			   }
+			}catch(Exception p){
+				p.printStackTrace();
+			}
+		}
+	});		
+	}
+	
+	
+	public static String  getUsername(){
+		
 		return "marios";
+		
+		
+		
 	}
-	
-	
-	
 	
 	
 	

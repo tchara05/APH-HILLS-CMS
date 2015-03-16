@@ -9,14 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+@SuppressWarnings("serial")
 public class statusPanel extends JPanel {
 	
 	// Input fields //
 	public static JTextField txtStatusID;
 	public static  JTextField txtStatus;
-	public static JComboBox AllStatus;
-
-
+	public static JComboBox<String> AllStatus;
+	
+	
 	public statusPanel() {
 		
 		// Labels //
@@ -25,7 +26,7 @@ public class statusPanel extends JPanel {
 		JLabel lblStatus = new JLabel("Status:");
 		
 		// Drop Down //
-		AllStatus = new JComboBox();
+		AllStatus = new JComboBox<String>();
 		
 		// Buttons //
 		JButton btnAddStatus = new JButton("Add Status");

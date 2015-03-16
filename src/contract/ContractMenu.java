@@ -11,13 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import property.PropertyMenu;
-
-import customer.CustomerMenu;
 
 import extras.DatabaseConnection;
 import extras.ListManager;
-import extras.Messages;
 import extras.Query;
 
 import java.awt.event.MouseAdapter;
@@ -26,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@SuppressWarnings("serial")
 public class ContractMenu extends JPanel {
 	
 	//The Box //
@@ -34,6 +31,8 @@ public class ContractMenu extends JPanel {
 	public static JComboBox<String> AllProperties ;
 	public static JComboBox<String> AllClasses ;
 	public static JComboBox<String> AllParcels ;
+	
+	@SuppressWarnings("unused")
 	private static ContractForm contractform ;
 	
 	//Buttons //
@@ -41,12 +40,13 @@ public class ContractMenu extends JPanel {
 	private JButton btnEditContract;
 	private JButton btnAddNewContract;
 		
+	public static DatabaseConnection database;
 	
 	public ContractMenu(){
 		 panel = new JPanel();
 		 panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		contractform = new ContractForm();
-	
+		 contractform = new ContractForm();
+		 database = new DatabaseConnection();
 		//DropDown List: //
 		 AllProperties = new JComboBox<String>();
 		 ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
@@ -64,8 +64,6 @@ public class ContractMenu extends JPanel {
 		btnFilter = new JButton("Filter");
 		btnEditContract = new JButton("Edit Contract");
 		btnAddNewContract = new JButton("Add New Contract");
-		
-		
 		
 		//Panel Positions : //
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -149,17 +147,12 @@ public class ContractMenu extends JPanel {
 		 return panel;
 	}
 
-	
+	//Buttons Fuctionalities //
 	private void addButtonsFuctionalities(){
-		
 		btnAddNewContract.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
-
 				if (existContract()){
-				
 				int response = JOptionPane.showConfirmDialog(null,
 						"There is already a contract for that property\n" +
 						"Deactive current contract and continue with a\n new contract?", "Confirm",
@@ -175,14 +168,12 @@ public class ContractMenu extends JPanel {
 			}
 		});
 		
-		
 	}
+	
 	
 	public boolean existContract() {
 		
-		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
-
 		String plot = (String)ContractMenu.AllProperties.getSelectedItem();
 		String Plot[]=ListManager.SplitTwoItem(plot);
 		String query="SELECT contractID, plotID FROM Contract WHERE plotID='"+Plot[0]+"'";
@@ -198,8 +189,6 @@ public class ContractMenu extends JPanel {
 			System.out.println("Existing Contract");
 			e.printStackTrace();
 		}
-		
-		
 	return false;
 	}
 	

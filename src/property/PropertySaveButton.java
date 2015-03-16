@@ -1,14 +1,10 @@
 package property;
 
 import java.awt.Color;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.JOptionPane;
-
 import contract.ContractMenu;
-
 import extras.Checker;
 import extras.DatabaseConnection;
 import extras.ListManager;
@@ -206,7 +202,8 @@ public class PropertySaveButton extends Thread {
 								+"', poolHeading ='"+poolHeading+"' WHERE plotID='"+ PropertyForm.txtPlotID.getText()
 								+"'";
 						
-								ListManager.DeleteFromList(PropertyMenu.AllProperties);		
+								String del =ListManager.DeleteFromList(PropertyMenu.AllProperties);	
+								ContractMenu.AllProperties.removeItem(del);
 					}
 
 				
@@ -218,7 +215,7 @@ public class PropertySaveButton extends Thread {
 					ListManager.UpdateList(id, plotName, plotNumber, PropertyMenu.AllProperties);
 					ListManager.UpdateList(id, plotName, plotNumber, ContractMenu.AllProperties);
 					PropertyForm.edit = false;
-					new PropertyClearButton().start();
+					PropertyClearButton.start();
 					Messages.showSaveMessage("Property Added");
 				}
 

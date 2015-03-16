@@ -5,17 +5,20 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import extras.DatabaseConnection;
+
+@SuppressWarnings("serial")
 public class mainAdminPanel extends JPanel {
 	
 	private static JPanel adminMainPanel;
 	private static classPanel  clPanel;
 	private static parcelPanel parPanel;
 	private static statusPanel statPanel;
-
+	public static DatabaseConnection database;
 	
 	public mainAdminPanel() {	
 		adminMainPanel = new JPanel();
-		
+		database=new DatabaseConnection();;
 		//Class Panel //
 		clPanel = new classPanel();
 		parPanel = new parcelPanel();

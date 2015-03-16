@@ -1,6 +1,5 @@
 package contract;
 
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 import javax.swing.DefaultListModel;
@@ -15,7 +14,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -68,17 +66,15 @@ public class ContractForm {
 
 	public static void main(String[] args) {
 		
+					@SuppressWarnings("unused")
 					ContractForm window = new ContractForm();
-					ContractForm.setVisible(true);
-					
+					ContractForm.setVisible(true);		
 	}
 
 	public ContractForm() {
 		initialize();
 	}
-
 	private void initialize() {
-		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -172,10 +168,8 @@ public class ContractForm {
 		
 		 Owners=new JList<String>(AllOwners); 
 		 Customers= new JList<String>(AllCustomers);
-
-
 		
-		// JList //
+		 // JList //
 		Customers.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -194,7 +188,6 @@ public class ContractForm {
 	    chckActive = new JCheckBox("Active");
 		chckActive.setSelected(true);
 		
-
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -281,17 +274,12 @@ public class ContractForm {
 		OwnerPane.setViewportView(Owners);
 		CustomersPane.setViewportView(Customers);
 		panel_1.setLayout(gl_panel_1);
-		
-
-		
-		
 	
 		// Labels For Panel 2 //
 		JLabel lblPlotid = new JLabel("PlotID:");
 		JLabel lblPlotName = new JLabel("Plot Name:");
 		JLabel lblPlotNumberr = new JLabel("Plot Number:");
 	
-		
 		// Text Boxes For Pane 2 //
 		txtPlotID = new JTextField();
 		txtPlotID.setEditable(false);
@@ -304,7 +292,6 @@ public class ContractForm {
 		txtPlotNumber = new JTextField();
 		txtPlotNumber.setEditable(false);
 		txtPlotNumber.setColumns(10);
-		
 		
 		// Panel 2 Positions: //
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
@@ -369,7 +356,6 @@ public class ContractForm {
 		frame.setVisible(false);
 		
 		addButtonsFuctionalities();
-		
 	}
 	
 	// Add Events to Buttons//
@@ -402,8 +388,6 @@ public class ContractForm {
 					String[] sameCustomer =ListManager.SplitThreeItem(Customer[1]);
 					ListManager.UpdateList(sameCustomer[0], sameCustomer[1], sameCustomer[2],AllCustomers);
 					totalShare = totalShare  - Integer.parseInt(Customer[0]);
-				
-					
 				}
 		});
 
@@ -418,22 +402,18 @@ public class ContractForm {
 				
 			}
 		});
+		
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
-				
+				ContractForm.setVisible(false);
 			}
 		});
-		
-		
-		
 	}
 
 	private static void setTextFields(String str){
-		DatabaseConnection database = new DatabaseConnection();
-		Statement st = database.getStatement();
+		
+		Statement st = ContractMenu.database.getStatement();
 		str = ListManager.SplitOneItem(str);
 		
 		try {
@@ -449,11 +429,7 @@ public class ContractForm {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
-	
 	private static void setContractID() {
 
 		DatabaseConnection database = new DatabaseConnection();
@@ -462,13 +438,11 @@ public class ContractForm {
 
 		ResultSet rs;
 		try {
-			rs = st.executeQuery("SELECT MAX(contractID)  FROM Contract");
+			rs = st.executeQuery(Query.CONTRACT_NO);
 
 			if (rs.next()) {
 				if (rs.getString(1) != null) {
-					txtContractID.setText("" + (rs.getInt(1) + 1));
-				} else {
-					txtContractID.setText("1");
+					txtContractID.setText(rs.getString(1));
 				}
 			} else {
 				txtContractID.setText("1");
@@ -495,9 +469,6 @@ public class ContractForm {
 		txtPlotID.setText(Property[0]);
 		txtPlotNumber.setText(Property[2]);
 		txtPlotName.setText(Property[1]);
-		
 	}
 
 }
-
-

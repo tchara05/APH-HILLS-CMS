@@ -25,9 +25,6 @@ public class PropertyDeleteButton extends Thread {
 
 		if (response == JOptionPane.YES_OPTION) {
 			String property = (String) PropertyMenu.AllProperties.getSelectedItem();
-	
-			int i = 0;
-
 			if (property != null) {
 			     ListManager.DeleteFromList(PropertyMenu.AllProperties);
 				ContractMenu.AllProperties.removeItem(property);

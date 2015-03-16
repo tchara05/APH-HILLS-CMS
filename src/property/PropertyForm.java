@@ -492,7 +492,7 @@ public class PropertyForm {
 		 chckbxCommited = new JCheckBox("Committed");
 		 chckbxRentalPlan = new JCheckBox("Rental Plan");
 		
-		AllStatus = new JComboBox();
+		AllStatus = new JComboBox<String>();
 		ListManager.setUpTwoColumnsList(AllStatus, Query.STATUS_NO_NAME);
 		// Positions: //
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -558,6 +558,7 @@ public class PropertyForm {
 	
 	public static void main(String[] args) {
 		
+					@SuppressWarnings("unused")
 					PropertyForm window = new PropertyForm();
 					PropertyForm.setVisible(true);
 	}

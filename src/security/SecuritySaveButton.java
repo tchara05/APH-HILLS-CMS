@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import userMenus.SecurityMenu;
 import extras.DatabaseConnection;
 import extras.Checker;
 import extras.Messages;

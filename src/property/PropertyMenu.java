@@ -5,10 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,24 +13,15 @@ import javax.swing.JPanel;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import contract.ContractForm;
-
-import extras.DatabaseConnection;
 import extras.Query;
-/*
- * We have to make status fields and add the id to dropdowlist
- * filter the dropdown list to remove the id with Checker.StringRemoveID
- * 
- * 
- * 
- * 
- */
+
 import extras.ListManager;
 
 
+@SuppressWarnings("serial")
 public class PropertyMenu extends JPanel {
 
+	@SuppressWarnings("unused")
 	private PropertyForm propertyform;
 	private static JPanel PropertyPanel;
 	
@@ -171,8 +158,6 @@ public class PropertyMenu extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				
 				new PropertyEditButton().start();
-				
-				
 			}
 		});
 		

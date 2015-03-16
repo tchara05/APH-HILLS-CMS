@@ -57,7 +57,7 @@ public class SecurityForm {
 
 		frame = new JFrame();
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		contentPane = new JPanel();

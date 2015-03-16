@@ -14,8 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import extras.Checker;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Query;
@@ -26,11 +24,10 @@ import java.awt.event.ItemEvent;
 @SuppressWarnings("serial")
 public class CustomerMenu extends JPanel {
 
-	
-	@SuppressWarnings("unused")
-	
 	// This is the hole box //
 	private static JPanel CustomerPanel;
+	
+	@SuppressWarnings("unused")
 	private static CustomerForm customerform;
 	
 	// Graphical Input Variables //
@@ -48,8 +45,10 @@ public class CustomerMenu extends JPanel {
 	private JButton btnDeleteCustomer;
 	private JButton btnEditCustomer;
 
-
-	public CustomerMenu() {
+	public static DatabaseConnection database;
+	
+	
+	CustomerMenu() {
 
 		customerform = new CustomerForm();
 		CustomerForm.setVisible(false);
@@ -73,6 +72,8 @@ public class CustomerMenu extends JPanel {
 		btnEditCustomer = new JButton("Edit/View Customer");
 		btnDeleteCustomer = new JButton("Delete Customer");
 	
+		database = new DatabaseConnection();
+		
 		//Text Box //
 		PrimaryMail = new JTextField();
 		PrimaryMail.setEditable(false);
@@ -214,18 +215,12 @@ public class CustomerMenu extends JPanel {
 		
 	}
 	
-	
 	// Reuturns the hole box //
-	public static JPanel createCustumerMenu() {
+	public static JPanel createCustomerMenu() {
 		new CustomerMenu();
 		return CustomerPanel;
 	}
-
-	
-
 	public void setDetails(String customer) {
-
-		DatabaseConnection database = new DatabaseConnection();
 		Statement st = database.getStatement();
 		ResultSet rst = null;
 
@@ -248,7 +243,6 @@ public class CustomerMenu extends JPanel {
 				PrimaryMail.setText(rst.getString(4));
 				contactNumber.setText(rst.getString(5));
 				MobilePhone.setText(rst.getString(6));
-				
 			}
 		} catch (SQLException e) {
 			System.out.println("Cannot execute query in customer details filling fields");

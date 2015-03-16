@@ -6,8 +6,7 @@ import java.awt.Color;
 public class CustomerClearButton{
 	
 	
-	public static void start(){	
-			String val ="";
+	public static void start(){
 			CustomerForm.chckbxCloseAccound.setSelected(false);
 			CustomerForm.chckbxInformationMaterial.setSelected(false);
 			CustomerForm.txtAddress.setText("");

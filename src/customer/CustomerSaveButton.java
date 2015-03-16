@@ -1,33 +1,22 @@
 package customer;
 
 import java.awt.Color;
-import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
-
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-
 import contract.ContractForm;
-import userMenus.LogIn;
 import extras.Checker;
-import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 
 public class CustomerSaveButton extends Thread {
 
-	/*
-	 * To do Things :
-	 *
-	 */
 	public void run() {
 
 		boolean checked = true;
 
-		String country = (String)CustomerForm.Country.getSelectedItem();
+		String country = (String) CustomerForm.Country.getSelectedItem();
 
 		/** Retrieve and check the data from the form **/
 
@@ -50,20 +39,19 @@ public class CustomerSaveButton extends Thread {
 		String city = CustomerForm.txtCity.getText();
 		city = Checker.clearString(city);
 		if (!Checker.checkString(city) || (city.isEmpty())) {
-			
+
 			checked = false;
 		}
 
 		String bussinesNumber = CustomerForm.txtBussinesNumber.getText();
 		if (!Checker.checkNumber(bussinesNumber)) {
-			
+
 			checked = false;
 		}
 
 		String contactNumber = CustomerForm.txtContactNumber.getText();
 		contactNumber = contactNumber.trim();
 		if (!Checker.checkNumber(contactNumber)) {
-			
 
 			checked = false;
 		}
@@ -71,24 +59,23 @@ public class CustomerSaveButton extends Thread {
 		String faxNumber = CustomerForm.txtFaxNumber.getText();
 		faxNumber = faxNumber.trim();
 		if (!Checker.checkNumber(faxNumber)) {
-			
+
 			checked = false;
 		}
 
-		String customerID = CustomerForm.txtID.getText();
 		String note = CustomerForm.txtNote.getText();
 
 		String mobileNum = CustomerForm.txtPhoneMobile.getText();
 		mobileNum = mobileNum.trim();
 		if (!Checker.checkNumber(mobileNum)) {
-			
+
 			checked = false;
 		}
 
 		String primaryMail = CustomerForm.txtPrimaryMail.getText();
 		primaryMail = primaryMail.trim();
 		if (!Checker.checkEmailAddress(primaryMail)) {
-			
+
 			checked = false;
 		}
 
@@ -96,7 +83,7 @@ public class CustomerSaveButton extends Thread {
 		secondaryMail = secondaryMail.trim();
 		if (!secondaryMail.isEmpty()) {
 			if (!Checker.checkEmailAddress(secondaryMail)) {
-				
+
 				checked = false;
 			}
 		}
@@ -112,80 +99,70 @@ public class CustomerSaveButton extends Thread {
 			closeAccount = 1;
 		}
 
-		
-		
-		
-		
-		if (!checked){
+		if (!checked) {
 			Messages.showWarningMessage("Complete All Details");
-			
 		}
-		/****************************************************************/
-
 		try {
 
-		
-			DatabaseConnection database = new DatabaseConnection();
-			Statement st = database.getStatement();
+			synchronized (CustomerMenu.database) {
+				Statement st = CustomerMenu.database.getStatement();
+				int countryID = getCountry(country, st);
+				if (countryID > 0 && checked) {
+					// Confirm Dialog //
+					int response = JOptionPane.showConfirmDialog(null,
+							"Do you want to save changes?", "Confirm",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE);
+					if (response == JOptionPane.YES_OPTION) {
 
-			int countryID = getCountry(country, st);
-			if (countryID > 0 && checked) {
+						String query = "";
+						if (!CustomerForm.edit) {
+							query = "INSERT INTO CUSTOMER VALUES ('" + nFname
+									+ "','" + nLname + "','" + address + "','"
+									+ primaryMail + "','" + secondaryMail
+									+ "','" + countryID + "','" + city + "','"
+									+ zipcode + "','" + bussinesNumber + "','"
+									+ mobileNum + "','" + contactNumber + "','"
+									+ faxNumber + "','" + closeAccount + "','"
+									+ infoMaterial + "','" + note + "')";
+						} else {
 
-				
-				
-				// Confirm Dialog //
-				int response = JOptionPane
-						.showConfirmDialog(null,
-								"Do you want to save changes?", "Confirm",
-								JOptionPane.YES_NO_OPTION,
-								JOptionPane.QUESTION_MESSAGE);
-				if (response == JOptionPane.YES_OPTION) {
+							query = "UPDATE Customer SET firstName = '"
+									+ nFname + "', lastName = '" + nLname
+									+ "', address = '" + address
+									+ "', primaryEmail ='" + primaryMail
+									+ "', secondaryEmail = '" + secondaryMail
+									+ "', countryID = '" + countryID
+									+ "', city ='" + city + "', zipCode= '"
+									+ zipcode + "', bussinesPhone = '"
+									+ bussinesNumber + "', mobilePhone = '"
+									+ mobileNum + "', contactPhone ='"
+									+ contactNumber + "', fax = '" + faxNumber
+									+ "', closeAccount = '" + closeAccount
+									+ "', informationMaterial = '"
+									+ infoMaterial + "', note ='" + note
+									+ "' WHERE  customerID = '"
+									+ CustomerForm.txtID.getText() + "'";
 
-					String query = "";
-					if (!CustomerForm.edit) {
-						query = "INSERT INTO CUSTOMER VALUES ('" + nFname
-								+ "','" + nLname + "','" + address + "','"
-								+ primaryMail + "','" + secondaryMail + "','"
-								+ countryID + "','" + city + "','" + zipcode
-								+ "','" + bussinesNumber + "','" + mobileNum
-								+ "','" + contactNumber + "','" + faxNumber
-								+ "','" + closeAccount + "','" + infoMaterial
-								+ "','" + note + "')";
-					} else {
+							ListManager
+									.DeleteFromList(CustomerMenu.AllCustomers);
+						}
 
-						query = "UPDATE Customer SET firstName = '" + nFname
-								+ "', lastName = '" + nLname + "', address = '"
-								+ address + "', primaryEmail ='" + primaryMail
-								+ "', secondaryEmail = '" + secondaryMail
-								+ "', countryID = '" + countryID + "', city ='"
-								+ city + "', zipCode= '" + zipcode
-								+ "', bussinesPhone = '" + bussinesNumber
-								+ "', mobilePhone = '" + mobileNum
-								+ "', contactPhone ='" + contactNumber
-								+ "', fax = '" + faxNumber
-								+ "', closeAccount = '" + closeAccount
-								+ "', informationMaterial = '" + infoMaterial
-								+ "', note ='" + note
-								+ "' WHERE  customerID = '"
-								+ CustomerForm.txtID.getText() + "'";
+						st.executeUpdate(query);
+						ListManager.UpdateList(CustomerForm.txtID.getText(),
+								nFname, nLname, CustomerMenu.AllCustomers);
+						ListManager.UpdateList(CustomerForm.txtID.getText(),
+								nFname, nLname, ContractForm.AllCustomers);
+						CustomerClearButton.start();
+						Messages.showSaveMessage("Customer added");
 
-						ListManager.DeleteFromList(CustomerMenu.AllCustomers);
+						CustomerForm.setVisible(false);
 					}
-
-					st.executeUpdate(query);
-					ListManager.UpdateList(CustomerForm.txtID.getText(),nFname,  nLname, CustomerMenu.AllCustomers);
-					ListManager.UpdateList(CustomerForm.txtID.getText(),nFname,nLname,ContractForm.AllCustomers);
-					new CustomerClearButton().start();
-					Messages.showSaveMessage("Customer added");
-				
-
-					CustomerForm.setVisible(false);
-
+				} else {
+					System.out
+							.println("Invalid Character or Country Somewhere");
 				}
-			} else {
-				System.out.println("Invalid Character or Country Somewhere");
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -198,12 +175,6 @@ public class CustomerSaveButton extends Thread {
 
 	}
 
-	/**
-	 * 
-	 * We need this to retrieve the id of country from the database because they
-	 * are in talbe.
-	 * 
-	 */
 	private static int getCountry(String country, Statement st)
 			throws SQLException {
 

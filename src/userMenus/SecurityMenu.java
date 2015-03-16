@@ -1,66 +1,60 @@
 package userMenus;
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Toolkit;
+
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.GroupLayout.Alignment;
 
-import contract.ContractForm;
-import contract.ContractMenu;
-
+import property.PropertyForm;
 import property.PropertyMenu;
-
+import security.SecurityForm;
+import security.SecurityMen;
+import contract.ContractMenu;
 import customer.CustomerMenu;
-import extras.ListManager;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
+public class SecurityMenu {
 
-
-
-public class SecretaryMenu {
-
-	private JFrame frmSecretaryMenu;
+	private JFrame frmSecurityMenu;
+	@SuppressWarnings("unused")
+	
+	
+	
 	
 	public static void main(String[] args) {
 		
-					SecretaryMenu window = new SecretaryMenu();
-					window.frmSecretaryMenu.setVisible(true);
-				
+					SecurityMenu window = new SecurityMenu();
+					window.frmSecurityMenu.setVisible(true);
 	}
 
-	public SecretaryMenu() {
+
+	public SecurityMenu() {
 		initialize();
-
 	}
-	
+
 	private void initialize() {
-		frmSecretaryMenu = new JFrame();
-		frmSecretaryMenu.setTitle("Secretary Menu");
-		frmSecretaryMenu.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		frmSecurityMenu = new JFrame();
+		frmSecurityMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSecurityMenu.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		
 		JLabel lblSecretaryMenu;
-		
-		frmSecretaryMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		JLabel lblNewLabel = new JLabel(image);
 		lblNewLabel.setBackground(Color.BLACK);
 		
-		lblSecretaryMenu = new JLabel("Secretary Menu ");
+		lblSecretaryMenu = new JLabel("SecurityMenu ");
 		lblSecretaryMenu.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		
-		
-		GroupLayout groupLayout = new GroupLayout(frmSecretaryMenu.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmSecurityMenu.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -87,21 +81,18 @@ public class SecretaryMenu {
 					.addContainerGap(168, Short.MAX_VALUE))
 		);
 		
+		
 		// Inserting the tapped //
-		JPanel PropertyPanel = PropertyMenu.createPropertyMenu();
-		tabbedPane.addTab("Property Menu", null, PropertyPanel, null);
+		JPanel SecurityPanel = SecurityMen.createSecurityMenu();
+		tabbedPane.addTab("Security Menu", null, SecurityPanel);
 		
-		JPanel CustomerPanel = CustomerMenu.createCustomerMenu();
-		tabbedPane.addTab("Customer Menu", null, CustomerPanel, null);
 		
-		JPanel ContractPanel = ContractMenu.createContractMenu();
-		tabbedPane.addTab("Contract Menu", null, ContractPanel);
+		frmSecurityMenu.getContentPane().setLayout(groupLayout);
+	}
+	
+	
+	public void setVisible(boolean val){
+		this.frmSecurityMenu.setVisible(val);
+	}
 
-		frmSecretaryMenu.getContentPane().setLayout(groupLayout);
-	}
-	
-	public void setVisible(boolean visible){
-		this.frmSecretaryMenu.setVisible(visible);
-	}
-	
 }

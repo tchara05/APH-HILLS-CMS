@@ -1,7 +1,5 @@
 package extras;
 
-import javax.swing.JOptionPane;
-
 public class Checker {
 
 	public static boolean checkString(String t) {

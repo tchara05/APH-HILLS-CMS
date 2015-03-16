@@ -22,11 +22,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-
-import userMenus.LogIn;
-
-import extras.Checker;
-import extras.DatabaseConnection;
+import extras.Query;
 
 
 import java.awt.event.MouseAdapter;
@@ -67,6 +63,7 @@ public class CustomerForm {
 	
 	public static void main(String[] args) {
 		
+					@SuppressWarnings("unused")
 					CustomerForm window = new CustomerForm();
 					CustomerForm.setVisible(true);
 					
@@ -75,11 +72,7 @@ public class CustomerForm {
 	public CustomerForm() {
 		initialize();
 		setUpClassesList();
-		addButtonsFuctionalities();
-		
-		
-		
-		
+		addButtonsFuctionalities();	
 	}
 
 	private void initialize() {
@@ -331,8 +324,8 @@ public class CustomerForm {
 
 	public static void setID() {
 
-		DatabaseConnection database= new DatabaseConnection();
-		Statement st = database.getStatement();
+		
+		Statement st = CustomerMenu.database.getStatement();
 		ResultSet rs = null;
 		try {
 			rs = st.executeQuery("SELECT MAX(customerID)  FROM Customer");
@@ -361,14 +354,11 @@ public class CustomerForm {
 
 		try{
 			
-			DatabaseConnection database= new DatabaseConnection();
-			Statement st = database.getStatement(); 	
-			ResultSet rs = st.executeQuery("SELECT countryName FROM Country");	
+			Statement st = CustomerMenu.database.getStatement(); 	
+			ResultSet rs = st.executeQuery(Query.COUNTRY);	
 			while (rs.next()){
 				Country.addItem(rs.getString(1));
 			}
-			
-			
 		}catch (Exception e){
 			e.printStackTrace();
 			

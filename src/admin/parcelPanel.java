@@ -1,5 +1,8 @@
 package admin;
 
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -9,16 +12,18 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import extras.Checker;
+import extras.ListManager;
+import extras.Messages;
+
+@SuppressWarnings("serial")
 public class parcelPanel extends JPanel {
-	
-	
-	
 	
 	// TxtBoxes //
 	public static JTextField txtParceID;
 	public static JTextField txtParcelName;
 	// Dropdown list //
-	public static JComboBox comboBox;
+	public static JComboBox<String> AllParcels;
 	
 	// Buttons //
 	private	JButton btnEditParcel ;
@@ -27,17 +32,13 @@ public class parcelPanel extends JPanel {
 
 	public parcelPanel() {
 		
-		
 		// Labels //
 		JLabel lblParcel = new JLabel("Parcel:");
 		JLabel lblParcelId = new JLabel("Parcel ID:");
 		JLabel lblPercelName = new JLabel("Percel Name:");
 		
 		// DropDownList //
-		comboBox = new JComboBox<String>();
-		/** We need List Manager Here **/
-		
-		
+		AllParcels = new JComboBox<String>();
 		
 		// TextBoxes //
 		txtParceID = new JTextField();
@@ -70,7 +71,7 @@ public class parcelPanel extends JPanel {
 		 					.addGap(34)
 		 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 		 						.addComponent(txtParceID, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-		 						.addComponent(comboBox, 0, 270, Short.MAX_VALUE))))
+		 						.addComponent(AllParcels, 0, 270, Short.MAX_VALUE))))
 		 			.addPreferredGap(ComponentPlacement.RELATED)
 		 			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 		 				.addComponent(btnDeleteParcel)
@@ -83,7 +84,7 @@ public class parcelPanel extends JPanel {
 		 		.addGroup(groupLayout.createSequentialGroup()
 		 			.addGap(33)
 		 			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-		 				.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		 				.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 		 				.addComponent(btnEditParcel)
 		 				.addComponent(lblParcel))
 		 			.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -99,7 +100,44 @@ public class parcelPanel extends JPanel {
 		 			.addContainerGap(32, Short.MAX_VALUE))
 		 );
 		setLayout(groupLayout);
-
+	}
+	
+	@SuppressWarnings("unused")
+	private class btnEdit extends Thread{
+		
+		
+		
+		
+		public void run(){
+				
+				int response = JOptionPane.showConfirmDialog(null,
+						"Do you want to continue?", "Confirm",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				String name=Checker.clearString(txtParcelName.getText());
+				if (response == JOptionPane.YES_OPTION && !name.equals("")) {
+					
+				
+					String c = (String) AllParcels.getSelectedItem();
+					int index = AllParcels.getSelectedIndex();
+					AllParcels.removeItemAt(index);
+					String[] clas = ListManager.SplitTwoItem(c);
+					try {
+						mainAdminPanel.database.getStatement().executeUpdate(
+								"Update Class SET className='" + txtParcelName.getText()
+										+ "' WHERE propertyClassNo='" + clas[0] + "'");
+						AllParcels.insertItemAt(clas[0]+" "+name, index);
+						txtParcelName.setText("");
+					} catch (SQLException e) {
+						System.out.println("Update Class Query");
+						e.printStackTrace();
+					}
+				}else{
+					Messages.showWarningMessage("Empty Class Name");
+				}
+			
+		}
+		
+		
 	}
 	
 

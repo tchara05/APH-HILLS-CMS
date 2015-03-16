@@ -1,4 +1,4 @@
-package userMenus;
+package security;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,72 +12,121 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 
 import extras.DatabaseConnection;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
-public class SecurityMenu extends JPanel {
+public class SecurityMen extends JPanel {
 
-	private JTextField textField;
-	private static JComboBox<String> AllContracts;
-	private JTextField txtKeyNotFound;
-
-	/**
-	 * Create the panel.
-	 */
-	public SecurityMenu() {
-		setLayout(null);
+	public static JTextField textField;
+	public static JComboBox<String> AllContracts;
+	public static JTextField txtKeyNotFound;
+	public static DatabaseConnection database;
+	
+	
+	private static JPanel panel;
+	
+	public SecurityMen() {
+		
+		
+		database = new DatabaseConnection();
+		panel=new JPanel();
 
 		JButton btnAddNew = new JButton("Add New Key Contract");
-		btnAddNew.setBounds(342, 82, 148, 23);
-		add(btnAddNew);
 
 		JButton btnNewButton = new JButton("Delete Key Contract");
-		btnNewButton.setBounds(342, 116, 148, 23);
-		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Edit/View Key Contract");
-		btnNewButton_1.setBounds(342, 150, 148, 23);
-		add(btnNewButton_1);
 
 		JLabel lblNewLabel = new JLabel("Search Contract By KeyID:");
-		lblNewLabel.setBounds(28, 57, 186, 14);
-		add(lblNewLabel);
 
 		textField = new JTextField();
-		textField.setBounds(28, 83, 186, 20);
-		add(textField);
 		textField.setColumns(10);
 
 		JButton btnNewButton_3 = new JButton("Search");
-		btnNewButton_3.setBounds(224, 82, 89, 23);
-		add(btnNewButton_3);
 
 		JLabel lblNewLabel_1 = new JLabel("Key Contracts:");
-		lblNewLabel_1.setBounds(28, 22, 113, 14);
-		add(lblNewLabel_1);
 
 		AllContracts = new JComboBox<String>();
-		AllContracts.setBounds(28, 151, 285, 20);
-		add(AllContracts);
 		
 		JButton btnCheckOutA = new JButton("Check out a Key");
-		btnCheckOutA.setBounds(342, 230, 113, 23);
-		add(btnCheckOutA);
 		
 		JButton btnCheckInA = new JButton("Check in a Key");
-		btnCheckInA.setBounds(342, 270, 113, 23);
-		add(btnCheckInA);
 		
 		txtKeyNotFound = new JTextField();
 		txtKeyNotFound.setEnabled(false);
 		txtKeyNotFound.setEditable(false);
 		txtKeyNotFound.setText("key not found");
-		txtKeyNotFound.setBounds(28, 117, 186, 20);
-		add(txtKeyNotFound);
 		txtKeyNotFound.setColumns(10);
-
+		
+		GroupLayout groupLayout = new GroupLayout(panel);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(29)
+					.addComponent(btnAddNew, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(342)
+					.addComponent(btnCheckOutA, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(342)
+					.addComponent(btnCheckInA, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(AllContracts, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
+							.addGap(29)
+							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(txtKeyNotFound, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
+							.addGap(128)
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(22)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addGap(21)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(1)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAddNew, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(1)
+							.addComponent(txtKeyNotFound, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(AllContracts, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGap(57)
+					.addComponent(btnCheckOutA, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(17)
+					.addComponent(btnCheckInA, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+		);
+		panel.setLayout(groupLayout);
 	}
+	
+	
 
 	public static Object getSelectedContract() {
-
 		return AllContracts.getSelectedItem();
 	}
 
@@ -90,7 +139,7 @@ public class SecurityMenu extends JPanel {
 
 	public static void setUpContractList() {
 
-		DatabaseConnection database = new DatabaseConnection();
+		
 		Statement stment = database.getStatement();
 
 		ResultSet rset = null;
@@ -130,6 +179,11 @@ public class SecurityMenu extends JPanel {
 		}
 		
 		AllContracts.insertItemAt(value, i);
-		
 	}
+	public static JPanel createSecurityMenu(){
+		new SecurityMen();
+		return panel ;
+	}
+	
+	
 }

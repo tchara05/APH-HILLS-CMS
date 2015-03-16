@@ -14,21 +14,15 @@ import javax.swing.JTabbedPane;
 import javax.swing.GroupLayout.Alignment;
 
 import admin.mainAdminPanel;
-
 import logistics.accountantPanel;
-
 import contract.ContractMenu;
-
 import property.PropertyMenu;
-
+import security.SecurityMen;
 import customer.CustomerMenu;
-
-
 
 public class AdminMenu {
 
 	private JFrame frame;
-	/** Main Class **/
 
 	public static void main(String[] args) {
 
@@ -36,21 +30,13 @@ public class AdminMenu {
 					window.frame.setVisible(true);
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public AdminMenu() {
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		
 		JLabel lblAdminMenu;
 		
@@ -89,8 +75,6 @@ public class AdminMenu {
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(168, Short.MAX_VALUE))
 		);
-		
-		
 		// All Menu Panels //
 		JPanel ContractPanel = ContractMenu.createContractMenu();
 		tabbedPane.addTab("Contract Menu", null, ContractPanel, null);
@@ -98,23 +82,21 @@ public class AdminMenu {
 		JPanel PropertyPanel = PropertyMenu.createPropertyMenu();
 		tabbedPane.addTab("Property Menu", null, PropertyPanel, null);
 		
-		JPanel CustomerPanel = CustomerMenu.createCustumerMenu();
+		JPanel CustomerPanel = CustomerMenu.createCustomerMenu();
 		tabbedPane.addTab("Customer Menu", null, CustomerPanel, null);
 		
 		JPanel accountMenu = accountantPanel.createAccountantMenu();
 		tabbedPane.addTab("Accountant Menu", null, accountMenu, null);
 		
+		JPanel SecurityMenu = SecurityMen.createSecurityMenu();
+		tabbedPane.addTab("Security Menu", null, SecurityMenu,null);
+		
 		JPanel AdminPanel = mainAdminPanel.createAdminMenu();
 		tabbedPane.addTab("Admin Menu", null, AdminPanel, null);
 		
-		
 		frame.getContentPane().setLayout(groupLayout);
-		
 	}
-	
-	
 	public void setVisible(boolean visible){
-		
 		frame.setVisible(visible);
 	
 	}

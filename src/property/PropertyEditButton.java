@@ -5,9 +5,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
-
-import customer.CustomerForm;
-
 import extras.DatabaseConnection;
 import extras.ListManager;
 

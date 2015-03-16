@@ -11,7 +11,7 @@ public class DatabaseConnection {
 	private static String username = "aphroditehills";
 	private static Connection conn;
 	private static Statement statement;
-
+	
 	public DatabaseConnection() {
 
 		String urlConnection = "jdbc:sqlserver://APOLLO;" +
@@ -36,14 +36,11 @@ public class DatabaseConnection {
 			System.out
 					.println("The database is not Accesible, please check your internet connection\n"
 							+ "or Database's username  and password");
-			JOptionPane.showMessageDialog(null,
-					"The database is not Accesible, please check your internet connection\n"
-							+ "or Database's username  and password", "Error",
-					JOptionPane.ERROR_MESSAGE);
-
-			e.printStackTrace();
+			
+				Messages.showErrorMessage("The database is not Accesible, please check your internet connection\n"
+							+ "or Database's username  and password");
+				e.printStackTrace();
 		}
-
 	}
 
 	public Statement getStatement() {
@@ -55,9 +52,7 @@ public class DatabaseConnection {
 	}
 
 	public static void main(String args[]) throws Throwable {
-
 		new DatabaseConnection();
-
 	}
 
 }

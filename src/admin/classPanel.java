@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings("serial")
 public class classPanel extends JPanel {
 	
 	// For Data //
@@ -33,12 +34,9 @@ public class classPanel extends JPanel {
 	private JButton btnAddClass ;
 	private JButton btnDeleteClass;
 	// Database Connection //
-	DatabaseConnection database;
+	
 	
 	public classPanel() {
-		
-		
-		database= new DatabaseConnection();
 			
 		//Labels //
 		JLabel lblClasses = new JLabel("Class:");
@@ -62,9 +60,6 @@ public class classPanel extends JPanel {
 		txtName.setColumns(10);
 		
 		setID();
-		
-		
-		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -143,7 +138,7 @@ public class classPanel extends JPanel {
 	private void setID(){
 		
 			try{
-				ResultSet t= database.getStatement().executeQuery("SELECT MAX(PropertyClassNo) FROM Class");
+				ResultSet t=mainAdminPanel.database.getStatement().executeQuery(Query.STATUS_NO);
 				if (t.next()){
 					txtID.setText((t.getInt(1)+1)+"");
 				}
@@ -153,12 +148,9 @@ public class classPanel extends JPanel {
 			}
 	}	
 	
-	
-	
 	// Thread For Deleted Class //
 	private class delBtn extends Thread{
 			public void run(){
-				
 				
 				int response = JOptionPane.showConfirmDialog(null,
 						"Do you want to continue?", "Confirm",
@@ -182,8 +174,6 @@ public class classPanel extends JPanel {
 			}
 	}	
 	
-	
-	
 	//Thread for addbutton //
 	private class addBtn extends Thread {
 		
@@ -200,7 +190,7 @@ public class classPanel extends JPanel {
 				AllClasses.addItem(txtID.getText()+" "+txtName.getText());
 				
 				try {
-					database.getStatement().executeUpdate(query);
+					mainAdminPanel.database.getStatement().executeUpdate(query);
 					setID();
 					txtName.setText("");
 				}catch (SQLException e) {
@@ -213,7 +203,6 @@ public class classPanel extends JPanel {
 			}else{
 				Messages.showWarningMessage("Empty Class Name");
 			}
-			
 		}
 	}
 	
@@ -234,7 +223,7 @@ public class classPanel extends JPanel {
 				AllClasses.removeItem(c);
 				String[] clas = ListManager.SplitTwoItem(c);
 				try {
-					database.getStatement().executeUpdate(
+					mainAdminPanel.database.getStatement().executeUpdate(
 							"Update Class SET className='" + txtName.getText()
 									+ "' WHERE propertyClassNo='" + clas[0] + "'");
 					AllClasses.insertItemAt(clas[0]+" "+name, index);
@@ -247,11 +236,7 @@ public class classPanel extends JPanel {
 			}else{
 				Messages.showWarningMessage("Empty Class Name");
 			}
-
 		}	
-		
 	}
-	
-	
 }	
 

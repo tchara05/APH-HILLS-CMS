@@ -68,7 +68,8 @@ public class ListManager {
 			e.printStackTrace();
 		}
 	}
-	public static void UpdateList(String id, String str1, String str2,DefaultListModel list) {
+
+	public static void UpdateList(String id, String str1, String str2,DefaultListModel<String> list) {
 
 		int length = list.getSize();
 		String value = str1 + " " + str2;
