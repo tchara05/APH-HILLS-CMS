@@ -78,7 +78,7 @@ public class CheckOutButton extends Thread {
 
 				stment.executeUpdate(query);
 
-				new CheckOutClearButton().start();
+				new CheckOutClearButton().start(0);
 
 				JOptionPane.showMessageDialog(null, "Key Checked Out",
 						"Information Message", JOptionPane.INFORMATION_MESSAGE);

@@ -231,7 +231,7 @@ public class CheckOut {
 		btnClear.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
-				new CheckOutClearButton().start();
+				new CheckOutClearButton().start(0);
 			}
 		});
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
