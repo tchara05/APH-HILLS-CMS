@@ -44,7 +44,16 @@ public class CheckOutButton extends Thread {
 					Messages.showWarningMessage("Key ID not found ");
 					flag=false;
 				}else{
-					System.out.print(cheked2(keyID,specificKey));
+					boolean f1,f2;
+					f1=cheked2(keyID,specificKey);//pernei true an exei sto pedio ckeckedInTime"key is not checked in yet"
+					f2=cheked3(keyID,specificKey);//pernei true ean  den yparxei o syndiasmos keyid me specifickey
+					System.out.print(f1);
+					System.out.print(f2);
+					
+					if (f1){
+						Messages.showWarningMessage("Can not Ckeck out this Key Not checkIn yet ");
+						flag=false;								
+					}
 				}
 			} catch (SQLException e1) {
 				System.out.print("2222");
@@ -127,6 +136,7 @@ public class CheckOutButton extends Thread {
 					if (rst.next()){
 						return true;
 					}
+					
 			
 				
 			} catch (NullPointerException e) {
@@ -150,9 +160,9 @@ public class CheckOutButton extends Thread {
 				DatabaseConnection database = new DatabaseConnection();
 				Statement st = database.getStatement();
 				ResultSet rst = null;
-			
-				rst = st.executeQuery("SELECT * FROM Service WHERE keyID='" + id+"'specificKey='"+ p +"'checkInTime="+ temp +"'");
-						
+				
+				rst = st.executeQuery("SELECT * FROM Service WHERE keyID= '" + id+"' and specificKey= '"+ p +"' and checkInTime= '"+ temp +"'");
+				
 					if (rst.next()){
 						return true;
 					}
@@ -167,6 +177,33 @@ public class CheckOutButton extends Thread {
 		return false;
 
 	}
+	
+	
+	private boolean cheked3(String s,String p) throws SQLException {
+		
+		
+		int id=Integer.parseInt(s);
+		try{
+			DatabaseConnection database = new DatabaseConnection();
+			Statement st = database.getStatement();
+			ResultSet rst = null;
+			
+			rst = st.executeQuery("SELECT * FROM Service WHERE keyID= '" + id+"' and specificKey= '"+ p +"'");
+			
+				if (!rst.next()){
+					return true;
+				}
+		
+			
+		} catch (NullPointerException e) {
+
+			e.printStackTrace();
+		}
+	
+	
+	return false;
+
+}
 	
 	
 }
