@@ -32,7 +32,7 @@ public class CheckIn {
 		window.frmCheckIn.setVisible(true);
 	}
 
-	public CheckIn() {
+	public CheckIn()  {
 		initialize();
 	}
 

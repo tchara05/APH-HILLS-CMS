@@ -22,11 +22,11 @@ public class SecurityDeleteButton {
 		if (response == JOptionPane.YES_OPTION) {
 			
 			String keyID = "";
-			keyID = (String)SecurityMen.getSelectedContract();
+			keyID = (String)Securitymenu.getSelectedContract();
 
 			if (keyID != null) {
 				
-				SecurityMen.DeletePropertyFromList();
+				Securitymenu.DeletePropertyFromList();
 				String query = "";
 				query = "DELETE KeyContract WHERE keysID = '" + keyID;
 

@@ -16,7 +16,7 @@ import javax.swing.GroupLayout.Alignment;
 import property.PropertyForm;
 import property.PropertyMenu;
 import security.SecurityForm;
-import security.SecurityMen;
+import security.Securitymenu;
 import contract.ContractMenu;
 import customer.CustomerMenu;
 
@@ -83,7 +83,7 @@ public class SecurityMenu {
 		
 		
 		// Inserting the tapped //
-		JPanel SecurityPanel = SecurityMen.createSecurityMenu();
+		JPanel SecurityPanel = Securitymenu.createSecurityMenu();
 		tabbedPane.addTab("Security Menu", null, SecurityPanel);
 		
 		

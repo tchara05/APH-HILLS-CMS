@@ -72,21 +72,21 @@ public class CheckOut {
 		mainPanel.setLayout(null);
 
 		JPanel keyPanel = new JPanel();
-		keyPanel.setBackground(new Color(204, 204, 255));
+		keyPanel.setBackground(new Color(204, 204, 153));
 		keyPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		keyPanel.setBounds(458, 34, 384, 503);
 		mainPanel.add(keyPanel);
 		keyPanel.setLayout(null);
 
 		JPanel notesPanel = new JPanel();
-		notesPanel.setBackground(new Color(204, 204, 255));
+		notesPanel.setBackground(new Color(204, 204, 153));
 		notesPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		notesPanel.setBounds(38, 34, 392, 503);
 		mainPanel.add(notesPanel);
 		notesPanel.setLayout(null);
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(new Color(204, 204, 255));
+		buttonPanel.setBackground(new Color(204, 204, 153));
 		buttonPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		buttonPanel.setBounds(871, 34, 183, 503);
 		mainPanel.add(buttonPanel);

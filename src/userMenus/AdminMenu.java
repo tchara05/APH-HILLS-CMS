@@ -17,7 +17,7 @@ import admin.mainAdminPanel;
 import logistics.accountantPanel;
 import contract.ContractMenu;
 import property.PropertyMenu;
-import security.SecurityMen;
+import security.Securitymenu;
 import customer.CustomerMenu;
 
 public class AdminMenu {
@@ -88,7 +88,7 @@ public class AdminMenu {
 		JPanel accountMenu = accountantPanel.createAccountantMenu();
 		tabbedPane.addTab("Accountant Menu", null, accountMenu, null);
 		
-		JPanel SecurityMenu = SecurityMen.createSecurityMenu();
+		JPanel SecurityMenu = Securitymenu.createSecurityMenu();
 		tabbedPane.addTab("Security Menu", null, SecurityMenu,null);
 		
 		JPanel AdminPanel = mainAdminPanel.createAdminMenu();

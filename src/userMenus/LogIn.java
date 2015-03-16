@@ -32,7 +32,7 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.MatteBorder;
 
-import security.SecurityMen;
+import security.Securitymenu;
 
 import extras.Checker;
 import extras.DatabaseConnection;
