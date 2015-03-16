@@ -11,7 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import property.PropertyForm;
 import property.PropertyMenu;
@@ -40,7 +42,21 @@ public class SecurityMenu {
 	}
 
 	private void initialize() {
+		
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (Exception e) {
+			// If Nimbus is not available, you can set the GUI to another look
+			// and feel.
+		}
+		
 		frmSecurityMenu = new JFrame();
+		frmSecurityMenu.getContentPane().setBackground(new Color(255, 255, 255));
 		frmSecurityMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSecurityMenu.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		
@@ -49,8 +65,7 @@ public class SecurityMenu {
 		JLabel lblNewLabel = new JLabel(image);
 		lblNewLabel.setBackground(Color.BLACK);
 		
-		lblSecretaryMenu = new JLabel("SecurityMenu ");
-		lblSecretaryMenu.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		lblSecretaryMenu = new JLabel();
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		
@@ -60,10 +75,10 @@ public class SecurityMenu {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(307)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 592, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 735, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSecretaryMenu))
 					.addGap(221)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
 					.addGap(107))
 		);
 		groupLayout.setVerticalGroup(
@@ -74,10 +89,10 @@ public class SecurityMenu {
 							.addGap(50)
 							.addComponent(lblSecretaryMenu)
 							.addGap(42)
-							.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 582, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(29)
-							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(168, Short.MAX_VALUE))
 		);
 		
