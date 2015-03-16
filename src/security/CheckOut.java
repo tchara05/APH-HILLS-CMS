@@ -59,14 +59,14 @@ public class CheckOut {
 		}
 
 		frmService = new JFrame();
+		frmService.getContentPane().setBackground(new Color(255, 255, 255));
 		frmService.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmService.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmService.getContentPane().setLayout(null);
 
 		JPanel mainPanel = new JPanel();
-		mainPanel.setBorder(new TitledBorder(new LineBorder(
-				new Color(0, 0, 128)), "Check out a Key", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
+		mainPanel.setBackground(new Color(255, 255, 255));
+		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Check out a Key", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		mainPanel.setBounds(132, 82, 1085, 569);
 		frmService.getContentPane().add(mainPanel);
 		mainPanel.setLayout(null);

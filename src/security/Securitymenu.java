@@ -3,17 +3,25 @@ package security;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.UIManager;
+
 import extras.DatabaseConnection;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager.LookAndFeelInfo;
+import java.awt.Font;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class Securitymenu extends JPanel {
 
@@ -29,137 +37,143 @@ public class Securitymenu extends JPanel {
 	
 	public Securitymenu() {
 		
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (Exception e) {
+			// If Nimbus is not available, you can set the GUI to another look
+			// and feel.
+		}
+		
 		checkOut = new CheckOut();
 		checkIn = new CheckIn();
-		database = new DatabaseConnection();
+		//database = new DatabaseConnection();
 		panel=new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
 		securityForm = new SecurityForm();
+		panel.setLayout(null);
 		
-
-		JButton btnAddContract = new JButton("Add New Key Contract");
-		btnAddContract.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				securityForm.frame.setVisible(true);
-			}
-		});
-
-		JButton btnDeleteContract = new JButton("Delete Key Contract");
-		btnDeleteContract.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SecurityDeleteButton.start();
-			}
-		});
-
-		JButton btnEditContract = new JButton("Edit/View Key Contract");
-		btnEditContract.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
-		JLabel lblSearch = new JLabel("Search Contract By KeyID:");
-
-		txtSearchKey = new JTextField();
-		txtSearchKey.setColumns(10);
-
-		JButton btnSearchKey = new JButton("Search");
-		btnSearchKey.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new SecuritySearchKey().start();
-			}
-		});
-
-		JLabel lblkeyContracts = new JLabel("Key Contracts:");
-
-		AllContracts = new JComboBox<String>();
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(204, 204, 153));
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_2.setBounds(517, 22, 188, 304);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
 		
-		JButton btnCheckOut = new JButton("Check out a Key");
-		btnCheckOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				checkOut.frmService.setVisible(true);
-			}
-		});
+		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 		
-		JButton btnCheckIn = new JButton("Check in a Key");
-		btnCheckIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CheckIn.frmCheckIn.setVisible(true);
-			}
-		});
+		JLabel lblimage = new JLabel(image);
+		lblimage.setBounds(10, 55, 168, 129);
+		panel_2.add(lblimage);
 		
-		txtShowIfFound = new JTextField();
-		txtShowIfFound.setEnabled(false);
-		txtShowIfFound.setEditable(false);
-		txtShowIfFound.setText("Key not Found");
-		txtShowIfFound.setColumns(10);
+		JButton btnExit = new JButton("Exit");
+		btnExit.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnExit.setBounds(35, 248, 117, 34);
+		panel_2.add(btnExit);
 		
-		GroupLayout groupLayout = new GroupLayout(panel);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(28)
-					.addComponent(txtSearchKey, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(btnSearchKey, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-					.addGap(29)
-					.addComponent(btnAddContract, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(342)
-					.addComponent(btnCheckOut, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(342)
-					.addComponent(btnCheckIn, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(28)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(AllContracts, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
-							.addGap(29)
-							.addComponent(btnEditContract, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(txtShowIfFound, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-							.addGap(128)
-							.addComponent(btnDeleteContract, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE))))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(28)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblkeyContracts, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))
-					.addGap(296))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(32)
-					.addComponent(lblkeyContracts, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(1)
-							.addComponent(txtSearchKey, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnSearchKey, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddContract, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(1)
-							.addComponent(txtShowIfFound, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnDeleteContract, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnEditContract, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(AllContracts, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-					.addGap(57)
-					.addComponent(btnCheckOut, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-					.addGap(17)
-					.addComponent(btnCheckIn, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-		);
-		panel.setLayout(groupLayout);
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(204, 204, 153));
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_3.setBounds(28, 22, 461, 304);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+		
+				JLabel lblSearch = new JLabel("Search Contract By KeyID:");
+				lblSearch.setBounds(30, 22, 176, 23);
+				panel_3.add(lblSearch);
+				lblSearch.setFont(new Font("Calibri", Font.PLAIN, 12));
+				
+						AllContracts = new JComboBox<String>();
+						AllContracts.setBounds(30, 92, 176, 33);
+						panel_3.add(AllContracts);
+						
+								JButton btnSearchKey = new JButton("Search");
+								btnSearchKey.setBounds(245, 49, 184, 33);
+								panel_3.add(btnSearchKey);
+								btnSearchKey.setFont(new Font("Calibri", Font.PLAIN, 12));
+								
+								txtShowIfFound = new JTextField();
+								txtShowIfFound.setBounds(245, 93, 184, 32);
+								panel_3.add(txtShowIfFound);
+								txtShowIfFound.setFont(new Font("Calibri", Font.PLAIN, 12));
+								txtShowIfFound.setEnabled(false);
+								txtShowIfFound.setEditable(false);
+								txtShowIfFound.setText("Key not Found");
+								txtShowIfFound.setColumns(10);
+								
+										txtSearchKey = new JTextField();
+										txtSearchKey.setBounds(30, 49, 176, 32);
+										panel_3.add(txtSearchKey);
+										txtSearchKey.setColumns(10);
+										
+
+										JButton btnAddContract = new JButton("Add New Key Contract");
+										btnAddContract.setBounds(245, 162, 184, 33);
+										panel_3.add(btnAddContract);
+										btnAddContract.setFont(new Font("Calibri", Font.PLAIN, 12));
+										
+												JButton btnDeleteContract = new JButton("Delete Key Contract");
+												btnDeleteContract.setBounds(244, 208, 185, 33);
+												panel_3.add(btnDeleteContract);
+												btnDeleteContract.setFont(new Font("Calibri", Font.PLAIN, 12));
+												
+														JButton btnEditContract = new JButton("Edit/View Key Contract");
+														btnEditContract.setBounds(245, 252, 184, 33);
+														panel_3.add(btnEditContract);
+														btnEditContract.setFont(new Font("Calibri", Font.PLAIN, 12));
+														
+														JButton btnCheckOut = new JButton("Check out a Key");
+														btnCheckOut.setBounds(30, 208, 134, 33);
+														panel_3.add(btnCheckOut);
+														btnCheckOut.setFont(new Font("Calibri", Font.PLAIN, 12));
+														
+														JButton btnCheckIn = new JButton("Check in a Key");
+														btnCheckIn.setBounds(30, 252, 134, 33);
+														panel_3.add(btnCheckIn);
+														btnCheckIn.setFont(new Font("Calibri", Font.PLAIN, 12));
+														btnCheckIn.addActionListener(new ActionListener() {
+															public void actionPerformed(ActionEvent e) {
+																CheckIn.frmCheckIn.setVisible(true);
+															}
+														});
+														btnCheckOut.addActionListener(new ActionListener() {
+															public void actionPerformed(ActionEvent e) {
+																checkOut.frmService.setVisible(true);
+															}
+														});
+														btnEditContract.addActionListener(new ActionListener() {
+															public void actionPerformed(ActionEvent e) {
+															}
+														});
+												btnDeleteContract.addActionListener(new ActionListener() {
+													public void actionPerformed(ActionEvent e) {
+														SecurityDeleteButton.start();
+													}
+												});
+										btnAddContract.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) {
+												securityForm.frame.setVisible(true);
+											}
+										});
+										
+										JPanel panel_4 = new JPanel();
+										panel_4.setBackground(new Color(255, 255, 255));
+										panel_4.setBorder(new LineBorder(new Color(51, 51, 153), 3));
+										panel_4.setBounds(0, 0, 735, 351);
+										panel.add(panel_4);
+								btnSearchKey.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										new SecuritySearchKey().start();
+									}
+								});
 		
 		
 		
-		setUpContractList();
+		//setUpContractList();
 	}
 	
 	
@@ -205,6 +219,4 @@ public class Securitymenu extends JPanel {
 		new Securitymenu();
 		return panel ;
 	}
-	
-	
 }

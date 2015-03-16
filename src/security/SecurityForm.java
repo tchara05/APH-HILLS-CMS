@@ -62,15 +62,15 @@ public class SecurityForm {
 		frame.getContentPane().setLayout(null);
 
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.setLayout(null);
 
 		JPanel mainPanel = new JPanel();
-		mainPanel.setBorder(new TitledBorder(new LineBorder(
-				new Color(0, 0, 128)), "Add New Key Contract",
-				TitledBorder.LEFT, TitledBorder.TOP, null, null));
+		mainPanel.setBackground(new Color(255, 255, 255));
+		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Add New Key Contract", TitledBorder.LEFT, TitledBorder.TOP, null, null));
 		mainPanel.setBounds(357, 143, 635, 447);
 		contentPane.add(mainPanel);
 		mainPanel.setLayout(null);
@@ -78,14 +78,14 @@ public class SecurityForm {
 		JPanel insertPanel = new JPanel();
 		insertPanel.setBounds(30, 34, 371, 384);
 		mainPanel.add(insertPanel);
-		insertPanel.setBackground(new Color(204, 204, 255));
+		insertPanel.setBackground(new Color(204, 204, 153));
 		insertPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		insertPanel.setLayout(null);
 
 		JPanel btnPanel = new JPanel();
 		btnPanel.setBounds(427, 34, 178, 384);
 		mainPanel.add(btnPanel);
-		btnPanel.setBackground(new Color(204, 204, 255));
+		btnPanel.setBackground(new Color(204, 204, 153));
 		btnPanel.setBorder(new LineBorder(new Color(0, 0, 102)));
 		btnPanel.setLayout(null);
 

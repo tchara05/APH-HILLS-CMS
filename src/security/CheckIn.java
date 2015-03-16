@@ -50,34 +50,34 @@ public class CheckIn {
 		}
 
 		frmCheckIn = new JFrame();
+		frmCheckIn.getContentPane().setBackground(new Color(255, 255, 255));
 		frmCheckIn.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmCheckIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCheckIn.getContentPane().setLayout(null);
 
 		JPanel mainPanel = new JPanel();
-		mainPanel.setBorder(new TitledBorder(new LineBorder(
-				new Color(0, 0, 128)), "Check in a Key", TitledBorder.LEADING,
-				TitledBorder.TOP, null, new Color(0, 0, 0)));
+		mainPanel.setBackground(new Color(255, 255, 255));
+		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Check in a Key", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		mainPanel.setBounds(338, 80, 674, 603);
 		frmCheckIn.getContentPane().add(mainPanel);
 		mainPanel.setLayout(null);
 
 		JPanel listPanel = new JPanel();
-		listPanel.setBackground(new Color(204, 204, 255));
+		listPanel.setBackground(new Color(204, 204, 153));
 		listPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		listPanel.setBounds(35, 37, 277, 310);
 		mainPanel.add(listPanel);
 		listPanel.setLayout(null);
 
 		JPanel searchPanel = new JPanel();
-		searchPanel.setBackground(new Color(204, 204, 255));
+		searchPanel.setBackground(new Color(204, 204, 153));
 		searchPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		searchPanel.setBounds(35, 376, 277, 191);
 		mainPanel.add(searchPanel);
 		searchPanel.setLayout(null);
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(new Color(204, 204, 255));
+		buttonPanel.setBackground(new Color(204, 204, 153));
 		buttonPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		buttonPanel.setBounds(340, 37, 302, 530);
 		mainPanel.add(buttonPanel);
