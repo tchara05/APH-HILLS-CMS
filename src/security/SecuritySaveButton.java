@@ -28,7 +28,9 @@ public class SecuritySaveButton extends Thread {
 		
 		
 		String txtNotes = SecurityForm.txtAreaNotes.getText();
-		String txtpropertyID="";
+		String txtpropertyID= "";
+		
+		//if(checker())
 	
 		try {
 
