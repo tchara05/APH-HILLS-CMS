@@ -58,7 +58,7 @@ public class Securitymenu extends JPanel {
 		panel.setLayout(null);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(204, 204, 153));
+		panel_2.setBackground(new Color(165, 198, 243));
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_2.setBounds(517, 22, 188, 304);
 		panel.add(panel_2);
@@ -76,7 +76,7 @@ public class Securitymenu extends JPanel {
 		panel_2.add(btnExit);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(204, 204, 153));
+		panel_3.setBackground(new Color(165, 198, 243));
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_3.setBounds(28, 22, 461, 304);
 		panel.add(panel_3);

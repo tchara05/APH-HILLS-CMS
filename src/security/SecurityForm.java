@@ -78,14 +78,14 @@ public class SecurityForm {
 		JPanel insertPanel = new JPanel();
 		insertPanel.setBounds(30, 34, 371, 384);
 		mainPanel.add(insertPanel);
-		insertPanel.setBackground(new Color(204, 204, 153));
+		insertPanel.setBackground(new Color(165, 198, 243));
 		insertPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		insertPanel.setLayout(null);
 
 		JPanel btnPanel = new JPanel();
 		btnPanel.setBounds(427, 34, 178, 384);
 		mainPanel.add(btnPanel);
-		btnPanel.setBackground(new Color(204, 204, 153));
+		btnPanel.setBackground(new Color(165, 198, 243));
 		btnPanel.setBorder(new LineBorder(new Color(0, 0, 102)));
 		btnPanel.setLayout(null);
 

@@ -63,21 +63,21 @@ public class CheckIn {
 		mainPanel.setLayout(null);
 
 		JPanel listPanel = new JPanel();
-		listPanel.setBackground(new Color(204, 204, 153));
+		listPanel.setBackground(new Color(165, 198, 243));
 		listPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		listPanel.setBounds(35, 37, 277, 310);
 		mainPanel.add(listPanel);
 		listPanel.setLayout(null);
 
 		JPanel searchPanel = new JPanel();
-		searchPanel.setBackground(new Color(204, 204, 153));
+		searchPanel.setBackground(new Color(165, 198, 243));
 		searchPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		searchPanel.setBounds(35, 376, 277, 191);
 		mainPanel.add(searchPanel);
 		searchPanel.setLayout(null);
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(new Color(204, 204, 153));
+		buttonPanel.setBackground(new Color(165, 198, 243));
 		buttonPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		buttonPanel.setBounds(340, 37, 302, 530);
 		mainPanel.add(buttonPanel);
