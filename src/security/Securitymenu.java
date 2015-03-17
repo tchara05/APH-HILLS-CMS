@@ -51,7 +51,7 @@ public class Securitymenu extends JPanel {
 		
 		checkOut = new CheckOut();
 		checkIn = new CheckIn();
-		//database = new DatabaseConnection();
+		database = new DatabaseConnection();
 		panel=new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		securityForm = new SecurityForm();
@@ -173,7 +173,7 @@ public class Securitymenu extends JPanel {
 		
 		
 		
-		//setUpContractList();
+		setUpContractList();
 	}
 	
 	

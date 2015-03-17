@@ -39,7 +39,7 @@ public class CheckInButton extends Thread{
 				query = "UPDATE SERVICE SET checkInTime = '" + checkInTime
 						+ "', checkInDate = '" + checkInDate
 						+ "' WHERE  keyID = '"
-						+ CheckIn.txtSearch.getText() + "'";
+						+ CheckIn.txtSearch.getText() + "' AND specificKey = '" + CheckIn.txtSpecificKey.getText() + "'";
 
 				stment.executeUpdate(query);
 

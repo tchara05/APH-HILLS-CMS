@@ -15,8 +15,15 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JList;
 import javax.swing.JTextArea;
+
+import extras.DatabaseConnection;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JComboBox;
 
 public class CheckIn {
 
@@ -26,6 +33,8 @@ public class CheckIn {
 	public static JTextField txtTime;
 	public static JTextField txtDate;
 	public static JTextField txtSpecificKey;
+	public static DatabaseConnection database;
+	public static JComboBox<String> allKeys;
 
 	public static void main(String[] args) {
 		CheckIn window = new CheckIn();
@@ -82,11 +91,6 @@ public class CheckIn {
 		buttonPanel.setBounds(340, 37, 302, 530);
 		mainPanel.add(buttonPanel);
 		buttonPanel.setLayout(null);
-
-		@SuppressWarnings("rawtypes")
-		JList listKeys = new JList();
-		listKeys.setBounds(25, 53, 223, 179);
-		listPanel.add(listKeys);
 
 		JLabel lblList = new JLabel("List of Check out Keys :");
 		lblList.setFont(new Font("Calibri", Font.PLAIN, 14));
@@ -175,6 +179,10 @@ public class CheckIn {
 		btnSelect.setBounds(25, 255, 223, 31);
 		listPanel.add(btnSelect);
 		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 14));
+		
+		allKeys = new JComboBox<String>();
+		allKeys.setBounds(25, 51, 223, 31);
+		listPanel.add(allKeys);
 
 		JButton btnSearch = new JButton("View info of the given Key");
 		btnSearch.addActionListener(new ActionListener() {
@@ -206,5 +214,37 @@ public class CheckIn {
 		btnBack.setBounds(77, 473, 149, 33);
 		buttonPanel.add(btnBack);
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
+		
+		
+		
+		database = new DatabaseConnection();
+		setUpContractList();
+	}
+	
+	
+	public static void setUpContractList() {
+
+		
+		Statement stment = database.getStatement();
+
+		ResultSet rset = null;
+
+		try {
+			rset = stment.executeQuery("SELECT keyID, specificKey FROM Service WHERE checkInTime = 'Key is not checked in yet' ORDER BY keyID");
+
+			while (rset.next() && rset.getString(1) != null) {
+				allKeys.addItem(rset.getString(1) +" "+ rset.getString(2));
+			}
+			
+
+		} catch (SQLException e1) {
+			System.out.println("Can execute the query in setUpContractList");
+			e1.printStackTrace();
+		}
+		try {
+		} catch (Exception e) {
+			System.out.println("Empty Contract List");
+			e.printStackTrace();
+		}
 	}
 }
