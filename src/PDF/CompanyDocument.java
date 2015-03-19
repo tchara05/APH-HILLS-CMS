@@ -1,6 +1,7 @@
 package PDF;
 
 import java.io.FileOutputStream;
+import java.sql.ResultSet;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -10,6 +11,8 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import extras.DatabaseConnection;
 
 public class CompanyDocument {
 	
@@ -34,6 +37,8 @@ public class CompanyDocument {
 								"Tel: + 357 26828000 - - Fax: + 357 26828001 \n" +
 								"Email: info@aphroditehills.com, Web: www.aphroditehills.com";
 	
+	
+	// Fonts For The Document //
 	
 	protected   Font BIGBOLD = new Font(Font.FontFamily.TIMES_ROMAN, 18 , Font.BOLD);
 	protected   Font MEDIUMUNDERLINE = new Font (Font.FontFamily.TIMES_ROMAN,16,Font.UNDERLINE);
@@ -61,9 +66,6 @@ public class CompanyDocument {
 	private int plotID;
 
 	
-	
-	
-	
 	public CompanyDocument (int type){
 		
 		this.type = type;
@@ -76,9 +78,6 @@ public class CompanyDocument {
 
 	
 	public   void  createHeader(Document doc) throws Exception{
-		
-		
-		
 		
 		Paragraph TitlePara = new Paragraph(CompanyName,BIGBOLD);
 		TitlePara.setAlignment(Element.ALIGN_CENTER);
@@ -114,12 +113,9 @@ public class CompanyDocument {
 	}
 	
 	
-	public   void createDetailsTable(Document doc) throws Exception {
+	public   void createCustomerDetailsTable(Document doc, ResultSet rs) throws Exception {
 		
-		
-
 		String documentDetailsString = documentType();
-		
 			
 		PdfPTable CustomerDetailsTable = new PdfPTable(2);	  //Megalos Pinakas
 		PdfPCell CustomerDetails = new PdfPCell(new Phrase("Kokos\nKokos\nKokos"));// aristeri Plevra
@@ -151,8 +147,6 @@ public class CompanyDocument {
 		CustomerDetailsTable.addCell(AllCodes); //eisagogi keliou kwdikwn stin de3ia plevra
 
 		doc.add(CustomerDetailsTable);
-		
-		
 		
 		
 	}
@@ -252,10 +246,7 @@ public class CompanyDocument {
 			
 			Paragraph noVAT2 = new Paragraph("The above amount is payable 30 days,if not paid interest at the rate 8%  pa will be charged",smallerbold );
 			noVAT2.setAlignment(Element.ALIGN_CENTER);
-			
-			
 			doc.add(noVAT2);
-			
 		}
 			
 	}
@@ -274,6 +265,7 @@ public class CompanyDocument {
 		PdfPTable columnsTitle = new PdfPTable (N);
 		
 		PdfPCell[] Columns = new PdfPCell[N];
+	
 		for(int i = 0;i<N;i++){
 			Columns[i] = new PdfPCell();
 			Columns[i].setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -315,23 +307,20 @@ public class CompanyDocument {
 	
 	private void addServiceDetails(PdfPTable table){
 		
-		/*   Kwdikas o opoios vazei dedomena sto pinaka kostologiseis 
-		 * tou pdf apo tin vasi dedomenwn.
-		 * 
-		 */
+		
 		
 		
 	}
 	
 	
-	public void exportDocument() throws Exception{
+	public void exportAllProformaDocument() throws Exception{
 		
 		CompanyDocument t = new CompanyDocument(type);
 		Document document = new Document();
 		PdfWriter.getInstance(document, new FileOutputStream("home.test.pdf"));
 		document.open();
 		t.createHeader(document);
-		t.createDetailsTable(document);
+	// 	t.createDetailsTable(document);
 		t.createCostTable(document);
 		t.Signatures(document);
 		t.BankInfo(document);
@@ -346,17 +335,22 @@ public class CompanyDocument {
 	
 	public static void main(String args[]) throws Exception{
 		
-		int typeTest = 2;
-		CompanyDocument t = new CompanyDocument(typeTest);
-		Document document = new Document();
-		PdfWriter.getInstance(document, new FileOutputStream("home.test.pdf"));
-		document.open();
-		t.createHeader(document);
-		t.createDetailsTable(document);
-		t.createCostTable(document);
-		t.Signatures(document);
-		t.BankInfo(document);
+		int typeTest = 3;
+		DatabaseConnection dabase = new DatabaseConnection();
+		ResultSet rs =null;
 		
+		CompanyDocument Companydocument = new CompanyDocument(typeTest);
+		Document document = new Document();
+		
+		// Creating The Table //
+		PdfWriter.getInstance(document, new FileOutputStream("invoice.pdf"));
+		document.open();
+		
+		Companydocument.createHeader(document);
+		Companydocument.createCustomerDetailsTable(document, rs);
+		Companydocument.createCostTable(document);
+		Companydocument.Signatures(document);
+		Companydocument.BankInfo(document);
 		document.close();
 		
 		

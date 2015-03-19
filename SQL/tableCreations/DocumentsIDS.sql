@@ -7,4 +7,4 @@ CREATE TABLE DocumentsIDS(
 )
 
 
-INSERT INTO ContractIds  VALUES ('Contract','1');
+INSERT INTO DocumetnsIDS  VALUES ('Contract','1');

@@ -17,7 +17,7 @@ public class Query {
 	
 	public static final String COUNTRY ="SELECT * FROM Country";
 	
-	public static final String CONTRACT_NO = "SELECT MAX(justID)  FROM ContractIds";
+	public static final String CONTRACT_NO = "SELECT MAX(docID)  FROM DocumentsIDS WHERE docType='Contract'";
 	
 	public static final String CLASS_NO = "SELECT MAX(PropertyClassNo) FROM Class";
 	

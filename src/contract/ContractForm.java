@@ -19,7 +19,6 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import extras.Checker;
-import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 import extras.Query;
@@ -28,7 +27,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JCheckBox;
 
 import userMenus.LogIn;
@@ -434,13 +432,10 @@ public class ContractForm {
 	}
 	private static void setContractID() {
 
-		DatabaseConnection database = new DatabaseConnection();
-		Statement st = database.getStatement();
-
 
 		ResultSet rs;
 		try {
-			rs = st.executeQuery(Query.CONTRACT_NO);
+			rs = LogIn.database.getStatement().executeQuery(Query.CONTRACT_NO);
 
 			if (rs.next()) {
 				if (rs.getString(1) != null) {

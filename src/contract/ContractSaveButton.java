@@ -34,12 +34,12 @@ public class ContractSaveButton extends Thread {
 					LogIn.database.getStatement().executeUpdate(query);
 
 				}
-				contractID = (Integer.parseInt(contractID) + 1 + "");
-				queryDeactiveOld = "UPDATE ContractIds SET justID='"
-						+ contractID + "'";
+				contractID = ((Integer.parseInt(contractID) + 1) + "");
+				queryDeactiveOld = "UPDATE DocumentsIDS SET docID='"
+						+ contractID + "' WHERE docType='Contract'";
 				LogIn.database.getStatement().executeUpdate(queryDeactiveOld);
 				ContractForm.txtContractID.setText(contractID);
-				ContractForm.totalShare = 0;
+				ContractForm.totalShare=0;
 
 			} catch (SQLException e) {
 				System.out
