@@ -1,9 +1,10 @@
-DROP TABLE ContractIds;
+DROP TABLE DocumentsIDS;
 
 
-CREATE TABLE ContractIds(
-		justID int
+CREATE TABLE DocumentsIDS(
+		docType nvarchar(10),
+		docID int
 )
 
 
-INSERT INTO ContractIds  VALUES ('1');
+INSERT INTO ContractIds  VALUES ('Contract','1');
