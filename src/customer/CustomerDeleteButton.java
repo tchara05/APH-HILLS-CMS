@@ -2,9 +2,10 @@ package customer;
 
 import java.sql.SQLException;
 import extras.Messages;
-import java.sql.Statement;
 
 import javax.swing.JOptionPane;
+
+import userMenus.LogIn;
 import contract.ContractForm;
 import extras.ListManager;
 
@@ -12,8 +13,6 @@ public class CustomerDeleteButton extends Thread {
 
 	public void run() {
 
-		synchronized (CustomerMenu.database) {
-			Statement st = CustomerMenu.database.getStatement();
 
 			// Confirm Dialog Here //
 			int response = JOptionPane.showConfirmDialog(null,
@@ -34,7 +33,7 @@ public class CustomerDeleteButton extends Thread {
 							+ Customer[0] + "'";
 
 					try {
-						st.executeUpdate(query);
+						LogIn.database.getStatement().executeUpdate(query);
 					} catch (SQLException e) {
 						System.out
 								.println("Cant execute the query in CustomerDelete");
@@ -47,7 +46,7 @@ public class CustomerDeleteButton extends Thread {
 					Messages.showWarningMessage("Nothing To Delete");
 
 				}
-			}
+			
 		}
 	}
 

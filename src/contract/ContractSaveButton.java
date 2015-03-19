@@ -2,15 +2,14 @@ package contract;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import userMenus.LogIn;
 import extras.ListManager;
 import extras.Messages;
 
 public class ContractSaveButton extends Thread {
 
 	public void run() {
-
-		synchronized (ContractMenu.database) {
-			Statement st = ContractMenu.database.getStatement();
 
 			boolean act = ContractForm.chckActive.isSelected();
 			int active = 0;
@@ -22,7 +21,7 @@ public class ContractSaveButton extends Thread {
 				String queryDeactiveOld = "UPDATE Contract SET active='" + 0
 						+ "' WHERE plotID='" + plotID + "'";
 				String contractID = ContractForm.txtContractID.getText();
-				st.executeUpdate(queryDeactiveOld);
+				LogIn.database.getStatement().executeUpdate(queryDeactiveOld);
 				while (!ContractForm.AllOwners.isEmpty()) {
 					String[] customer = ListManager
 							.removeShare(ContractForm.AllOwners.remove(0));
@@ -32,13 +31,13 @@ public class ContractSaveButton extends Thread {
 							+ "','" + customer[0] + "','" + active + "')";
 					ListManager.UpdateList(Customer[0], Customer[1],
 							Customer[2], ContractForm.AllCustomers);
-					st.executeUpdate(query);
+					LogIn.database.getStatement().executeUpdate(query);
 
 				}
 				contractID = (Integer.parseInt(contractID) + 1 + "");
 				queryDeactiveOld = "UPDATE ContractIds SET justID='"
 						+ contractID + "'";
-				st.executeUpdate(queryDeactiveOld);
+				LogIn.database.getStatement().executeUpdate(queryDeactiveOld);
 				ContractForm.txtContractID.setText(contractID);
 				ContractForm.totalShare = 0;
 
@@ -48,7 +47,7 @@ public class ContractSaveButton extends Thread {
 				e.printStackTrace();
 			}
 
-		}
+		
 		Messages.showSaveMessage("Contract Added");
 		ContractForm.setVisible(false);
 	}

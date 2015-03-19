@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+
+import userMenus.LogIn;
 import contract.ContractForm;
 import extras.Checker;
 import extras.ListManager;
@@ -18,12 +20,10 @@ public class CustomerSaveButton extends Thread {
 
 		String country = (String) CustomerForm.Country.getSelectedItem();
 
-		/** Retrieve and check the data from the form **/
-
 		String nFname = Checker.clearString(CustomerForm.txtFname.getText());
 		nFname = Checker.clearString(nFname);
 		if (!Checker.checkString(nFname) || (nFname.isEmpty())) {
-			CustomerForm.txtFname.setBackground(Color.YELLOW);
+			CustomerForm.txtFname.setBackground(Color.RED);
 			checked = false;
 		}
 
@@ -104,8 +104,7 @@ public class CustomerSaveButton extends Thread {
 		}
 		try {
 
-			synchronized (CustomerMenu.database) {
-				Statement st = CustomerMenu.database.getStatement();
+				Statement st = LogIn.database.getStatement();
 				int countryID = getCountry(country, st);
 				if (countryID > 0 && checked) {
 					// Confirm Dialog //
@@ -144,8 +143,7 @@ public class CustomerSaveButton extends Thread {
 									+ "' WHERE  customerID = '"
 									+ CustomerForm.txtID.getText() + "'";
 
-							ListManager
-									.DeleteFromList(CustomerMenu.AllCustomers);
+							ListManager.DeleteFromList(CustomerMenu.AllCustomers);
 						}
 
 						st.executeUpdate(query);
@@ -162,7 +160,7 @@ public class CustomerSaveButton extends Thread {
 					System.out
 							.println("Invalid Character or Country Somewhere");
 				}
-			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -179,9 +177,8 @@ public class CustomerSaveButton extends Thread {
 			throws SQLException {
 
 		int countryID = -1;
-		ResultSet result = st
-				.executeQuery("SELECT countryID FROM Country WHERE countryName='"
-						+ country + "'");
+		ResultSet result = LogIn.database.getStatement().executeQuery("SELECT countryID FROM Country " +
+																	"WHERE countryName='"+ country + "'");
 		if (result.next()) {
 			countryID = Integer.parseInt(result.getString(1));
 		} else {

@@ -34,6 +34,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JComboBox;
 
+import userMenus.LogIn;
+
 public class PropertyForm {
 
 	
@@ -97,11 +99,9 @@ public class PropertyForm {
 	
 	public static void setPlotID() {
 
-		DatabaseConnection database = new DatabaseConnection();
-		Statement st = database.getStatement();
 		ResultSet rs;
 		try {
-			rs = st.executeQuery("SELECT MAX(plotID)  FROM Property");
+			rs = LogIn.database.getStatement().executeQuery("SELECT MAX(plotID)  FROM Property");
 
 			if (rs.next() && rs.getString(1)!=null) {
 				

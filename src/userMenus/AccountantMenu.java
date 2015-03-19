@@ -17,8 +17,6 @@ import logistics.accountantPanel;
 public class AccountantMenu {
 
 	private JFrame frame;
-
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -32,16 +30,12 @@ public class AccountantMenu {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+
 	public AccountantMenu() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());

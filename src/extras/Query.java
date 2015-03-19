@@ -15,7 +15,7 @@ public class Query {
 	
 	public static final String STATUS_NO_NAME="SELECT * FROM PropertyStatus";
 	
-	public static final String COUNTRY ="SELECT * Country";
+	public static final String COUNTRY ="SELECT * FROM Country";
 	
 	public static final String CONTRACT_NO = "SELECT MAX(justID)  FROM ContractIds";
 	
@@ -25,8 +25,9 @@ public class Query {
 	
 	public static final String STATUS_NO="SELECT MAX(statusID) FROM PropertyStatus";
 	
-	public static final DatabaseConnection database = new DatabaseConnection();
-	
+	public static final String PLOTS_WITH_NO_CONTRACTS="SELECT P.plotID, P.plotName, P.PlotNumber" +
+			"											 FROM Property P WHERE plotID NOT IN (" +
+														"SELECT DISTINCT C.plotID FROM Contract C )";
 	
 	
 }

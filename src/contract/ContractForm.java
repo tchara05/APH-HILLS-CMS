@@ -31,6 +31,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JCheckBox;
 
+import userMenus.LogIn;
+
 public class ContractForm {
 
 	private static JFrame frame;
@@ -413,12 +415,12 @@ public class ContractForm {
 
 	private static void setTextFields(String str){
 		
-		Statement st = ContractMenu.database.getStatement();
+
 		str = ListManager.SplitOneItem(str);
 		
 		try {
-			ResultSet rst = st.executeQuery("SELECT primaryEmail , contactPhone , mobilePhone" +
-					" FROM Customer WHERE customerID ='" +str +"'"  );
+			ResultSet rst = LogIn.database.getStatement().executeQuery("SELECT primaryEmail , contactPhone , mobilePhone"
+							+" FROM Customer WHERE customerID ='" +str +"'"  );
 			
 			while (rst.next()&& rst.getString(1)!=null){
 				txtMail.setText(rst.getString(1));

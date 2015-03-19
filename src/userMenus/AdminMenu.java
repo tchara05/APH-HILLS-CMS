@@ -85,7 +85,7 @@ public class AdminMenu {
 		JPanel CustomerPanel = CustomerMenu.createCustomerMenu();
 		tabbedPane.addTab("Customer Menu", null, CustomerPanel, null);
 		
-		JPanel accountMenu = accountantPanel.createAccountantMenu();
+/*		JPanel accountMenu = accountantPanel.createAccountantMenu();
 		tabbedPane.addTab("Accountant Menu", null, accountMenu, null);
 		
 		JPanel SecurityMenu = Securitymenu.createSecurityMenu();
@@ -93,7 +93,7 @@ public class AdminMenu {
 		
 		JPanel AdminPanel = mainAdminPanel.createAdminMenu();
 		tabbedPane.addTab("Admin Menu", null, AdminPanel, null);
-		
+	*/	
 		frame.getContentPane().setLayout(groupLayout);
 	}
 	public void setVisible(boolean visible){

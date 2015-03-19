@@ -2,11 +2,11 @@ package property;
 
 import java.awt.Color;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
+
+import userMenus.LogIn;
 import contract.ContractMenu;
 import extras.Checker;
-import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 
@@ -158,9 +158,6 @@ public class PropertySaveButton extends Thread {
 		try {
 
 			
-			DatabaseConnection database = new DatabaseConnection();
-			Statement st = null;
-			st = database.getStatement();
 
 			if (checked) {
 
@@ -206,10 +203,7 @@ public class PropertySaveButton extends Thread {
 								ContractMenu.AllProperties.removeItem(del);
 					}
 
-				
-					st.executeUpdate(query);
-					
-
+					LogIn.database.getStatement().executeUpdate(query);
 					PropertyForm.setVisible(false);
 					String id = PropertyForm.txtPlotID.getText();
 					ListManager.UpdateList(id, plotName, plotNumber, PropertyMenu.AllProperties);

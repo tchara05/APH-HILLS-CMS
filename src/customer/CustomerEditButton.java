@@ -2,18 +2,19 @@ package customer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JOptionPane;
+
+import userMenus.LogIn;
 import extras.ListManager;
 
 public class CustomerEditButton extends Thread {
 
 	public void run() {
 
-		synchronized(CustomerMenu.database){
-		Statement st = CustomerMenu.database.getStatement();
-		ResultSet rst = null;
+
+
+		ResultSet rst=null;
 		
 		String customer = (String) CustomerMenu.AllCustomers.getSelectedItem();
 		
@@ -21,7 +22,7 @@ public class CustomerEditButton extends Thread {
 			String[] Customer = ListManager.SplitThreeItem(customer);
 			try {
 				
-				rst = st.executeQuery("SELECT * FROM Customer WHERE firstName='"
+				rst =LogIn.database.getStatement().executeQuery("SELECT * FROM Customer WHERE firstName='"
 						+ Customer[1] + "' and lastName ='" + Customer[2] + "' and customerID = '" + Customer[0] +"'");
 				
 				if (rst.next() && (rst.getString(1) != null)) {
@@ -38,7 +39,7 @@ public class CustomerEditButton extends Thread {
 			JOptionPane.showMessageDialog(null, "Nothing To Edit",
 					"Information Message", JOptionPane.INFORMATION_MESSAGE);
 		}
-		}
+		
 	}
 
 	private static void setForm(ResultSet rst) throws SQLException {
@@ -57,7 +58,7 @@ public class CustomerEditButton extends Thread {
 		CustomerForm.txtSeconadaryMail.setText(rst.getString(6));
 		CustomerForm.txtZipCode.setText(rst.getString(9));
 		CustomerForm.txtID.setText(rst.getString(1));
-		CustomerForm.Country.setSelectedIndex(rst.getShort(7));
+		CustomerForm.Country.setSelectedIndex(rst.getShort(7)-1);
 		
 		
 		if (rst.getInt(14) == 0) {

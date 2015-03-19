@@ -53,8 +53,10 @@ public class PropertyMenu extends JPanel {
 	    AllProperties = new JComboBox<String>();
 	    ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 	    AllParcels= new JComboBox<String>();
-				// We dont know for parcel yet //
+	    AllParcels.addItem("0 None");
+	    ListManager.setUpTwoColumnsList(AllParcels, Query.PARCEL_NO_NAME);
 		AllClasses = new JComboBox<String>();
+		AllClasses.addItem("0 None");
 		ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
 		
 
@@ -64,6 +66,7 @@ public class PropertyMenu extends JPanel {
 		btnNewButton = new JButton("Delete Property");
 		btnEditProperrty = new JButton("Edit/View Property");
 		btnSearch = new JButton("Search");
+		
 		
 		
 		// Postitons: //
@@ -158,6 +161,13 @@ public class PropertyMenu extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				
 				new PropertyEditButton().start();
+			}
+		});
+		
+		btnSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PropertySearchButton().start();
 			}
 		});
 		

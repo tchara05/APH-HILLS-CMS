@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -14,7 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import extras.DatabaseConnection;
+
+import userMenus.LogIn;
 import extras.ListManager;
 import extras.Query;
 
@@ -45,7 +45,6 @@ public class CustomerMenu extends JPanel {
 	private JButton btnDeleteCustomer;
 	private JButton btnEditCustomer;
 
-	public static DatabaseConnection database;
 	
 	
 	CustomerMenu() {
@@ -71,8 +70,7 @@ public class CustomerMenu extends JPanel {
 		btnAddNewCustomer = new JButton("Add New Customer");
 		btnEditCustomer = new JButton("Edit/View Customer");
 		btnDeleteCustomer = new JButton("Delete Customer");
-	
-		database = new DatabaseConnection();
+
 		
 		//Text Box //
 		PrimaryMail = new JTextField();
@@ -221,7 +219,7 @@ public class CustomerMenu extends JPanel {
 		return CustomerPanel;
 	}
 	public void setDetails(String customer) {
-		Statement st = database.getStatement();
+		
 		ResultSet rst = null;
 
 		if (customer == null) {
@@ -234,7 +232,7 @@ public class CustomerMenu extends JPanel {
 				" Customer WHERE customerID = '" + Customer[0] +"'";
 			
 		try {
-			rst = st.executeQuery(query);
+			rst = LogIn.database.getStatement().executeQuery(query);
 			if(rst.next() && rst.getString(1)!=null) {
 
 				CustomerID.setText(rst.getString(1));

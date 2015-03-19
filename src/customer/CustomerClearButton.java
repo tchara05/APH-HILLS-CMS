@@ -15,7 +15,7 @@ public class CustomerClearButton{
 			CustomerForm.txtContactNumber.setText("");
 			CustomerForm.txtFaxNumber.setText("");
 			try {
-				CustomerForm.setID() ;
+				CustomerForm.setID();
 			} catch (Exception e) {
 				
 			}

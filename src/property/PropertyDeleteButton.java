@@ -5,6 +5,8 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import userMenus.LogIn;
+
 import contract.ContractMenu;
 
 import extras.DatabaseConnection;
@@ -15,8 +17,7 @@ public class PropertyDeleteButton extends Thread {
 
 	public void run() {
 
-		DatabaseConnection database = new DatabaseConnection();
-		Statement st = database.getStatement();
+		
 
 		// Confirm Dialog Here //
 		int response = JOptionPane.showConfirmDialog(null,
@@ -28,7 +29,6 @@ public class PropertyDeleteButton extends Thread {
 			if (property != null) {
 			     ListManager.DeleteFromList(PropertyMenu.AllProperties);
 				ContractMenu.AllProperties.removeItem(property);
-				
 				String Property[] = ListManager.SplitThreeItem(property);
 				System.out.println(Property[0]);
 				System.out.println(Property[1]);
@@ -36,7 +36,9 @@ public class PropertyDeleteButton extends Thread {
 				String query = "DELETE Property WHERE plotID='" + Property[0] + "'";
 
 				try {
-					st.executeUpdate(query);
+					synchronized(LogIn.database){
+						LogIn.database.getStatement().executeUpdate(query);
+					}
 				} catch (SQLException e) {
 					System.out.println("Cant Delete Property");
 					e.printStackTrace();

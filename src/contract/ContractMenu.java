@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import userMenus.LogIn;
 
-import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Query;
 
@@ -20,8 +20,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 @SuppressWarnings("serial")
 public class ContractMenu extends JPanel {
 	
@@ -37,21 +35,21 @@ public class ContractMenu extends JPanel {
 	
 	//Buttons //
 	private JButton btnFilter;
-	private JButton btnEditContract;
 	private JButton btnAddNewContract;
+	private JButton btnFilterByNo;
 		
-	public static DatabaseConnection database;
 	
 	public ContractMenu(){
 		 panel = new JPanel();
 		 panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		 contractform = new ContractForm();
-		 database = new DatabaseConnection();
 		//DropDown List: //
 		 AllProperties = new JComboBox<String>();
 		 ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 		 AllParcels = new JComboBox<String>();
 		 AllClasses = new JComboBox<String>();
+		 AllParcels.addItem("0 None");
+		 AllClasses.addItem("0 None");
 		 ListManager.setUpTwoColumnsList(AllClasses,Query.CLASS_NO_NAME);
 		 ListManager.setUpTwoColumnsList(AllParcels,Query.PARCEL_NO_NAME);
 		 
@@ -62,15 +60,15 @@ public class ContractMenu extends JPanel {
 		
 		// Buttons: //
 		btnFilter = new JButton("Filter");
-		btnEditContract = new JButton("Edit Contract");
 		btnAddNewContract = new JButton("Add New Contract");
+	    btnFilterByNo = new JButton("Filter by No Contract");
+	   
+	
 		
 		//Panel Positions : //
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 590, Short.MAX_VALUE)
-				.addGap(0, 588, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
@@ -92,15 +90,13 @@ public class ContractMenu extends JPanel {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(btnFilter, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnEditContract, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnFilterByNo)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnAddNewContract)))
-					.addContainerGap(107, Short.MAX_VALUE))
+					.addContainerGap(72, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 150, Short.MAX_VALUE)
-				.addGap(0, 148, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(17)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
@@ -118,7 +114,7 @@ public class ContractMenu extends JPanel {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnFilter)
 						.addComponent(btnAddNewContract)
-						.addComponent(btnEditContract)))
+						.addComponent(btnFilterByNo)))
 		);
 		panel.setLayout(gl_panel);
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -167,19 +163,31 @@ public class ContractMenu extends JPanel {
 				
 			}
 		});
+		btnFilter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new ContractFilterButton().start();
+			}
+		});
+		
+		 btnFilterByNo.addMouseListener(new MouseAdapter() {
+		    	@Override
+		    	public void mouseClicked(MouseEvent e) {
+		    		new FilterByNoContractButton().start();
+		    	}
+		    });
 		
 	}
 	
 	
 	public boolean existContract() {
 		
-		Statement st = database.getStatement();
 		String plot = (String)ContractMenu.AllProperties.getSelectedItem();
 		String Plot[]=ListManager.SplitTwoItem(plot);
 		String query="SELECT contractID, plotID FROM Contract WHERE plotID='"+Plot[0]+"'";
 		ResultSet rst;
 		try {
-			rst = st.executeQuery(query);
+			rst = 	LogIn.database.getStatement().executeQuery(query);
 			if (rst.next()){
 				if (Plot[0].equals(rst.getString(2))){
 					return true;
@@ -191,5 +199,4 @@ public class ContractMenu extends JPanel {
 		}
 	return false;
 	}
-	
 }

@@ -2,10 +2,10 @@ package property;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JOptionPane;
-import extras.DatabaseConnection;
+
+import userMenus.LogIn;
 import extras.ListManager;
 
 
@@ -13,9 +13,7 @@ public class PropertyEditButton extends Thread {
 
 	public void run() {
 
-		DatabaseConnection database = new DatabaseConnection();
-		Statement st = database.getStatement();
-		
+
 		PropertyForm.edit = true;
 
 
@@ -25,11 +23,11 @@ public class PropertyEditButton extends Thread {
 		if (property != null) {
 			String[] Property = ListManager.SplitThreeItem(property);
 			try {
-				rst = st.executeQuery("SELECT * FROM Property WHERE PlotID ='" + Property[0] +"'");
+				rst =  LogIn.database.getStatement().executeQuery("SELECT * FROM Property WHERE PlotID ='" + Property[0] +"'");
+				
 				if (rst.next() && (rst.getString(1) != null)) {
 					setForm(rst);
 				}
-				
 				PropertyForm.setVisible(true);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -136,29 +134,31 @@ public class PropertyEditButton extends Thread {
 	
     private static void setDropDownListEdit(ResultSet rst) throws SQLException{
 		
-		int  classes= rst.getInt(4);
+		int  generalID= rst.getInt(4);
 		int i;
 		for (i =0; i<PropertyForm.AllClasses.getItemCount();i++){
 			String classess[]=ListManager.SplitTwoItem((String)PropertyForm.AllClasses.getItemAt(i));
-			if (Integer.parseInt(classess[0])==classes){
+			if (Integer.parseInt(classess[0])==generalID){
 				break;
 			}
 		}
 		PropertyForm.AllClasses.setSelectedIndex(i);
 		
+		generalID = rst.getInt(5);
 		for (i =0; i<PropertyForm.AllParcels.getItemCount();i++){
 			
 			String parcels[]=ListManager.SplitTwoItem((String)PropertyForm.AllParcels.getItemAt(i));
-			if (Integer.parseInt(parcels[0])==classes){
+			if (Integer.parseInt(parcels[0])==generalID){
 				break;
 			}
 		}	
 		PropertyForm.AllParcels.setSelectedIndex(i);	
 		
+		generalID = rst.getInt(14);
 		for (i =0; i<PropertyForm.AllStatus.getItemCount();i++){
 			
 			String status[]=ListManager.SplitTwoItem((String)PropertyForm.AllStatus.getItemAt(i));
-			if (Integer.parseInt(status[0])==classes){
+			if (Integer.parseInt(status[0])==generalID){
 				break;
 			}
 		}

@@ -35,8 +35,6 @@ public class SecurityMenu {
 					SecurityMenu window = new SecurityMenu();
 					window.frmSecurityMenu.setVisible(true);
 	}
-
-
 	public SecurityMenu() {
 		initialize();
 	}

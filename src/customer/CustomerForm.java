@@ -17,7 +17,6 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
@@ -30,6 +29,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
+
+import userMenus.LogIn;
 
 public class CustomerForm {
 	
@@ -323,12 +324,9 @@ public class CustomerForm {
 	}
 
 	public static void setID() {
-
-		
-		Statement st = CustomerMenu.database.getStatement();
 		ResultSet rs = null;
 		try {
-			rs = st.executeQuery("SELECT MAX(customerID)  FROM Customer");
+			rs = LogIn.database.getStatement().executeQuery("SELECT MAX(customerID)  FROM Customer");
 
 			if (rs.next()) {
 				if (rs.getString(1) != null) {
@@ -354,10 +352,9 @@ public class CustomerForm {
 
 		try{
 			
-			Statement st = CustomerMenu.database.getStatement(); 	
-			ResultSet rs = st.executeQuery(Query.COUNTRY);	
+			ResultSet rs = LogIn.database.getStatement().executeQuery(Query.COUNTRY);	
 			while (rs.next()){
-				Country.addItem(rs.getString(1));
+				Country.addItem(rs.getString(2));
 			}
 		}catch (Exception e){
 			e.printStackTrace();
