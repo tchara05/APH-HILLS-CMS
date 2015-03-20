@@ -51,15 +51,7 @@ public class accountantPanel extends JPanel {
 		btnSendProformaDocumet.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String  folderName = new SimpleDateFormat("dd_MM_yyyy").format(Calendar.getInstance().getTime());
-				File dir = new File("proforma/"+folderName);
-				File dir2 = new File("proforma/koutalas");
-				if (dir.mkdirs()){
-					System.out.println("proformas/folderName");
-				}
-				if (dir2.mkdirs()){
-					System.out.println("proformas/folderName");
-				}
+				
 			}
 		});
 		

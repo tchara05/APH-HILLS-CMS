@@ -1,4 +1,4 @@
-package PDF;
+package logistics;
 
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
