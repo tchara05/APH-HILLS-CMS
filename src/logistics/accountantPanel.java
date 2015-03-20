@@ -51,13 +51,12 @@ public class accountantPanel extends JPanel {
 		btnSendProformaDocumet.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				new ExportProformaButton().start();
 			}
 		});
 		
 		
 	}
-	
 	public static JPanel createAccountantMenu(){
 		accountantMenu = new accountantPanel();
 		return accountantMenu;
