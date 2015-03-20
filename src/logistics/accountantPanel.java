@@ -54,8 +54,6 @@ public class accountantPanel extends JPanel {
 				new ExportProformaButton().start();
 			}
 		});
-		
-		
 	}
 	public static JPanel createAccountantMenu(){
 		accountantMenu = new accountantPanel();
