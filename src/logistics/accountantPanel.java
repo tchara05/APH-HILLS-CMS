@@ -6,51 +6,65 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Scanner;
+
 
 
 public class accountantPanel extends JPanel {
 	
 	private static JPanel accountantMenu;
 	
-	
+	public static  JComboBox<String> AllCustomers;
 
-	/**
-	 * Create the panel.
-	 */
+	// Buttons //
+	private JButton btnSendProformaDocumet;
+	private JButton btnSendInvoiceTo;
+	
+	
 	public accountantPanel() {
 		
-		JButton btnSendProformaDocumet = new JButton("Send All Proformas");
+	    btnSendProformaDocumet = new JButton("Export All Proformas");
+	
+		btnSendProformaDocumet.setBounds(21, 62, 162, 27);
 		
 		JButton btnSendInvoiceTo = new JButton("Send Invoice to");
+		btnSendInvoiceTo.setBounds(21, 121, 162, 27);
 		
-		JComboBox AllCustomers = new JComboBox();
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(21)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnSendInvoiceTo, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnSendProformaDocumet, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(46)
-					.addComponent(AllCustomers, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
-					.addGap(192))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(59)
-					.addComponent(btnSendProformaDocumet)
-					.addGap(33)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnSendInvoiceTo)
-						.addComponent(AllCustomers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(246, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
-
+	    AllCustomers = new JComboBox<String>();
+		AllCustomers.setBounds(241, 122, 227, 27);
+		setLayout(null);
+		add(btnSendInvoiceTo);
+		add(btnSendProformaDocumet);
+		add(AllCustomers);
+		addButtonsFuctionalities();
 	}
 	
+	
+	public void addButtonsFuctionalities(){
+		
+		btnSendProformaDocumet.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String  folderName = new SimpleDateFormat("dd_MM_yyyy").format(Calendar.getInstance().getTime());
+				File dir = new File("proforma/"+folderName);
+				File dir2 = new File("proforma/koutalas");
+				if (dir.mkdirs()){
+					System.out.println("proformas/folderName");
+				}
+				if (dir2.mkdirs()){
+					System.out.println("proformas/folderName");
+				}
+			}
+		});
+		
+		
+	}
 	
 	public static JPanel createAccountantMenu(){
 		accountantMenu = new accountantPanel();

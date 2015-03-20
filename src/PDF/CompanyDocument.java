@@ -320,7 +320,7 @@ public class CompanyDocument {
 		PdfWriter.getInstance(document, new FileOutputStream("home.test.pdf"));
 		document.open();
 		t.createHeader(document);
-		t.createDetailsTable(document);
+	//	t.createDetailsTable(document);
 		t.createCostTable(document);
 		t.Signatures(document);
 		t.BankInfo(document);
