@@ -2,6 +2,8 @@ package contract;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+
 import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -40,99 +42,53 @@ public class ContractMenu extends JPanel {
 		
 	
 	public ContractMenu(){
+		setBorder(new LineBorder(new Color(0, 0, 0)));
 		 panel = new JPanel();
+		 panel.setBounds(6, 69, 555, 192);
+		 panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Find A Property", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		 panel.setBackground(new Color(204, 204, 153));
 		 panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		 contractform = new ContractForm();
 		//DropDown List: //
 		 AllProperties = new JComboBox<String>();
+		 AllProperties.setBounds(86, 18, 199, 27);
 		 ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 		 AllParcels = new JComboBox<String>();
+		 AllParcels.setBounds(202, 85, 280, 27);
 		 AllClasses = new JComboBox<String>();
+		 AllClasses.setBounds(7, 85, 189, 27);
 		 AllParcels.addItem("0 None");
 		 AllClasses.addItem("0 None");
+		 setLayout(null);
 		 ListManager.setUpTwoColumnsList(AllClasses,Query.CLASS_NO_NAME);
 		 ListManager.setUpTwoColumnsList(AllParcels,Query.PARCEL_NO_NAME);
 		 
 		// Labels // 
 		JLabel label_1 = new JLabel("Class:");
+		label_1.setBounds(7, 63, 38, 16);
 		JLabel label = new JLabel("Plot:");
+		label.setBounds(7, 22, 28, 16);
 		JLabel label_2 = new JLabel("Parcel:");
+		label_2.setBounds(202, 63, 41, 16);
 		
 		// Buttons: //
 		btnFilter = new JButton("Filter");
+		btnFilter.setBounds(7, 137, 135, 29);
 		btnAddNewContract = new JButton("Add New Contract");
+		btnAddNewContract.setBounds(329, 137, 158, 29);
 	    btnFilterByNo = new JButton("Filter by No Contract");
-	   
-	
-		
-		//Panel Positions : //
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(label)
-							.addGap(51)
-							.addComponent(AllProperties, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(label_1)
-									.addGap(157))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)))
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(label_2)
-								.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(btnFilter, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnFilterByNo)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAddNewContract)))
-					.addContainerGap(72, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(17)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label)
-						.addComponent(AllProperties, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_1)
-						.addComponent(label_2))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(25)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnFilter)
-						.addComponent(btnAddNewContract)
-						.addComponent(btnFilterByNo)))
-		);
-		panel.setLayout(gl_panel);
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(26, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(76)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(130, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
+	    btnFilterByNo.setBounds(148, 137, 175, 29);
+		add(panel);
+		panel.setLayout(null);
+		panel.add(label);
+		panel.add(AllProperties);
+		panel.add(label_1);
+		panel.add(AllClasses);
+		panel.add(label_2);
+		panel.add(AllParcels);
+		panel.add(btnFilter);
+		panel.add(btnFilterByNo);
+		panel.add(btnAddNewContract);
 		
 		addButtonsFuctionalities();
 

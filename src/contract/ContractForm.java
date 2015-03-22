@@ -5,12 +5,9 @@ import java.awt.Toolkit;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
 import javax.swing.JList;
 import javax.swing.UIManager;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -30,6 +27,9 @@ import java.sql.SQLException;
 import javax.swing.JCheckBox;
 
 import userMenus.LogIn;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import java.awt.SystemColor;
 
 public class ContractForm {
 
@@ -93,70 +93,67 @@ public class ContractForm {
 		
 		// Scroll Panels: //
 		JScrollPane CustomersPane = new JScrollPane();
+		CustomersPane.setBounds(7, 29, 194, 245);
 		JScrollPane OwnerPane = new JScrollPane();
+		OwnerPane.setBounds(382, 29, 198, 245);
 		
 		// Panels: //
 		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(28, 125, 590, 370);
 		panel_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(9, 80, 208), 3), "Create New Contract", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(9, 80, 208)));
+		panel_2.setBounds(396, 90, 643, 618);
 		
 		// Buttons: //
 		btnRight = new JButton(">>");
+		btnRight.setBounds(262, 46, 86, 29);
 		btnBack = new JButton("Back");
+		btnBack.setBounds(21, 546, 126, 29);
 		btnSave = new JButton("Save");
+		btnSave.setBounds(165, 546, 122, 29);
 		btnLeft = new JButton("<<");
+		btnLeft.setBounds(262, 81, 86, 29);
 		
 		// Labels For Panel 1: //
 		JLabel label_9 = new JLabel("Contract ID:");
+		label_9.setBounds(6, 31, 76, 16);
 		JLabel label_3 = new JLabel("Primary Email:");
+		label_3.setBounds(7, 296, 89, 16);
 		JLabel label_4 = new JLabel("Contact Phone:");
+		label_4.setBounds(147, 296, 95, 16);
 		JLabel label_5 = new JLabel("Mobile Phone:");
+		label_5.setBounds(299, 296, 88, 16);
 		JLabel label_6 = new JLabel("Percentage:");
+		label_6.setBounds(226, 134, 72, 16);
 		JLabel label_7 = new JLabel("%");
+		label_7.setBounds(367, 134, 9, 16);
 		JLabel label_8 = new JLabel("Customer:");
+		label_8.setBounds(7, 7, 65, 16);
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		JLabel label_10 = new JLabel(image);
-		
-		
-		// Panel 1 Positions: //
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(396)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 610, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-					.addComponent(label_10, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)
-					.addGap(90))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(49)
-					.addComponent(label_10, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(638, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(102, Short.MAX_VALUE)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 606, GroupLayout.PREFERRED_SIZE)
-					.addGap(170))
-		);
+		label_10.setBounds(1114, 49, 236, 191);
 		
 
 		// Text Boxes For Panel 1: //
 		txtContractID = new JTextField();
+		txtContractID.setBounds(88, 25, 134, 28);
 		txtContractID.setEditable(false);
 		txtContractID.setColumns(10);
 		setContractID();
 	
 		txtMail = new JTextField();
+		txtMail.setBounds(7, 320, 128, 28);
 		txtMail.setEditable(false);
 		txtMail.setColumns(10);
 		
 		txtContactPhone = new JTextField();
+		txtContactPhone.setBounds(147, 320, 134, 28);
 		txtContactPhone.setEditable(false);
 		txtContactPhone.setColumns(10);
 		
 		txtMobilePhone = new JTextField();
+		txtMobilePhone.setBounds(299, 320, 134, 28);
 		txtMobilePhone.setEditable(false);
 		txtMobilePhone.setColumns(10);
 		
@@ -179,180 +176,74 @@ public class ContractForm {
 				
 			}
 		});
+		frame.getContentPane().setLayout(null);
 
 	
 		// Variables //
 		txtSharing = new JTextField();
+		txtSharing.setBounds(299, 128, 62, 28);
 		txtSharing.setColumns(5);
 		
 	    chckActive = new JCheckBox("Active");
+	    chckActive.setBounds(290, 188, 71, 23);
 		chckActive.setSelected(true);
-		
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(6)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(CustomersPane, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
-									.addGap(25)
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel_1.createSequentialGroup()
-											.addGap(36)
-											.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-												.addComponent(btnRight, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-												.addComponent(btnLeft, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)))
-										.addGroup(gl_panel_1.createSequentialGroup()
-											.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-												.addComponent(chckActive)
-												.addGroup(gl_panel_1.createSequentialGroup()
-													.addComponent(label_6)
-													.addGap(1)
-													.addComponent(txtSharing, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)))
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(label_7)))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(OwnerPane, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE))
-								.addComponent(label_8)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtMail, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-									.addGap(12)
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(label_4)
-										.addComponent(txtContactPhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(label_5)
-										.addComponent(txtMobilePhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(label_3)))
-					.addContainerGap(9, Short.MAX_VALUE))
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(6)
-					.addComponent(label_8)
-					.addGap(6)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(OwnerPane, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(17)
-							.addComponent(btnRight)
-							.addGap(6)
-							.addComponent(btnLeft)
-							.addGap(18)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addGap(6)
-									.addComponent(label_6))
-								.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-									.addComponent(txtSharing, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label_7)))
-							.addGap(32)
-							.addComponent(chckActive))
-						.addComponent(CustomersPane, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_3)
-						.addComponent(label_4)
-						.addComponent(label_5))
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtContactPhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtMail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtMobilePhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(21))
-		);
 		
 		OwnerPane.setViewportView(Owners);
 		CustomersPane.setViewportView(Customers);
-		panel_1.setLayout(gl_panel_1);
 	
 		// Labels For Panel 2 //
 		JLabel lblPlotid = new JLabel("PlotID:");
+		lblPlotid.setBounds(6, 77, 42, 16);
 		JLabel lblPlotName = new JLabel("Plot Name:");
+		lblPlotName.setBounds(144, 77, 68, 16);
 		JLabel lblPlotNumberr = new JLabel("Plot Number:");
+		lblPlotNumberr.setBounds(379, 77, 82, 16);
 	
 		// Text Boxes For Pane 2 //
 		txtPlotID = new JTextField();
+		txtPlotID.setBounds(54, 71, 84, 28);
 		txtPlotID.setEditable(false);
 		txtPlotID.setColumns(10);
 		
 		txtPlotName = new JTextField();
+		txtPlotName.setBounds(218, 71, 155, 28);
 		txtPlotName.setEditable(false);
 		txtPlotName.setColumns(10);
 		
 		txtPlotNumber = new JTextField();
+		txtPlotNumber.setBounds(467, 71, 88, 28);
 		txtPlotNumber.setEditable(false);
 		txtPlotNumber.setColumns(10);
-		
-		// Panel 2 Positions: //
-		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 590, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(14, Short.MAX_VALUE))
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(21)
-					.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(323, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
-					.addContainerGap(14, Short.MAX_VALUE)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtContractID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblPlotid)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtPlotID, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblPlotName)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtPlotName, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblPlotNumberr)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtPlotNumber, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
-					.addGap(55))
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(25)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_9)
-						.addComponent(txtContractID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPlotid)
-						.addComponent(txtPlotID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPlotName)
-						.addComponent(txtPlotName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtPlotNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPlotNumberr))
-					.addGap(26)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 370, GroupLayout.PREFERRED_SIZE)
-					.addGap(51)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnBack)
-						.addComponent(btnSave))
-					.addContainerGap(43, Short.MAX_VALUE))
-		);
-		panel_2.setLayout(gl_panel_2);
-		frame.getContentPane().setLayout(groupLayout);
+		panel_1.setLayout(null);
+		panel_1.add(CustomersPane);
+		panel_1.add(btnRight);
+		panel_1.add(btnLeft);
+		panel_1.add(chckActive);
+		panel_1.add(label_6);
+		panel_1.add(txtSharing);
+		panel_1.add(label_7);
+		panel_1.add(OwnerPane);
+		panel_1.add(label_8);
+		panel_1.add(txtMail);
+		panel_1.add(label_4);
+		panel_1.add(txtContactPhone);
+		panel_1.add(label_5);
+		panel_1.add(txtMobilePhone);
+		panel_1.add(label_3);
+		frame.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		panel_2.add(panel_1);
+		panel_2.add(btnBack);
+		panel_2.add(btnSave);
+		panel_2.add(label_9);
+		panel_2.add(txtContractID);
+		panel_2.add(lblPlotid);
+		panel_2.add(txtPlotID);
+		panel_2.add(lblPlotName);
+		panel_2.add(txtPlotName);
+		panel_2.add(lblPlotNumberr);
+		panel_2.add(txtPlotNumber);
+		frame.getContentPane().add(label_10);
 		frame.setVisible(false);
 		
 		addButtonsFuctionalities();
