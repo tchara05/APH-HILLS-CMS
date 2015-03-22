@@ -28,8 +28,7 @@ import javax.swing.JCheckBox;
 
 import userMenus.LogIn;
 import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
-import java.awt.SystemColor;
+
 
 public class ContractForm {
 
@@ -98,12 +97,14 @@ public class ContractForm {
 		OwnerPane.setBounds(382, 29, 198, 245);
 		
 		// Panels: //
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(28, 125, 590, 370);
-		panel_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(9, 80, 208), 3), "Create New Contract", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(9, 80, 208)));
-		panel_2.setBounds(396, 90, 643, 618);
+		JPanel createContPanel = new JPanel();
+		createContPanel.setBounds(28, 125, 590, 370);
+		createContPanel.setBackground(new Color(204, 204, 153));
+		createContPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBounds(396, 90, 643, 618);
+		
+		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Create New Contract", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
 		// Buttons: //
 		btnRight = new JButton(">>");
@@ -115,9 +116,8 @@ public class ContractForm {
 		btnLeft = new JButton("<<");
 		btnLeft.setBounds(262, 81, 86, 29);
 		
-		// Labels For Panel 1: //
-		JLabel label_9 = new JLabel("Contract ID:");
-		label_9.setBounds(6, 31, 76, 16);
+		
+		
 		JLabel label_3 = new JLabel("Primary Email:");
 		label_3.setBounds(7, 296, 89, 16);
 		JLabel label_4 = new JLabel("Contact Phone:");
@@ -133,13 +133,6 @@ public class ContractForm {
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		JLabel label_10 = new JLabel(image);
 		label_10.setBounds(1114, 49, 236, 191);
-		
-
-		// Text Boxes For Panel 1: //
-		txtContractID = new JTextField();
-		txtContractID.setBounds(88, 25, 134, 28);
-		txtContractID.setEditable(false);
-		txtContractID.setColumns(10);
 		setContractID();
 	
 		txtMail = new JTextField();
@@ -190,59 +183,77 @@ public class ContractForm {
 		
 		OwnerPane.setViewportView(Owners);
 		CustomersPane.setViewportView(Customers);
-	
-		// Labels For Panel 2 //
-		JLabel lblPlotid = new JLabel("PlotID:");
-		lblPlotid.setBounds(6, 77, 42, 16);
-		JLabel lblPlotName = new JLabel("Plot Name:");
-		lblPlotName.setBounds(144, 77, 68, 16);
+		createContPanel.setLayout(null);
+		createContPanel.add(CustomersPane);
+		createContPanel.add(btnRight);
+		createContPanel.add(btnLeft);
+		createContPanel.add(chckActive);
+		createContPanel.add(label_6);
+		createContPanel.add(txtSharing);
+		createContPanel.add(label_7);
+		createContPanel.add(OwnerPane);
+		createContPanel.add(label_8);
+		createContPanel.add(txtMail);
+		createContPanel.add(label_4);
+		createContPanel.add(txtContactPhone);
+		createContPanel.add(label_5);
+		createContPanel.add(txtMobilePhone);
+		createContPanel.add(label_3);
+		frame.getContentPane().add(mainPanel);
+		mainPanel.setLayout(null);
+		mainPanel.add(createContPanel);
+		mainPanel.add(btnBack);
+		mainPanel.add(btnSave);
+		
+		JPanel InfoPanel = new JPanel();
+		InfoPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		InfoPanel.setBounds(28, 28, 590, 85);
+		InfoPanel.setBackground(new Color(204, 204, 153));
+		mainPanel.add(InfoPanel);
+		InfoPanel.setLayout(null);
+		
+		// Labels For Panel 1: //
+		JLabel label_9 = new JLabel("Contract ID:");
+		label_9.setBounds(17, 12, 76, 16);
+		InfoPanel.add(label_9);
+		
+
+		// Text Boxes For Panel 1: //
+		txtContractID = new JTextField();
+		txtContractID.setBounds(105, 6, 134, 28);
+		InfoPanel.add(txtContractID);
+		txtContractID.setEditable(false);
+		txtContractID.setColumns(10);
 		JLabel lblPlotNumberr = new JLabel("Plot Number:");
-		lblPlotNumberr.setBounds(379, 77, 82, 16);
-	
-		// Text Boxes For Pane 2 //
-		txtPlotID = new JTextField();
-		txtPlotID.setBounds(54, 71, 84, 28);
-		txtPlotID.setEditable(false);
-		txtPlotID.setColumns(10);
+		lblPlotNumberr.setBounds(17, 50, 82, 16);
+		InfoPanel.add(lblPlotNumberr);
+		JLabel lblPlotName = new JLabel("Plot Name:");
+		lblPlotName.setBounds(263, 50, 68, 16);
+		InfoPanel.add(lblPlotName);
+		
+		txtPlotNumber = new JTextField();
+		txtPlotNumber.setBounds(105, 44, 134, 28);
+		InfoPanel.add(txtPlotNumber);
+		txtPlotNumber.setEditable(false);
+		txtPlotNumber.setColumns(10);
 		
 		txtPlotName = new JTextField();
-		txtPlotName.setBounds(218, 71, 155, 28);
+		txtPlotName.setBounds(343, 44, 155, 28);
+		InfoPanel.add(txtPlotName);
 		txtPlotName.setEditable(false);
 		txtPlotName.setColumns(10);
 		
-		txtPlotNumber = new JTextField();
-		txtPlotNumber.setBounds(467, 71, 88, 28);
-		txtPlotNumber.setEditable(false);
-		txtPlotNumber.setColumns(10);
-		panel_1.setLayout(null);
-		panel_1.add(CustomersPane);
-		panel_1.add(btnRight);
-		panel_1.add(btnLeft);
-		panel_1.add(chckActive);
-		panel_1.add(label_6);
-		panel_1.add(txtSharing);
-		panel_1.add(label_7);
-		panel_1.add(OwnerPane);
-		panel_1.add(label_8);
-		panel_1.add(txtMail);
-		panel_1.add(label_4);
-		panel_1.add(txtContactPhone);
-		panel_1.add(label_5);
-		panel_1.add(txtMobilePhone);
-		panel_1.add(label_3);
-		frame.getContentPane().add(panel_2);
-		panel_2.setLayout(null);
-		panel_2.add(panel_1);
-		panel_2.add(btnBack);
-		panel_2.add(btnSave);
-		panel_2.add(label_9);
-		panel_2.add(txtContractID);
-		panel_2.add(lblPlotid);
-		panel_2.add(txtPlotID);
-		panel_2.add(lblPlotName);
-		panel_2.add(txtPlotName);
-		panel_2.add(lblPlotNumberr);
-		panel_2.add(txtPlotNumber);
+			// Text Boxes For Pane 2 //
+			txtPlotID = new JTextField();
+			txtPlotID.setBounds(342, 6, 156, 28);
+			InfoPanel.add(txtPlotID);
+			txtPlotID.setEditable(false);
+			txtPlotID.setColumns(10);
+			
+				// Labels For Panel 2 //
+				JLabel lblPlotid = new JLabel("PlotID:");
+				lblPlotid.setBounds(265, 12, 42, 16);
+				InfoPanel.add(lblPlotid);
 		frame.getContentPane().add(label_10);
 		frame.setVisible(false);
 		
@@ -358,5 +369,4 @@ public class ContractForm {
 		txtPlotNumber.setText(Property[2]);
 		txtPlotName.setText(Property[1]);
 	}
-
 }
