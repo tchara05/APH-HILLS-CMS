@@ -102,17 +102,13 @@ public class ContractForm {
 		createContPanel.setBackground(new Color(204, 204, 153));
 		createContPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		JPanel mainPanel = new JPanel();
-		mainPanel.setBounds(396, 90, 643, 618);
+		mainPanel.setBounds(396, 90, 650, 618);
 		
 		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Create New Contract", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
 		// Buttons: //
 		btnRight = new JButton(">>");
 		btnRight.setBounds(262, 46, 86, 29);
-		btnBack = new JButton("Back");
-		btnBack.setBounds(21, 546, 126, 29);
-		btnSave = new JButton("Save");
-		btnSave.setBounds(165, 546, 122, 29);
 		btnLeft = new JButton("<<");
 		btnLeft.setBounds(262, 81, 86, 29);
 		
@@ -133,7 +129,7 @@ public class ContractForm {
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 		JLabel label_10 = new JLabel(image);
 		label_10.setBounds(1114, 49, 236, 191);
-		setContractID();
+
 	
 		txtMail = new JTextField();
 		txtMail.setBounds(7, 320, 128, 28);
@@ -202,8 +198,6 @@ public class ContractForm {
 		frame.getContentPane().add(mainPanel);
 		mainPanel.setLayout(null);
 		mainPanel.add(createContPanel);
-		mainPanel.add(btnBack);
-		mainPanel.add(btnSave);
 		
 		JPanel InfoPanel = new JPanel();
 		InfoPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
@@ -254,10 +248,24 @@ public class ContractForm {
 				JLabel lblPlotid = new JLabel("PlotID:");
 				lblPlotid.setBounds(265, 12, 42, 16);
 				InfoPanel.add(lblPlotid);
+				
+				JPanel buttonsPanel = new JPanel();
+				buttonsPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+				buttonsPanel.setBackground(new Color(204, 204, 153));
+				buttonsPanel.setBounds(28, 521, 590, 75);
+				mainPanel.add(buttonsPanel);
+				buttonsPanel.setLayout(null);
+				btnSave = new JButton("Save");
+				btnSave.setBounds(144, 23, 122, 29);
+				buttonsPanel.add(btnSave);
+				btnBack = new JButton("Back");
+				btnBack.setBounds(6, 23, 126, 29);
+				buttonsPanel.add(btnBack);
 		frame.getContentPane().add(label_10);
 		frame.setVisible(false);
 		
 		addButtonsFuctionalities();
+		setContractID();
 	}
 	
 	// Add Events to Buttons//
