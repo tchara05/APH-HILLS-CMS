@@ -16,6 +16,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import extras.Query;
 
 import extras.ListManager;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 
 @SuppressWarnings("serial")
@@ -41,6 +43,7 @@ public class PropertyMenu extends JPanel {
 	public PropertyMenu() {
 		
 		PropertyPanel = new JPanel();
+		PropertyPanel.setBorder(new LineBorder(new Color(0, 0, 128), 3));
 		propertyform = new PropertyForm();
 		
 		// Labels: //

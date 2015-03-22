@@ -26,7 +26,8 @@ import java.sql.SQLException;
 public class ContractMenu extends JPanel {
 	
 	//The Box //
-	private static JPanel panel;
+	private static JPanel contPanel;
+	private static JPanel wrapper;
 	
 	public static JComboBox<String> AllProperties ;
 	public static JComboBox<String> AllClasses ;
@@ -42,13 +43,21 @@ public class ContractMenu extends JPanel {
 		
 	
 	public ContractMenu(){
-		setBorder(new LineBorder(new Color(0, 0, 0)));
-		 panel = new JPanel();
-		 panel.setBounds(6, 69, 555, 192);
-		 panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Find A Property", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		 panel.setBackground(new Color(204, 204, 153));
-		 panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		setBorder(new LineBorder(new Color(0, 0, 128), 0));
 		 contractform = new ContractForm();
+		 setLayout(null);
+		
+	    wrapper = new JPanel();
+		wrapper.setBorder(new LineBorder(new Color(0, 0, 128), 3));
+		wrapper.setBounds(31, 89, 552, 257);
+		add(wrapper);
+		wrapper.setLayout(null);
+		contPanel = new JPanel();
+		contPanel.setBounds(47, 36, 488, 192);
+		wrapper.add(contPanel);
+		contPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		contPanel.setBackground(new Color(204, 204, 153));
+		contPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		//DropDown List: //
 		 AllProperties = new JComboBox<String>();
 		 AllProperties.setBounds(86, 18, 199, 27);
@@ -59,7 +68,6 @@ public class ContractMenu extends JPanel {
 		 AllClasses.setBounds(7, 85, 189, 27);
 		 AllParcels.addItem("0 None");
 		 AllClasses.addItem("0 None");
-		 setLayout(null);
 		 ListManager.setUpTwoColumnsList(AllClasses,Query.CLASS_NO_NAME);
 		 ListManager.setUpTwoColumnsList(AllParcels,Query.PARCEL_NO_NAME);
 		 
@@ -76,19 +84,18 @@ public class ContractMenu extends JPanel {
 		btnFilter.setBounds(7, 137, 135, 29);
 		btnAddNewContract = new JButton("Add New Contract");
 		btnAddNewContract.setBounds(329, 137, 158, 29);
-	    btnFilterByNo = new JButton("Filter by No Contract");
-	    btnFilterByNo.setBounds(148, 137, 175, 29);
-		add(panel);
-		panel.setLayout(null);
-		panel.add(label);
-		panel.add(AllProperties);
-		panel.add(label_1);
-		panel.add(AllClasses);
-		panel.add(label_2);
-		panel.add(AllParcels);
-		panel.add(btnFilter);
-		panel.add(btnFilterByNo);
-		panel.add(btnAddNewContract);
+		btnFilterByNo = new JButton("Filter by No Contract");
+		btnFilterByNo.setBounds(148, 137, 175, 29);
+		contPanel.setLayout(null);
+		contPanel.add(label);
+		contPanel.add(AllProperties);
+		contPanel.add(label_1);
+		contPanel.add(AllClasses);
+		contPanel.add(label_2);
+		contPanel.add(AllParcels);
+		contPanel.add(btnFilter);
+		contPanel.add(btnFilterByNo);
+		contPanel.add(btnAddNewContract);
 		
 		addButtonsFuctionalities();
 
@@ -96,7 +103,7 @@ public class ContractMenu extends JPanel {
 	
 	public static JPanel createContractMenu() {
 		 new ContractMenu();
-		 return panel;
+		 return wrapper;
 	}
 
 	//Buttons Fuctionalities //

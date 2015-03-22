@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 
 
@@ -20,6 +22,7 @@ public class accountantPanel extends JPanel {
 	
 	
 	public accountantPanel() {
+		setBorder(new LineBorder(new Color(0, 0, 128)));
 		
 	    btnSendProformaDocumet = new JButton("Export All Proformas");
 	

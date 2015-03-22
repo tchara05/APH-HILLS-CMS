@@ -20,6 +20,8 @@ import extras.Query;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class CustomerMenu extends JPanel {
@@ -52,6 +54,7 @@ public class CustomerMenu extends JPanel {
 		customerform = new CustomerForm();
 		CustomerForm.setVisible(false);
 		CustomerPanel = new JPanel();
+		CustomerPanel.setBorder(new LineBorder(new Color(0, 0, 128), 3));
 
 		// Labels //
 		JLabel lblAllCustomers = new JLabel("All Customers:");
