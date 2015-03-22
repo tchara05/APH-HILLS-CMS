@@ -22,6 +22,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
 public class CustomerMenu extends JPanel {
@@ -46,6 +47,7 @@ public class CustomerMenu extends JPanel {
 	private JButton btnAddNewCustomer;
 	private JButton btnDeleteCustomer;
 	private JButton btnEditCustomer;
+	private JPanel detailsPanel;
 
 	
 	
@@ -58,123 +60,89 @@ public class CustomerMenu extends JPanel {
 
 		// Labels //
 		JLabel lblAllCustomers = new JLabel("All Customers:");
-		JLabel lblFirstName = new JLabel("First Name:");
-		JLabel lblLastname = new JLabel("Last Name:");
-		JLabel lblNewLabel = new JLabel("Primary Email:");
-		JLabel lblNewLabel_1 = new JLabel("Customer ID:");
-		JLabel lblContactPhone = new JLabel("Contact Phone:");
-		JLabel lblMobilePhone = new JLabel("Mobile Phone:");
+		lblAllCustomers.setBounds(33, 47, 93, 16);
 
 		//DropDown List //
 		AllCustomers = new JComboBox<String>();
+		AllCustomers.setBounds(33, 82, 301, 27);
 		ListManager.setUpThreeList(AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
 		
 		// Buttons //
 		btnAddNewCustomer = new JButton("Add New Customer");
+		btnAddNewCustomer.setBounds(412, 81, 169, 29);
 		btnEditCustomer = new JButton("Edit/View Customer");
+		btnEditCustomer.setBounds(412, 177, 169, 29);
 		btnDeleteCustomer = new JButton("Delete Customer");
-
+		btnDeleteCustomer.setBounds(412, 129, 169, 29);
+		CustomerPanel.setLayout(null);
+		CustomerPanel.add(lblAllCustomers);
+		CustomerPanel.add(AllCustomers);
+		CustomerPanel.add(btnEditCustomer);
+		CustomerPanel.add(btnDeleteCustomer);
+		CustomerPanel.add(btnAddNewCustomer);
 		
-		//Text Box //
-		PrimaryMail = new JTextField();
-		PrimaryMail.setEditable(false);
-		PrimaryMail.setColumns(15);
-
-		FirstName = new JTextField();
-		FirstName.setEditable(false);
-		FirstName.setColumns(15);
-
-		LastName = new JTextField();
-		LastName.setEditable(false);
-		LastName.setColumns(15);
-
-		CustomerID = new JTextField();
-		CustomerID.setEditable(false);
-		CustomerID.setColumns(10);
-
-		contactNumber = new JTextField();
-		contactNumber.setEditable(false);
-		contactNumber.setColumns(10);
-
-		MobilePhone = new JTextField();
-		MobilePhone.setEditable(false);
-		MobilePhone.setColumns(15);
-
-		GroupLayout gl_CustomerPanel = new GroupLayout(CustomerPanel);
-		gl_CustomerPanel.setHorizontalGroup(
-			gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_CustomerPanel.createSequentialGroup()
-					.addGap(30)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblAllCustomers)
-						.addGroup(gl_CustomerPanel.createSequentialGroup()
-							.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_CustomerPanel.createSequentialGroup()
-									.addComponent(lblMobilePhone)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(MobilePhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblLastname)
-								.addComponent(lblNewLabel_1)
-								.addComponent(AllCustomers, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(gl_CustomerPanel.createSequentialGroup()
-									.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel)
-										.addComponent(lblFirstName)
-										.addComponent(lblContactPhone))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(PrimaryMail)
-										.addComponent(LastName)
-										.addComponent(FirstName)
-										.addComponent(CustomerID)
-										.addComponent(contactNumber))))
-							.addGap(78)
-							.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnEditCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnDeleteCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnAddNewCustomer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-					.addGap(78))
-		);
-		gl_CustomerPanel.setVerticalGroup(
-			gl_CustomerPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_CustomerPanel.createSequentialGroup()
-					.addGap(44)
-					.addComponent(lblAllCustomers)
-					.addGap(18)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAddNewCustomer)
-						.addComponent(AllCustomers, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnDeleteCustomer)
-						.addComponent(lblNewLabel_1)
-						.addComponent(CustomerID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnEditCustomer)
-						.addComponent(FirstName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblFirstName))
-					.addGap(18)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblLastname)
-						.addComponent(LastName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(PrimaryMail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel))
-					.addGap(18)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(contactNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblContactPhone))
-					.addGap(18)
-					.addGroup(gl_CustomerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblMobilePhone)
-						.addComponent(MobilePhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(90))
-		);
+		detailsPanel = new JPanel();
+		detailsPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		detailsPanel.setBounds(17, 217, 550, 145);
+		CustomerPanel.add(detailsPanel);
+		detailsPanel.setLayout(null);
+		JLabel lblNewLabel = new JLabel("Primary Email:");
+		lblNewLabel.setBounds(256, 39, 89, 16);
+		detailsPanel.setBackground(new Color(204, 204, 153));
+		detailsPanel.add(lblNewLabel);
 		
-		
-		CustomerPanel.setLayout(gl_CustomerPanel);
+				
+				//Text Box //
+				PrimaryMail = new JTextField();
+				PrimaryMail.setBounds(350, 33, 194, 28);
+				detailsPanel.add(PrimaryMail);
+				PrimaryMail.setEditable(false);
+				PrimaryMail.setColumns(15);
+				JLabel lblContactPhone = new JLabel("Contact Phone:");
+				lblContactPhone.setBounds(256, 79, 95, 16);
+				detailsPanel.add(lblContactPhone);
+				
+						contactNumber = new JTextField();
+						contactNumber.setBounds(350, 73, 194, 28);
+						detailsPanel.add(contactNumber);
+						contactNumber.setEditable(false);
+						contactNumber.setColumns(10);
+						
+								MobilePhone = new JTextField();
+								MobilePhone.setBounds(350, 112, 194, 28);
+								detailsPanel.add(MobilePhone);
+								MobilePhone.setEditable(false);
+								MobilePhone.setColumns(15);
+								JLabel lblMobilePhone = new JLabel("Mobile Phone:");
+								lblMobilePhone.setBounds(262, 118, 88, 16);
+								detailsPanel.add(lblMobilePhone);
+								JLabel lblNewLabel_1 = new JLabel("Customer ID:");
+								lblNewLabel_1.setBounds(6, 39, 83, 16);
+								detailsPanel.add(lblNewLabel_1);
+								
+										CustomerID = new JTextField();
+										CustomerID.setBounds(89, 33, 161, 28);
+										detailsPanel.add(CustomerID);
+										CustomerID.setEditable(false);
+										CustomerID.setColumns(10);
+										JLabel lblFirstName = new JLabel("First Name:");
+										lblFirstName.setBounds(6, 79, 72, 16);
+										detailsPanel.add(lblFirstName);
+										
+												FirstName = new JTextField();
+												FirstName.setBounds(75, 73, 175, 28);
+												detailsPanel.add(FirstName);
+												FirstName.setEditable(false);
+												FirstName.setColumns(15);
+												JLabel lblLastname = new JLabel("Last Name:");
+												lblLastname.setBounds(6, 118, 70, 16);
+												detailsPanel.add(lblLastname);
+												
+														LastName = new JTextField();
+														LastName.setBounds(75, 112, 175, 28);
+														detailsPanel.add(LastName);
+														LastName.setEditable(false);
+														LastName.setColumns(15);
 		addButtonsFuctionalities();
 	}
 	
