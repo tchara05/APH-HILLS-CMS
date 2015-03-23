@@ -15,6 +15,7 @@ public class PropertyClearButton  {
 		
 		Border compound = null;
 		
+				
 		PropertyForm.chckbxAirCondition.setSelected(false);
 		PropertyForm.chckbxBasement.setSelected(false);
 		PropertyForm.chckbxCentralHeading.setSelected(false);
