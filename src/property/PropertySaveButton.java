@@ -2,10 +2,14 @@ package property;
 
 import java.awt.Color;
 import java.sql.SQLException;
+
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 import userMenus.LogIn;
 import contract.ContractMenu;
+import customer.CustomerForm;
 import extras.Checker;
 import extras.ListManager;
 import extras.Messages;
@@ -17,21 +21,29 @@ public class PropertySaveButton extends Thread {
 	public void run() {
 
 		boolean checked = true;
+		
+		Border compound = null;
+		Border redline = BorderFactory.createLineBorder(Color.red,2);
 
 		String plotName = PropertyForm.txtPlotName.getText();
-		plotName = Checker.clearString(plotName);
-		if (!Checker.checkString(plotName) || (plotName.isEmpty())) {
-			String msg = "Plot Name has invalid characters";
-			Messages.showWarningMessage(msg);
+		//plotName = Checker.clearString(plotName);
+		if ( (!Checker.checkString(plotName) )|| (plotName.isEmpty()) ) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtPlotName.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		// Check Variables Below //
 		String plotNumber = PropertyForm.txtPlotNo.getText();
 		if (!Checker.checkNumber(plotNumber)) {
-			String msg = "Plot Number has invalid characters";
-			Messages.showWarningMessage(msg);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtPlotNo.setBorder(compound);
 			checked = false;
+			compound = null;
+		}
+		else{
+			PropertyForm.txtPlotNo.setBorder(compound);
 		}
 
 		String[] propertyClasses = ListManager.SplitTwoItem((String)PropertyForm.AllClasses.getSelectedItem());
@@ -46,54 +58,61 @@ public class PropertySaveButton extends Thread {
 
 		String landUse = PropertyForm.txtLandUse.getText();
 		if (!Checker.checkNumber(landUse)) {
-			String msg = "Parcel has invalid characters";
-			Messages.showWarningMessage(msg);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtLandUse.setBorder(compound);
 			checked = false;
+			compound = null;
+			
 		}
 
 		String percentage = PropertyForm.txtPerChange.getText();
 		if (!Checker.checkNumber(percentage)) {
-			String msg = "Percentage has invalid characters";
-			Messages.showWarningMessage(msg);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtPerChange.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String plots = PropertyForm.txtPlots.getText();
-		if (!plots.isEmpty()) {
-			if (!Checker.checkNumber(plots)) {
-				String msg = "Plot has invalid characters";
-				Messages.showWarningMessage(msg);
-				checked = false;
-			}
+		if ( (!plots.isEmpty()) || (!Checker.checkNumber(plots)) ) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtPlots.setBorder(compound);
+			checked = false;
+			compound = null;
 		}
 
 		String details = PropertyForm.txtExtraDetails.getText();
 
 		String floorsNo = PropertyForm.txtFloors.getText();
 		if (!Checker.checkNumber(floorsNo)) {
-			String msg = "Floors Number has invalid characters";
-			Messages.showWarningMessage(msg);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtFloors.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String bedroomsNo = PropertyForm.txtBedrooms.getText();
 		if (!Checker.checkNumber(bedroomsNo)) {
-			String msg = "Bedrooms number has invalid characters";
-			Messages.showWarningMessage(msg);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtBedrooms.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String bathroomsNo = PropertyForm.txtBathrooms.getText();
 		if (!Checker.checkNumber(bathroomsNo)) {
-			PropertyForm.txtBathrooms.setBackground(Color.YELLOW);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtBathrooms.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String deedNum = PropertyForm.txtDeedNo.getText();
 		if (!Checker.checkNumber(deedNum)) {
-			String msg = "Deed number has invalid characters";
-			Messages.showWarningMessage(msg);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtDeedNo.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		short rentalGarante = 0;
