@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.text.Highlighter;
 
 import userMenus.LogIn;
 import contract.ContractForm;
@@ -17,73 +21,98 @@ public class CustomerSaveButton extends Thread {
 	public void run() {
 
 		boolean checked = true;
-
+		
+		Border compound = null;
+		Border redline = BorderFactory.createLineBorder(Color.red,2);
+		
 		String country = (String) CustomerForm.Country.getSelectedItem();
-
+		
 		String nFname = Checker.clearString(CustomerForm.txtFname.getText());
 		nFname = Checker.clearString(nFname);
 		if (!Checker.checkString(nFname) || (nFname.isEmpty())) {
-			CustomerForm.txtFname.setBackground(Color.RED);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtFname.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String nLname = Checker.clearString(CustomerForm.txtLastName.getText());
 		nLname = Checker.clearString(nLname);
 		if (!Checker.checkString(nLname) || (nLname.isEmpty())) {
-			CustomerForm.txtLastName.setBackground(Color.YELLOW);
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtLastName.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String address = CustomerForm.txtAddress.getText();
+	
 
 		String city = CustomerForm.txtCity.getText();
 		city = Checker.clearString(city);
 		if (!Checker.checkString(city) || (city.isEmpty())) {
-
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtCity.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
+		
+		
 
 		String bussinesNumber = CustomerForm.txtBussinesNumber.getText();
-		if (!Checker.checkNumber(bussinesNumber)) {
-
+		if (!Checker.checkNumber(bussinesNumber)||(bussinesNumber.isEmpty())) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtBussinesNumber.setBorder(compound);
 			checked = false;
+			compound = null;
+			
 		}
 
 		String contactNumber = CustomerForm.txtContactNumber.getText();
 		contactNumber = contactNumber.trim();
-		if (!Checker.checkNumber(contactNumber)) {
-
+		if (!Checker.checkNumber(contactNumber)||(contactNumber.isEmpty())) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtContactNumber.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String faxNumber = CustomerForm.txtFaxNumber.getText();
 		faxNumber = faxNumber.trim();
-		if (!Checker.checkNumber(faxNumber)) {
+		if (!Checker.checkNumber(faxNumber)||(faxNumber.isEmpty())) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtFaxNumber.setBorder(compound);
 
 			checked = false;
+			compound = null;
 		}
 
 		String note = CustomerForm.txtNote.getText();
 
 		String mobileNum = CustomerForm.txtPhoneMobile.getText();
 		mobileNum = mobileNum.trim();
-		if (!Checker.checkNumber(mobileNum)) {
-
+		if (!Checker.checkNumber(mobileNum)||(mobileNum.isEmpty())) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtPhoneMobile.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String primaryMail = CustomerForm.txtPrimaryMail.getText();
 		primaryMail = primaryMail.trim();
-		if (!Checker.checkEmailAddress(primaryMail)) {
-
+		if (!Checker.checkEmailAddress(primaryMail)||(primaryMail.isEmpty())) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtPrimaryMail.setBorder(compound);
 			checked = false;
+			compound = null;
 		}
 
 		String secondaryMail = CustomerForm.txtSeconadaryMail.getText();
 		secondaryMail = secondaryMail.trim();
 		if (!secondaryMail.isEmpty()) {
 			if (!Checker.checkEmailAddress(secondaryMail)) {
-
+				compound = BorderFactory.createCompoundBorder(redline, compound);
+				CustomerForm.txtSeconadaryMail.setBorder(compound);
 				checked = false;
 			}
 		}
