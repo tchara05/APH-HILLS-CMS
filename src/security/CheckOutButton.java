@@ -46,14 +46,15 @@ public class CheckOutButton extends Thread {
 				}else{
 					boolean f1,f2;
 					f1=cheked2(keyID,specificKey);//pernei true an exei sto pedio ckeckedInTime"key is not checked in yet"
-					f2=cheked3(keyID,specificKey);//pernei true ean  den yparxei o syndiasmos keyid me specifickey
+					//f2=cheked3(keyID,specificKey);//pernei true ean  den yparxei o syndiasmos keyid me specifickey
 					System.out.print(f1);
-					System.out.print(f2);
+					//System.out.print(f2);
 					
 					if (f1){
 						Messages.showWarningMessage("Can not Ckeck out this Key Not checkIn yet ");
 						flag=false;								
 					}
+					
 				}
 			} catch (SQLException e1) {
 				System.out.print("2222");
@@ -121,7 +122,7 @@ public class CheckOutButton extends Thread {
 	}
 	
 	
-	private boolean checker(String s) throws SQLException {
+	public static boolean checker(String s) throws SQLException {
 		
 		if(Checker.checkNumber(s)){
 			
@@ -151,17 +152,18 @@ public class CheckOutButton extends Thread {
 
 	
 	
-	private boolean cheked2(String s,String p) throws SQLException {
+	public static boolean cheked2(String s, String p) throws SQLException {
 		
 		
 			int id=Integer.parseInt(s);
 			String temp="Key is not checked in yet";
+			
 			try{
 				DatabaseConnection database = new DatabaseConnection();
 				Statement st = database.getStatement();
 				ResultSet rst = null;
 				
-				rst = st.executeQuery("SELECT * FROM Service WHERE keyID= '" + id+"' and specificKey= '"+ p +"' and checkInTime= '"+ temp +"'");
+				rst = st.executeQuery("SELECT * FROM Service WHERE keyID = '" + id +"' and specificKey= '"+ p +"' and checkInDate = '"+ temp +"'");
 				
 					if (rst.next()){
 						return true;
@@ -179,7 +181,7 @@ public class CheckOutButton extends Thread {
 	}
 	
 	
-	private boolean cheked3(String s,String p) throws SQLException {
+	public boolean cheked3(String s,String p) throws SQLException {
 		
 		
 		int id=Integer.parseInt(s);

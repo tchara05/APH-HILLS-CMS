@@ -92,17 +92,17 @@ public class CheckOut {
 		mainPanel.add(buttonPanel);
 		buttonPanel.setLayout(null);
 
-		JLabel lblKey = new JLabel("Key ID :");
+		JLabel lblKey = new JLabel("Key ID* :");
 		lblKey.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblKey.setBounds(32, 37, 60, 14);
 		keyPanel.add(lblKey);
 
-		JLabel lblSpecificKey = new JLabel("Specific Key :");
+		JLabel lblSpecificKey = new JLabel("Specific Key* :");
 		lblSpecificKey.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblSpecificKey.setBounds(32, 92, 88, 14);
 		keyPanel.add(lblSpecificKey);
 
-		JLabel lblPerson = new JLabel("Pick up Person :");
+		JLabel lblPerson = new JLabel("Pick up Person* :");
 		lblPerson.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblPerson.setBounds(32, 197, 101, 14);
 		keyPanel.add(lblPerson);
@@ -111,11 +111,6 @@ public class CheckOut {
 		lblDetails.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblDetails.setBounds(32, 360, 101, 14);
 		keyPanel.add(lblDetails);
-
-		JLabel lblAvailability = new JLabel("Availability :");
-		lblAvailability.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblAvailability.setBounds(32, 145, 101, 14);
-		keyPanel.add(lblAvailability);
 
 		JLabel lblNote = new JLabel("Note :");
 		lblNote.setFont(new Font("Calibri", Font.PLAIN, 14));
@@ -139,12 +134,12 @@ public class CheckOut {
 		lblNotes2.setBounds(36, 67, 259, 14);
 		notesPanel.add(lblNotes2);
 
-		JLabel lblPropertyId = new JLabel("Property ID :");
+		JLabel lblPropertyId = new JLabel("Property ID* :");
 		lblPropertyId.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblPropertyId.setBounds(43, 113, 88, 14);
+		lblPropertyId.setBounds(43, 113, 95, 14);
 		notesPanel.add(lblPropertyId);
 
-		JLabel lblKeyId = new JLabel("Key ID :");
+		JLabel lblKeyId = new JLabel("Key ID* :");
 		lblKeyId.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblKeyId.setBounds(43, 170, 69, 14);
 		notesPanel.add(lblKeyId);
@@ -162,7 +157,7 @@ public class CheckOut {
 
 		txtAvailability = new JTextField();
 		txtAvailability.setEnabled(false);
-		txtAvailability.setBounds(130, 137, 223, 30);
+		txtAvailability.setBounds(170, 137, 183, 30);
 		keyPanel.add(txtAvailability);
 		txtAvailability.setColumns(10);
 
@@ -206,6 +201,16 @@ public class CheckOut {
 		txtMessage.setText("These fields are automatically filled\r\nwhen you press the save button:\r\n      - Your login username\r\n      - Check out time\r\n      - Check out date");
 		txtMessage.setBounds(129, 247, 224, 102);
 		keyPanel.add(txtMessage);
+		
+		JButton btnNewButton = new JButton("Check Availability");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new CheckOutAvailability().run();
+			}
+		});
+		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnNewButton.setBounds(31, 137, 129, 30);
+		keyPanel.add(btnNewButton);
 
 		JButton btnSearchNotes = new JButton("Search pop up Notes");
 		btnSearchNotes.addActionListener(new ActionListener() {
@@ -216,6 +221,11 @@ public class CheckOut {
 		btnSearchNotes.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnSearchNotes.setBounds(141, 217, 211, 30);
 		notesPanel.add(btnSearchNotes);
+		
+		JLabel lblOr = new JLabel("or");
+		lblOr.setFont(new Font("Calibri", Font.ITALIC, 14));
+		lblOr.setBounds(53, 138, 44, 21);
+		notesPanel.add(lblOr);
 
 		btnCheckOut = new JButton("Check out Key");
 		btnCheckOut.addActionListener(new ActionListener() {
