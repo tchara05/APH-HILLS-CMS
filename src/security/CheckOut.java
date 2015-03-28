@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -23,6 +25,7 @@ import javax.swing.JButton;
 public class CheckOut {
 
 	public static JFrame frmService;
+	public static JPanel contentPane;
 	public static JTextField txtAvailability;
 	public static JTextField txtKey;
 	public static JTextField txtPerson;
@@ -64,29 +67,43 @@ public class CheckOut {
 		frmService.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmService.getContentPane().setLayout(null);
 
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		frmService.setContentPane(contentPane);
+		contentPane.setLayout(null);
+		contentPane.setLayout(null);
+		
+		JPanel outerPanel = new JPanel();
+		outerPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "SECURITY DEPARTMENT", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		outerPanel.setBackground(Color.WHITE);
+		outerPanel.setBounds(70, 58, 1216, 618);
+		contentPane.add(outerPanel);
+		outerPanel.setLayout(null);
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
 		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Check out a Key", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		mainPanel.setBounds(132, 82, 1085, 569);
-		frmService.getContentPane().add(mainPanel);
+		mainPanel.setBounds(65, 25, 1085, 569);
+		outerPanel.add(mainPanel);
 		mainPanel.setLayout(null);
 
 		JPanel keyPanel = new JPanel();
-		keyPanel.setBackground(new Color(165, 198, 243));
+		keyPanel.setBackground(new Color(173, 216, 230));
 		keyPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		keyPanel.setBounds(458, 34, 384, 503);
 		mainPanel.add(keyPanel);
 		keyPanel.setLayout(null);
 
 		JPanel notesPanel = new JPanel();
-		notesPanel.setBackground(new Color(165, 198, 243));
+		notesPanel.setBackground(new Color(173, 216, 230));
 		notesPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		notesPanel.setBounds(38, 34, 392, 503);
 		mainPanel.add(notesPanel);
 		notesPanel.setLayout(null);
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(new Color(165, 198, 243));
+		buttonPanel.setBackground(new Color(211, 211, 211));
 		buttonPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		buttonPanel.setBounds(871, 34, 183, 503);
 		mainPanel.add(buttonPanel);
@@ -104,18 +121,13 @@ public class CheckOut {
 
 		JLabel lblPerson = new JLabel("Pick up Person* :");
 		lblPerson.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblPerson.setBounds(32, 197, 101, 14);
+		lblPerson.setBounds(32, 309, 101, 14);
 		keyPanel.add(lblPerson);
 
 		JLabel lblDetails = new JLabel("More Details :");
 		lblDetails.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblDetails.setBounds(32, 360, 101, 14);
+		lblDetails.setBounds(32, 359, 101, 14);
 		keyPanel.add(lblDetails);
-
-		JLabel lblNote = new JLabel("Note :");
-		lblNote.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNote.setBounds(32, 252, 73, 14);
-		keyPanel.add(lblNote);
 
 		JLabel lblNotes = new JLabel(
 				"Please, check any pop up Notes given by the customer:");
@@ -147,7 +159,7 @@ public class CheckOut {
 		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 
 		JLabel lblimage = new JLabel(image);
-		lblimage.setBounds(25, 126, 134, 115);
+		lblimage.setBounds(25, 128, 134, 115);
 		buttonPanel.add(lblimage);
 
 		comboBoxKey = new JComboBox<String>();
@@ -155,19 +167,13 @@ public class CheckOut {
 		comboBoxKey.setBounds(130, 84, 223, 30);
 		keyPanel.add(comboBoxKey);
 
-		txtAvailability = new JTextField();
-		txtAvailability.setEnabled(false);
-		txtAvailability.setBounds(170, 137, 183, 30);
-		keyPanel.add(txtAvailability);
-		txtAvailability.setColumns(10);
-
 		txtKey = new JTextField();
 		txtKey.setBounds(130, 29, 223, 30);
 		keyPanel.add(txtKey);
 		txtKey.setColumns(10);
 
 		txtPerson = new JTextField();
-		txtPerson.setBounds(130, 189, 223, 30);
+		txtPerson.setBounds(130, 301, 223, 30);
 		keyPanel.add(txtPerson);
 		txtPerson.setColumns(10);
 
@@ -182,11 +188,34 @@ public class CheckOut {
 		txtKeyId.setColumns(10);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(32, 385, 321, 88);
+		scrollPane.setBounds(32, 384, 321, 88);
 		keyPanel.add(scrollPane);
-
-		txtDetails = new JTextArea();
-		scrollPane.setViewportView(txtDetails);
+		
+				txtDetails = new JTextArea();
+				scrollPane.setViewportView(txtDetails);
+				
+				JPanel panel = new JPanel();
+				panel.setBorder(new LineBorder(new Color(0, 0, 128)));
+				panel.setBackground(new Color(173, 216, 230));
+				panel.setBounds(0, 141, 384, 133);
+				keyPanel.add(panel);
+				panel.setLayout(null);
+				
+				JButton btnNewButton = new JButton("Check Availability");
+				btnNewButton.setBounds(92, 28, 193, 30);
+				panel.add(btnNewButton);
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						new CheckOutAvailability().run();
+					}
+				});
+				btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
+				
+						txtAvailability = new JTextField();
+						txtAvailability.setBounds(92, 77, 193, 30);
+						panel.add(txtAvailability);
+						txtAvailability.setEnabled(false);
+						txtAvailability.setColumns(10);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(43, 258, 309, 212);
@@ -194,23 +223,6 @@ public class CheckOut {
 
 		txtNotes = new JTextArea();
 		scrollPane_1.setViewportView(txtNotes);
-
-		JTextArea txtMessage = new JTextArea();
-		txtMessage.setFont(new Font("Calibri", Font.PLAIN, 14));
-		txtMessage.setEditable(false);
-		txtMessage.setText("These fields are automatically filled\r\nwhen you press the save button:\r\n      - Your login username\r\n      - Check out time\r\n      - Check out date");
-		txtMessage.setBounds(129, 247, 224, 102);
-		keyPanel.add(txtMessage);
-		
-		JButton btnNewButton = new JButton("Check Availability");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new CheckOutAvailability().run();
-			}
-		});
-		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnNewButton.setBounds(31, 137, 129, 30);
-		keyPanel.add(btnNewButton);
 
 		JButton btnSearchNotes = new JButton("Search pop up Notes");
 		btnSearchNotes.addActionListener(new ActionListener() {
@@ -228,6 +240,8 @@ public class CheckOut {
 		notesPanel.add(lblOr);
 
 		btnCheckOut = new JButton("Check out Key");
+		btnCheckOut.setForeground(new Color(0, 0, 128));
+		btnCheckOut.setBackground(Color.WHITE);
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new CheckOutButton().start();
@@ -238,6 +252,8 @@ public class CheckOut {
 		buttonPanel.add(btnCheckOut);
 
 		JButton btnClear = new JButton("Clear");
+		btnClear.setForeground(new Color(0, 0, 128));
+		btnClear.setBackground(Color.WHITE);
 		btnClear.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
@@ -249,6 +265,8 @@ public class CheckOut {
 		buttonPanel.add(btnClear);
 
 		JButton btnBack = new JButton("Go Back");
+		btnBack.setForeground(new Color(0, 0, 128));
+		btnBack.setBackground(Color.WHITE);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmService.setVisible(false);

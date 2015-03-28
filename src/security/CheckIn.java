@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -28,6 +29,7 @@ import javax.swing.JComboBox;
 public class CheckIn {
 
 	public static JFrame frmCheckIn;
+	public static JPanel contentPane;
 	public static JTextField txtSearch;
 	public static JTextField txtPerson;
 	public static JTextField txtTime;
@@ -63,32 +65,46 @@ public class CheckIn {
 		frmCheckIn.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmCheckIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCheckIn.getContentPane().setLayout(null);
+		
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		frmCheckIn.setContentPane(contentPane);
+		contentPane.setLayout(null);
+		contentPane.setLayout(null);
+		
+		JPanel outerPanel = new JPanel();
+		outerPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "SECURITY DEPARTMENT", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		outerPanel.setBackground(Color.WHITE);
+		outerPanel.setBounds(70, 60, 1216, 618);
+		contentPane.add(outerPanel);
+		outerPanel.setLayout(null);
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
 		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Check in a Key", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		mainPanel.setBounds(338, 80, 674, 603);
-		frmCheckIn.getContentPane().add(mainPanel);
+		mainPanel.setBounds(280, 34, 674, 549);
+		outerPanel.add(mainPanel);
 		mainPanel.setLayout(null);
 
 		JPanel listPanel = new JPanel();
-		listPanel.setBackground(new Color(165, 198, 243));
+		listPanel.setBackground(new Color(173, 216, 230));
 		listPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-		listPanel.setBounds(35, 37, 277, 310);
+		listPanel.setBounds(35, 37, 277, 265);
 		mainPanel.add(listPanel);
 		listPanel.setLayout(null);
 
 		JPanel searchPanel = new JPanel();
-		searchPanel.setBackground(new Color(165, 198, 243));
+		searchPanel.setBackground(new Color(173, 216, 230));
 		searchPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-		searchPanel.setBounds(35, 376, 277, 191);
+		searchPanel.setBounds(35, 329, 277, 191);
 		mainPanel.add(searchPanel);
 		searchPanel.setLayout(null);
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(new Color(165, 198, 243));
+		buttonPanel.setBackground(new Color(211, 211, 211));
 		buttonPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-		buttonPanel.setBounds(340, 37, 302, 530);
+		buttonPanel.setBounds(340, 37, 302, 483);
 		mainPanel.add(buttonPanel);
 		buttonPanel.setLayout(null);
 
@@ -103,31 +119,24 @@ public class CheckIn {
 		lblSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JLabel lblInfo = new JLabel("Information about this Key :");
-		lblInfo.setBounds(27, 129, 203, 17);
+		lblInfo.setBounds(27, 149, 203, 17);
 		buttonPanel.add(lblInfo);
 		lblInfo.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JLabel lblPerson = new JLabel("Pick up person :");
-		lblPerson.setBounds(27, 165, 93, 14);
+		lblPerson.setBounds(27, 187, 93, 14);
 		buttonPanel.add(lblPerson);
 		lblPerson.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JLabel lblCheckInTime = new JLabel("Check out time :");
-		lblCheckInTime.setBounds(27, 203, 93, 14);
+		lblCheckInTime.setBounds(27, 225, 93, 14);
 		buttonPanel.add(lblCheckInTime);
 		lblCheckInTime.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JLabel lblCheckInDate = new JLabel("Check out date :");
-		lblCheckInDate.setBounds(27, 243, 93, 14);
+		lblCheckInDate.setBounds(27, 265, 93, 14);
 		buttonPanel.add(lblCheckInDate);
 		lblCheckInDate.setFont(new Font("Calibri", Font.PLAIN, 14));
-
-		JTextArea txtInfo = new JTextArea();
-		txtInfo.setBounds(27, 287, 244, 77);
-		txtInfo.setText("These fields are automatically filled\r\nwhen you press the check in button :\r\n       - Check in time\r\n       - Check in date");
-		txtInfo.setFont(new Font("Calibri", Font.PLAIN, 14));
-		txtInfo.setEditable(false);
-		buttonPanel.add(txtInfo);
 
 		txtSearch = new JTextField();
 		txtSearch.setText("key ID");
@@ -136,19 +145,19 @@ public class CheckIn {
 		txtSearch.setColumns(10);
 
 		txtPerson = new JTextField();
-		txtPerson.setBounds(122, 157, 149, 31);
+		txtPerson.setBounds(130, 179, 149, 31);
 		txtPerson.setEditable(false);
 		buttonPanel.add(txtPerson);
 		txtPerson.setColumns(10);
 
 		txtTime = new JTextField();
-		txtTime.setBounds(122, 195, 149, 31);
+		txtTime.setBounds(130, 217, 149, 31);
 		txtTime.setEditable(false);
 		txtTime.setColumns(10);
 		buttonPanel.add(txtTime);
 
 		txtDate = new JTextField();
-		txtDate.setBounds(122, 235, 149, 31);
+		txtDate.setBounds(130, 257, 149, 31);
 		txtDate.setEditable(false);
 		txtDate.setColumns(10);
 		buttonPanel.add(txtDate);
@@ -162,21 +171,23 @@ public class CheckIn {
 		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 
 		JButton btnCheckIn = new JButton("Check in this Key");
+		btnCheckIn.setBackground(Color.WHITE);
+		btnCheckIn.setForeground(new Color(0, 0, 128));
 		btnCheckIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new CheckInButton().start();
 			}
 		});
-		btnCheckIn.setBounds(77, 385, 149, 33);
+		btnCheckIn.setBounds(75, 336, 149, 33);
 		buttonPanel.add(btnCheckIn);
 		btnCheckIn.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JLabel lblimage = new JLabel(image);
-		lblimage.setBounds(56, 11, 195, 107);
+		lblimage.setBounds(56, 11, 195, 127);
 		buttonPanel.add(lblimage);
 
 		JButton btnSelect = new JButton("View info of the selected Key");
-		btnSelect.setBounds(25, 255, 223, 31);
+		btnSelect.setBounds(25, 210, 223, 31);
 		listPanel.add(btnSelect);
 		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
@@ -195,30 +206,34 @@ public class CheckIn {
 		btnSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnClear = new JButton("Clear");
+		btnClear.setBackground(Color.WHITE);
+		btnClear.setForeground(new Color(0, 0, 128));
 		btnClear.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				new CheckInClearButton().start();
 			}
 		});
-		btnClear.setBounds(77, 429, 149, 33);
+		btnClear.setBounds(75, 380, 149, 33);
 		buttonPanel.add(btnClear);
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnBack = new JButton("Go Back");
+		btnBack.setBackground(Color.WHITE);
+		btnBack.setForeground(new Color(0, 0, 128));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmCheckIn.setVisible(false);
 			}
 		});
-		btnBack.setBounds(77, 473, 149, 33);
+		btnBack.setBounds(75, 424, 149, 33);
 		buttonPanel.add(btnBack);
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		
 		
-		database = new DatabaseConnection();
-		setUpContractList();
+	//	database = new DatabaseConnection();
+	//	setUpContractList();
 	}
 	
 	
