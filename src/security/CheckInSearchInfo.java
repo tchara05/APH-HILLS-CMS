@@ -27,11 +27,13 @@ public class CheckInSearchInfo extends Thread {
 			try {
 				if(!checkerexist(keyID,specificKey)){
 					Messages.showWarningMessage("Not exist this compinasion on Database!");
+					new CheckInClearButton().start();
 					flag=false;
 				}
 				else{
 					if(!checkerfields(keyID,specificKey)){
 						Messages.showWarningMessage("Not emprty fields!");
+						new CheckInClearButton().start();
 						flag=false;
 					}
 				}
@@ -43,6 +45,7 @@ public class CheckInSearchInfo extends Thread {
 		else{
 			flag=false;
 			Messages.showWarningMessage("Fields has error input!");
+			new CheckInClearButton().start();
 		}
 		
 		try {
@@ -78,6 +81,7 @@ public class CheckInSearchInfo extends Thread {
 
 			e.printStackTrace();
 		}
+		
 	}
 	
 private boolean checkerexist(String s,String g) throws SQLException {
@@ -89,9 +93,10 @@ private boolean checkerexist(String s,String g) throws SQLException {
 				DatabaseConnection database = new DatabaseConnection();
 				Statement st = database.getStatement();
 				ResultSet rst = null;
+				String str = "Key is not checked in yet";
 				
+				rst = st.executeQuery("SELECT * FROM Service WHERE keyID='" + id+ "' and specificKey='" + g +"'" + "' and checkInTime = '" + str + "'");
 				
-				rst = st.executeQuery("SELECT * FROM Service WHERE keyID='" + id+ "' and specificKey='" + g +"'");
 				
 		
 		

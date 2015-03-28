@@ -16,12 +16,15 @@ public class SecuritySaveButton extends Thread {
 	public void run() {
 
 		boolean checked = true;
+		boolean exist = false;
+		int flag = 1;
 		
 		String txtNotes = SecurityForm.txtAreaNotes.getText();
 		String txtpropertyID=SecurityForm.txtPropertyID.getText();
 		
 		try {
 			checked=checker(txtpropertyID );
+			exist = CheckOutButton.checker(txtpropertyID, flag);
 		} catch (SQLException e1) {
 			
 			e1.printStackTrace();
@@ -35,7 +38,7 @@ public class SecuritySaveButton extends Thread {
 
 			stment = database.getStatement();
 
-			if (checked) {
+			if (checked && !exist) {
 				int response = JOptionPane
 						.showConfirmDialog(null,
 								"Do you want to save changes?", "Confirm",
@@ -62,6 +65,11 @@ public class SecuritySaveButton extends Thread {
 					
 				}
 
+			}
+			else if (exist) {
+				JOptionPane.showMessageDialog(null, "Key is already added",
+						"Warning Message",
+						JOptionPane.WARNING_MESSAGE);
 			}
 			else{
 				JOptionPane.showMessageDialog(null, "Property ID is Emprty or not exist",

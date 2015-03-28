@@ -1,12 +1,15 @@
 package security;
 
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 import security.CheckOut;
 import extras.DatabaseConnection;
@@ -36,11 +39,11 @@ public class CheckOutButton extends Thread {
 		String checkInDate = "Key is not checked in yet";
 
 		boolean flag=true;
-		
+		int flagged = 0;
 
 		if(keyID.compareTo("") != 0){
 			try {
-				if (!checker(keyID)){
+				if (!checker(keyID, flagged)){
 					Messages.showWarningMessage("Key ID not found ");
 					flag=false;
 				}else{
@@ -122,7 +125,7 @@ public class CheckOutButton extends Thread {
 	}
 	
 	
-	public static boolean checker(String s) throws SQLException {
+	public static boolean checker(String s, int flag) throws SQLException {
 		
 		if(Checker.checkNumber(s)){
 			
@@ -132,8 +135,10 @@ public class CheckOutButton extends Thread {
 				Statement st = database.getStatement();
 				ResultSet rst = null;
 			
-				rst = st.executeQuery("SELECT keyID FROM KeyContract WHERE keyID='" + id+"'");
-						
+				if(flag == 0)
+					rst = st.executeQuery("SELECT keyID FROM KeyContract WHERE keyID='" + id+"'");
+				else
+					rst = st.executeQuery("SELECT keyID FROM KeyContract WHERE propertyID='" + id+"'");
 					if (rst.next()){
 						return true;
 					}

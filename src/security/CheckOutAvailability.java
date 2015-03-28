@@ -12,7 +12,7 @@ public class CheckOutAvailability extends Thread {
 	
 	try {
 		
-		boolean val1 = CheckOutButton.checker(key);
+		boolean val1 = CheckOutButton.checker(key, 0);
 		boolean val2 = CheckOutButton.cheked2(key, specificKey);
 		
 		if(val1 == false) {
