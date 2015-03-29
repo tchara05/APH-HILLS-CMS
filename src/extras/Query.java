@@ -29,5 +29,8 @@ public class Query {
 			"											 FROM Property P WHERE plotID NOT IN (" +
 														"SELECT DISTINCT C.plotID FROM Contract C )";
 	
+	public static final String PLOTS_AND_ROOMS = "SELECT plotID, plotNumber, plotName, numberOfBedrooms " +
+												  "FROM Property " +
+												  "ORDER BY plotID ASC";
 	
 }
