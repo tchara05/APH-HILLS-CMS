@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -79,14 +80,14 @@ public class CompanyDocument {
 	
 	public   void  createHeader(Document doc) throws Exception{
 		
-		Paragraph TitlePara = new Paragraph(CompanyName,BIGBOLD);
-		TitlePara.setAlignment(Element.ALIGN_CENTER);
-		doc.add(TitlePara);
-		
+		Image image1 = Image.getInstance("PDF-IMAGE.png");
+		doc.add(image1);
 		
 		Paragraph HeaderPara = new Paragraph(general,smallbold);
 		HeaderPara.setAlignment(Element.ALIGN_CENTER);
 		doc.add(HeaderPara);
+		
+
 		
 		doc.add(NewLine);
 		if (type ==INVOICE){
@@ -109,6 +110,9 @@ public class CompanyDocument {
 		Paragraph CustDetails = new Paragraph(CustomerDetails,smallbold);
 		CustDetails.setAlignment(Element.ALIGN_LEFT);
 		doc.add(CustDetails);
+		
+		
+		
 		
 	}
 	
