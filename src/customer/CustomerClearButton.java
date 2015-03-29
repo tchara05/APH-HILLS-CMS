@@ -11,17 +11,14 @@ public class CustomerClearButton{
 	public static void start(){
 			CustomerForm.chckbxCloseAccound.setSelected(false);
 			CustomerForm.chckbxInformationMaterial.setSelected(false);
-			CustomerForm.txtAddress.setText("");
-			CustomerForm.txtBussinesNumber.setText("");
 			CustomerForm.txtCity.setText("");
-			CustomerForm.txtContactNumber.setText("");
-			CustomerForm.txtFaxNumber.setText("");
 			try {
 				CustomerForm.setID();
 			} catch (Exception e) {
 				
 			}
-			Border compound = null;
+			Border compound = CustomerForm.txtID.getBorder();
+			
 			CustomerForm.txtFname.setText("");
 			CustomerForm.txtFname.setBorder(compound);
 			
@@ -53,6 +50,9 @@ public class CustomerClearButton{
 			
 			CustomerForm.txtFaxNumber.setText("");
 			CustomerForm.txtFaxNumber.setBorder(compound);
+			
+			CustomerForm.txtAddress.setText("");
+			CustomerForm.txtAddress.setBorder(compound);
 			
 			CustomerForm.edit=false;
 			

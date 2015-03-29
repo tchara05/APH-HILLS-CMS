@@ -13,7 +13,7 @@ public class PropertyClearButton  {
 	
 	public static void start(){
 		
-		Border compound = null;
+		
 		
 				
 		PropertyForm.chckbxAirCondition.setSelected(false);
@@ -26,6 +26,9 @@ public class PropertyClearButton  {
 		PropertyForm.chckbxPoolHeading.setSelected(false);
 		PropertyForm.chckbxPropertyDelivered.setSelected(false);
 		PropertyForm.TitleDeed.setSelected(false);
+		
+		
+		Border compound = PropertyForm.txtPlotID.getBorder();
 		
 		PropertyForm.txtBathrooms.setText("");
 		PropertyForm.txtBathrooms.setBorder(compound);

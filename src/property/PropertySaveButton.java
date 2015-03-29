@@ -24,6 +24,9 @@ public class PropertySaveButton extends Thread {
 		
 		Border compound = null;
 		Border redline = BorderFactory.createLineBorder(Color.red,2);
+		
+		Border correct =PropertyForm.txtPlotID.getBorder();
+		
 
 		String plotName = PropertyForm.txtPlotName.getText();
 		//plotName = Checker.clearString(plotName);
@@ -32,6 +35,8 @@ public class PropertySaveButton extends Thread {
 			PropertyForm.txtPlotName.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			PropertyForm.txtPlotName.setBorder(correct);
 		}
 
 		// Check Variables Below //
@@ -43,7 +48,7 @@ public class PropertySaveButton extends Thread {
 			compound = null;
 		}
 		else{
-			PropertyForm.txtPlotNo.setBorder(compound);
+			PropertyForm.txtPlotNo.setBorder(correct);
 		}
 
 		String[] propertyClasses = ListManager.SplitTwoItem((String)PropertyForm.AllClasses.getSelectedItem());
@@ -63,6 +68,8 @@ public class PropertySaveButton extends Thread {
 			checked = false;
 			compound = null;
 			
+		}else{
+			PropertyForm.txtLandUse.setBorder(correct);
 		}
 
 		String percentage = PropertyForm.txtPerChange.getText();
@@ -71,14 +78,18 @@ public class PropertySaveButton extends Thread {
 			PropertyForm.txtPerChange.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			PropertyForm.txtPerChange.setBorder(correct);
 		}
 
 		String plots = PropertyForm.txtPlots.getText();
-		if ( (!plots.isEmpty()) || (!Checker.checkNumber(plots)) ) {
+		if ( !Checker.checkNumber(plots))  {
 			compound = BorderFactory.createCompoundBorder(redline, compound);
 			PropertyForm.txtPlots.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			PropertyForm.txtPlots.setBorder(correct);
 		}
 
 		String details = PropertyForm.txtExtraDetails.getText();
@@ -89,6 +100,8 @@ public class PropertySaveButton extends Thread {
 			PropertyForm.txtFloors.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			PropertyForm.txtFloors.setBorder(correct);
 		}
 
 		String bedroomsNo = PropertyForm.txtBedrooms.getText();
@@ -97,6 +110,8 @@ public class PropertySaveButton extends Thread {
 			PropertyForm.txtBedrooms.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			PropertyForm.txtBedrooms.setBorder(correct);
 		}
 
 		String bathroomsNo = PropertyForm.txtBathrooms.getText();
@@ -105,6 +120,8 @@ public class PropertySaveButton extends Thread {
 			PropertyForm.txtBathrooms.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			PropertyForm.txtBathrooms.setBorder(correct);
 		}
 
 		String deedNum = PropertyForm.txtDeedNo.getText();
@@ -113,6 +130,8 @@ public class PropertySaveButton extends Thread {
 			PropertyForm.txtDeedNo.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			PropertyForm.txtDeedNo.setBorder(correct);
 		}
 
 		short rentalGarante = 0;

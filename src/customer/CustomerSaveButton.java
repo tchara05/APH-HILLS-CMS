@@ -17,6 +17,8 @@ import extras.ListManager;
 import extras.Messages;
 
 public class CustomerSaveButton extends Thread {
+	
+	
 
 	public void run() {
 
@@ -24,6 +26,8 @@ public class CustomerSaveButton extends Thread {
 		
 		Border compound = null;
 		Border redline = BorderFactory.createLineBorder(Color.red,2);
+		
+		Border correct = CustomerForm.txtID.getBorder();
 		
 		String country = (String) CustomerForm.Country.getSelectedItem();
 		
@@ -34,6 +38,8 @@ public class CustomerSaveButton extends Thread {
 			CustomerForm.txtFname.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			CustomerForm.txtFname.setBorder(correct);
 		}
 
 		String nLname = Checker.clearString(CustomerForm.txtLastName.getText());
@@ -43,9 +49,19 @@ public class CustomerSaveButton extends Thread {
 			CustomerForm.txtLastName.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			CustomerForm.txtLastName.setBorder(correct);
 		}
 
 		String address = CustomerForm.txtAddress.getText();
+		if(address.isEmpty()){
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtAddress.setBorder(compound);
+			checked = false;
+			compound = null;
+		}else{
+			CustomerForm.txtAddress.setBorder(correct);
+		}
 	
 
 		String city = CustomerForm.txtCity.getText();
@@ -55,6 +71,8 @@ public class CustomerSaveButton extends Thread {
 			CustomerForm.txtCity.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			CustomerForm.txtCity.setBorder(correct);
 		}
 		
 		
@@ -66,6 +84,8 @@ public class CustomerSaveButton extends Thread {
 			checked = false;
 			compound = null;
 			
+		}else{
+			CustomerForm.txtBussinesNumber.setBorder(correct);
 		}
 
 		String contactNumber = CustomerForm.txtContactNumber.getText();
@@ -75,6 +95,8 @@ public class CustomerSaveButton extends Thread {
 			CustomerForm.txtContactNumber.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			CustomerForm.txtContactNumber.setBorder(correct);
 		}
 
 		String faxNumber = CustomerForm.txtFaxNumber.getText();
@@ -85,6 +107,8 @@ public class CustomerSaveButton extends Thread {
 
 			checked = false;
 			compound = null;
+		}else{
+			CustomerForm.txtFaxNumber.setBorder(correct);
 		}
 
 		String note = CustomerForm.txtNote.getText();
@@ -96,6 +120,8 @@ public class CustomerSaveButton extends Thread {
 			CustomerForm.txtPhoneMobile.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			CustomerForm.txtPhoneMobile.setBorder(correct);
 		}
 
 		String primaryMail = CustomerForm.txtPrimaryMail.getText();
@@ -105,6 +131,8 @@ public class CustomerSaveButton extends Thread {
 			CustomerForm.txtPrimaryMail.setBorder(compound);
 			checked = false;
 			compound = null;
+		}else{
+			CustomerForm.txtPrimaryMail.setBorder(correct);
 		}
 
 		String secondaryMail = CustomerForm.txtSeconadaryMail.getText();
@@ -114,9 +142,23 @@ public class CustomerSaveButton extends Thread {
 				compound = BorderFactory.createCompoundBorder(redline, compound);
 				CustomerForm.txtSeconadaryMail.setBorder(compound);
 				checked = false;
+				compound = null;
+			}
+			else{
+				CustomerForm.txtSeconadaryMail.setBorder(correct);
 			}
 		}
+		
 		String zipcode = CustomerForm.txtZipCode.getText();
+		if(zipcode.isEmpty()){
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CustomerForm.txtZipCode.setBorder(compound);
+			checked = false;
+			compound = null;
+			
+		}else{
+			CustomerForm.txtZipCode.setBorder(correct);
+		}
 
 		short infoMaterial = 0;
 		if (CustomerForm.chckbxInformationMaterial.isSelected()) {
@@ -198,8 +240,8 @@ public class CustomerSaveButton extends Thread {
 			e.printStackTrace();
 		}
 
-		CustomerForm.edit = false;
-
+		CustomerForm.edit= false;
+		
 	}
 
 	private static int getCountry(String country, Statement st)
