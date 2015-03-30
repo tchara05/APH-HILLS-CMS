@@ -1,11 +1,8 @@
 package extras;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,7 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
-public class fileExcel {
+public class Excel {
 	
 	
 	public static void createExcelFile(){
@@ -42,8 +39,7 @@ public class fileExcel {
 		int row = 1;
 
 		try {
-			ResultSet rset = stment.executeQuery("SELECT P.plotID, P.plotNumber, P.plotName, P.numberOfBedrooms " +
-												  "FROM Property P");			
+			ResultSet rset = stment.executeQuery(Query.PLOTS_AND_ROOMS);			
 			while (rset.next()) {
 				
 				String plotID = rset.getString(1);
@@ -132,7 +128,8 @@ public class fileExcel {
 	
 	public static void main(String args[])  {
 		
-		ReadExcel();
+		
+		createExcelFile();
 		
 		
 

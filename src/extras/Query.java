@@ -11,6 +11,7 @@ public class Query {
 	public static final String CUSTOMER_NO_FNAME_LNAME ="SELECT customerID, firstName , lastName " +
 														"FROM Customer " +
 														"ORDER BY firstName , lastName";
+	
 	public static final String PARCEL_NO_NAME="SELECT * FROM Parcel";
 	
 	public static final String STATUS_NO_NAME="SELECT * FROM PropertyStatus";
@@ -30,8 +31,8 @@ public class Query {
 														"SELECT DISTINCT C.plotID FROM Contract C )";
 	
 	public static final String PLOTS_AND_ROOMS = "SELECT P.plotID, P.plotNumber, P.plotName, P.numberOfBedrooms " +
-												  "FROM Property P, Servisez S,KeyContract KC" +
-												  "WHERE P.plotID = KC.propertyID and KC.keysID ="+
-												  "ORDER BY plotID ASC";
+												  "FROM Property P, Service S, KeyContract KC " +
+												  "WHERE P.plotID = KC.propertyID and KC.keyID = S.keyID "+
+												  "ORDER BY P.plotID ASC";
 	
 }
