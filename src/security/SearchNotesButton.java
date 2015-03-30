@@ -1,9 +1,14 @@
 package security;
 
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+
+import customer.CustomerForm;
 import extras.Checker;
 import extras.DatabaseConnection;
 import extras.Messages;
@@ -16,6 +21,8 @@ public class SearchNotesButton extends Thread {
 		int method = 2;
 		boolean checked=true;
 		
+		Border compound = null;
+		Border redline = BorderFactory.createLineBorder(Color.red,2);
 		
 		String keyID = CheckOut.txtKeyId.getText();
 		String propertyID = CheckOut.txtPropertyId.getText();
@@ -26,9 +33,13 @@ public class SearchNotesButton extends Thread {
 		
 			try {
 				if (!checker(keyID)){
-					Messages.showWarningMessage("Key ID not Found ");
+					compound = BorderFactory.createCompoundBorder(redline, compound);
+					CheckOut.txtKeyId.setBorder(compound);
+					compound=null;
 					checked=false;
+					Messages.showWarningMessage("Key ID has error input");
 					CheckOutClearButton.start(1);
+					
 				}
 			} catch (SQLException e1) {
 				System.out.print("2222");
@@ -39,9 +50,13 @@ public class SearchNotesButton extends Thread {
 				method = 1;
 			try {
 				if (!checker2(propertyID)){
-					Messages.showWarningMessage("Property ID not Found ");
+					compound = BorderFactory.createCompoundBorder(redline, compound);
+					CheckOut.txtPropertyId.setBorder(compound);
+					compound=null;
 					checked=false;
+					Messages.showWarningMessage("Property ID has error input");
 					CheckOutClearButton.start(1);
+					
 				}
 			} catch (SQLException e1) {
 				System.out.print("3333");
@@ -49,10 +64,17 @@ public class SearchNotesButton extends Thread {
 			
 		}
 		else{
-			Messages.showWarningMessage("Property ID and Key ID are Empty");
-			checked=false;
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CheckOut.txtKeyId.setBorder(compound);
+			compound=null;
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CheckOut.txtPropertyId.setBorder(compound);
+			compound=null;
+			Messages.showWarningMessage("Property ID and Key ID have error input");
 			CheckOutClearButton.start(1);
+			checked=false;
 		}
+		
 		
 
 		try {
