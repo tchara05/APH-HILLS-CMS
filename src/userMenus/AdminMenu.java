@@ -36,11 +36,13 @@ public class AdminMenu {
 	private static JButton btnProperty;
 	private static JButton btnContract ;
 	private static JButton btnCustomer;
+	private static JButton btnSecurity;
 	
 	// Admins Panels //
 	private static JPanel ContractPanel; 
 	private static JPanel PropertyPanel; 
 	private static JPanel CustomerPanel;
+	private static JPanel SecurityPanel;
 	
 	// Central Panel
 	private static JPanel panel;
@@ -82,11 +84,13 @@ public class AdminMenu {
 		ContractPanel = ContractMenu.createContractMenu();
 		PropertyPanel = PropertyMenu.createPropertyMenu();
 		CustomerPanel = CustomerMenu.createCustomerMenu();
+		SecurityPanel = Securitymenu.createSecurityMenu();
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 128), 2));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(402, 118, 821, 498);
+		panel.setBounds(392, 107, 839, 520);
 		frame.getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
@@ -115,13 +119,13 @@ public class AdminMenu {
 	    btnContract.setForeground(new Color(0, 0, 128));
 	    btnContract.setBackground(Color.WHITE);
 	    btnContract.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    btnContract.setBounds(43, 295, 127, 31);
+	    btnContract.setBounds(43, 281, 127, 31);
 	    panel_2.add(btnContract);
 	    btnCustomer = new JButton("Customer Menu");
 	    btnCustomer.setForeground(new Color(0, 0, 128));
 	    btnCustomer.setBackground(Color.WHITE);
 	    btnCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    btnCustomer.setBounds(43, 246, 127, 31);
+	    btnCustomer.setBounds(43, 239, 127, 31);
 	    panel_2.add(btnCustomer);
 	    
 	    JLabel imgLabel = new JLabel(image);
@@ -138,12 +142,12 @@ public class AdminMenu {
 	    btnExit.setBounds(43, 463, 127, 31);
 	    panel_2.add(btnExit);
 	    
-	    JPanel panel_3 = new JPanel();
-	    panel_3.setBorder(new LineBorder(new Color(0, 0, 128), 2));
-	    panel_3.setBackground(new Color(173, 216, 230));
-	    panel_3.setBounds(341, 65, 843, 521);
-	    panel_1.add(panel_3);
-	    panel_3.setLayout(null);
+	    btnSecurity = new JButton("Security Menu");
+	    btnSecurity.setForeground(new Color(0, 0, 128));
+	    btnSecurity.setFont(new Font("Calibri", Font.PLAIN, 14));
+	    btnSecurity.setBackground(Color.WHITE);
+	    btnSecurity.setBounds(43, 323, 127, 31);
+	    panel_2.add(btnSecurity);
 		
 		//panel.add(PropertyPanel);
 		//PropertyPanel.setVisible(true);
@@ -183,6 +187,15 @@ public class AdminMenu {
 			public void actionPerformed(ActionEvent e) {
 				panel.removeAll();
 	    		panel.add(CustomerPanel);
+	    		panel.revalidate();
+	    		frame.repaint();
+			}
+		});
+	    
+	    btnSecurity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel.removeAll();
+	    		panel.add(SecurityPanel);
 	    		panel.revalidate();
 	    		frame.repaint();
 			}
