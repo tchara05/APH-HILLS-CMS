@@ -74,45 +74,40 @@ public class LogIn {
 		}
 
 		frmAphroditeHill = new JFrame();
+		frmAphroditeHill.getContentPane().setBackground(Color.WHITE);
 		frmAphroditeHill.setTitle("Aphrodite Hill");
 		frmAphroditeHill.setBackground(Color.GRAY);
 		frmAphroditeHill.getContentPane().setForeground(new Color(0, 0, 0));
 		database = new DatabaseConnection();
 		JPanel panel = new JPanel();
-		panel.setBounds(484, 376, 365, 213);
-		panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(30,
-				144, 255), new Color(0, 0, 0)));
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(420, 141, 511, 407);
+		panel.setBorder(new LineBorder(new Color(0, 0, 128), 2));
 
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
-
-		JLabel lblIcon = new JLabel(image);
-		lblIcon.setBounds(462, 29, 549, 312);
-		lblIcon.setBackground(UIManager.getColor("Button.foreground"));
-		lblIcon.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		lblIcon.setForeground(UIManager.getColor("DesktopIcon.labelBackground"));
-		lblIcon.setHorizontalAlignment(SwingConstants.CENTER);
+		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 
 		// TextBoxes
 		txtUserName = new JTextField();
-		txtUserName.setBounds(149, 45, 155, 28);
+		txtUserName.setBounds(222, 202, 155, 28);
 		txtUserName.setColumns(10);
 		txtPassword = new JPasswordField();
-		txtPassword.setBounds(149, 91, 155, 28);
+		txtPassword.setBounds(222, 261, 155, 28);
 
 		// Labels //
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(64, 95, 63, 19);
-		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblPassword.setBounds(137, 266, 63, 19);
+		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 14));
 		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setBounds(64, 49, 67, 19);
-		lblUsername.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblUsername.setBounds(137, 207, 67, 19);
+		lblUsername.setFont(new Font("Calibri", Font.PLAIN, 14));
 
-		btnLogIn = new JButton("Log In");
-		btnLogIn.setBounds(62, 137, 112, 29);
-		JButton btnHelp = new JButton("Help");
-		btnHelp.setBounds(186, 137, 118, 29);
+		btnLogIn = new JButton("LOG IN");
+		btnLogIn.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnLogIn.setBounds(137, 321, 112, 36);
+		JButton btnHelp = new JButton("EXIT");
+		btnHelp.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnHelp.setBounds(259, 321, 118, 36);
 		frmAphroditeHill.getContentPane().setLayout(null);
-		frmAphroditeHill.getContentPane().add(lblIcon);
 		frmAphroditeHill.getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.add(lblPassword);
@@ -121,6 +116,14 @@ public class LogIn {
 		panel.add(txtPassword);
 		panel.add(btnLogIn);
 		panel.add(btnHelp);
+		
+				JLabel lblIcon = new JLabel(image);
+				lblIcon.setBounds(166, 26, 177, 145);
+				panel.add(lblIcon);
+				lblIcon.setBackground(UIManager.getColor("Button.foreground"));
+				lblIcon.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+				lblIcon.setForeground(UIManager.getColor("DesktopIcon.labelBackground"));
+				lblIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		frmAphroditeHill.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmAphroditeHill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
