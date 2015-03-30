@@ -72,6 +72,10 @@ public class CompanyDocument {
 	}
 
 	
+	
+	
+	
+	
 	public void createHeader(Document doc) throws Exception{
 		
 		Image image1 = Image.getInstance("PDF-IMAGE.png");
