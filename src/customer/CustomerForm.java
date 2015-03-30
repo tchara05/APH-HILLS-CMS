@@ -62,6 +62,7 @@ public class CustomerForm {
 	 private JButton btnSave;
 	 private JButton btnClear;
 	 private JButton btnBack;
+	 private JLabel lblNewLabel;
 	
 	
 	public static void main(String[] args) {
@@ -96,11 +97,11 @@ public class CustomerForm {
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
+		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
-		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "CUSTOMER FORM", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "CUSTOMER FORM", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -117,6 +118,8 @@ public class CustomerForm {
 					.addContainerGap(48, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(null);
+		
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -213,7 +216,7 @@ public class CustomerForm {
 	    
 	    JPanel panel_1 = new JPanel();
 	    panel_1.setBackground(Color.WHITE);
-	    panel_1.setBounds(476, 43, 445, 452);
+	    panel_1.setBounds(494, 43, 445, 452);
 	    panel_2.add(panel_1);
 	    panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Customer Contact Details", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setLayout(null);
@@ -302,7 +305,7 @@ public class CustomerForm {
 		
 		btnSave = new JButton("Save");
 		btnSave.setBackground(Color.WHITE);
-		btnSave.setBounds(42, 299, 104, 30);
+		btnSave.setBounds(42, 299, 109, 30);
 		panel_6.add(btnSave);
 		btnSave.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
@@ -317,6 +320,10 @@ public class CustomerForm {
 		btnBack.setBounds(42, 381, 110, 29);
 		panel_6.add(btnBack);
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
+		
+		lblNewLabel = new JLabel(image);
+		lblNewLabel.setBounds(21, 75, 152, 147);
+		panel_6.add(lblNewLabel);
 		
 		
 		frame.getContentPane().setLayout(groupLayout);
