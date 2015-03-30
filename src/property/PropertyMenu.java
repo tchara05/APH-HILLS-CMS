@@ -21,21 +21,21 @@ import java.awt.Color;
 
 
 @SuppressWarnings("serial")
-public class PropertyMenu extends JPanel {
+public class PropertyMenu{
 
 	@SuppressWarnings("unused")
-	private PropertyForm propertyform;
+	private static PropertyForm propertyform;
 	private static JPanel PropertyPanel;
 	
 	//Buttons Variable
-	private JButton btnAddNewProperty;
-	private JButton btnNewButton;
-	private JButton btnEditProperrty;
-	private JButton btnSearch;
+	private static JButton btnAddNewProperty;
+	private static JButton btnNewButton;
+	private static JButton btnEditProperrty;
+	private static JButton btnSearch;
 	
 	// DropDown Variables //
 	public  static JComboBox<String> AllProperties;
-	public static JComboBox<String> AllClasses;
+	public  static JComboBox<String> AllClasses;
 	public  static JComboBox<String> AllParcels;
 		
 	
@@ -48,17 +48,24 @@ public class PropertyMenu extends JPanel {
 		
 		// Labels: //
 		JLabel lblProperrty = new JLabel("Properties:");
+		lblProperrty.setBounds(33, 42, 67, 16);
 		JLabel lblSearchPropertyBy = new JLabel("Search Property:");
+		lblSearchPropertyBy.setBounds(33, 287, 101, 16);
 		JLabel lblParcels = new JLabel("Parcels:");
+		lblParcels.setBounds(219, 309, 48, 16);
 		JLabel lblNewLabel = new JLabel("Classes:");
+		lblNewLabel.setBounds(33, 309, 52, 16);
 		
 		//DropDown List: //
 	    AllProperties = new JComboBox<String>();
+	    AllProperties.setBounds(33, 71, 209, 27);
 	    ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 	    AllParcels= new JComboBox<String>();
+	    AllParcels.setBounds(219, 331, 218, 27);
 	    AllParcels.addItem("0 None");
 	    ListManager.setUpTwoColumnsList(AllParcels, Query.PARCEL_NO_NAME);
 		AllClasses = new JComboBox<String>();
+		AllClasses.setBounds(33, 331, 174, 27);
 		AllClasses.addItem("0 None");
 		ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
 		
@@ -66,73 +73,28 @@ public class PropertyMenu extends JPanel {
 		
 		// Buttons: //
 		btnAddNewProperty = new JButton("Add New Property");
+		btnAddNewProperty.setBounds(289, 70, 177, 29);
 		btnNewButton = new JButton("Delete Property");
+		btnNewButton.setBounds(289, 117, 177, 29);
 		btnEditProperrty = new JButton("Edit/View Property");
+		btnEditProperrty.setBounds(289, 164, 177, 29);
 		btnSearch = new JButton("Search");
-		
-		
-		
-		// Postitons: //
-		GroupLayout gl_PropertyPanel = new GroupLayout(PropertyPanel);
-		gl_PropertyPanel.setHorizontalGroup(
-			gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_PropertyPanel.createSequentialGroup()
-					.addGap(30)
-					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblSearchPropertyBy)
-						.addComponent(btnSearch)
-						.addComponent(lblProperrty)
-						.addGroup(gl_PropertyPanel.createSequentialGroup()
-							.addComponent(AllProperties, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)
-							.addGap(47)
-							.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnAddNewProperty, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-								.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnEditProperrty, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
-						.addGroup(gl_PropertyPanel.createSequentialGroup()
-							.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblParcels)
-								.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(61, Short.MAX_VALUE))
-		);
-		gl_PropertyPanel.setVerticalGroup(
-			gl_PropertyPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_PropertyPanel.createSequentialGroup()
-					.addGap(39)
-					.addComponent(lblProperrty)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(AllProperties, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddNewProperty))
-					.addGap(18)
-					.addComponent(btnNewButton)
-					.addGap(18)
-					.addComponent(btnEditProperrty)
-					.addGap(94)
-					.addComponent(lblSearchPropertyBy)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblParcels)
-						.addComponent(lblNewLabel))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_PropertyPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSearch)
-					.addGap(53))
-		);
-		
-		
-		PropertyPanel.setLayout(gl_PropertyPanel);
+		btnSearch.setBounds(33, 364, 85, 29);
+		PropertyPanel.setLayout(null);
+		PropertyPanel.add(lblSearchPropertyBy);
+		PropertyPanel.add(btnSearch);
+		PropertyPanel.add(lblProperrty);
+		PropertyPanel.add(AllProperties);
+		PropertyPanel.add(btnAddNewProperty);
+		PropertyPanel.add(btnNewButton);
+		PropertyPanel.add(btnEditProperrty);
+		PropertyPanel.add(AllClasses);
+		PropertyPanel.add(lblNewLabel);
+		PropertyPanel.add(lblParcels);
+		PropertyPanel.add(AllParcels);
 		addButtonsFuctionalities();
 
 	}
-	
 	
 	
 	// Adding events //
@@ -176,15 +138,15 @@ public class PropertyMenu extends JPanel {
 		
 	}
 	
-
+	
 	public static JPanel createPropertyMenu(){
 		new PropertyMenu();
 		return PropertyPanel;
 	}
 	
 	public static void main(String args[]){
-		
-		new PropertyMenu().setVisible(true);
+		new PropertyMenu();
+		PropertyPanel.setVisible(true);
 	}
 
 }

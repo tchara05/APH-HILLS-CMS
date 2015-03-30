@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 public class AdminMenu {
 
-	private JFrame frame;
+	private static JFrame frame;
 	
 	//Buttons //
 	private static JButton btnProperty;
@@ -73,17 +73,14 @@ public class AdminMenu {
 		PropertyPanel = PropertyMenu.createPropertyMenu();
 		CustomerPanel = CustomerMenu.createCustomerMenu();
 		
-		PropertyPanel.setVisible(false);
-		CustomerPanel.setVisible(false);
-		ContractPanel.setVisible(false);
-		
+
 		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblAdminMenu);
 		frame.getContentPane().add(lblNewLabel);
 		
 		panel = new JPanel();
-		panel.setBounds(307, 149, 565, 474);
+		panel.setBounds(307, 149, 629, 474);
 		frame.getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
@@ -100,11 +97,11 @@ public class AdminMenu {
 		frame.getContentPane().add(btnProperty);
 		frame.getContentPane().add(btnCustomer);
 		
+		//panel.add(PropertyPanel);
+		//PropertyPanel.setVisible(true);
 		
-		panel.add(ContractPanel);
-		panel.add(PropertyPanel);
-		panel.add(CustomerPanel);
 		
+	
 		addButtonFuctionalities();
 		
 	}
@@ -114,35 +111,32 @@ public class AdminMenu {
 		
 	    btnProperty.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		
-	    		
-	    		for(int i=0;i<3;i++){
-	    			panel.getComponents()[i].setVisible(false);
-	    		}
-	    		PropertyPanel.setVisible(true);
-	    		
+	    				
+	    		panel.removeAll();
+	    		panel.add(PropertyPanel);
+	    		panel.revalidate();
+	    		frame.repaint();
 	    	}
 	    });
 	    
 	    btnContract.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		
-		 		for(int i=0;i<3;i++){
-	    			panel.getComponents()[i].setVisible(false);
-	    		}
-		 		
-		 		ContractPanel.setVisible(true);
+		 		panel.removeAll();
+	    		panel.add(ContractPanel);
+	    	
+	    		panel.revalidate();
+	    		frame.repaint();
 	    		
 		 	}
 		 });
 	    
 	    btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int i=0;i<3;i++){
-	    			panel.getComponents()[i].setVisible(false);
-	    		}
-				CustomerPanel.setVisible(true);
-				
+				panel.removeAll();
+	    		panel.add(CustomerPanel);
+	    		panel.revalidate();
+	    		frame.repaint();
 			}
 		});
 		
@@ -150,7 +144,6 @@ public class AdminMenu {
 		
 		
 	}
-	
 	
 	
 	public void setVisible(boolean visible){

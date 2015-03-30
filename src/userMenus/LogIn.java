@@ -79,146 +79,48 @@ public class LogIn {
 		frmAphroditeHill.getContentPane().setForeground(new Color(0, 0, 0));
 		database = new DatabaseConnection();
 		JPanel panel = new JPanel();
+		panel.setBounds(484, 376, 365, 213);
 		panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(30,
 				144, 255), new Color(0, 0, 0)));
 
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
 
 		JLabel lblIcon = new JLabel(image);
+		lblIcon.setBounds(462, 29, 549, 312);
 		lblIcon.setBackground(UIManager.getColor("Button.foreground"));
 		lblIcon.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		lblIcon.setForeground(UIManager.getColor("DesktopIcon.labelBackground"));
 		lblIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		GroupLayout groupLayout = new GroupLayout(
-				frmAphroditeHill.getContentPane());
-		groupLayout
-				.setHorizontalGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addContainerGap(372, Short.MAX_VALUE)
-										.addComponent(lblIcon,
-												GroupLayout.PREFERRED_SIZE,
-												549, GroupLayout.PREFERRED_SIZE)
-										.addGap(429))
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addGap(484)
-										.addComponent(panel,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(505, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(
-				Alignment.TRAILING).addGroup(
-				groupLayout
-						.createSequentialGroup()
-						.addGap(29)
-						.addComponent(lblIcon, GroupLayout.DEFAULT_SIZE, 167,
-								Short.MAX_VALUE)
-						.addGap(35)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 213,
-								GroupLayout.PREFERRED_SIZE).addGap(289)));
 
 		// TextBoxes
 		txtUserName = new JTextField();
+		txtUserName.setBounds(149, 45, 155, 28);
 		txtUserName.setColumns(10);
 		txtPassword = new JPasswordField();
+		txtPassword.setBounds(149, 91, 155, 28);
 
 		// Labels //
 		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setBounds(64, 95, 63, 19);
 		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 15));
 		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setBounds(64, 49, 67, 19);
 		lblUsername.setFont(new Font("Calibri", Font.PLAIN, 15));
 
 		btnLogIn = new JButton("Log In");
+		btnLogIn.setBounds(62, 137, 112, 29);
 		JButton btnHelp = new JButton("Help");
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addGap(60)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.LEADING)
-												.addGroup(
-														gl_panel.createSequentialGroup()
-																.addGap(2)
-																.addGroup(
-																		gl_panel.createParallelGroup(
-																				Alignment.LEADING)
-																				.addComponent(
-																						lblPassword)
-																				.addComponent(
-																						lblUsername,
-																						GroupLayout.PREFERRED_SIZE,
-																						67,
-																						GroupLayout.PREFERRED_SIZE))
-																.addGap(18)
-																.addGroup(
-																		gl_panel.createParallelGroup(
-																				Alignment.LEADING)
-																				.addComponent(
-																						txtUserName,
-																						GroupLayout.DEFAULT_SIZE,
-																						153,
-																						Short.MAX_VALUE)
-																				.addComponent(
-																						txtPassword,
-																						GroupLayout.DEFAULT_SIZE,
-																						153,
-																						Short.MAX_VALUE)))
-												.addGroup(
-														gl_panel.createSequentialGroup()
-																.addComponent(
-																		btnLogIn,
-																		GroupLayout.PREFERRED_SIZE,
-																		112,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		ComponentPlacement.UNRELATED)
-																.addComponent(
-																		btnHelp,
-																		GroupLayout.PREFERRED_SIZE,
-																		118,
-																		GroupLayout.PREFERRED_SIZE)))
-								.addGap(59)));
-		gl_panel.setVerticalGroup(gl_panel
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addGap(43)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(
-														txtUserName,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblUsername))
-								.addGap(18)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(
-														txtPassword,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblPassword))
-								.addGap(18)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(btnLogIn)
-												.addComponent(btnHelp))
-								.addContainerGap(69, Short.MAX_VALUE)));
-		panel.setLayout(gl_panel);
-		frmAphroditeHill.getContentPane().setLayout(groupLayout);
+		btnHelp.setBounds(186, 137, 118, 29);
+		frmAphroditeHill.getContentPane().setLayout(null);
+		frmAphroditeHill.getContentPane().add(lblIcon);
+		frmAphroditeHill.getContentPane().add(panel);
+		panel.setLayout(null);
+		panel.add(lblPassword);
+		panel.add(lblUsername);
+		panel.add(txtUserName);
+		panel.add(txtPassword);
+		panel.add(btnLogIn);
+		panel.add(btnHelp);
 		frmAphroditeHill.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmAphroditeHill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

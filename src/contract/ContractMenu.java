@@ -37,9 +37,9 @@ public class ContractMenu extends JPanel {
 	private static ContractForm contractform ;
 	
 	//Buttons //
-	private JButton btnFilter;
-	private JButton btnAddNewContract;
-	private JButton btnFilterByNo;
+	private static JButton btnFilter;
+	private static JButton btnAddNewContract;
+	private static JButton btnFilterByNo;
 		
 	
 	public ContractMenu(){
