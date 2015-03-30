@@ -1,15 +1,12 @@
 package security;
 
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.JOptionPane;
-
 import extras.DatabaseConnection;
 import extras.Checker;
-import extras.Messages;
 
 public class SecuritySaveButton extends Thread {
 

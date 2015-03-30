@@ -4,17 +4,12 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -23,17 +18,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager.*;
-import java.awt.SystemColor;
 import java.sql.ResultSet;
 
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.MatteBorder;
-
-import security.Securitymenu;
-
-import extras.Checker;
 import extras.DatabaseConnection;
 import extras.Messages;
 
@@ -42,6 +28,7 @@ public class LogIn {
 	private JFrame frmAphroditeHill;
 	public static JTextField txtUserName;
 	private JPasswordField txtPassword;
+	@SuppressWarnings("unused")
 	private JFrame menu;
 
 	// Button //
@@ -136,6 +123,7 @@ public class LogIn {
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = txtUserName.getText();
+				@SuppressWarnings("deprecation")
 				String password = txtPassword.getText();
 				String query = "SELECT * FROM SystemUsers WHERE userName='"
 						+ username + "' AND passwords = '" + password + "'";

@@ -1,12 +1,9 @@
 package userMenus;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-
-import property.PropertyMenu;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,16 +16,10 @@ public class testMenu {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+		
 					testMenu window = new testMenu();
 					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
 	}
 
 	/**
@@ -64,8 +55,8 @@ public class testMenu {
 		JButton btnNewButton = new JButton("c");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panel_1.show();
-			//	panel_1.setVisible(true);
+				panel_1.setVisible(true);
+			
 			}
 		});
 		btnNewButton.setBounds(10, 34, 89, 23);

@@ -54,6 +54,7 @@ public class CheckOutButton extends Thread {
 					compound=null;
 					flag=false;
 				}else{
+					@SuppressWarnings("unused")
 					boolean f1,f2;
 					f1=cheked2(keyID,specificKey);//pernei true an exei sto pedio ckeckedInTime"key is not checked in yet"
 					//f2=cheked3(keyID,specificKey);//pernei true ean  den yparxei o syndiasmos keyid me specifickey

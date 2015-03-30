@@ -1,8 +1,6 @@
 package userMenus;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.GroupLayout;
@@ -14,18 +12,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.UIManager.LookAndFeelInfo;
-
-import property.PropertyForm;
-import property.PropertyMenu;
-import security.SecurityForm;
 import security.Securitymenu;
-import contract.ContractMenu;
-import customer.CustomerMenu;
 
 public class SecurityMenu {
 
 	private JFrame frmSecurityMenu;
-	@SuppressWarnings("unused")
 	
 	
 	

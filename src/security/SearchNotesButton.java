@@ -14,7 +14,7 @@ import extras.Messages;
 
 public class SearchNotesButton extends Thread {
 
-	@SuppressWarnings("static-access")
+	
 	public void run() {
 	
 		int method = 2;

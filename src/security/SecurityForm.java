@@ -18,16 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-import javax.swing.JComboBox;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.SoftBevelBorder;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class SecurityForm {
 
@@ -38,7 +29,7 @@ public class SecurityForm {
 	public static JTextField txtPropertyID;
 	protected static boolean edit = false;
 
-	@SuppressWarnings("static-access")
+	
 	public static void main(String[] args) {
 		SecurityForm window = new SecurityForm();
 		window.frame.setVisible(true);
@@ -177,7 +168,7 @@ public class SecurityForm {
 		btnClear.setBackground(Color.WHITE);
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new SecurityClearButton().start();
+				SecurityClearButton.start();
 			}
 		});
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));

@@ -14,8 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.JList;
-import javax.swing.JTextArea;
 
 import extras.DatabaseConnection;
 
@@ -38,6 +36,7 @@ public class CheckIn {
 	public static DatabaseConnection database;
 	public static JComboBox<String> allKeys;
 
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		CheckIn window = new CheckIn();
 		window.frmCheckIn.setVisible(true);

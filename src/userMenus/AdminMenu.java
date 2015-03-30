@@ -1,23 +1,15 @@
 package userMenus;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
-
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-
-import admin.mainAdminPanel;
-import logistics.accountantPanel;
 import contract.ContractMenu;
 import property.PropertyMenu;
 import security.Securitymenu;
@@ -52,8 +44,9 @@ public class AdminMenu {
 
 	public static void main(String[] args) {
 
+					@SuppressWarnings("unused")
 					AdminMenu window = new AdminMenu();
-					window.frame.setVisible(true);
+					frame.setVisible(true);
 	}
 
 	public AdminMenu() {

@@ -2,7 +2,6 @@ package security;
 
 import javax.swing.border.Border;
 
-import customer.CustomerForm;
 import security.CheckOut;
 
 public class CheckOutClearButton {
