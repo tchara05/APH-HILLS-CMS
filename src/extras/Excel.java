@@ -133,9 +133,9 @@ public class Excel {
 		                		
 		                	}catch (Exception e){
 		                		roomValue =cell.getNumericCellValue();
-		                	data.getStatement().executeUpdate("INSERT INTO Rooms values('"+propID+"','"+roomValue+"')");
+		                	data.getStatement().executeUpdate("INSERT INTO Rooms values('"+propID+"','"+roomValue+"','0')");
 		                		System.out.print(roomValue+ " ");	
-		                		
+		
 		                	}
 		                }
 		            }
@@ -167,7 +167,7 @@ public class Excel {
 //		Companydocument.BankInfo(document);
 //		document.close();
 //	
-		//createExcelFile();
+	//	createExcelFile();
 		ReadExcel();
 		
 
