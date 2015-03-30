@@ -1,7 +1,6 @@
 package property;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -9,7 +8,6 @@ import userMenus.LogIn;
 
 import contract.ContractMenu;
 
-import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 

@@ -5,15 +5,11 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import userMenus.LogIn;
 import extras.ListManager;
 import extras.Query;
@@ -22,9 +18,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.border.TitledBorder;
 
-@SuppressWarnings("serial")
 public class CustomerMenu{
 
 	// This is the hole box //

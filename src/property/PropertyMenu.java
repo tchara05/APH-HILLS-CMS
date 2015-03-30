@@ -5,14 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import extras.Query;
 
 import extras.ListManager;
@@ -20,7 +17,6 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 
-@SuppressWarnings("serial")
 public class PropertyMenu{
 
 	@SuppressWarnings("unused")

@@ -8,7 +8,6 @@ import java.sql.Statement;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
-import javax.swing.text.Highlighter;
 
 import userMenus.LogIn;
 import contract.ContractForm;

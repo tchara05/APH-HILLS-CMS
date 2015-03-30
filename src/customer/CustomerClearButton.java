@@ -1,7 +1,5 @@
 package customer;
 
-import java.awt.Color;
-
 import javax.swing.border.Border;
 
 

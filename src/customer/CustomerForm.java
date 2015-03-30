@@ -31,8 +31,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 
 import userMenus.LogIn;
-import javax.swing.Icon;
-import java.awt.SystemColor;
 
 public class CustomerForm {
 	
