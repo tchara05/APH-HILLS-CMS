@@ -121,7 +121,6 @@ public class Excel {
 		                		System.out.print(cell.getStringCellValue() + " | ");
 		                		
 		                	}catch (Exception e){
-		                		
 		                		roomValue =roomValue +  cell.getNumericCellValue();
 		                		System.out.print(roomValue+ " ");	
 		                		
@@ -136,7 +135,6 @@ public class Excel {
 		} catch(Exception ioe) {
 		    ioe.printStackTrace();
 		}
-	  
   }
 		
 		

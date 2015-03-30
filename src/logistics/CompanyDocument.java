@@ -111,7 +111,7 @@ public class CompanyDocument {
 	}
 	
 	
-	public   void createCustomerDetailsTable(Document doc) throws Exception {
+	public void createCustomerDetailsTable(Document doc) throws Exception {
 		
 		
 		String documentDetailsString = documentType();
@@ -149,16 +149,14 @@ public class CompanyDocument {
 		
 	}
 	
+	
 	private   String documentType(){
 		
-		String documentDetailsString="";
-		
-		
 		if (type ==INVOICE)
-		return documentDetailsString = AccountCode + "\n" + DocNumber + "\n"
+		return  AccountCode + "\n" + DocNumber + "\n"
 				+ OrderNumber + "\n" + DocDate;
 		else if(type == PROFORMA  || type== RECEIPT)
-			return documentDetailsString = AccountCode + "\n" + DocNumber + "\n" + DocDate;
+			return AccountCode + "\n" + DocNumber + "\n" + DocDate;
 		else
 			return "Error";
 		
@@ -182,7 +180,6 @@ public class CompanyDocument {
 		}
 		Signature.addCell(LeftCell);
 		
-		
 		Signature.setWidthPercentage(100);
 		PdfPCell RightCell = new PdfPCell();
 		RightCell.setBorderWidth(0);
@@ -190,18 +187,8 @@ public class CompanyDocument {
 		Phrase W = new Phrase("APHRODITE HILL SERVICE LTD \n\n ________________________________ \n" +
 				              "                         Signature");
 		RightCell.addElement(W);
-		
-		
-		
 		Signature.addCell(RightCell);
-		
 		doc.add(Signature);
-		
-		
-		
-		
-		
-		
 	}
 	
 	
@@ -254,8 +241,7 @@ public class CompanyDocument {
 		   N=3;
 		}
 		
-		PdfPTable columnsTitle = new PdfPTable (N);
-		
+		PdfPTable columnsTitle = new PdfPTable(N);
 		PdfPCell[] Columns = new PdfPCell[N];
 	
 		for(int i = 0;i<N;i++){
@@ -264,8 +250,8 @@ public class CompanyDocument {
 			Columns[i].setBorderWidth(0);
 		}
 		
-		Phrase[] titles =new Phrase[N];
-		
+	    	Phrase[] titles =new Phrase[N];
+	    	
 		
 		if (N==5){
 			titles[0]= new Phrase("S/N");
@@ -285,16 +271,11 @@ public class CompanyDocument {
 			titles[1] =new Phrase("Quantity");
 			titles[2] =new Phrase("Amount");
 		}
-		
-		
-		
-		
-		
-		
+				
 		for (int i = 0;i<N;i++){
 			titles[i].setFont(smallbold);
-			Columns[i].addElement(titles[i]); // Mpenoun oi titloi pou einai fraseis mesa sta kelia //
-			columnsTitle.addCell(Columns[i]); // Mpenoun ta kelia mesa sto pinaka //
+			Columns[i].addElement(titles[i]);
+			columnsTitle.addCell(Columns[i]);
 		}
 			
 		columnsTitle.setWidthPercentage(100);
