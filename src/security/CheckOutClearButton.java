@@ -11,7 +11,7 @@ public class CheckOutClearButton {
 		
 		String value = "";
 		
-		Border correct = CheckOut.txtPerson.getBorder();
+		Border correct = CheckOut.txtNotes.getBorder();
 		if(clear==1){
 			
 			CheckOut.txtNotes.setText(value);
@@ -25,10 +25,14 @@ public class CheckOutClearButton {
 			
 		}else{
 			CheckOut.txtKey.setText(value);
+			CheckOut.txtKey.setBorder(correct);
 			
 			
 			CheckOut.txtAvailability.setText(value);
+			
 			CheckOut.txtPerson.setText(value);
+			CheckOut.txtPerson.setBorder(correct);
+			
 			CheckOut.txtDetails.setText(value);
 			CheckOut.txtNotes.setText(value);
 			CheckOut.txtKeyId.setText(value);

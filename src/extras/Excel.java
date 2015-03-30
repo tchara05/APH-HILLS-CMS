@@ -6,11 +6,17 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import logistics.CompanyDocument;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfWriter;
 
 public class Excel {
 	
@@ -94,6 +100,7 @@ public class Excel {
 
 		    int cols = 0; // No of columns
 		    int tmp = 0;
+		    double roomValue=0;
 
 		    // This trick ensures that we get the data properly even if it doesn't start from first few rows
 		    for(int i = 0; i < 10 || i < rows; i++) {
@@ -103,18 +110,26 @@ public class Excel {
 		            if(tmp > cols) cols = tmp;
 		        }
 		    }
-
 		    for(int r = 0; r < rows; r++) {
 		        row = sheet.getRow(r);
 		        if(row != null) {
 		            for(int c = 0; c < cols; c++) {
 		                cell = row.getCell((short)c);
 		                if(cell != null) {
-		                    System.out.print(cell.getStringCellValue() + " | ");
+		                	
+		                	try{
+		                		System.out.print(cell.getStringCellValue() + " | ");
+		                		
+		                	}catch (Exception e){
+		                		
+		                		roomValue =roomValue +  cell.getNumericCellValue();
+		                		System.out.print(roomValue+ " ");	
+		                		
+		                	}
 		                }
 		            }
 		        }
-		        System.out.println();
+		        System.out.println("Total Value: " + roomValue );
 		    }
 		    
 		    
@@ -126,11 +141,24 @@ public class Excel {
 		
 		
 	
-	public static void main(String args[])  {
+	public static void main(String args[]) throws Exception  {
 		
+		CompanyDocument Companydocument = new CompanyDocument(1);
+		Document document = new Document();
 		
-		createExcelFile();
+		// Creating The Table //
+		PdfWriter.getInstance(document, new FileOutputStream("invoice.pdf"));
+		document.open();
 		
+		Companydocument.createHeader(document);
+		Companydocument.createCustomerDetailsTable(document);
+		Companydocument.createCostTable(document);
+		Companydocument.Signatures(document);
+		Companydocument.BankInfo(document);
+		document.close();
+	
+		//createExcelFile();
+		ReadExcel();
 		
 
 		
