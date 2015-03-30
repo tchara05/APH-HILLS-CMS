@@ -30,7 +30,8 @@ public class Query {
 														"SELECT DISTINCT C.plotID FROM Contract C )";
 	
 	public static final String PLOTS_AND_ROOMS = "SELECT plotID, plotNumber, plotName, numberOfBedrooms " +
-												  "FROM Property " +
+												  "FROM Property, Servisez,KeyContract" +
+												  "WHERE specificKey ="
 												  "ORDER BY plotID ASC";
 	
 }

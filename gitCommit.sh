@@ -7,7 +7,7 @@
 #
 #####################################
 
-git pull
+git pull 
 git add -A
 git commit -m "Billing Things"
 git push origin master
