@@ -8,7 +8,6 @@ import java.sql.Statement;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
-import customer.CustomerForm;
 import extras.Checker;
 import extras.DatabaseConnection;
 import extras.Messages;

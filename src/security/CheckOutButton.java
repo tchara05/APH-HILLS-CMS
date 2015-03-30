@@ -38,13 +38,20 @@ public class CheckOutButton extends Thread {
 		String checkInTime = "Key is not checked in yet";
 		String checkInDate = "Key is not checked in yet";
 
+		
+		Border compound = null;
+		Border redline = BorderFactory.createLineBorder(Color.red,2);
+
+		
 		boolean flag=true;
 		int flagged = 0;
 
 		if(keyID.compareTo("") != 0){
 			try {
 				if (!checker(keyID, flagged)){
-					Messages.showWarningMessage("Key ID not found ");
+					compound = BorderFactory.createCompoundBorder(redline, compound);
+					CheckOut.txtKey.setBorder(compound);
+					compound=null;
 					flag=false;
 				}else{
 					boolean f1,f2;
@@ -55,7 +62,8 @@ public class CheckOutButton extends Thread {
 					
 					if (f1){
 						Messages.showWarningMessage("Can not Ckeck out this Key Not checkIn yet ");
-						flag=false;								
+						flag=false;	
+						CheckOutClearButton.start(3);
 					}
 					
 				}
@@ -64,22 +72,34 @@ public class CheckOutButton extends Thread {
 			}
 		}
 		else{
-			Messages.showWarningMessage("Key ID is Empty");
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CheckOut.txtKey.setBorder(compound);
+			compound=null;
 			flag=false;
 		}
 		
 		
 		pickUpPerson=Checker.clearString(pickUpPerson);
+		
 		if(!Checker.checkString(pickUpPerson) ){ 
-			Messages.showWarningMessage("PickUp Person has Invalid characters found");
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CheckOut.txtPerson.setBorder(compound);
+			compound=null;
 			flag=false;
 		}
 		
 		if( pickUpPerson.compareTo("")==0  ){
-			Messages.showWarningMessage("PickUp Person is Empty");
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			CheckOut.txtPerson.setBorder(compound);
+			compound=null;
 			flag=false;
 		}
 		
+		if(!flag){
+			Messages.showWarningMessage("Erros input ");
+			CheckOutClearButton.start(3);
+			
+		}
 		
 		if(flag){
 			try {
@@ -139,9 +159,10 @@ public class CheckOutButton extends Thread {
 					rst = st.executeQuery("SELECT keyID FROM KeyContract WHERE keyID='" + id+"'");
 				else
 					rst = st.executeQuery("SELECT keyID FROM KeyContract WHERE propertyID='" + id+"'");
-					if (rst.next()){
+					
+				if (rst.next()){
 						return true;
-					}
+				}
 					
 			
 				
@@ -186,31 +207,31 @@ public class CheckOutButton extends Thread {
 	}
 	
 	
-	public boolean cheked3(String s,String p) throws SQLException {
-		
-		
-		int id=Integer.parseInt(s);
-		try{
-			DatabaseConnection database = new DatabaseConnection();
-			Statement st = database.getStatement();
-			ResultSet rst = null;
-			
-			rst = st.executeQuery("SELECT * FROM Service WHERE keyID= '" + id+"' and specificKey= '"+ p +"'");
-			
-				if (!rst.next()){
-					return true;
-				}
-		
-			
-		} catch (NullPointerException e) {
-
-			e.printStackTrace();
-		}
-	
-	
-	return false;
-
-}
+//	public boolean cheked3(String s,String p) throws SQLException {
+//		
+//		
+//		int id=Integer.parseInt(s);
+//		try{
+//			DatabaseConnection database = new DatabaseConnection();
+//			Statement st = database.getStatement();
+//			ResultSet rst = null;
+//			
+//			rst = st.executeQuery("SELECT * FROM Service WHERE keyID= '" + id+"' and specificKey= '"+ p +"'");
+//			
+//				if (!rst.next()){
+//					return true;
+//				}
+//		
+//			
+//		} catch (NullPointerException e) {
+//
+//			e.printStackTrace();
+//		}
+//	
+//	
+//	return false;
+//
+//}
 	
 	
 }
