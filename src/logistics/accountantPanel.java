@@ -12,6 +12,11 @@ import java.awt.Color;
 
 public class accountantPanel extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static JPanel accountantMenu;
 	
 	public static  JComboBox<String> AllCustomers;

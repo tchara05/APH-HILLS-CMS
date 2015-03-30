@@ -9,7 +9,6 @@ import javax.swing.border.Border;
 
 import userMenus.LogIn;
 import contract.ContractMenu;
-import customer.CustomerForm;
 import extras.Checker;
 import extras.ListManager;
 import extras.Messages;
