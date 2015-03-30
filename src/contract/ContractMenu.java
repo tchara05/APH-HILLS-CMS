@@ -2,16 +2,13 @@ package contract;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import userMenus.LogIn;
 

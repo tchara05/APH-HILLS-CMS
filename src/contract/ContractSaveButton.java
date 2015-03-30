@@ -1,7 +1,6 @@
 package contract;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import userMenus.LogIn;
 import extras.ListManager;

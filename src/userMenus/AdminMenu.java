@@ -1,24 +1,16 @@
 package userMenus;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.GroupLayout.Alignment;
-
-import admin.mainAdminPanel;
-import logistics.accountantPanel;
 import contract.ContractMenu;
 import property.PropertyMenu;
-import security.Securitymenu;
 import customer.CustomerMenu;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -106,9 +98,7 @@ public class AdminMenu {
 		
 	}
 	
-	
-	private static void  addButtonFuctionalities(){
-		
+	private static void  addButtonFuctionalities(){	
 	    btnProperty.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    				
