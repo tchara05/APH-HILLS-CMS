@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.xml.crypto.Data;
+
 import logistics.CompanyDocument;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -88,6 +90,8 @@ public class Excel {
   public static void ReadExcel(){
 	  
 	  
+	  DatabaseConnection data = new DatabaseConnection();
+	  
 		try {
 		    POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream("/Users/Theodoros/Desktop/properties.xls"));
 		    HSSFWorkbook wb = new HSSFWorkbook(fs);
@@ -110,18 +114,26 @@ public class Excel {
 		            if(tmp > cols) cols = tmp;
 		        }
 		    }
-		    for(int r = 0; r < rows; r++) {
+		    for(int r = 1; r < rows; r++) {
 		        row = sheet.getRow(r);
 		        if(row != null) {
-		            for(int c = 0; c < cols; c++) {
+		        	HSSFCell id = row.getCell((short) 0);
+		        	String propID =id.getStringCellValue();
+		        
+	                if(id != null) {
+	           
+	                }
+		            for(int c = 1 ; c < cols; c++) {
 		                cell = row.getCell((short)c);
+		                
 		                if(cell != null) {
 		                	
 		                	try{
 		                		System.out.print(cell.getStringCellValue() + " | ");
 		                		
 		                	}catch (Exception e){
-		                		roomValue =roomValue +  cell.getNumericCellValue();
+		                		roomValue =cell.getNumericCellValue();
+		                	data.getStatement().executeUpdate("INSERT INTO Rooms values('"+propID+"','"+roomValue+"')");
 		                		System.out.print(roomValue+ " ");	
 		                		
 		                	}
@@ -141,20 +153,20 @@ public class Excel {
 	
 	public static void main(String args[]) throws Exception  {
 		
-		CompanyDocument Companydocument = new CompanyDocument(1);
-		Document document = new Document();
-		
-		// Creating The Table //
-		PdfWriter.getInstance(document, new FileOutputStream("invoice.pdf"));
-		document.open();
-		
-		Companydocument.createHeader(document);
-		Companydocument.createCustomerDetailsTable(document);
-		Companydocument.createCostTable(document);
-		Companydocument.Signatures(document);
-		Companydocument.BankInfo(document);
-		document.close();
-	
+//		CompanyDocument Companydocument = new CompanyDocument(1);
+//		Document document = new Document();
+//		
+//		// Creating The Table //
+//		PdfWriter.getInstance(document, new FileOutputStream("invoice.pdf"));
+//		document.open();
+//		
+//		Companydocument.createHeader(document);
+//		Companydocument.createCustomerDetailsTable(document);
+//		Companydocument.createCostTable(document);
+//		Companydocument.Signatures(document);
+//		Companydocument.BankInfo(document);
+//		document.close();
+//	
 		//createExcelFile();
 		ReadExcel();
 		

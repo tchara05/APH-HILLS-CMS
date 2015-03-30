@@ -214,7 +214,8 @@ public class CustomerSaveButton extends Thread {
 									+ "' WHERE  customerID = '"
 									+ CustomerForm.txtID.getText() + "'";
 
-							ListManager.DeleteFromList(CustomerMenu.AllCustomers);
+							String s =  ListManager.DeleteFromList(CustomerMenu.AllCustomers);
+							ContractForm.AllCustomers.removeElement(s);
 						}
 
 						st.executeUpdate(query);
@@ -224,7 +225,6 @@ public class CustomerSaveButton extends Thread {
 								nFname, nLname, ContractForm.AllCustomers);
 						CustomerClearButton.start();
 						Messages.showSaveMessage("Customer added");
-
 						CustomerForm.setVisible(false);
 					}
 				} else {
