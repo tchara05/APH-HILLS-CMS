@@ -31,6 +31,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 
 import userMenus.LogIn;
+import javax.swing.Icon;
+import java.awt.SystemColor;
 
 public class CustomerForm {
 	
@@ -90,48 +92,43 @@ public class CustomerForm {
 		}
 		
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
-		JLabel lblImage = new JLabel(image);
-		lblImage.setText("image");
-		lblImage.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Customer Form", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "CUSTOMER FORM", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(52)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 959, GroupLayout.PREFERRED_SIZE)
-					.addGap(35)
-					.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(47, Short.MAX_VALUE))
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1259, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(54)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblImage, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 628, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(51, Short.MAX_VALUE))
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 628, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(48, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(UIManager.getColor("Button.background"));
+		panel.setBackground(Color.WHITE);
 		panel.setBounds(42, 43, 402, 452);
 		panel_2.add(panel);
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Customer Information", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setForeground(Color.GRAY);
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 153), 3), "Customer Information", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setForeground(Color.BLACK);
 	    panel.setLayout(null);
 	    
 	    JPanel panel_4 = new JPanel();
-	    panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-	    panel_4.setBackground(Color.LIGHT_GRAY);
+	    panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
+	    panel_4.setBackground(SystemColor.inactiveCaption);
 	    panel_4.setBounds(26, 30, 349, 399);
 	    panel.add(panel_4);
 	    panel_4.setLayout(null);
@@ -143,41 +140,41 @@ public class CustomerForm {
 	    txtNote.setLineWrap(true);
 	    
 	    JLabel lblCustomerId = new JLabel("Customer ID:");
-	    lblCustomerId.setBounds(10, 18, 69, 16);
+	    lblCustomerId.setBounds(10, 18, 85, 16);
 	    panel_4.add(lblCustomerId);
-	    lblCustomerId.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    lblCustomerId.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
 	    JLabel lblFirstName = new JLabel("First Name:");
-	    lblFirstName.setBounds(10, 52, 62, 16);
+	    lblFirstName.setBounds(10, 52, 102, 16);
 	    panel_4.add(lblFirstName);
-	    lblFirstName.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    lblFirstName.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
 	    	
 	    	JLabel lblLastname = new JLabel("Last Name:");
-	    	lblLastname.setBounds(10, 88, 60, 16);
+	    	lblLastname.setBounds(10, 88, 102, 16);
 	    	panel_4.add(lblLastname);
-	    	lblLastname.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	lblLastname.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    	
 	    	JLabel lblAddress = new JLabel("Address:");
-	    	lblAddress.setBounds(13, 127, 47, 16);
+	    	lblAddress.setBounds(10, 127, 102, 16);
 	    	panel_4.add(lblAddress);
-	    	lblAddress.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	lblAddress.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    	
 	    	JLabel lblCity = new JLabel("City:");
-	    	lblCity.setBounds(10, 166, 22, 16);
+	    	lblCity.setBounds(10, 166, 85, 16);
 	    	panel_4.add(lblCity);
-	    	lblCity.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	lblCity.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    	
 	    	JLabel lblZipPosta = new JLabel("Zip Code:");
-	    	lblZipPosta.setBounds(10, 205, 50, 16);
+	    	lblZipPosta.setBounds(10, 205, 85, 16);
 	    	panel_4.add(lblZipPosta);
-	    	lblZipPosta.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	lblZipPosta.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    	
 	    	
 	    	JLabel lblCountry = new JLabel("Country:");
-	    	lblCountry.setBounds(10, 245, 43, 16);
+	    	lblCountry.setBounds(10, 245, 85, 16);
 	    	panel_4.add(lblCountry);
-	    	lblCountry.setFont(new Font("Calibri", Font.PLAIN, 12));
+	    	lblCountry.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    	
 	    	txtID = new JTextField();
 	    	txtID.setEnabled(false);
@@ -215,14 +212,15 @@ public class CustomerForm {
 	    	panel_4.add(Country);
 	    
 	    JPanel panel_1 = new JPanel();
+	    panel_1.setBackground(Color.WHITE);
 	    panel_1.setBounds(476, 43, 445, 452);
 	    panel_2.add(panel_1);
-	    panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Customer Contact Details", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	    panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 204), 3), "Customer Contact Details", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setLayout(null);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-		panel_5.setBackground(Color.LIGHT_GRAY);
+		panel_5.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_5.setBackground(SystemColor.inactiveCaption);
 		panel_5.setBounds(23, 30, 394, 397);
 		panel_1.add(panel_5);
 		panel_5.setLayout(null);
@@ -268,55 +266,57 @@ public class CustomerForm {
 		JLabel lblSecondaryEmail = new JLabel("Secondary Email:");
 		lblSecondaryEmail.setBounds(20, 61, 123, 14);
 		panel_5.add(lblSecondaryEmail);
-		lblSecondaryEmail.setFont(new Font("Calibri", Font.PLAIN, 12));
+		lblSecondaryEmail.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		JLabel lblFaxNumber = new JLabel("Fax Number:");
 		lblFaxNumber.setBounds(20, 225, 107, 14);
 		panel_5.add(lblFaxNumber);
-		lblFaxNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
+		lblFaxNumber.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		JLabel lblContactPhoneNumber = new JLabel("Contact Phone Number:");
 		lblContactPhoneNumber.setBounds(20, 184, 153, 14);
 		panel_5.add(lblContactPhoneNumber);
-		lblContactPhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
+		lblContactPhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		JLabel lblBussinesPhoneNumber = new JLabel("Bussines Phone Number:");
 		lblBussinesPhoneNumber.setBounds(20, 143, 181, 14);
 		panel_5.add(lblBussinesPhoneNumber);
-		lblBussinesPhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
+		lblBussinesPhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		JLabel lblMobilePhoneNumber = new JLabel("Mobile Phone Number:");
-		lblMobilePhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 12));
+		lblMobilePhoneNumber.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblMobilePhoneNumber.setBounds(20, 101, 153, 14);
 		panel_5.add(lblMobilePhoneNumber);
 		
 		JLabel lblPrimaryEmail = new JLabel("Primary Email:");
 		lblPrimaryEmail.setBounds(20, 20, 107, 14);
 		panel_5.add(lblPrimaryEmail);
-		lblPrimaryEmail.setFont(new Font("Calibri", Font.PLAIN, 12));
+		lblPrimaryEmail.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.LIGHT_GRAY);
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 0));
-		panel_3.setForeground(Color.WHITE);
-		panel_3.setBounds(42, 526, 879, 66);
-		panel_2.add(panel_3);
-		panel_3.setLayout(null);
+		JPanel panel_6 = new JPanel();
+		panel_6.setLayout(null);
+		panel_6.setBorder(new LineBorder(new Color(0, 0, 128)));
+		panel_6.setBackground(new Color(211, 211, 211));
+		panel_6.setBounds(1008, 43, 183, 452);
+		panel_2.add(panel_6);
 		
 		btnSave = new JButton("Save");
-		btnSave.setFont(new Font("Calibri", Font.PLAIN, 12));
-		btnSave.setBounds(22, 20, 104, 30);
-		panel_3.add(btnSave);
+		btnSave.setBackground(Color.WHITE);
+		btnSave.setBounds(42, 299, 104, 30);
+		panel_6.add(btnSave);
+		btnSave.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		btnClear = new JButton("Clear");
-		btnClear.setFont(new Font("Calibri", Font.PLAIN, 12));
-		btnClear.setBounds(149, 20, 109, 30);
-		panel_3.add(btnClear);
+		btnClear.setBackground(Color.WHITE);
+		btnClear.setBounds(42, 340, 109, 30);
+		panel_6.add(btnClear);
+		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Calibri", Font.PLAIN, 12));
-		btnBack.setBounds(283, 21, 110, 29);
-		panel_3.add(btnBack);
+		btnBack.setBackground(Color.WHITE);
+		btnBack.setBounds(42, 381, 110, 29);
+		panel_6.add(btnBack);
+		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		
 		frame.getContentPane().setLayout(groupLayout);
@@ -385,5 +385,4 @@ public class CustomerForm {
 			}
 		});
 	}
-
 }
