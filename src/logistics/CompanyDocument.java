@@ -239,6 +239,7 @@ public class CompanyDocument {
 	public void createCostTable(Document doc,ResultSet rs) throws Exception {
 
 		int N = 6;
+		String CustomerID = rs.getString(4); 
 		PdfPTable columnsTitle = new PdfPTable(N);
 		PdfPCell[] Columns = new PdfPCell[N];
 
@@ -266,23 +267,39 @@ public class CompanyDocument {
 			columnsTitle.addCell(Columns[j]);
 		}
 		
+		columnsTitle.setWidthPercentage(100);
+		//doc.add(columnsTitle);
+		
 		String prev = rs.getString(3);
-		while (rs.next()){
+		
+		do {
 			
-			Columns[0].setPhrase(new Phrase(i));
+			if (!CustomerID.equals(rs.getString(4))){
+				doc.add(columnsTitle);
+				return;
+				
+			}
+			
+			Columns[0].setPhrase(new Phrase(i+""));
+			i++;
 			if (!prev.equals(rs.getString(3))){
 				prev = rs.getString(3);
 				rooms =1;
 			}
 			Columns[1].setPhrase(new Phrase(prev));
-			Columns[2].setPhrase(new Phrase("Koutalas"));
+			Columns[2].setPhrase(new Phrase(rs.getString(2)+ " " +rs.getString(3)));
 			Columns[3].setPhrase(new Phrase("Room No:"+ rooms));
 			Columns[4].setPhrase(new Phrase("1"));
 			Columns[5].setPhrase(new Phrase(rs.getString(9)));
-		}
+			rooms++;
+			for (int j = 0; j < N; j++) {
+				columnsTitle.addCell(Columns[j]);
+			}
+		}while(rs.next());	
+			
+		
 
-		columnsTitle.setWidthPercentage(100);
-		doc.add(columnsTitle);
+
 
 	}
 	
@@ -314,7 +331,8 @@ public class CompanyDocument {
 				Companydocument.createCostTable(document,rs);
 				Companydocument.Signatures(document);
 				Companydocument.BankInfo(document);
-			document.close();
+				document.close();
+				rs.previous();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
