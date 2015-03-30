@@ -42,7 +42,8 @@ public class fileExcel {
 		int row = 1;
 
 		try {
-			ResultSet rset = stment.executeQuery(Query.PLOTS_AND_ROOMS);			
+			ResultSet rset = stment.executeQuery("SELECT P.plotID, P.plotNumber, P.plotName, P.numberOfBedrooms " +
+												  "FROM Property P");			
 			while (rset.next()) {
 				
 				String plotID = rset.getString(1);
@@ -131,7 +132,7 @@ public class fileExcel {
 	
 	public static void main(String args[])  {
 		
-		createExcelFile();
+		ReadExcel();
 		
 		
 

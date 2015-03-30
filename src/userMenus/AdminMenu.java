@@ -48,7 +48,7 @@ public class AdminMenu {
 		lblAdminMenu = new JLabel("Adminstrator Menu ");
 		lblAdminMenu.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
