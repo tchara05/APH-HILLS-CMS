@@ -122,13 +122,13 @@ public class CustomerForm {
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(42, 43, 402, 452);
 		panel_2.add(panel);
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 153), 3), "Customer Information", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Customer Information", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setForeground(Color.BLACK);
 	    panel.setLayout(null);
 	    
 	    JPanel panel_4 = new JPanel();
-	    panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
-	    panel_4.setBackground(SystemColor.inactiveCaption);
+	    panel_4.setBorder(new LineBorder(new Color(0, 0, 128)));
+	    panel_4.setBackground(new Color(173, 216, 230));
 	    panel_4.setBounds(26, 30, 349, 399);
 	    panel.add(panel_4);
 	    panel_4.setLayout(null);
@@ -215,12 +215,12 @@ public class CustomerForm {
 	    panel_1.setBackground(Color.WHITE);
 	    panel_1.setBounds(476, 43, 445, 452);
 	    panel_2.add(panel_1);
-	    panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 204), 3), "Customer Contact Details", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+	    panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Customer Contact Details", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setLayout(null);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_5.setBackground(SystemColor.inactiveCaption);
+		panel_5.setBorder(new LineBorder(new Color(0, 0, 128)));
+		panel_5.setBackground(new Color(173, 216, 230));
 		panel_5.setBounds(23, 30, 394, 397);
 		panel_1.add(panel_5);
 		panel_5.setLayout(null);
