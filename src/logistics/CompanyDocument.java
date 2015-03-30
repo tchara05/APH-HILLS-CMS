@@ -68,17 +68,11 @@ public class CompanyDocument {
 
 	
 	public CompanyDocument (int type){
-		
 		this.type = type;
-		
 	}
 
 	
-	
-	
-
-	
-	public   void  createHeader(Document doc) throws Exception{
+	public void createHeader(Document doc) throws Exception{
 		
 		Image image1 = Image.getInstance("PDF-IMAGE.png");
 		doc.add(image1);
@@ -87,9 +81,8 @@ public class CompanyDocument {
 		HeaderPara.setAlignment(Element.ALIGN_CENTER);
 		doc.add(HeaderPara);
 		
-
-		
 		doc.add(NewLine);
+		
 		if (type ==INVOICE){
 			Paragraph InvoicePara = new Paragraph("INVOICE",MEDIUMUNDERLINE);
 			InvoicePara.setAlignment(Element.ALIGN_CENTER);
@@ -106,21 +99,18 @@ public class CompanyDocument {
 			DatesPara.setAlignment(Element.ALIGN_CENTER);
 			doc.add(DatesPara);
 		}
-		
 		Paragraph CustDetails = new Paragraph(CustomerDetails,smallbold);
 		CustDetails.setAlignment(Element.ALIGN_LEFT);
 		doc.add(CustDetails);
 		
-		
-		
-		
+
 	}
 	
 	
-	public   void createCustomerDetailsTable(Document doc, ResultSet rs) throws Exception {
+	public   void createCustomerDetailsTable(Document doc) throws Exception {
+		
 		
 		String documentDetailsString = documentType();
-			
 		PdfPTable CustomerDetailsTable = new PdfPTable(2);	  //Megalos Pinakas
 		PdfPCell CustomerDetails = new PdfPCell(new Phrase("Kokos\nKokos\nKokos"));// aristeri Plevra
 		CustomerDetails.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -157,7 +147,7 @@ public class CompanyDocument {
 	
 	private   String documentType(){
 		
-		String documentDetailsString ;
+		String documentDetailsString="";
 		
 		
 		if (type ==INVOICE)
@@ -209,6 +199,9 @@ public class CompanyDocument {
 		
 		
 	}
+	
+	
+	
 	public   void BankInfo(Document doc) throws Exception{
 		
 		PdfPTable BankINF = new PdfPTable(1);
@@ -230,24 +223,15 @@ public class CompanyDocument {
 
 				
 		doc.add(BankINF);
-		
 		if (type == PROFORMA){
-			
 			Paragraph noVAT1 = new Paragraph("This is not a VAT invoice");
 			noVAT1.setAlignment(Element.ALIGN_CENTER);
-			
 			doc.add(noVAT1);
-			
-		
 			Paragraph noVAT2 = new Paragraph("The above amount is payable with immediate effect",small);
 			noVAT2.setAlignment(Element.ALIGN_CENTER);
-			
-			
 			doc.add(noVAT2);
 		}else if (type ==INVOICE){
-			
-			doc.add(NewLine);
-			
+			doc.add(NewLine);	
 			Paragraph noVAT2 = new Paragraph("The above amount is payable 30 days,if not paid interest at the rate 8%  pa will be charged",smallerbold );
 			noVAT2.setAlignment(Element.ALIGN_CENTER);
 			doc.add(noVAT2);
@@ -298,6 +282,11 @@ public class CompanyDocument {
 			titles[2] =new Phrase("Amount");
 		}
 		
+		
+		
+		
+		
+		
 		for (int i = 0;i<N;i++){
 			titles[i].setFont(smallbold);
 			Columns[i].addElement(titles[i]); // Mpenoun oi titloi pou einai fraseis mesa sta kelia //
@@ -309,41 +298,12 @@ public class CompanyDocument {
 		
 	}
 	
-	private void addServiceDetails(PdfPTable table){
-		
-		
-		
-		
-	}
 	
-	
-	public void exportAllProformaDocument() throws Exception{
-		
-		CompanyDocument t = new CompanyDocument(type);
-		Document document = new Document();
-		PdfWriter.getInstance(document, new FileOutputStream("home.test.pdf"));
-		document.open();
-		t.createHeader(document);
-	//	t.createDetailsTable(document);
-		t.createCostTable(document);
-		t.Signatures(document);
-		t.BankInfo(document);
-		
-		document.close();
-		
-		
-		
-		
-		
-	}
 	
 	public static void main(String args[]) throws Exception{
 		
-		int typeTest = 3;
-		DatabaseConnection dabase = new DatabaseConnection();
-		ResultSet rs =null;
 		
-		CompanyDocument Companydocument = new CompanyDocument(typeTest);
+		CompanyDocument Companydocument = new CompanyDocument(1);
 		Document document = new Document();
 		
 		// Creating The Table //
@@ -351,7 +311,7 @@ public class CompanyDocument {
 		document.open();
 		
 		Companydocument.createHeader(document);
-		Companydocument.createCustomerDetailsTable(document, rs);
+		Companydocument.createCustomerDetailsTable(document);
 		Companydocument.createCostTable(document);
 		Companydocument.Signatures(document);
 		Companydocument.BankInfo(document);
