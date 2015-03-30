@@ -176,6 +176,7 @@ public class PropertyMenu extends JPanel {
 		
 	}
 	
+
 	public static JPanel createPropertyMenu(){
 		new PropertyMenu();
 		return PropertyPanel;

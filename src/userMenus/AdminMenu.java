@@ -73,7 +73,7 @@ public class AdminMenu {
 		PropertyPanel = PropertyMenu.createPropertyMenu();
 		CustomerPanel = CustomerMenu.createCustomerMenu();
 		
-		PropertyPanel.setVisible(true);
+		PropertyPanel.setVisible(false);
 		CustomerPanel.setVisible(false);
 		ContractPanel.setVisible(false);
 		
@@ -105,11 +105,6 @@ public class AdminMenu {
 		panel.add(PropertyPanel);
 		panel.add(CustomerPanel);
 		
-		
-		
-		
-		
-		
 		addButtonFuctionalities();
 		
 	}
@@ -120,9 +115,11 @@ public class AdminMenu {
 	    btnProperty.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		ContractPanel.setVisible(false);
-	    		PropertyPanel.setVisible(true);
 	    		
+	    		for(int i=0;i<3;i++){
+	    			panel.getComponents()[i].setVisible(false);
+	    		}
+	    		PropertyPanel.setVisible(true);
 	    		
 	    	}
 	    });
@@ -130,7 +127,10 @@ public class AdminMenu {
 	    btnContract.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		
-		 		PropertyPanel.setVisible(false);
+		 		for(int i=0;i<3;i++){
+	    			panel.getComponents()[i].setVisible(false);
+	    		}
+		 		
 		 		ContractPanel.setVisible(true);
 	    		
 		 	}
@@ -138,7 +138,10 @@ public class AdminMenu {
 	    
 	    btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				for(int i=0;i<3;i++){
+	    			panel.getComponents()[i].setVisible(false);
+	    		}
+				CustomerPanel.setVisible(true);
 				
 			}
 		});
