@@ -157,6 +157,8 @@ public class PropertyForm {
 		    }
 		} catch (Exception e) {}
 		
+		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
+		
 		frmPropertyForm = new JFrame();
 		frmPropertyForm.getContentPane().setBackground(new Color(255, 255, 255));
 		frmPropertyForm.setTitle("Property Form");
@@ -164,7 +166,7 @@ public class PropertyForm {
 		
 		
 		// Labels For Outer Panel 1: //
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
+		
 		
 		panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -501,6 +503,10 @@ public class PropertyForm {
 		btnBack = new JButton("Back");
 		btnBack.setBounds(53, 436, 110, 23);
 		panel_2.add(btnBack);
+		
+		JLabel lblNewLabel = new JLabel(image);
+		lblNewLabel.setBounds(10, 97, 199, 169);
+		panel_2.add(lblNewLabel);
 		
 		
 		
