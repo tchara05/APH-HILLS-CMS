@@ -35,4 +35,9 @@ public class Query {
 												  "WHERE P.plotID = KC.propertyID and KC.keyID = S.keyID "+
 												  "ORDER BY P.plotID ASC";
 	
+	public static final String PROFORMA_CUSTOMERS = "SELECT DISTINCT customerID, firstName, lastName "
+													+ "FROM Proforma "
+													+ "WHERE toPaid = 0 "
+													+" ORDER BY firstName , lastName";
+	
 }
