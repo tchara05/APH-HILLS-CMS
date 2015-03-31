@@ -3,6 +3,7 @@ package userMenus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,15 +11,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+
 import contract.ContractMenu;
 import property.PropertyMenu;
 import security.Securitymenu;
 import customer.CustomerMenu;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+
+import logistics.accountantPanel;
 
 public class AdminMenu {
 
@@ -29,17 +35,19 @@ public class AdminMenu {
 	private static JButton btnContract ;
 	private static JButton btnCustomer;
 	private static JButton btnSecurity;
-	
+	private static JButton btnAccount;
 	// Admins Panels //
 	private static JPanel ContractPanel; 
 	private static JPanel PropertyPanel; 
 	private static JPanel CustomerPanel;
 	private static JPanel SecurityPanel;
+	private static JPanel AccountantPanel;
 	
 	// Central Panel
 	private static JPanel panel;
 	private JPanel panel_1;
 	private JPanel panel_2;
+	
 	
 
 	public static void main(String[] args) {
@@ -78,6 +86,7 @@ public class AdminMenu {
 		PropertyPanel = PropertyMenu.createPropertyMenu();
 		CustomerPanel = CustomerMenu.createCustomerMenu();
 		SecurityPanel = Securitymenu.createSecurityMenu();
+		AccountantPanel = accountantPanel.createAccountantMenu();
 		frame.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
@@ -141,10 +150,16 @@ public class AdminMenu {
 	    btnSecurity.setBackground(Color.WHITE);
 	    btnSecurity.setBounds(43, 323, 127, 31);
 	    panel_2.add(btnSecurity);
+	    
+	    btnAccount = new JButton("Logistic Menu");
+	  
+	    btnAccount.setForeground(new Color(0, 0, 128));
+	    btnAccount.setFont(new Font("Calibri", Font.PLAIN, 14));
+	    btnAccount.setBackground(Color.WHITE);
+	    btnAccount.setBounds(43, 365, 127, 31);
+	    panel_2.add(btnAccount);
 		
-		//panel.add(PropertyPanel);
-		//PropertyPanel.setVisible(true);
-		
+
 		
 	
 		addButtonFuctionalities();
@@ -193,6 +208,15 @@ public class AdminMenu {
 	    		frame.repaint();
 			}
 		});
+	    
+	    btnAccount.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		panel.removeAll();
+	    		panel.add(AccountantPanel);
+	    		panel.revalidate();
+	    		frame.repaint();
+	    	}
+	    });
 		
 		
 		

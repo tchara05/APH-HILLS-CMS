@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class accountantPanel extends JPanel {
+public class accountantPanel{
 	
 
 
@@ -22,11 +22,13 @@ public class accountantPanel extends JPanel {
 	private JButton btnSendProformaDocumet;
 	private JButton btnSendInvoiceTo;
 	private JButton btnExportExcel; 
-	private JButton btnImportProforma; 
+	private JButton btnImportExcel; 
 	
 	
 	public accountantPanel() {
-		setBorder(new LineBorder(new Color(0, 0, 128)));
+		
+		accountantMenu = new JPanel();
+		accountantMenu.setBorder(new LineBorder(new Color(0, 0, 128)));
 		
 	    btnSendProformaDocumet = new JButton("Export All Proformas");
 	
@@ -37,19 +39,20 @@ public class accountantPanel extends JPanel {
 		
 	    AllCustomers = new JComboBox<String>();
 		AllCustomers.setBounds(25, 189, 227, 27);
-		setLayout(null);
-		add(btnSendInvoiceTo);
-		add(btnSendProformaDocumet);
-		add(AllCustomers);
+		accountantMenu.setLayout(null);
+		accountantMenu.add(btnSendInvoiceTo);
+		accountantMenu.add(btnSendProformaDocumet);
+		accountantMenu.add(AllCustomers);
 		
 		 btnExportExcel = new JButton("Export Excel File");
 		
 		btnExportExcel.setBounds(25, 54, 162, 27);
-		add(btnExportExcel);
+		accountantMenu.add(btnExportExcel);
 		
-		btnImportProforma = new JButton("Import Proforma");
-		btnImportProforma.setBounds(25, 102, 162, 27);
-		add(btnImportProforma);
+		btnImportExcel = new JButton("Import Excel File");
+
+		btnImportExcel.setBounds(25, 102, 162, 27);
+		accountantMenu.add(btnImportExcel);
 		addButtonsFuctionalities();
 	}
 	
@@ -58,12 +61,15 @@ public class accountantPanel extends JPanel {
 		
 		btnExportExcel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				new ExportExcelBtn().start();
 			}
 		});
 		
-		
+		btnImportExcel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ReadExcelBtn().start();
+			}
+		});
 		
 		btnSendProformaDocumet.addMouseListener(new MouseAdapter() {
 			@Override
@@ -75,7 +81,7 @@ public class accountantPanel extends JPanel {
 	
 	
 	public static JPanel createAccountantMenu(){
-		accountantMenu = new accountantPanel();
+		new accountantPanel();
 		return accountantMenu;
 	}
 }
