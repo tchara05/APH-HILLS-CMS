@@ -193,17 +193,17 @@ public class PropertyForm {
 					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 382, GroupLayout.PREFERRED_SIZE)
 					.addGap(30)
 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-					.addGap(87))
+					.addGap(177))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(76)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(panel_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panel_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
-					.addContainerGap(133, Short.MAX_VALUE))
+						.addComponent(panel_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 513, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(281, Short.MAX_VALUE))
 		);
 		JPanel panel_1 = new JPanel();
 		panel_4.add(panel_1);
@@ -345,155 +345,92 @@ public class PropertyForm {
 					.addContainerGap(24, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
+			panel_3.setLayout(null);
 		
 			// Panels //
 			JPanel panel = new JPanel();
+			panel.setBounds(329, 65, 206, 240);
 			panel.setBackground(new Color(173, 216, 230));
 			panel.setBorder(new LineBorder(Color.GRAY));
 			JPanel panelDetails = new JPanel();
+			panelDetails.setBounds(16, 22, 546, 482);
 			panel_3.add(panelDetails);
 			panelDetails.setBackground(new Color(173, 216, 230));
 			panelDetails.setBorder(new LineBorder(new Color(0, 0, 128)));
 			
 					// DropDownList: //
 					AllClasses = new JComboBox<String>();
+					AllClasses.setBounds(111, 145, 194, 27);
 					ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
 					
 					
 					// Labels For Panel 1: //
 					JLabel lblPlotID = new JLabel("Plot ID:");
+					lblPlotID.setBounds(22, 30, 42, 18);
 					lblPlotID.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblNo = new JLabel("Plot Number:");
+					lblNo.setBounds(22, 70, 75, 18);
 					lblNo.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblName = new JLabel("Plot Name:");
+					lblName.setBounds(22, 110, 63, 18);
 					lblName.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblClass = new JLabel("Property Class:");	
+					lblClass.setBounds(22, 148, 83, 18);
 					lblClass.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblParcel = new JLabel("Parcel:");
+					lblParcel.setBounds(22, 187, 39, 18);
 					lblParcel.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblLand = new JLabel("Land Use:");
+					lblLand.setBounds(22, 223, 55, 24);
 					lblLand.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblN = new JLabel("Percentage");
+					lblN.setBounds(22, 268, 65, 18);
 					lblN.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblPlots = new JLabel("Plots:");
+					lblPlots.setBounds(22, 314, 31, 18);
 					lblPlots.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblDetails = new JLabel("Details:");
+					lblDetails.setBounds(22, 337, 43, 18);
 					lblDetails.setFont(new Font("Calibri", Font.PLAIN, 14));
 					JLabel lblOtherInfo = new JLabel("Other Info:");
+					lblOtherInfo.setBounds(329, 30, 62, 18);
 					lblOtherInfo.setFont(new Font("Calibri", Font.PLAIN, 14));
 					
 					
 					// Text Boxes For Panel 1 : //
 					txtPlotID = new JTextField();
+					txtPlotID.setBounds(111, 25, 194, 28);
 					txtPlotID.setEditable(false);
 					txtPlotID.setColumns(15);
 					
 					
 					txtPlotNo = new JTextField();
+					txtPlotNo.setBounds(111, 65, 194, 28);
 					txtPlotNo.setColumns(15);
 					
 						txtPlotName = new JTextField();
+						txtPlotName.setBounds(111, 105, 194, 28);
 						txtPlotName.setColumns(15);
 						
 						txtLandUse = new JTextField();
+						txtLandUse.setBounds(111, 223, 194, 28);
 						txtLandUse.setColumns(15);
 						
 						txtPerChange = new JTextField();
+						txtPerChange.setBounds(111, 263, 194, 28);
 						txtPerChange.setColumns(15);
 						
 						txtPlots = new JTextField();
+						txtPlots.setBounds(111, 309, 194, 28);
 						txtPlots.setColumns(15);
 						
 						txtExtraDetails = new JTextArea();
+						txtExtraDetails.setBounds(19, 367, 516, 102);
 						txtExtraDetails.setLineWrap(true);
 						
 						 AllParcels = new JComboBox<String>();
+						 AllParcels.setBounds(111, 184, 194, 27);
 						 ListManager.setUpTwoColumnsList(AllParcels, Query.PARCEL_NO_NAME);
-						 
-	
-						 // Panel 1 Positions: //
-						 GroupLayout gl_panelDetails = new GroupLayout(panelDetails);
-						 gl_panelDetails.setHorizontalGroup(
-						 	gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						 		.addGroup(gl_panelDetails.createSequentialGroup()
-						 			.addGap(21)
-						 			.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						 				.addComponent(lblDetails)
-						 				.addGroup(gl_panelDetails.createSequentialGroup()
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						 						.addComponent(lblNo)
-						 						.addComponent(lblName)
-						 						.addComponent(lblClass)
-						 						.addComponent(lblPlotID)
-						 						.addComponent(lblParcel)
-						 						.addComponent(lblLand)
-						 						.addComponent(lblN)
-						 						.addComponent(lblPlots))
-						 					.addPreferredGap(ComponentPlacement.RELATED)
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						 						.addComponent(txtPlots)
-						 						.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING, false)
-						 							.addComponent(AllParcels, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						 							.addComponent(txtPerChange)
-						 							.addComponent(txtPlotName)
-						 							.addComponent(txtPlotNo)
-						 							.addComponent(txtLandUse)
-						 							.addComponent(txtPlotID)
-						 							.addComponent(AllClasses, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						 					.addGap(62)
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						 						.addComponent(lblOtherInfo)
-						 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)))
-						 				.addComponent(txtExtraDetails, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
-						 			.addGap(36))
-						 );
-						 gl_panelDetails.setVerticalGroup(
-						 	gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						 		.addGroup(gl_panelDetails.createSequentialGroup()
-						 			.addGap(24)
-						 			.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
-						 				.addComponent(lblPlotID)
-						 				.addComponent(txtPlotID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						 				.addComponent(lblOtherInfo))
-						 			.addPreferredGap(ComponentPlacement.UNRELATED)
-						 			.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						 				.addGroup(gl_panelDetails.createSequentialGroup()
-						 					.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						 					.addGap(32))
-						 				.addGroup(gl_panelDetails.createSequentialGroup()
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
-						 						.addComponent(lblNo)
-						 						.addComponent(txtPlotNo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						 					.addPreferredGap(ComponentPlacement.UNRELATED)
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
-						 						.addComponent(lblName)
-						 						.addComponent(txtPlotName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						 					.addPreferredGap(ComponentPlacement.UNRELATED)
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
-						 						.addComponent(lblClass)
-						 						.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						 					.addGap(12)
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
-						 						.addComponent(lblParcel)
-						 						.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						 					.addPreferredGap(ComponentPlacement.UNRELATED)
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
-						 						.addComponent(lblLand, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-						 						.addComponent(txtLandUse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						 					.addPreferredGap(ComponentPlacement.UNRELATED)
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
-						 						.addComponent(txtPerChange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						 						.addComponent(lblN))
-						 					.addGap(18)
-						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
-						 						.addComponent(lblPlots)
-						 						.addComponent(txtPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-						 			.addPreferredGap(ComponentPlacement.UNRELATED)
-						 			.addComponent(lblDetails)
-						 			.addGap(18)
-						 			.addComponent(txtExtraDetails, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-						 			.addContainerGap())
-						 );
 						 
 						 //Labels For Inner Panel: //
 						 JLabel lblPropertyStatus = new JLabel("Property Status:");
@@ -553,10 +490,30 @@ public class PropertyForm {
 						  			.addContainerGap(21, Short.MAX_VALUE))
 						  );
 						  panel.setLayout(gl_panel);
-						  panelDetails.setLayout(gl_panelDetails);
 						  AllParcels.setSelectedIndex(0);
 						  AllStatus.setSelectedIndex(0);
 						  AllClasses.setSelectedIndex(0);
+						  panelDetails.setLayout(null);
+						  panelDetails.add(lblDetails);
+						  panelDetails.add(lblNo);
+						  panelDetails.add(lblName);
+						  panelDetails.add(lblClass);
+						  panelDetails.add(lblPlotID);
+						  panelDetails.add(lblParcel);
+						  panelDetails.add(lblLand);
+						  panelDetails.add(lblN);
+						  panelDetails.add(lblPlots);
+						  panelDetails.add(txtPlots);
+						  panelDetails.add(AllParcels);
+						  panelDetails.add(txtPerChange);
+						  panelDetails.add(txtPlotName);
+						  panelDetails.add(txtPlotNo);
+						  panelDetails.add(txtLandUse);
+						  panelDetails.add(txtPlotID);
+						  panelDetails.add(AllClasses);
+						  panelDetails.add(lblOtherInfo);
+						  panelDetails.add(panel);
+						  panelDetails.add(txtExtraDetails);
 		btnClear = new JButton("Clear");
 		btnClear.setBounds(52, 391, 111, 23);
 		panel_2.add(btnClear);
