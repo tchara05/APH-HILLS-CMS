@@ -10,8 +10,6 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
-
 public class accountantPanel extends JPanel {
 	
 
@@ -23,6 +21,8 @@ public class accountantPanel extends JPanel {
 	// Buttons //
 	private JButton btnSendProformaDocumet;
 	private JButton btnSendInvoiceTo;
+	private JButton btnExportExcel; 
+	private JButton btnImportProforma; 
 	
 	
 	public accountantPanel() {
@@ -42,22 +42,28 @@ public class accountantPanel extends JPanel {
 		add(btnSendProformaDocumet);
 		add(AllCustomers);
 		
-		JButton btnExportExcel = new JButton("Export Excel File");
-		btnExportExcel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		 btnExportExcel = new JButton("Export Excel File");
+		
 		btnExportExcel.setBounds(25, 54, 162, 27);
 		add(btnExportExcel);
 		
-		JButton btnImportProforma = new JButton("Import Proforma");
-		btnImportProforma.setBounds(221, 54, 162, 27);
+		btnImportProforma = new JButton("Import Proforma");
+		btnImportProforma.setBounds(25, 102, 162, 27);
 		add(btnImportProforma);
 		addButtonsFuctionalities();
 	}
 	
 	
 	public void addButtonsFuctionalities(){
+		
+		btnExportExcel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				new ExportExcelBtn().start();
+			}
+		});
+		
+		
 		
 		btnSendProformaDocumet.addMouseListener(new MouseAdapter() {
 			@Override
@@ -66,6 +72,8 @@ public class accountantPanel extends JPanel {
 			}
 		});
 	}
+	
+	
 	public static JPanel createAccountantMenu(){
 		accountantMenu = new accountantPanel();
 		return accountantMenu;
