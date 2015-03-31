@@ -39,20 +39,22 @@ public class ContractMenu extends JPanel {
 		
 	
 	public ContractMenu(){
+		setBackground(new Color(255, 255, 255));
 		setBorder(new LineBorder(new Color(0, 0, 128), 0));
 		 contractform = new ContractForm();
-		 setLayout(null);
+	    setLayout(null);
 		
 	    wrapper = new JPanel();
+	    wrapper.setBounds(53, 103, 536, 237);
+	    wrapper.setBackground(new Color(255, 255, 255));
 		wrapper.setBorder(new LineBorder(new Color(0, 0, 128), 3));
-		wrapper.setBounds(31, 89, 552, 257);
 		add(wrapper);
 		wrapper.setLayout(null);
 		contPanel = new JPanel();
-		contPanel.setBounds(47, 36, 488, 192);
+		contPanel.setBounds(23, 21, 488, 192);
 		wrapper.add(contPanel);
 		contPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-		contPanel.setBackground(new Color(204, 204, 153));
+		contPanel.setBackground(new Color(173, 216, 230));
 		contPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		//DropDown List: //
 		 AllProperties = new JComboBox<String>();

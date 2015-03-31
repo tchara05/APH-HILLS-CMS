@@ -94,6 +94,7 @@ public class PropertyMenu{
 	
 	// Adding events //
 	private void addButtonsFuctionalities(){
+		
 		btnAddNewProperty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PropertyForm.setPlotID();	

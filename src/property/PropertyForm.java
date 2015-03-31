@@ -204,7 +204,9 @@ public class PropertyForm {
 						.addComponent(panel_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
 					.addContainerGap(133, Short.MAX_VALUE))
 		);
+		panel_4.setLayout(null);
 		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(16, 23, 350, 492);
 		panel_4.add(panel_1);
 		panel_1.setBackground(new Color(173, 216, 230));
 		panel_1.setBorder(new LineBorder(Color.GRAY));
@@ -424,7 +426,7 @@ public class PropertyForm {
 						txtPlots.setColumns(15);
 						
 						txtExtraDetails = new JTextArea();
-						txtExtraDetails.setBounds(32, 373, 526, 100);
+						txtExtraDetails.setBounds(22, 373, 497, 100);
 						txtExtraDetails.setLineWrap(true);
 						
 						 AllParcels = new JComboBox<String>();

@@ -75,62 +75,62 @@ public class CustomerMenu{
 
 		detailsPanel = new JPanel();
 		detailsPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-		detailsPanel.setBounds(17, 217, 550, 145);
+		detailsPanel.setBounds(20, 212, 615, 138);
 		CustomerPanel.add(detailsPanel);
-		detailsPanel.setLayout(null);
 		JLabel lblNewLabel = new JLabel("Primary Email:");
-		lblNewLabel.setBounds(256, 39, 89, 16);
-		detailsPanel.setBackground(new Color(204, 204, 153));
+		lblNewLabel.setBounds(314, 45, 89, 16);
+		detailsPanel.setBackground(new Color(173, 216, 230));
+		detailsPanel.setLayout(null);
 		detailsPanel.add(lblNewLabel);
 
 		// Text Box //
 		PrimaryMail = new JTextField();
-		PrimaryMail.setBounds(350, 33, 194, 28);
+		PrimaryMail.setBounds(415, 39, 194, 28);
 		detailsPanel.add(PrimaryMail);
 		PrimaryMail.setEditable(false);
 		PrimaryMail.setColumns(15);
 		JLabel lblContactPhone = new JLabel("Contact Phone:");
-		lblContactPhone.setBounds(256, 79, 95, 16);
+		lblContactPhone.setBounds(308, 73, 95, 16);
 		detailsPanel.add(lblContactPhone);
 
 		contactNumber = new JTextField();
-		contactNumber.setBounds(350, 73, 194, 28);
+		contactNumber.setBounds(415, 67, 194, 28);
 		detailsPanel.add(contactNumber);
 		contactNumber.setEditable(false);
 		contactNumber.setColumns(10);
 
 		MobilePhone = new JTextField();
-		MobilePhone.setBounds(350, 112, 194, 28);
+		MobilePhone.setBounds(115, 39, 181, 28);
 		detailsPanel.add(MobilePhone);
 		MobilePhone.setEditable(false);
 		MobilePhone.setColumns(15);
 		JLabel lblMobilePhone = new JLabel("Mobile Phone:");
-		lblMobilePhone.setBounds(262, 118, 88, 16);
+		lblMobilePhone.setBounds(0, 45, 88, 16);
 		detailsPanel.add(lblMobilePhone);
 		JLabel lblNewLabel_1 = new JLabel("Customer ID:");
-		lblNewLabel_1.setBounds(6, 39, 83, 16);
+		lblNewLabel_1.setBounds(111, 11, 83, 16);
 		detailsPanel.add(lblNewLabel_1);
 
 		CustomerID = new JTextField();
-		CustomerID.setBounds(89, 33, 161, 28);
+		CustomerID.setBounds(206, 5, 161, 28);
 		detailsPanel.add(CustomerID);
 		CustomerID.setEditable(false);
 		CustomerID.setColumns(10);
 		JLabel lblFirstName = new JLabel("First Name:");
-		lblFirstName.setBounds(6, 79, 72, 16);
+		lblFirstName.setBounds(0, 73, 72, 16);
 		detailsPanel.add(lblFirstName);
 
 		FirstName = new JTextField();
-		FirstName.setBounds(75, 73, 175, 28);
+		FirstName.setBounds(115, 67, 181, 28);
 		detailsPanel.add(FirstName);
 		FirstName.setEditable(false);
 		FirstName.setColumns(15);
 		JLabel lblLastname = new JLabel("Last Name:");
-		lblLastname.setBounds(6, 118, 70, 16);
+		lblLastname.setBounds(0, 101, 70, 16);
 		detailsPanel.add(lblLastname);
 
 		LastName = new JTextField();
-		LastName.setBounds(75, 112, 175, 28);
+		LastName.setBounds(115, 95, 181, 28);
 		detailsPanel.add(LastName);
 		LastName.setEditable(false);
 		LastName.setColumns(15);
