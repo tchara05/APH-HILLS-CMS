@@ -135,6 +135,7 @@ public class CustomerForm {
 	    panel_4.setLayout(null);
 	    
 	    txtNote = new JTextArea();
+	    txtNote.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    txtNote.setBounds(10, 277, 326, 111);
 	    panel_4.add(txtNote);
 	    txtNote.setText("Add any notes here..");
@@ -227,10 +228,14 @@ public class CustomerForm {
 		panel_5.setLayout(null);
 		
 		chckbxInformationMaterial = new JCheckBox("Information Material");
+		chckbxInformationMaterial.setFont(new Font("Calibri", Font.PLAIN, 14));
+		chckbxInformationMaterial.setBackground(new Color(173, 216, 230));
 		chckbxInformationMaterial.setBounds(20, 328, 153, 23);
 		panel_5.add(chckbxInformationMaterial);
 		
 		chckbxCloseAccound = new JCheckBox("Close Accound");
+		chckbxCloseAccound.setFont(new Font("Calibri", Font.PLAIN, 14));
+		chckbxCloseAccound.setBackground(new Color(173, 216, 230));
 		chckbxCloseAccound.setBounds(20, 289, 153, 23);
 		panel_5.add(chckbxCloseAccound);
 		
