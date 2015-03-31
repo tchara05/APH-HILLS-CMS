@@ -273,17 +273,10 @@ public class CompanyDocument {
 		Phrase[] titles = new Phrase[N];
 		int i = 1;
 		int rooms = 1;
-<<<<<<< HEAD
 
-		float total = 0;
-		titles[0] = new Phrase("S/N");
-		titles[1] = new Phrase("PlotNo");
-		titles[2] = new Phrase("Location/Type");
-		titles[3] = new Phrase("Description");
-		titles[4] = new Phrase("Qty");
-		titles[5] = new Phrase("Amount");
 
-=======
+
+
 		double total =0;
 	
 			titles[0] = new Phrase("S/N");
@@ -292,8 +285,7 @@ public class CompanyDocument {
 			titles[3] = new Phrase("Description");
 			titles[4] = new Phrase("Qty");
 			titles[5] = new Phrase("Amount");
-			 
->>>>>>> 3d49c3c052f0e8cebc1e0eb397a3bf8f4666a3a6
+
 		for (int j = 0; j < N; j++) {
 			titles[j].setFont(smallbold);
 			Columns[j].addElement(titles[j]);
@@ -306,15 +298,10 @@ public class CompanyDocument {
 		documentID++;
 
 		do {
-			
-<<<<<<< HEAD
 			String exportDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 
 			
 			
-
-			if (!CustomerID.equals(rs.getString(4))) {
-=======
 			if (!CustomerID.equals(rs.getString(4))){
 				
 				Columns[0].setPhrase(new Phrase());
@@ -328,7 +315,7 @@ public class CompanyDocument {
 				for (int j = 0; j < N; j++) {
 					columnsTitle.addCell(Columns[j]);
 				}
->>>>>>> 3d49c3c052f0e8cebc1e0eb397a3bf8f4666a3a6
+				
 				doc.add(columnsTitle);
 			
 				return;
