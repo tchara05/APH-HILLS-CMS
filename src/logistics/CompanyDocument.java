@@ -102,7 +102,9 @@ public class CompanyDocument {
 
 	public void createCustomerDetailsTable(Document doc, ResultSet rs)
 			throws Exception {
-
+		
+		String exportDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+		
 		DatabaseConnection database = new DatabaseConnection();
 		ResultSet proforma = database.getStatement().executeQuery(
 				"SELECT docID " + "FROM DocumentsIDS "
@@ -129,7 +131,7 @@ public class CompanyDocument {
 		String documentDetailsString = documentType();
 		PdfPTable CustomerDetailsTable = new PdfPTable(2); // Megalos Pinakas
 		PdfPCell CustomerDetails = new PdfPCell(new Phrase(customerName + "\n"
-				+ address +",\n" + rs.getString(11)));// aristeri Plevra
+				+ address ));// aristeri Plevra
 		CustomerDetails.setHorizontalAlignment(Element.ALIGN_LEFT);
 
 		PdfPCell AllCodes = new PdfPCell(); // De3ia keli megalo pinaka p krata
@@ -141,7 +143,7 @@ public class CompanyDocument {
 		PdfPTable CodesTable = new PdfPTable(2); // Pinakas Kodikwn
 		PdfPCell CodesDefinition = new PdfPCell(new Phrase(
 				documentDetailsString)); // De3i keli me names
-		PdfPCell Codes = new PdfPCell(new Phrase(customerID +"\n" +documentID)); // aristero
+		PdfPCell Codes = new PdfPCell(new Phrase(customerID +"\n" +documentID+"\n"+ exportDate)); // aristero
 																		// kelli
 																		// me
 																		// arithmous
@@ -349,7 +351,18 @@ public class CompanyDocument {
 				columnsTitle.addCell(Columns[j]);
 			}
 		} while (rs.next());
-
+		
+		Columns[0].setPhrase(new Phrase());
+		Columns[1].setPhrase(new Phrase());
+		Columns[2].setPhrase(new Phrase());
+		Columns[3].setPhrase(new Phrase());
+		Phrase t = new Phrase("\nTotal Amount: ");
+		t.setFont(smallbold);			
+		Columns[4].setPhrase(t);
+		Columns[5].setPhrase(new Phrase("\n"+total));
+		for (int j = 0; j < N; j++) {
+			columnsTitle.addCell(Columns[j]);
+		}
 		doc.add(columnsTitle);
 		
 	}

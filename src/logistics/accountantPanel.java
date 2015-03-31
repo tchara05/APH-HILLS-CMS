@@ -7,6 +7,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -28,17 +30,29 @@ public class accountantPanel extends JPanel {
 		
 	    btnSendProformaDocumet = new JButton("Export All Proformas");
 	
-		btnSendProformaDocumet.setBounds(21, 62, 162, 27);
+		btnSendProformaDocumet.setBounds(262, 234, 162, 27);
 		
 		JButton btnSendInvoiceTo = new JButton("Send Invoice to");
-		btnSendInvoiceTo.setBounds(21, 121, 162, 27);
+		btnSendInvoiceTo.setBounds(262, 189, 162, 27);
 		
 	    AllCustomers = new JComboBox<String>();
-		AllCustomers.setBounds(241, 122, 227, 27);
+		AllCustomers.setBounds(25, 189, 227, 27);
 		setLayout(null);
 		add(btnSendInvoiceTo);
 		add(btnSendProformaDocumet);
 		add(AllCustomers);
+		
+		JButton btnExportExcel = new JButton("Export Excel File");
+		btnExportExcel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnExportExcel.setBounds(25, 54, 162, 27);
+		add(btnExportExcel);
+		
+		JButton btnImportProforma = new JButton("Import Proforma");
+		btnImportProforma.setBounds(221, 54, 162, 27);
+		add(btnImportProforma);
 		addButtonsFuctionalities();
 	}
 	
