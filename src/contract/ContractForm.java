@@ -28,6 +28,8 @@ import javax.swing.JCheckBox;
 
 import userMenus.LogIn;
 import javax.swing.border.TitledBorder;
+import java.awt.Font;
+import javax.swing.Icon;
 
 
 public class ContractForm {
@@ -62,6 +64,7 @@ public class ContractForm {
 	private JButton btnLeft;
 	private JButton btnBack;
 	private JButton btnSave;
+	private JLabel lblNewLabel;
 
 	public static void main(String[] args) {
 		
@@ -85,6 +88,7 @@ public class ContractForm {
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
 		}
 		
+		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
 		
 		frame = new JFrame();
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -99,10 +103,10 @@ public class ContractForm {
 		// Panels: //
 		JPanel createContPanel = new JPanel();
 		createContPanel.setBounds(28, 125, 590, 370);
-		createContPanel.setBackground(new Color(204, 204, 153));
+		createContPanel.setBackground(new Color(173, 216, 230));
 		createContPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		JPanel mainPanel = new JPanel();
-		mainPanel.setBounds(396, 90, 650, 618);
+		mainPanel.setBounds(106, 90, 850, 520);
 		
 		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Create New Contract", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
@@ -115,20 +119,22 @@ public class ContractForm {
 		
 		
 		JLabel label_3 = new JLabel("Primary Email:");
+		label_3.setFont(new Font("Calibri", Font.PLAIN, 14));
 		label_3.setBounds(7, 296, 89, 16);
 		JLabel label_4 = new JLabel("Contact Phone:");
+		label_4.setFont(new Font("Calibri", Font.PLAIN, 14));
 		label_4.setBounds(147, 296, 95, 16);
 		JLabel label_5 = new JLabel("Mobile Phone:");
+		label_5.setFont(new Font("Calibri", Font.PLAIN, 14));
 		label_5.setBounds(299, 296, 88, 16);
 		JLabel label_6 = new JLabel("Percentage:");
+		label_6.setFont(new Font("Calibri", Font.PLAIN, 14));
 		label_6.setBounds(226, 134, 72, 16);
 		JLabel label_7 = new JLabel("%");
 		label_7.setBounds(367, 134, 9, 16);
 		JLabel label_8 = new JLabel("Customer:");
+		label_8.setFont(new Font("Calibri", Font.PLAIN, 14));
 		label_8.setBounds(7, 7, 65, 16);
-		ImageIcon image = new ImageIcon("aphrodite-resort-logo.png");
-		JLabel label_10 = new JLabel(image);
-		label_10.setBounds(1114, 49, 236, 191);
 
 	
 		txtMail = new JTextField();
@@ -174,6 +180,8 @@ public class ContractForm {
 		txtSharing.setColumns(5);
 		
 	    chckActive = new JCheckBox("Active");
+	    chckActive.setFont(new Font("Calibri", Font.PLAIN, 14));
+	    chckActive.setBackground(new Color(173, 216, 230));
 	    chckActive.setBounds(290, 188, 71, 23);
 		chckActive.setSelected(true);
 		
@@ -202,12 +210,13 @@ public class ContractForm {
 		JPanel InfoPanel = new JPanel();
 		InfoPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		InfoPanel.setBounds(28, 28, 590, 85);
-		InfoPanel.setBackground(new Color(204, 204, 153));
+		InfoPanel.setBackground(new Color(173, 216, 230));
 		mainPanel.add(InfoPanel);
 		InfoPanel.setLayout(null);
 		
 		// Labels For Panel 1: //
 		JLabel label_9 = new JLabel("Contract ID:");
+		label_9.setFont(new Font("Calibri", Font.PLAIN, 14));
 		label_9.setBounds(17, 12, 76, 16);
 		InfoPanel.add(label_9);
 		
@@ -219,9 +228,11 @@ public class ContractForm {
 		txtContractID.setEditable(false);
 		txtContractID.setColumns(10);
 		JLabel lblPlotNumberr = new JLabel("Plot Number:");
+		lblPlotNumberr.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblPlotNumberr.setBounds(17, 50, 82, 16);
 		InfoPanel.add(lblPlotNumberr);
 		JLabel lblPlotName = new JLabel("Plot Name:");
+		lblPlotName.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblPlotName.setBounds(263, 50, 68, 16);
 		InfoPanel.add(lblPlotName);
 		
@@ -246,22 +257,26 @@ public class ContractForm {
 			
 				// Labels For Panel 2 //
 				JLabel lblPlotid = new JLabel("PlotID:");
+				lblPlotid.setFont(new Font("Calibri", Font.PLAIN, 14));
 				lblPlotid.setBounds(265, 12, 42, 16);
 				InfoPanel.add(lblPlotid);
 				
-				JPanel buttonsPanel = new JPanel();
-				buttonsPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-				buttonsPanel.setBackground(new Color(204, 204, 153));
-				buttonsPanel.setBounds(28, 521, 590, 75);
-				mainPanel.add(buttonsPanel);
-				buttonsPanel.setLayout(null);
+				JPanel panel = new JPanel();
+				panel.setLayout(null);
+				panel.setBorder(new LineBorder(new Color(0, 0, 128)));
+				panel.setBackground(new Color(211, 211, 211));
+				panel.setBounds(638, 28, 183, 467);
+				mainPanel.add(panel);
 				btnSave = new JButton("Save");
-				btnSave.setBounds(144, 23, 122, 29);
-				buttonsPanel.add(btnSave);
+				btnSave.setBounds(27, 356, 122, 29);
+				panel.add(btnSave);
 				btnBack = new JButton("Back");
-				btnBack.setBounds(6, 23, 126, 29);
-				buttonsPanel.add(btnBack);
-		frame.getContentPane().add(label_10);
+				btnBack.setBounds(27, 409, 126, 29);
+				panel.add(btnBack);
+				
+				lblNewLabel = new JLabel(image);
+				lblNewLabel.setBounds(10, 92, 163, 181);
+				panel.add(lblNewLabel);
 		frame.setVisible(false);
 		
 		addButtonsFuctionalities();
