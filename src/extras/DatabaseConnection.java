@@ -50,9 +50,14 @@ public class DatabaseConnection {
 	public Connection getDatabaseConnection() {
 		return conn;
 	}
+	
+	public Statement createBackForwardStateMent() throws SQLException{
+		return conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+	}
 
 	public static void main(String args[]) throws Throwable {
 		new DatabaseConnection();
 	}
+	
 
 }

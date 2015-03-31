@@ -111,10 +111,6 @@ public class CompanyDocument {
 		String customerID = rs.getString(4);
 		
 		
-		
-		
-		
-		
 		String documentDetailsString = documentType();
 		PdfPTable CustomerDetailsTable = new PdfPTable(2); // Megalos Pinakas
 		PdfPCell CustomerDetails = new PdfPCell(new Phrase(customerName + "\n" + address));// aristeri Plevra
@@ -169,7 +165,7 @@ public class CompanyDocument {
 	public void Signatures(Document doc) throws Exception {
 
 		PdfPTable Signature = new PdfPTable(2);
-
+		doc.add(NewLine);
 		Signature.setWidthPercentage(100);
 		PdfPCell LeftCell = new PdfPCell();
 		LeftCell.setBorderWidth(0);
@@ -268,7 +264,7 @@ public class CompanyDocument {
 		}
 		
 		columnsTitle.setWidthPercentage(100);
-		//doc.add(columnsTitle);
+		
 		
 		String prev = rs.getString(3);
 		
@@ -296,6 +292,8 @@ public class CompanyDocument {
 				columnsTitle.addCell(Columns[j]);
 			}
 		}while(rs.next());	
+		
+		doc.add(columnsTitle);
 			
 		
 
@@ -318,21 +316,24 @@ public class CompanyDocument {
 		
 		try {
 			
-			ResultSet rs = database.getStatement().executeQuery(query);
+			ResultSet rs = database.createBackForwardStateMent().executeQuery(query);
 			
 		while (rs.next()){
-				CompanyDocument Companydocument = new CompanyDocument(1);
+				CompanyDocument Companydocument = new CompanyDocument(3);
 				Document document = new Document();
 				
 				PdfWriter.getInstance(document, new FileOutputStream("Proformas/"+rs.getString(5)+".pdf"));
 				document.open();
 				Companydocument.createHeader(document);
+				
 				Companydocument.createCustomerDetailsTable(document,rs);
+				
 				Companydocument.createCostTable(document,rs);
+				rs.previous();
 				Companydocument.Signatures(document);
 				Companydocument.BankInfo(document);
 				document.close();
-				rs.previous();
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
