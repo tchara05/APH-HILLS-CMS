@@ -221,7 +221,11 @@ public class CompanyDocument {
 				"Please issue payment to: Aphrodite Hills Services Ltd \nMailing address:"
 						+ "            P.O.Box 62769 \n        "
 						+ "                              8068 Paphos\n             "
-						+ "                         CYPRUS\n\nOr Bank Transfer to:  Bank of Cyprus\n                                  Account Name: Aphrodite Hills Services Ltb\n                                  Acocount Number:35701306518\n                                  Swift Code:BCYPCY2N\n                                  IBAN:CY08002001950000357013065018");
+						+ "                         CYPRUS\n\nOr Bank Transfer to:  Bank of Cyprus\n  "
+						+ "                                Account Name: Aphrodite Hills Services Ltb\n "
+						+ "                                 Acocount Number:35701306518\n                 "
+						+ "                 Swift Code:BCYPCY2N\n                                "
+						+ "  IBAN:CY08002001950000357013065018");
 		t.setFont(small);
 		LeftCell.addElement(t);
 
@@ -269,6 +273,7 @@ public class CompanyDocument {
 		Phrase[] titles = new Phrase[N];
 		int i = 1;
 		int rooms = 1;
+<<<<<<< HEAD
 
 		float total = 0;
 		titles[0] = new Phrase("S/N");
@@ -278,6 +283,17 @@ public class CompanyDocument {
 		titles[4] = new Phrase("Qty");
 		titles[5] = new Phrase("Amount");
 
+=======
+		double total =0;
+	
+			titles[0] = new Phrase("S/N");
+			titles[1] = new Phrase("PlotNo");
+			titles[2] = new Phrase("Location/Type");
+			titles[3] = new Phrase("Description");
+			titles[4] = new Phrase("Qty");
+			titles[5] = new Phrase("Amount");
+			 
+>>>>>>> 3d49c3c052f0e8cebc1e0eb397a3bf8f4666a3a6
 		for (int j = 0; j < N; j++) {
 			titles[j].setFont(smallbold);
 			Columns[j].addElement(titles[j]);
@@ -291,13 +307,30 @@ public class CompanyDocument {
 
 		do {
 			
+<<<<<<< HEAD
 			String exportDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 
 			
 			
 
 			if (!CustomerID.equals(rs.getString(4))) {
+=======
+			if (!CustomerID.equals(rs.getString(4))){
+				
+				Columns[0].setPhrase(new Phrase());
+				Columns[1].setPhrase(new Phrase());
+				Columns[2].setPhrase(new Phrase());
+				Columns[3].setPhrase(new Phrase());
+				Phrase t = new Phrase("\nTotal Amount: ");
+				t.setFont(smallbold);			
+				Columns[4].setPhrase(t);
+				Columns[5].setPhrase(new Phrase("\n"+total));
+				for (int j = 0; j < N; j++) {
+					columnsTitle.addCell(Columns[j]);
+				}
+>>>>>>> 3d49c3c052f0e8cebc1e0eb397a3bf8f4666a3a6
 				doc.add(columnsTitle);
+			
 				return;
 			}
 			
@@ -316,12 +349,14 @@ public class CompanyDocument {
 				prev = rs.getString(3);
 				rooms = 1;
 			}
+			double roomCost =Double.parseDouble(rs.getString(9)) * Double.parseDouble(rs.getString(10))/100;
+			total=total + roomCost;
 			Columns[1].setPhrase(new Phrase(prev));
 			Columns[2].setPhrase(new Phrase(rs.getString(2) + " "
 					+ rs.getString(3)));
 			Columns[3].setPhrase(new Phrase("Room No:" + rooms));
 			Columns[4].setPhrase(new Phrase("1"));
-			Columns[5].setPhrase(new Phrase(rs.getString(9)));
+			Columns[5].setPhrase(new Phrase(roomCost + ""));
 			rooms++;
 			for (int j = 0; j < N; j++) {
 				columnsTitle.addCell(Columns[j]);
