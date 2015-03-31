@@ -16,6 +16,9 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.border.TitledBorder;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class accountantPanel{
 	
@@ -30,35 +33,52 @@ public class accountantPanel{
 	private JButton btnSendInvoiceTo;
 	private JButton btnExportExcel; 
 	private JButton btnImportExcel;
+	private JPanel panel;
+	private JPanel panel_1;
 	
 	public accountantPanel() {
 		
 		accountantMenu = new JPanel();
+		accountantMenu.setBackground(new Color(255, 255, 255));
 		accountantMenu.setBorder(new LineBorder(new Color(0, 0, 128)));
+		accountantMenu.setLayout(null);
+		
+		panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Company Document", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(30, 164, 282, 219);
+		accountantMenu.add(panel_1);
+		panel_1.setLayout(null);
+		btnSendInvoiceTo = new JButton("Send Invoice to");
+		btnSendInvoiceTo.setBounds(61, 74, 149, 33);
+		panel_1.add(btnSendInvoiceTo);
+		btnSendInvoiceTo.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		// Buttons //
 	    btnExportProforms = new JButton("Export All Proformas");
+	    btnExportProforms.setBounds(61, 30, 149, 33);
+	    panel_1.add(btnExportProforms);
 	    btnExportProforms.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    btnExportProforms.setBounds(25, 151, 149, 33);
-		btnSendInvoiceTo = new JButton("Send Invoice to");
-		btnSendInvoiceTo.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnSendInvoiceTo.setBounds(25, 201, 149, 33);
-		btnExportExcel = new JButton("Export Excel File");
-		btnExportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnExportExcel.setBounds(25, 54, 149, 33);
-		btnImportExcel = new JButton("Import Excel File");
-		btnImportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnImportExcel.setBounds(25, 102, 149, 33);
-		
+	    
 	    AllCustomers = new JComboBox<String>();
-	    AllCustomers.setBounds(254, 201, 227, 27);
-		ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
-		accountantMenu.setLayout(null);
-		accountantMenu.add(btnSendInvoiceTo);
-		accountantMenu.add(btnExportProforms);
-		accountantMenu.add(AllCustomers);
-		accountantMenu.add(btnExportExcel);
-		accountantMenu.add(btnImportExcel);
+	    AllCustomers.setBounds(29, 148, 227, 27);
+	    panel_1.add(AllCustomers);
+	    ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
+		
+		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Excel File Process", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(54, 29, 214, 127);
+		accountantMenu.add(panel);
+		panel.setLayout(null);
+		btnExportExcel = new JButton("Export Excel File");
+		btnExportExcel.setBounds(26, 21, 149, 33);
+		panel.add(btnExportExcel);
+		btnExportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnImportExcel = new JButton("Import Excel File");
+		btnImportExcel.setBounds(26, 65, 149, 33);
+		panel.add(btnImportExcel);
+		btnImportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
 		addButtonsFuctionalities();
 	}
 	
