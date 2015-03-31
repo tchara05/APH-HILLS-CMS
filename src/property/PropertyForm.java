@@ -169,6 +169,7 @@ public class PropertyForm {
 
 		panel_4 = new JPanel();
 		panel_4.setBackground(new Color(255, 255, 255));
+<<<<<<< HEAD
 		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128),
 				3), "Features", TitledBorder.LEADING, TitledBorder.TOP, null,
 				null));
@@ -220,6 +221,35 @@ public class PropertyForm {
 																513,
 																GroupLayout.PREFERRED_SIZE))
 										.addContainerGap(281, Short.MAX_VALUE)));
+=======
+		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Features", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		
+		//Outer Panel Positions : //
+		
+		GroupLayout groupLayout = new GroupLayout(frmPropertyForm.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(34)
+					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 382, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+					.addGap(87))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(76)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panel_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panel_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
+					.addContainerGap(133, Short.MAX_VALUE))
+		);
+>>>>>>> parent of 56a92c7... Billing Things
 		JPanel panel_1 = new JPanel();
 		panel_4.add(panel_1);
 		panel_1.setBackground(new Color(173, 216, 230));
@@ -473,6 +503,7 @@ public class PropertyForm {
 																lblDeedNumber))
 										.addContainerGap(24, Short.MAX_VALUE)));
 		panel_1.setLayout(gl_panel_1);
+<<<<<<< HEAD
 		panel_3.setLayout(null);
 
 		// Panels //
@@ -657,6 +688,220 @@ public class PropertyForm {
 		panelDetails.add(lblOtherInfo);
 		panelDetails.add(panel);
 		panelDetails.add(txtExtraDetails);
+=======
+		
+			// Panels //
+			JPanel panel = new JPanel();
+			panel.setBackground(new Color(173, 216, 230));
+			panel.setBorder(new LineBorder(Color.GRAY));
+			JPanel panelDetails = new JPanel();
+			panel_3.add(panelDetails);
+			panelDetails.setBackground(new Color(173, 216, 230));
+			panelDetails.setBorder(new LineBorder(new Color(0, 0, 128)));
+			
+					// DropDownList: //
+					AllClasses = new JComboBox<String>();
+					ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
+					
+					
+					// Labels For Panel 1: //
+					JLabel lblPlotID = new JLabel("Plot ID:");
+					lblPlotID.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblNo = new JLabel("Plot Number:");
+					lblNo.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblName = new JLabel("Plot Name:");
+					lblName.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblClass = new JLabel("Property Class:");	
+					lblClass.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblParcel = new JLabel("Parcel:");
+					lblParcel.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblLand = new JLabel("Land Use:");
+					lblLand.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblN = new JLabel("Percentage");
+					lblN.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblPlots = new JLabel("Plots:");
+					lblPlots.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblDetails = new JLabel("Details:");
+					lblDetails.setFont(new Font("Calibri", Font.PLAIN, 14));
+					JLabel lblOtherInfo = new JLabel("Other Info:");
+					lblOtherInfo.setFont(new Font("Calibri", Font.PLAIN, 14));
+					
+					
+					// Text Boxes For Panel 1 : //
+					txtPlotID = new JTextField();
+					txtPlotID.setEditable(false);
+					txtPlotID.setColumns(15);
+					
+					
+					txtPlotNo = new JTextField();
+					txtPlotNo.setColumns(15);
+					
+						txtPlotName = new JTextField();
+						txtPlotName.setColumns(15);
+						
+						txtLandUse = new JTextField();
+						txtLandUse.setColumns(15);
+						
+						txtPerChange = new JTextField();
+						txtPerChange.setColumns(15);
+						
+						txtPlots = new JTextField();
+						txtPlots.setColumns(15);
+						
+						txtExtraDetails = new JTextArea();
+						txtExtraDetails.setLineWrap(true);
+						
+						 AllParcels = new JComboBox<String>();
+						 ListManager.setUpTwoColumnsList(AllParcels, Query.PARCEL_NO_NAME);
+						 
+	
+						 // Panel 1 Positions: //
+						 GroupLayout gl_panelDetails = new GroupLayout(panelDetails);
+						 gl_panelDetails.setHorizontalGroup(
+						 	gl_panelDetails.createParallelGroup(Alignment.LEADING)
+						 		.addGroup(gl_panelDetails.createSequentialGroup()
+						 			.addGap(21)
+						 			.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
+						 				.addComponent(lblDetails)
+						 				.addGroup(gl_panelDetails.createSequentialGroup()
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
+						 						.addComponent(lblNo)
+						 						.addComponent(lblName)
+						 						.addComponent(lblClass)
+						 						.addComponent(lblPlotID)
+						 						.addComponent(lblParcel)
+						 						.addComponent(lblLand)
+						 						.addComponent(lblN)
+						 						.addComponent(lblPlots))
+						 					.addPreferredGap(ComponentPlacement.RELATED)
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
+						 						.addComponent(txtPlots)
+						 						.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING, false)
+						 							.addComponent(AllParcels, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						 							.addComponent(txtPerChange)
+						 							.addComponent(txtPlotName)
+						 							.addComponent(txtPlotNo)
+						 							.addComponent(txtLandUse)
+						 							.addComponent(txtPlotID)
+						 							.addComponent(AllClasses, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						 					.addGap(62)
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
+						 						.addComponent(lblOtherInfo)
+						 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)))
+						 				.addComponent(txtExtraDetails, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+						 			.addGap(36))
+						 );
+						 gl_panelDetails.setVerticalGroup(
+						 	gl_panelDetails.createParallelGroup(Alignment.LEADING)
+						 		.addGroup(gl_panelDetails.createSequentialGroup()
+						 			.addGap(24)
+						 			.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
+						 				.addComponent(lblPlotID)
+						 				.addComponent(txtPlotID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						 				.addComponent(lblOtherInfo))
+						 			.addPreferredGap(ComponentPlacement.UNRELATED)
+						 			.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
+						 				.addGroup(gl_panelDetails.createSequentialGroup()
+						 					.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						 					.addGap(32))
+						 				.addGroup(gl_panelDetails.createSequentialGroup()
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
+						 						.addComponent(lblNo)
+						 						.addComponent(txtPlotNo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						 					.addPreferredGap(ComponentPlacement.UNRELATED)
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
+						 						.addComponent(lblName)
+						 						.addComponent(txtPlotName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						 					.addPreferredGap(ComponentPlacement.UNRELATED)
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
+						 						.addComponent(lblClass)
+						 						.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						 					.addGap(12)
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
+						 						.addComponent(lblParcel)
+						 						.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						 					.addPreferredGap(ComponentPlacement.UNRELATED)
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.LEADING)
+						 						.addComponent(lblLand, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+						 						.addComponent(txtLandUse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						 					.addPreferredGap(ComponentPlacement.UNRELATED)
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
+						 						.addComponent(txtPerChange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						 						.addComponent(lblN))
+						 					.addGap(18)
+						 					.addGroup(gl_panelDetails.createParallelGroup(Alignment.BASELINE)
+						 						.addComponent(lblPlots)
+						 						.addComponent(txtPlots, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+						 			.addPreferredGap(ComponentPlacement.UNRELATED)
+						 			.addComponent(lblDetails)
+						 			.addGap(18)
+						 			.addComponent(txtExtraDetails, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+						 			.addContainerGap())
+						 );
+						 
+						 //Labels For Inner Panel: //
+						 JLabel lblPropertyStatus = new JLabel("Property Status:");
+						 lblPropertyStatus.setFont(new Font("Calibri", Font.PLAIN, 14));
+						 
+						 //Check Boxes For Inner Panel : //
+						  chckbxPropertyDelivered = new JCheckBox("Property Delivered");
+						  chckbxPropertyDelivered.setBackground(new Color(173, 216, 230));
+						  chckbxPropertyDelivered.setFont(new Font("Calibri", Font.PLAIN, 14));
+						  chckbxRentalGuarantee = new JCheckBox("Rental Guarantee");
+						  chckbxRentalGuarantee.setBackground(new Color(173, 216, 230));
+						  chckbxRentalGuarantee.setFont(new Font("Calibri", Font.PLAIN, 14));
+						  chckbxCommited = new JCheckBox("Committed");
+						  chckbxCommited.setBackground(new Color(173, 216, 230));
+						  chckbxCommited.setFont(new Font("Calibri", Font.PLAIN, 14));
+						  chckbxRentalPlan = new JCheckBox("Rental Plan");
+						  chckbxRentalPlan.setBackground(new Color(173, 216, 230));
+						  chckbxRentalPlan.setFont(new Font("Calibri", Font.PLAIN, 14));
+						  
+						  AllStatus = new JComboBox<String>();
+						  ListManager.setUpTwoColumnsList(AllStatus, Query.STATUS_NO_NAME);
+						  // Positions: //
+						  GroupLayout gl_panel = new GroupLayout(panel);
+						  gl_panel.setHorizontalGroup(
+						  	gl_panel.createParallelGroup(Alignment.LEADING)
+						  		.addGroup(gl_panel.createSequentialGroup()
+						  			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						  				.addGroup(gl_panel.createSequentialGroup()
+						  					.addGap(25)
+						  					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						  						.addComponent(chckbxRentalGuarantee)
+						  						.addComponent(chckbxCommited)
+						  						.addComponent(chckbxRentalPlan)
+						  						.addComponent(chckbxPropertyDelivered)))
+						  				.addGroup(gl_panel.createSequentialGroup()
+						  					.addGap(17)
+						  					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						  						.addComponent(AllStatus, 0, 155, Short.MAX_VALUE)
+						  						.addComponent(lblPropertyStatus))))
+						  			.addGap(32))
+						  );
+						  gl_panel.setVerticalGroup(
+						  	gl_panel.createParallelGroup(Alignment.LEADING)
+						  		.addGroup(gl_panel.createSequentialGroup()
+						  			.addGap(22)
+						  			.addComponent(chckbxPropertyDelivered)
+						  			.addPreferredGap(ComponentPlacement.RELATED)
+						  			.addComponent(chckbxRentalGuarantee)
+						  			.addPreferredGap(ComponentPlacement.RELATED)
+						  			.addComponent(chckbxCommited)
+						  			.addPreferredGap(ComponentPlacement.RELATED)
+						  			.addComponent(chckbxRentalPlan)
+						  			.addGap(12)
+						  			.addComponent(lblPropertyStatus)
+						  			.addGap(18)
+						  			.addComponent(AllStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						  			.addContainerGap(21, Short.MAX_VALUE))
+						  );
+						  panel.setLayout(gl_panel);
+						  panelDetails.setLayout(gl_panelDetails);
+						  AllParcels.setSelectedIndex(0);
+						  AllStatus.setSelectedIndex(0);
+						  AllClasses.setSelectedIndex(0);
+>>>>>>> parent of 56a92c7... Billing Things
 		btnClear = new JButton("Clear");
 		btnClear.setBounds(52, 391, 111, 23);
 		panel_2.add(btnClear);
