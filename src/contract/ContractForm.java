@@ -112,9 +112,9 @@ public class ContractForm {
 		
 		// Buttons: //
 		btnRight = new JButton(">>");
-		btnRight.setBounds(262, 46, 86, 29);
+		btnRight.setBounds(213, 50, 149, 33);
 		btnLeft = new JButton("<<");
-		btnLeft.setBounds(262, 81, 86, 29);
+		btnLeft.setBounds(213, 83, 149, 33);
 		
 		
 		

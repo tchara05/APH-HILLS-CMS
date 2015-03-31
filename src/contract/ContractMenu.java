@@ -63,7 +63,7 @@ public class ContractMenu extends JPanel {
 		 AllParcels = new JComboBox<String>();
 		 AllParcels.setBounds(202, 85, 280, 27);
 		 AllClasses = new JComboBox<String>();
-		 AllClasses.setBounds(7, 85, 189, 27);
+		 AllClasses.setBounds(7, 85, 149, 27);
 		 AllParcels.addItem("0 None");
 		 AllClasses.addItem("0 None");
 		 ListManager.setUpTwoColumnsList(AllClasses,Query.CLASS_NO_NAME);
@@ -79,11 +79,11 @@ public class ContractMenu extends JPanel {
 		
 		// Buttons: //
 		btnFilter = new JButton("Filter");
-		btnFilter.setBounds(7, 137, 135, 29);
+		btnFilter.setBounds(7, 137, 149, 33);
 		btnAddNewContract = new JButton("Add New Contract");
-		btnAddNewContract.setBounds(329, 137, 158, 29);
+		btnAddNewContract.setBounds(329, 137, 149, 33);
 		btnFilterByNo = new JButton("Filter by No Contract");
-		btnFilterByNo.setBounds(148, 137, 175, 29);
+		btnFilterByNo.setBounds(168, 137, 149, 33);
 		contPanel.setLayout(null);
 		contPanel.add(label);
 		contPanel.add(AllProperties);

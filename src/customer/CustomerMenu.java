@@ -64,11 +64,11 @@ public class CustomerMenu{
 
 		// Buttons //
 		btnAddNewCustomer = new JButton("Add New Customer");
-		btnAddNewCustomer.setBounds(412, 81, 169, 29);
+		btnAddNewCustomer.setBounds(412, 81, 169, 36);
 		btnEditCustomer = new JButton("Edit/View Customer");
-		btnEditCustomer.setBounds(412, 177, 169, 29);
+		btnEditCustomer.setBounds(412, 165, 158, 34);
 		btnDeleteCustomer = new JButton("Delete Customer");
-		btnDeleteCustomer.setBounds(412, 129, 169, 29);
+		btnDeleteCustomer.setBounds(412, 117, 169, 36);
 		CustomerPanel.setLayout(null);
 		CustomerPanel.add(lblAllCustomers);
 		CustomerPanel.add(AllCustomers);
