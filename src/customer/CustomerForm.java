@@ -112,8 +112,8 @@ public class CustomerForm {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(54)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 628, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(48, Short.MAX_VALUE))
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(125, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(null);
 		
@@ -210,6 +210,7 @@ public class CustomerForm {
 	    	txtZipCode.setColumns(10);
 	    	
 	    	Country = new JComboBox<String>();
+	    	Country.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    	Country.setBounds(105, 238, 231, 28);
 	    	panel_4.add(Country);
 	    
@@ -308,19 +309,23 @@ public class CustomerForm {
 		
 		btnSave = new JButton("Save");
 		btnSave.setBackground(Color.WHITE);
-		btnSave.setBounds(42, 299, 109, 30);
+		btnSave.setBounds(21, 296, 149, 33);
 		panel_6.add(btnSave);
 		btnSave.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnClear.setBackground(Color.WHITE);
-		btnClear.setBounds(42, 340, 109, 30);
+		btnClear.setBounds(21, 340, 149, 33);
 		panel_6.add(btnClear);
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		btnBack = new JButton("Back");
 		btnBack.setBackground(Color.WHITE);
-		btnBack.setBounds(42, 381, 110, 29);
+		btnBack.setBounds(21, 382, 149, 33);
 		panel_6.add(btnBack);
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
