@@ -493,15 +493,18 @@ public class PropertyForm {
 						  panel.add(lblPropertyStatus);
 						  panelDetails.add(txtExtraDetails);
 		btnClear = new JButton("Clear");
-		btnClear.setBounds(52, 391, 111, 23);
+		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnClear.setBounds(36, 402, 149, 33);
 		panel_2.add(btnClear);
 		
 		// Buttons : //
 		btnSave = new JButton("Save");
-		btnSave.setBounds(52, 357, 111, 23);
+		btnSave.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnSave.setBounds(36, 357, 149, 33);
 		panel_2.add(btnSave);
 		btnBack = new JButton("Back");
-		btnBack.setBounds(53, 436, 110, 23);
+		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnBack.setBounds(36, 447, 149, 33);
 		panel_2.add(btnBack);
 		
 		JLabel lblNewLabel = new JLabel(image);

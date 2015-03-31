@@ -15,6 +15,7 @@ import extras.Query;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class accountantPanel{
 	
@@ -37,13 +38,17 @@ public class accountantPanel{
 		
 		// Buttons //
 	    btnExportProforms = new JButton("Export All Proformas");
-	    btnExportProforms.setBounds(25, 151, 162, 27);
+	    btnExportProforms.setFont(new Font("Calibri", Font.PLAIN, 14));
+	    btnExportProforms.setBounds(25, 151, 149, 33);
 		btnSendInvoiceTo = new JButton("Send Invoice to");
-		btnSendInvoiceTo.setBounds(25, 201, 162, 27);
+		btnSendInvoiceTo.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnSendInvoiceTo.setBounds(25, 201, 149, 33);
 		btnExportExcel = new JButton("Export Excel File");
-		btnExportExcel.setBounds(25, 54, 162, 27);
+		btnExportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnExportExcel.setBounds(25, 54, 149, 33);
 		btnImportExcel = new JButton("Import Excel File");
-		btnImportExcel.setBounds(25, 102, 162, 27);
+		btnImportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnImportExcel.setBounds(25, 102, 149, 33);
 		
 	    AllCustomers = new JComboBox<String>();
 	    AllCustomers.setBounds(254, 201, 227, 27);
