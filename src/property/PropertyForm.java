@@ -127,7 +127,6 @@ public class PropertyForm {
 			}
 		});
 		
-		
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
