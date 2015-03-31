@@ -84,6 +84,7 @@ public class PropertyForm {
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private JPanel panel_4;
+	private JPanel panel_5;
 	
 	
 	
@@ -164,51 +165,51 @@ public class PropertyForm {
 		frmPropertyForm.setTitle("Property Form");
 		frmPropertyForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
+		panel_5 = new JPanel();
+		panel_5.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Add New Property", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		panel_5.setBackground(new Color(255, 255, 255));
+		panel_5.setBounds(20, 74, 1290, 550);
+		panel_5.setLayout(null);
+		frmPropertyForm.getContentPane().setLayout(null);
+		frmPropertyForm.getContentPane().add(panel_5);
+		
 		
 		// Labels For Outer Panel 1: //
 		
 		
 		panel_2 = new JPanel();
+		panel_2.setBounds(1043, 23, 219, 521);
+		panel_5.add(panel_2);
 		panel_2.setLayout(null);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 128)));
 		panel_2.setBackground(new Color(211, 211, 211));
+		btnClear = new JButton("Clear");
+		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnClear.setBounds(36, 402, 149, 33);
+		panel_2.add(btnClear);
 		
-		panel_3 = new JPanel();
-		panel_3.setBackground(new Color(255, 255, 255));
-		panel_3.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Property Details", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		// Buttons : //
+		btnSave = new JButton("Save");
+		btnSave.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnSave.setBounds(36, 357, 149, 33);
+		panel_2.add(btnSave);
+		btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnBack.setBounds(36, 447, 149, 33);
+		panel_2.add(btnBack);
+		
+		JLabel lblNewLabel = new JLabel(image);
+		lblNewLabel.setBounds(6, 95, 199, 169);
+		panel_2.add(lblNewLabel);
 		
 		panel_4 = new JPanel();
+		panel_4.setBounds(632, 23, 382, 521);
+		panel_5.add(panel_4);
 		panel_4.setBackground(new Color(255, 255, 255));
 		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Features", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
-		
-		//Outer Panel Positions : //
-		
-		GroupLayout groupLayout = new GroupLayout(frmPropertyForm.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(34)
-					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 580, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 382, GroupLayout.PREFERRED_SIZE)
-					.addGap(30)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-					.addGap(87))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(76)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panel_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panel_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
-					.addContainerGap(133, Short.MAX_VALUE))
-		);
 		panel_4.setLayout(null);
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(16, 23, 350, 492);
+		panel_1.setBounds(16, 23, 350, 481);
 		panel_4.add(panel_1);
 		panel_1.setBackground(new Color(173, 216, 230));
 		panel_1.setBorder(new LineBorder(Color.GRAY));
@@ -348,7 +349,13 @@ public class PropertyForm {
 					.addContainerGap(24, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
-			panel_3.setLayout(null);
+		
+		panel_3 = new JPanel();
+		panel_3.setBounds(32, 23, 578, 516);
+		panel_5.add(panel_3);
+		panel_3.setBackground(new Color(255, 255, 255));
+		panel_3.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Property Details", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_3.setLayout(null);
 		
 			// Panels //
 			JPanel panel = new JPanel();
@@ -492,28 +499,6 @@ public class PropertyForm {
 						  panel.add(AllStatus);
 						  panel.add(lblPropertyStatus);
 						  panelDetails.add(txtExtraDetails);
-		btnClear = new JButton("Clear");
-		btnClear.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnClear.setBounds(36, 402, 149, 33);
-		panel_2.add(btnClear);
-		
-		// Buttons : //
-		btnSave = new JButton("Save");
-		btnSave.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnSave.setBounds(36, 357, 149, 33);
-		panel_2.add(btnSave);
-		btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnBack.setBounds(36, 447, 149, 33);
-		panel_2.add(btnBack);
-		
-		JLabel lblNewLabel = new JLabel(image);
-		lblNewLabel.setBounds(10, 97, 199, 169);
-		panel_2.add(lblNewLabel);
-		
-		
-		
-		frmPropertyForm.getContentPane().setLayout(groupLayout);
 		frmPropertyForm.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		
 		
