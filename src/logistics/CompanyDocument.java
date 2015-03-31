@@ -2,10 +2,8 @@ package logistics;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -61,9 +59,9 @@ public class CompanyDocument {
 	 * All Customer and Property Details -- Dynamic variables that initialize by
 	 * database data
 	 */
-
-	private int type;
+	private int documentID=0;
 	
+	private int type;
 
 	public CompanyDocument(int type) {
 		this.type = type;
@@ -102,18 +100,36 @@ public class CompanyDocument {
 
 	}
 
-	public void createCustomerDetailsTable(Document doc, ResultSet rs) throws Exception {
+	public void createCustomerDetailsTable(Document doc, ResultSet rs)
+			throws Exception {
 
+		DatabaseConnection database = new DatabaseConnection();
+		ResultSet proforma = database.getStatement().executeQuery(
+				"SELECT docID " + "FROM DocumentsIDS "
+						+ "WHERE docType = 'Proforma' ");
+		documentID = 0;
+		if (proforma.next()) {
+			documentID = proforma.getInt(1);
+			database.getStatement().execute(
+					"UPDATE DocumentsIDS " + "SET docID='" + (documentID + 1)
+							+ "' WHERE docType = 'Proforma' ");
+		} else {
+			System.exit(-1);
+		
+		}
+		proforma.close();
 		
 		
-		String customerName = "\n"+rs.getString(5) + " " + rs.getString(6);
-		String address = rs.getString(7) + " " + rs.getString(8) +",\n"+ rs.getString(11);
+		
+		String customerName = "\n" + rs.getString(5) + " " + rs.getString(6);
+		String address = rs.getString(7) + " " + rs.getString(8) + ",\n"
+				+ rs.getString(11);
 		String customerID = rs.getString(4);
-		
-		
+
 		String documentDetailsString = documentType();
 		PdfPTable CustomerDetailsTable = new PdfPTable(2); // Megalos Pinakas
-		PdfPCell CustomerDetails = new PdfPCell(new Phrase(customerName + "\n" + address));// aristeri Plevra
+		PdfPCell CustomerDetails = new PdfPCell(new Phrase(customerName + "\n"
+				+ address +",\n" + rs.getString(11)));// aristeri Plevra
 		CustomerDetails.setHorizontalAlignment(Element.ALIGN_LEFT);
 
 		PdfPCell AllCodes = new PdfPCell(); // De3ia keli megalo pinaka p krata
@@ -125,9 +141,10 @@ public class CompanyDocument {
 		PdfPTable CodesTable = new PdfPTable(2); // Pinakas Kodikwn
 		PdfPCell CodesDefinition = new PdfPCell(new Phrase(
 				documentDetailsString)); // De3i keli me names
-		PdfPCell Codes = new PdfPCell(new Phrase(customerID + "\n")); // aristero
-																	// kelli me
-																	// arithmous
+		PdfPCell Codes = new PdfPCell(new Phrase(customerID +"\n" +documentID)); // aristero
+																		// kelli
+																		// me
+																		// arithmous
 
 		CodesDefinition.setHorizontalAlignment(Element.ALIGN_LEFT);
 		Codes.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -232,18 +249,14 @@ public class CompanyDocument {
 
 	}
 
-	public void createCostTable(Document doc,ResultSet rs) throws Exception {
-
+	public void createCostTable(Document doc, ResultSet rs) throws Exception {
+		
+		
 		DatabaseConnection database = new DatabaseConnection();
-		ResultSet proforma = database.getStatement().executeQuery("SELECT docID" +
-																  "FROM DocumentsIDS" +
-																  "WHERE docType = 'Proforma' ");
-		int documentID = proforma.getInt(1);
-		database.getStatement().execute("UPDATE DocumentsIDS" +
-										 "SET docID='"+ (documentID+1)+ "' WHERE docType = 'Proforma' ");
+		
 		
 		int N = 6;
-		String CustomerID = rs.getString(4); 
+		String CustomerID = rs.getString(4);
 		PdfPTable columnsTitle = new PdfPTable(N);
 		PdfPCell[] Columns = new PdfPCell[N];
 
@@ -252,117 +265,119 @@ public class CompanyDocument {
 			Columns[i].setHorizontalAlignment(Element.ALIGN_LEFT);
 			Columns[i].setBorderWidth(0);
 		}
-		
+
 		Phrase[] titles = new Phrase[N];
-		int i=1;
+		int i = 1;
 		int rooms = 1;
-		
-		float total =0;
-			titles[0] = new Phrase("S/N");
-			titles[1] = new Phrase("PlotNo");
-			titles[2] = new Phrase("Location/Type");
-			titles[3] = new Phrase("Description");
-			titles[4] = new Phrase("Qty");
-			titles[5] = new Phrase("Amount");
-			 
+
+		float total = 0;
+		titles[0] = new Phrase("S/N");
+		titles[1] = new Phrase("PlotNo");
+		titles[2] = new Phrase("Location/Type");
+		titles[3] = new Phrase("Description");
+		titles[4] = new Phrase("Qty");
+		titles[5] = new Phrase("Amount");
+
 		for (int j = 0; j < N; j++) {
 			titles[j].setFont(smallbold);
 			Columns[j].addElement(titles[j]);
 			columnsTitle.addCell(Columns[j]);
 		}
-		
+
 		columnsTitle.setWidthPercentage(100);
-		
+
 		String prev = rs.getString(3);
-		
+		documentID++;
+
 		do {
 			
-			database.getStatement().executeUpdate("INSERT INTO Proforma values ('"+ (documentID+1) +"','"
-					+ rs.getString(1) +" ',' "+rs.getString(2)+"','"+rs.getString(3)+"','"
-					+ rs.getString(4)+"','"+rs.getString(5) +"','"+rs.getString(6) +rs.getString(7)
-					+rs.getString(8)+"','"+rs.getString(9)+"','"+rs.getString(10)+"','"+rs.getString(11)+")");
+			String exportDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+
 			
 			
-			
-			if (!CustomerID.equals(rs.getString(4))){
+
+			if (!CustomerID.equals(rs.getString(4))) {
 				doc.add(columnsTitle);
 				return;
 			}
-			Columns[0].setPhrase(new Phrase(i+""));
+			
+			database.getStatement().executeUpdate(
+					"INSERT INTO Proforma values ('" + documentID + "','"+
+							rs.getString(1) + "','" + rs.getString(2) + "','" +
+							rs.getString(3) + "','" + rs.getString(4)+ "','" +
+							rs.getString(5) + "','" + rs.getString(6) +"','" +
+							rs.getString(7) + "','"+ rs.getString(8) + "','" +
+							rs.getString(9) + "','" + rs.getString(10)+ "','" +
+							rs.getString(11) + "','"+exportDate + "','0' )");
+			
+			Columns[0].setPhrase(new Phrase(i + ""));
 			i++;
-			if (!prev.equals(rs.getString(3))){
+			if (!prev.equals(rs.getString(3))) {
 				prev = rs.getString(3);
-				rooms =1;
+				rooms = 1;
 			}
 			Columns[1].setPhrase(new Phrase(prev));
-			Columns[2].setPhrase(new Phrase(rs.getString(2)+ " " +rs.getString(3)));
-			Columns[3].setPhrase(new Phrase("Room No:"+ rooms));
+			Columns[2].setPhrase(new Phrase(rs.getString(2) + " "
+					+ rs.getString(3)));
+			Columns[3].setPhrase(new Phrase("Room No:" + rooms));
 			Columns[4].setPhrase(new Phrase("1"));
 			Columns[5].setPhrase(new Phrase(rs.getString(9)));
 			rooms++;
 			for (int j = 0; j < N; j++) {
 				columnsTitle.addCell(Columns[j]);
 			}
-		}while(rs.next());	
-		
+		} while (rs.next());
+
 		doc.add(columnsTitle);
-			
 		
-
-
-
 	}
-	
-	
-	
-	public static void createAllProforma() throws Exception{
-		
+
+	public static void createAllProforma() throws Exception {
+
 		DatabaseConnection database = new DatabaseConnection();
-		String query = "SELECT *"
-					  +"FROM  COSTS "
-				      +"ORDER BY customerID ASC";
-		
-		
+		String query = "SELECT *" + "FROM  COSTS " + "ORDER BY customerID ASC";
+
 		File f = new File("Proformas");
 		f.mkdir();
-		
+
 		try {
-			
-			ResultSet rs = database.createBackForwardStateMent().executeQuery(query);
-			
-		while (rs.next()){
+
+			ResultSet rs = database.createBackForwardStateMent().executeQuery(
+					query);
+
+			while (rs.next()) {
 				CompanyDocument Companydocument = new CompanyDocument(3);
 				Document document = new Document();
-				
-				PdfWriter.getInstance(document, new FileOutputStream("Proformas/"+rs.getString(5)+".pdf"));
+
+				PdfWriter.getInstance(document, new FileOutputStream(
+						"Proformas/" + rs.getString(5) + ".pdf"));
 				document.open();
 				Companydocument.createHeader(document);
-				
-				Companydocument.createCustomerDetailsTable(document,rs);
-				
-				Companydocument.createCostTable(document,rs);
+
+				Companydocument.createCustomerDetailsTable(document, rs);
+
+				Companydocument.createCostTable(document, rs);
 				rs.previous();
 				Companydocument.Signatures(document);
 				Companydocument.BankInfo(document);
 				document.close();
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
-	public static void main(String args[])  {
+	public static void main(String args[]) {
 
 		try {
 			createAllProforma();
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-	
+
 	}
 
 }

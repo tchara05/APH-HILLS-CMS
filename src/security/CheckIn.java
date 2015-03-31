@@ -255,10 +255,6 @@ public class CheckIn {
 			System.out.println("Can execute the query in setUpContractList");
 			e1.printStackTrace();
 		}
-		try {
-		} catch (Exception e) {
-			System.out.println("Empty Contract List");
-			e.printStackTrace();
-		}
+		
 	}
 }
