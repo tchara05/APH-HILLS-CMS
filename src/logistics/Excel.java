@@ -72,7 +72,7 @@ public class Excel {
 			e.printStackTrace();
 		}
 		
-		String outputDirPath = "/Users/Theodoros/Desktop/properties.xls";
+		String outputDirPath = "properties.xls";
 		
 		FileOutputStream fileOut;
 		try {
@@ -91,7 +91,7 @@ public class Excel {
 	  DatabaseConnection data = new DatabaseConnection();
 	  
 		try {
-		    POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream("/Users/Theodoros/Desktop/properties.xls"));
+		    POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream("properties.xls"));
 		    HSSFWorkbook wb = new HSSFWorkbook(fs);
 		    HSSFSheet sheet = wb.getSheetAt(0);
 		    HSSFRow row;
@@ -119,7 +119,7 @@ public class Excel {
 		        	String propID =id.getStringCellValue();
 		        
 	                if(id != null) {
-	           
+	                		
 	                }
 		            for(int c = 1 ; c < cols; c++) {
 		                cell = row.getCell((short)c);
@@ -131,49 +131,22 @@ public class Excel {
 		                		
 		                	}catch (Exception e){
 		                		roomValue =cell.getNumericCellValue();
-		                	data.getStatement().executeUpdate("INSERT INTO Rooms values('"+propID+"','"+roomValue+"','0')");
+		                		data.getStatement().executeUpdate("INSERT INTO Rooms values('"+propID+"','"+roomValue+"','0')");
 		                		System.out.print(roomValue+ " ");	
-		
+		                		
 		                	}
 		                }
 		            }
 		        }
 		        System.out.println("Total Value: " + roomValue );
 		    }
-		    
-		    
+		        
 		} catch(Exception ioe) {
 		    ioe.printStackTrace();
 		}
   }
 		
 		
-	
-	public static void main(String args[]) throws Exception  {
-		
-//		CompanyDocument Companydocument = new CompanyDocument(1);
-//		Document document = new Document();
-//		
-//		// Creating The Table //
-//		PdfWriter.getInstance(document, new FileOutputStream("invoice.pdf"));
-//		document.open();
-//		
-//		Companydocument.createHeader(document);
-//		Companydocument.createCustomerDetailsTable(document);
-//		Companydocument.createCostTable(document);
-//		Companydocument.Signatures(document);
-//		Companydocument.BankInfo(document);
-//		document.close();
-//	
-	//	createExcelFile();
-	//	ReadExcel();
-		
-
-		
-
-	}
-	
-	
 	
 }
 

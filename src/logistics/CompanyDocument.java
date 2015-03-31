@@ -381,7 +381,7 @@ public class CompanyDocument {
 					query);
 
 			while (rs.next()) {
-				CompanyDocument Companydocument = new CompanyDocument(3);
+				CompanyDocument Companydocument = new CompanyDocument(PROFORMA);
 				Document document = new Document();
 
 				PdfWriter.getInstance(document, new FileOutputStream(
