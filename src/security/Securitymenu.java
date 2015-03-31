@@ -75,7 +75,8 @@ public class Securitymenu extends JPanel {
 		panel_3.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(SystemColor.control);
+		panel_1.setForeground(new Color(211, 211, 211));
+		panel_1.setBackground(new Color(173, 216, 230));
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBounds(497, 49, 246, 382);
 		panel_3.add(panel_1);
@@ -97,7 +98,8 @@ public class Securitymenu extends JPanel {
 		btnCheckIn.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(SystemColor.control);
+		panel_2.setForeground(new Color(211, 211, 211));
+		panel_2.setBackground(new Color(173, 216, 230));
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_2.setBounds(46, 49, 417, 382);
 		panel_3.add(panel_2);
