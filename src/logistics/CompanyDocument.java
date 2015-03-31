@@ -107,7 +107,7 @@ public class CompanyDocument {
 		
 		
 		String customerName = "\n"+rs.getString(5) + " " + rs.getString(6);
-		String address = rs.getString(7) + " " + rs.getString(8);
+		String address = rs.getString(7) + " " + rs.getString(8) +",\n"+ rs.getString(11);
 		String customerID = rs.getString(4);
 		
 		
@@ -234,6 +234,14 @@ public class CompanyDocument {
 
 	public void createCostTable(Document doc,ResultSet rs) throws Exception {
 
+		DatabaseConnection database = new DatabaseConnection();
+		ResultSet proforma = database.getStatement().executeQuery("SELECT docID" +
+																  "FROM DocumentsIDS" +
+																  "WHERE docType = 'Proforma' ");
+		int documentID = proforma.getInt(1);
+		database.getStatement().execute("UPDATE DocumentsIDS" +
+										 "SET docID='"+ (documentID+1)+ "' WHERE docType = 'Proforma' ");
+		
 		int N = 6;
 		String CustomerID = rs.getString(4); 
 		PdfPTable columnsTitle = new PdfPTable(N);
@@ -244,12 +252,12 @@ public class CompanyDocument {
 			Columns[i].setHorizontalAlignment(Element.ALIGN_LEFT);
 			Columns[i].setBorderWidth(0);
 		}
-
+		
 		Phrase[] titles = new Phrase[N];
 		int i=1;
 		int rooms = 1;
+		
 		float total =0;
-	
 			titles[0] = new Phrase("S/N");
 			titles[1] = new Phrase("PlotNo");
 			titles[2] = new Phrase("Location/Type");
@@ -265,17 +273,21 @@ public class CompanyDocument {
 		
 		columnsTitle.setWidthPercentage(100);
 		
-		
 		String prev = rs.getString(3);
 		
 		do {
 			
+			database.getStatement().executeUpdate("INSERT INTO Proforma values ('"+ (documentID+1) +"','"
+					+ rs.getString(1) +" ',' "+rs.getString(2)+"','"+rs.getString(3)+"','"
+					+ rs.getString(4)+"','"+rs.getString(5) +"','"+rs.getString(6) +rs.getString(7)
+					+rs.getString(8)+"','"+rs.getString(9)+"','"+rs.getString(10)+"','"+rs.getString(11)+")");
+			
+			
+			
 			if (!CustomerID.equals(rs.getString(4))){
 				doc.add(columnsTitle);
 				return;
-				
 			}
-			
 			Columns[0].setPhrase(new Phrase(i+""));
 			i++;
 			if (!prev.equals(rs.getString(3))){
@@ -338,11 +350,6 @@ public class CompanyDocument {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
 		
 		
 	}
