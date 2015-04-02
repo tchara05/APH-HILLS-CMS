@@ -18,6 +18,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.border.TitledBorder;
+import java.awt.Font;
 @SuppressWarnings("serial")
 public class ContractMenu extends JPanel {
 	
@@ -45,25 +47,25 @@ public class ContractMenu extends JPanel {
 	    setLayout(null);
 		
 	    wrapper = new JPanel();
-	    wrapper.setBounds(53, 103, 536, 237);
+	    wrapper.setBounds(22, 21, 792, 473);
 	    wrapper.setBackground(new Color(255, 255, 255));
-		wrapper.setBorder(new LineBorder(new Color(0, 0, 128), 3));
+		wrapper.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "CONTRACT MENU", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		add(wrapper);
 		wrapper.setLayout(null);
 		contPanel = new JPanel();
-		contPanel.setBounds(23, 21, 488, 192);
+		contPanel.setBounds(93, 89, 605, 300);
 		wrapper.add(contPanel);
 		contPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		contPanel.setBackground(new Color(173, 216, 230));
 		contPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		//DropDown List: //
 		 AllProperties = new JComboBox<String>();
-		 AllProperties.setBounds(86, 18, 199, 27);
+		 AllProperties.setBounds(100, 66, 199, 27);
 		 ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 		 AllParcels = new JComboBox<String>();
-		 AllParcels.setBounds(202, 85, 280, 27);
+		 AllParcels.setBounds(257, 142, 280, 27);
 		 AllClasses = new JComboBox<String>();
-		 AllClasses.setBounds(7, 85, 149, 27);
+		 AllClasses.setBounds(62, 142, 149, 27);
 		 AllParcels.addItem("0 None");
 		 AllClasses.addItem("0 None");
 		 ListManager.setUpTwoColumnsList(AllClasses,Query.CLASS_NO_NAME);
@@ -71,19 +73,25 @@ public class ContractMenu extends JPanel {
 		 
 		// Labels // 
 		JLabel label_1 = new JLabel("Class:");
-		label_1.setBounds(7, 63, 38, 16);
+		label_1.setFont(new Font("Calibri", Font.PLAIN, 14));
+		label_1.setBounds(62, 120, 38, 16);
 		JLabel label = new JLabel("Plot:");
-		label.setBounds(7, 22, 28, 16);
+		label.setFont(new Font("Calibri", Font.PLAIN, 14));
+		label.setBounds(62, 71, 28, 16);
 		JLabel label_2 = new JLabel("Parcel:");
-		label_2.setBounds(202, 63, 41, 16);
+		label_2.setFont(new Font("Calibri", Font.PLAIN, 14));
+		label_2.setBounds(257, 120, 41, 16);
 		
 		// Buttons: //
 		btnFilter = new JButton("Filter");
-		btnFilter.setBounds(7, 137, 149, 33);
+		btnFilter.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnFilter.setBounds(62, 213, 149, 33);
 		btnAddNewContract = new JButton("Add New Contract");
-		btnAddNewContract.setBounds(329, 137, 149, 33);
+		btnAddNewContract.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnAddNewContract.setBounds(384, 213, 153, 33);
 		btnFilterByNo = new JButton("Filter by No Contract");
-		btnFilterByNo.setBounds(168, 137, 149, 33);
+		btnFilterByNo.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnFilterByNo.setBounds(223, 213, 149, 33);
 		contPanel.setLayout(null);
 		contPanel.add(label);
 		contPanel.add(AllProperties);
