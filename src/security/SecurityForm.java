@@ -24,10 +24,10 @@ public class SecurityForm {
 
 	public JFrame frame;
 	public static JPanel contentPane;
-	public static JTextField txtkeyID;
 	public static JTextArea txtAreaNotes;
-	public static JTextField txtPropertyID;
+	public static JTextField txtPlotName;
 	protected static boolean edit = false;
+	public static JTextField txtPlotNumber;
 
 	
 	public static void main(String[] args) {
@@ -96,23 +96,11 @@ public class SecurityForm {
 		btnPanel.setBorder(new LineBorder(new Color(0, 0, 102)));
 		btnPanel.setLayout(null);
 
-		JLabel lblKey = new JLabel("Key ID :");
-		lblKey.setForeground(Color.BLACK);
-		lblKey.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblKey.setBounds(36, 40, 86, 17);
-		insertPanel.add(lblKey);
-
-		JLabel lblProperty = new JLabel("Property ID* :");
+		JLabel lblProperty = new JLabel("Plot Name* :");
 		lblProperty.setForeground(Color.BLACK);
 		lblProperty.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblProperty.setBounds(36, 122, 79, 14);
+		lblProperty.setBounds(36, 56, 86, 14);
 		insertPanel.add(lblProperty);
-
-		JLabel lblNewLabel_2 = new JLabel(
-				"*\u03A4his field is automatically filled");
-		lblNewLabel_2.setFont(new Font("Calibri", Font.ITALIC, 12));
-		lblNewLabel_2.setBounds(132, 69, 199, 14);
-		insertPanel.add(lblNewLabel_2);
 
 		JLabel lblNotes = new JLabel("Customer Pop up Notes :");
 		lblNotes.setForeground(Color.BLACK);
@@ -127,17 +115,21 @@ public class SecurityForm {
 		txtAreaNotes = new JTextArea();
 		scrollPane.setViewportView(txtAreaNotes);
 
-		txtkeyID = new JTextField();
-		txtkeyID.setEnabled(false);
-		txtkeyID.setEditable(false);
-		txtkeyID.setBounds(132, 33, 199, 30);
-		insertPanel.add(txtkeyID);
-		txtkeyID.setColumns(10);
-
-		txtPropertyID = new JTextField();
-		txtPropertyID.setBounds(132, 114, 199, 30);
-		insertPanel.add(txtPropertyID);
-		txtPropertyID.setColumns(10);
+		txtPlotName = new JTextField();
+		txtPlotName.setBounds(163, 48, 168, 30);
+		insertPanel.add(txtPlotName);
+		txtPlotName.setColumns(10);
+		
+		JLabel lblPlotNumber = new JLabel("Plot Number* :");
+		lblPlotNumber.setForeground(Color.BLACK);
+		lblPlotNumber.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblPlotNumber.setBounds(36, 133, 106, 14);
+		insertPanel.add(lblPlotNumber);
+		
+		txtPlotNumber = new JTextField();
+		txtPlotNumber.setColumns(10);
+		txtPlotNumber.setBounds(163, 125, 168, 30);
+		insertPanel.add(txtPlotNumber);
 
 		JButton btnAdd = new JButton("Add Contract");
 		btnAdd.setBackground(Color.WHITE);
@@ -156,6 +148,7 @@ public class SecurityForm {
 		btnBack.setBackground(Color.WHITE);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SecurityClearButton.start();
 				frame.setVisible(false);
 			}
 		});

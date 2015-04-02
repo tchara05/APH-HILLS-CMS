@@ -200,10 +200,10 @@ public class Securitymenu extends JPanel {
 
 		try {
 			rset = stment
-					.executeQuery("SELECT keyID, plotName FROM KeyContract, Property WHERE Property.plotID = KeyContract.propertyID ORDER BY keyID");
+					.executeQuery("SELECT plotName, plotNumber, keyID FROM KeyContract, Property WHERE Property.plotID = KeyContract.propertyID ORDER BY plotName");
 
 			while (rset.next() && rset.getString(1) != null) {
-				AllContracts.addItem(rset.getString(1) + " " + rset.getString(2));
+				AllContracts.addItem(rset.getString(1) + " " + rset.getString(2) + " " +rset.getString(3));
 			}
 
 		} catch (SQLException e1) {
