@@ -139,11 +139,22 @@ public class AdminMenu {
 	    panel_2.add(imgLabel);
 	    
 	    JButton btnNewButton = new JButton("Log Out");
+	    btnNewButton.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		new LogIn().setVisible(true);
+	    		frame.setVisible(false);
+	    	}
+	    });
 	    btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    btnNewButton.setBounds(43, 413, 127, 31);
+	    btnNewButton.setBounds(43, 421, 127, 31);
 	    panel_2.add(btnNewButton);
 	    
 	    JButton btnExit = new JButton("Exit");
+	    btnExit.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		System.exit(0);
+	    	}
+	    });
 	    btnExit.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnExit.setBounds(43, 463, 127, 31);
 	    panel_2.add(btnExit);

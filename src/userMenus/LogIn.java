@@ -25,7 +25,7 @@ import extras.Messages;
 
 public class LogIn {
 
-	private JFrame frmAphroditeHill;
+	private static JFrame frmAphroditeHill;
 	public static JTextField txtUserName;
 	private JPasswordField txtPassword;
 	@SuppressWarnings("unused")
@@ -92,6 +92,11 @@ public class LogIn {
 		btnLogIn.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnLogIn.setBounds(137, 321, 112, 36);
 		JButton btnHelp = new JButton("EXIT");
+		btnHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnHelp.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnHelp.setBounds(259, 321, 118, 36);
 		frmAphroditeHill.getContentPane().setLayout(null);
@@ -166,6 +171,9 @@ public class LogIn {
 
 	public static String getUsername() {
 		return "marios";
+	}
+	public void setVisible(boolean t) {
+		frmAphroditeHill.setVisible(t);
 	}
 
 }
