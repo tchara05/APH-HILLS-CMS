@@ -20,12 +20,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.border.TitledBorder;
 import java.awt.Font;
+import javax.swing.border.EtchedBorder;
 @SuppressWarnings("serial")
 public class ContractMenu extends JPanel {
 	
 	//The Box //
 	private static JPanel contPanel;
 	private static JPanel wrapper;
+	private static JPanel panel;
 	
 	public static JComboBox<String> AllProperties ;
 	public static JComboBox<String> AllClasses ;
@@ -41,23 +43,26 @@ public class ContractMenu extends JPanel {
 		
 	
 	public ContractMenu(){
-		setBackground(new Color(255, 255, 255));
-		setBorder(new LineBorder(new Color(0, 0, 128), 0));
-		 contractform = new ContractForm();
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		contractform = new ContractForm();
 	    setLayout(null);
+		
+		panel.setLayout(null);
 		
 	    wrapper = new JPanel();
 	    wrapper.setBounds(22, 21, 792, 473);
 	    wrapper.setBackground(new Color(255, 255, 255));
 		wrapper.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "CONTRACT MENU", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		add(wrapper);
+		panel.add(wrapper);
 		wrapper.setLayout(null);
 		contPanel = new JPanel();
 		contPanel.setBounds(93, 89, 605, 300);
+		contPanel.setForeground(new Color(0, 0, 128));
 		wrapper.add(contPanel);
-		contPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		contPanel.setBackground(new Color(173, 216, 230));
-		contPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		contPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
 		//DropDown List: //
 		 AllProperties = new JComboBox<String>();
 		 AllProperties.setBounds(100, 66, 199, 27);
@@ -109,7 +114,7 @@ public class ContractMenu extends JPanel {
 	
 	public static JPanel createContractMenu() {
 		 new ContractMenu();
-		 return wrapper;
+		 return panel;
 	}
 
 	//Buttons Fuctionalities //

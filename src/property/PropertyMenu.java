@@ -55,7 +55,7 @@ public class PropertyMenu{
 	    panel_3.setLayout(null);
 	    
 	    JPanel panel_2 = new JPanel();
-	    panel_2.setBounds(80, 71, 635, 156);
+	    panel_2.setBounds(80, 51, 635, 186);
 	    panel_2.setBorder(new LineBorder(new Color(0, 0, 128)));
 	    panel_2.setBackground(new Color(173, 216, 230));
 	    panel_3.add(panel_2);
@@ -64,12 +64,12 @@ public class PropertyMenu{
 	    // Labels: //
 	    JLabel lblProperrty = new JLabel("Properties:");
 	    lblProperrty.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    lblProperrty.setBounds(52, 28, 84, 18);
+	    lblProperrty.setBounds(77, 52, 84, 18);
 	    panel_2.add(lblProperrty);
 	    
 	    //DropDown List: //
 	    AllProperties = new JComboBox<String>();
-	    AllProperties.setBounds(52, 57, 209, 27);
+	    AllProperties.setBounds(77, 81, 209, 27);
 	    panel_2.add(AllProperties);
 	    ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 	    
@@ -77,43 +77,43 @@ public class PropertyMenu{
 	    
 	    // Buttons: //
 	    btnAddNewProperty = new JButton("Add New Property");
-	    btnAddNewProperty.setBounds(402, 11, 149, 33);
+	    btnAddNewProperty.setBounds(402, 28, 149, 33);
 	    panel_2.add(btnAddNewProperty);
 	    btnAddNewProperty.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnNewButton = new JButton("Delete Property");
-	    btnNewButton.setBounds(402, 58, 149, 33);
+	    btnNewButton.setBounds(402, 75, 149, 33);
 	    panel_2.add(btnNewButton);
 	    btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnEditProperrty = new JButton("Edit/View Property");
-	    btnEditProperrty.setBounds(402, 105, 149, 33);
+	    btnEditProperrty.setBounds(402, 122, 149, 33);
 	    panel_2.add(btnEditProperrty);
 	    btnEditProperrty.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
 	    panel = new JPanel();
-	    panel.setBounds(80, 272, 635, 141);
+	    panel.setBounds(80, 284, 635, 139);
 	    panel_3.add(panel);
 	    panel.setBorder(new LineBorder(new Color(0, 0, 128)));
 	    panel.setBackground(new Color(173, 216, 230));
 	    panel.setLayout(null);
 	    btnSearch = new JButton("Search");
-	    btnSearch.setBounds(55, 84, 174, 33);
+	    btnSearch.setBounds(221, 84, 174, 33);
 	    panel.add(btnSearch);
 	    btnSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    AllClasses = new JComboBox<String>();
-	    AllClasses.setBounds(55, 46, 174, 27);
+	    AllClasses.setBounds(75, 46, 218, 27);
 	    panel.add(AllClasses);
 	    AllClasses.addItem("0 None");
 	    ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
 	    JLabel lblNewLabel = new JLabel("Classes:");
 	    lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    lblNewLabel.setBounds(55, 24, 66, 16);
+	    lblNewLabel.setBounds(75, 24, 66, 16);
 	    panel.add(lblNewLabel);
 	    JLabel lblParcels = new JLabel("Parcels:");
 	    lblParcels.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    lblParcels.setBounds(248, 24, 66, 16);
+	    lblParcels.setBounds(338, 24, 66, 16);
 	    panel.add(lblParcels);
 	    AllParcels= new JComboBox<String>();
-	    AllParcels.setBounds(241, 46, 218, 27);
+	    AllParcels.setBounds(331, 46, 218, 27);
 	    panel.add(AllParcels);
 	    AllParcels.addItem("0 None");
 	    ListManager.setUpTwoColumnsList(AllParcels, Query.PARCEL_NO_NAME);
