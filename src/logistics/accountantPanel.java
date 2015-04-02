@@ -34,6 +34,7 @@ public class accountantPanel{
 	private JButton btnExportExcel; 
 	private JButton btnImportExcel;
 	private JPanel panel;
+	private JPanel panel_1;
 	
 	public accountantPanel() {
 		
@@ -43,32 +44,40 @@ public class accountantPanel{
 		accountantMenu.setLayout(null);
 	    
 	    panel = new JPanel();
-	    panel.setBackground(new Color(173, 216, 230));
-	    panel.setBounds(221, 142, 443, 248);
+	    panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "LOGISTIC DEPARTMENT", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+	    panel.setBackground(Color.WHITE);
+	    panel.setBounds(22, 21, 792, 473);
 	    accountantMenu.add(panel);
 	    panel.setLayout(null);
+	    
+	    panel_1 = new JPanel();
+	    panel_1.setBackground(new Color(173, 216, 230));
+	    panel_1.setBorder(new LineBorder(new Color(0, 0, 128)));
+	    panel_1.setBounds(107, 68, 582, 344);
+	    panel.add(panel_1);
+	    panel_1.setLayout(null);
 		
 		// Buttons //
 	    btnExportProforms = new JButton("Export All Proformas");
-	    btnExportProforms.setBounds(17, 167, 149, 33);
-	    panel.add(btnExportProforms);
+	    btnExportProforms.setBounds(86, 223, 149, 33);
+	    panel_1.add(btnExportProforms);
 	    btnExportProforms.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnSendInvoiceTo = new JButton("Send Invoice to");
-	    btnSendInvoiceTo.setBounds(17, 122, 149, 33);
-	    panel.add(btnSendInvoiceTo);
+	    btnSendInvoiceTo.setBounds(86, 178, 149, 33);
+	    panel_1.add(btnSendInvoiceTo);
 	    btnSendInvoiceTo.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
 	    AllCustomers = new JComboBox<String>();
-	    AllCustomers.setBounds(196, 170, 227, 27);
-	    panel.add(AllCustomers);
+	    AllCustomers.setBounds(265, 226, 227, 27);
+	    panel_1.add(AllCustomers);
 	    ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
 	    btnExportExcel = new JButton("Export Excel File");
-	    btnExportExcel.setBounds(17, 77, 149, 33);
-	    panel.add(btnExportExcel);
+	    btnExportExcel.setBounds(86, 133, 149, 33);
+	    panel_1.add(btnExportExcel);
 	    btnExportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnImportExcel = new JButton("Import Excel File");
-	    btnImportExcel.setBounds(17, 27, 149, 33);
-	    panel.add(btnImportExcel);
+	    btnImportExcel.setBounds(86, 83, 149, 33);
+	    panel_1.add(btnImportExcel);
 	    btnImportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
 		addButtonsFuctionalities();
 	}
