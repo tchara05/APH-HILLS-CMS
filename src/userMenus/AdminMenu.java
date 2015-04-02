@@ -166,25 +166,25 @@ public class AdminMenu {
 	    
 	    
 		if (menu == 0) {
-
 			panel_2.add(btnProperty);
 			panel_2.add(btnContract);
 			panel_2.add(btnCustomer);
 			panel_2.add(btnSecurity);
 			panel_2.add(btnAccount);
-
 		}
 		else if(menu == 1) {
-			panel.add(AccountantPanel);
+			panel_2.add(btnProperty);
+			panel_2.add(btnContract);
+			panel_2.add(btnCustomer);
 		}
 		else if(menu == 2) {
 			panel.add(SecurityPanel);
 		}
 		else if(menu == 3) {
-			panel_2.add(btnProperty);
-			panel_2.add(btnContract);
-			panel_2.add(btnCustomer);
+			panel.add(AccountantPanel);
 		}
+
+		
 	    
 		addButtonFuctionalities();
 		

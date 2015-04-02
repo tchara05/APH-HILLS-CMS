@@ -144,13 +144,13 @@ public class LogIn {
 							new AdminMenu(0).setVisible(true);
 						} else if (rights.equals("b")) {
 							frmAphroditeHill.setVisible(false);
-							new AdminMenu(3).setVisible(true);
+							new AdminMenu(1).setVisible(true);
 						} else if (rights.equals("c")) {
 							frmAphroditeHill.setVisible(false);
 							new AdminMenu(2).setVisible(true);
 						} else if (rights.equals("d")) {
 							frmAphroditeHill.setVisible(false);
-							new AdminMenu(1).setVisible(true);
+							new AdminMenu(3).setVisible(true);
 						}
 
 					} else {
