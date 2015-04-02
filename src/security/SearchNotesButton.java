@@ -20,14 +20,22 @@ public class SearchNotesButton extends Thread {
 		int method = 2;
 		boolean checked=true;
 		
+		String propertyID = "";
+		String keyID = "";
+		String plotName = "";
+		String plotNumber = "";
+		
 		Border compound = null;
 		Border redline = BorderFactory.createLineBorder(Color.red,2);
 
-		String keyID = CheckOut.txtKeyId.getText();
-		String plotName = CheckOut.txtPlotName.getText();
-		String plotNumber = CheckOut.txtPlotNumber.getText();
+		keyID = CheckOut.txtKeyId.getText();
+		plotName = CheckOut.txtPlotName.getText();
+		plotNumber = CheckOut.txtPlotNumber.getText();
+		
 		//
-		String propertyID = SecuritySaveButton.getPropId(plotName, Integer.parseInt(plotNumber));
+		if((!plotName.equals("")) && (!plotNumber.equals(""))) {
+			propertyID = SecuritySaveButton.getPropId(plotName, Integer.parseInt(plotNumber));
+		}
 		//
 				
 		if(keyID.compareTo("") != 0){

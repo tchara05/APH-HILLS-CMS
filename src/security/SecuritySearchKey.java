@@ -12,7 +12,10 @@ public class SecuritySearchKey extends Thread {
 
 	public void run() {
 
-		String prop = Securitymenu.txtSearchProp.getText();
+		String txtPlotName = Securitymenu.txtPlotName.getText();
+		String txtPlotNumber = Securitymenu.txtPlotNumber.getText();
+		
+		String prop = SecuritySaveButton.getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
 		
 		if (prop==null){
 			JOptionPane.showMessageDialog(null, "Non KeyID",
@@ -28,7 +31,7 @@ public class SecuritySearchKey extends Thread {
 				stment = database.getStatement();
 	
 				// insert query here
-				rst = stment.executeQuery("SELECT * FROM KeyContract, Property WHERE KeyContract.propertyID = Property.plotID AND plotName = '"
+				rst = stment.executeQuery("SELECT * FROM KeyContract WHERE propertyID = '"
 						+ prop +  "'");
 				
 				if(rst.next())

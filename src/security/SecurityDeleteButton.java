@@ -22,7 +22,11 @@ public class SecurityDeleteButton {
 		if (response == JOptionPane.YES_OPTION) {
 
 			String keyID = "";
-			keyID = Securitymenu.txtSearchProp.getText();
+			
+			String txtPlotName = Securitymenu.txtPlotName.getText();
+			String txtPlotNumber = Securitymenu.txtPlotNumber.getText();
+			
+			keyID = SecuritySaveButton.getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
 			
 			String keyID_fromList = "";
 			keyID_fromList = (String)Securitymenu.getSelectedContract();
