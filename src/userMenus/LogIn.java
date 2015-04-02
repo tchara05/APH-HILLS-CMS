@@ -25,11 +25,9 @@ import extras.Messages;
 
 public class LogIn {
 
-	private static JFrame frmAphroditeHill;
+	public static JFrame frmAphroditeHill;
 	public static JTextField txtUserName;
 	private JPasswordField txtPassword;
-	@SuppressWarnings("unused")
-	private JFrame menu;
 
 	// Button //
 	private JButton btnLogIn;

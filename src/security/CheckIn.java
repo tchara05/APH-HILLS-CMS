@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 
 import extras.DatabaseConnection;
+import extras.ListManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,8 @@ public class CheckIn {
 	public static JTextField txtSpecificKey;
 	public static DatabaseConnection database;
 	public static JComboBox<String> allKeys;
+	public static int isList = 0;
+	public static String inList = "";
 
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
@@ -186,6 +189,13 @@ public class CheckIn {
 		buttonPanel.add(lblimage);
 
 		JButton btnSelect = new JButton("View info of the selected Key");
+		btnSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				inList = (String) allKeys.getSelectedItem();
+				isList = 1;
+				new CheckInSearchInfo().start();
+			}
+		});
 		btnSelect.setBounds(25, 210, 223, 31);
 		listPanel.add(btnSelect);
 		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 14));
@@ -197,6 +207,7 @@ public class CheckIn {
 		JButton btnSearch = new JButton("View info of the given Key");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				isList = 0;
 				new CheckInSearchInfo().start();
 			}
 		});

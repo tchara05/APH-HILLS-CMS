@@ -14,6 +14,7 @@ import javax.swing.border.Border;
 import security.CheckIn;
 import extras.DatabaseConnection;
 import extras.Checker;
+import extras.ListManager;
 import extras.Messages;
 
 public class CheckInSearchInfo extends Thread {
@@ -21,11 +22,23 @@ public class CheckInSearchInfo extends Thread {
 	@SuppressWarnings("static-access")
 	public void run() {
 
+		String keyID;
+		String specificKey;
 		Border compound = null;
 		Border redline = BorderFactory.createLineBorder(Color.red,2);
 		
-		String keyID = CheckIn.txtSearch.getText();
-		String specificKey = CheckIn.txtSpecificKey.getText();
+		if(CheckIn.isList == 0) {
+			keyID = CheckIn.txtSearch.getText();
+			specificKey = CheckIn.txtSpecificKey.getText();
+		}
+		else {
+			String inList = CheckIn.inList;
+			String splits[] = new String[2];
+			splits = ListManager.SplitTwoItem(inList);
+			keyID = splits[0];
+			specificKey = splits[1];
+		}
+		
 		boolean  flag=false;
 		
 		if(Checker.checkNumber(keyID) &&(specificKey.compareTo("A")==0 || specificKey.compareTo("B")==0||specificKey.compareTo("C")==0)){
