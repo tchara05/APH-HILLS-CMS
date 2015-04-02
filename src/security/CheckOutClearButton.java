@@ -15,8 +15,11 @@ public class CheckOutClearButton {
 			
 			CheckOut.txtNotes.setText(value);
 			
-			CheckOut.txtPropertyId.setText(value);
-			CheckOut.txtPropertyId.setBorder(correct);
+			CheckOut.txtPlotName.setText(value);
+			CheckOut.txtPlotName.setBorder(correct);
+			
+			CheckOut.txtPlotNumber.setText(value);
+			CheckOut.txtPlotNumber.setBorder(correct);
 			
 			CheckOut.txtKeyId.setText(value);
 			CheckOut.txtKeyId.setBorder(correct);
@@ -36,7 +39,8 @@ public class CheckOutClearButton {
 			CheckOut.txtNotes.setText(value);
 			CheckOut.txtKeyId.setText(value);
 			
-			CheckOut.txtPropertyId.setText(value);
+			CheckOut.txtPlotName.setText(value);
+			CheckOut.txtPlotNumber.setText(value);
 			
 			
 		}

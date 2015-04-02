@@ -28,12 +28,13 @@ public class CheckOut {
 	public static JTextField txtAvailability;
 	public static JTextField txtKey;
 	public static JTextField txtPerson;
-	public static JTextField txtPropertyId;
+	public static JTextField txtPlotNumber;
 	public static JTextField txtKeyId;
 	public static JComboBox<String> comboBoxKey;
 	public static JTextArea txtDetails;
 	public static JButton btnCheckOut;
 	public static JTextArea txtNotes;
+	public static JTextField txtPlotName;
 
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
@@ -145,14 +146,9 @@ public class CheckOut {
 		lblNotes2.setBounds(36, 67, 259, 14);
 		notesPanel.add(lblNotes2);
 
-		JLabel lblPropertyId = new JLabel("Property ID* :");
-		lblPropertyId.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblPropertyId.setBounds(43, 113, 95, 14);
-		notesPanel.add(lblPropertyId);
-
 		JLabel lblKeyId = new JLabel("Key ID* :");
 		lblKeyId.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblKeyId.setBounds(43, 170, 69, 14);
+		lblKeyId.setBounds(38, 190, 69, 14);
 		notesPanel.add(lblKeyId);
 
 		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
@@ -176,13 +172,13 @@ public class CheckOut {
 		keyPanel.add(txtPerson);
 		txtPerson.setColumns(10);
 
-		txtPropertyId = new JTextField();
-		txtPropertyId.setBounds(141, 105, 211, 30);
-		notesPanel.add(txtPropertyId);
-		txtPropertyId.setColumns(10);
+		txtPlotNumber = new JTextField();
+		txtPlotNumber.setBounds(141, 129, 211, 30);
+		notesPanel.add(txtPlotNumber);
+		txtPlotNumber.setColumns(10);
 
 		txtKeyId = new JTextField();
-		txtKeyId.setBounds(141, 162, 211, 30);
+		txtKeyId.setBounds(141, 182, 211, 30);
 		notesPanel.add(txtKeyId);
 		txtKeyId.setColumns(10);
 
@@ -235,8 +231,23 @@ public class CheckOut {
 		
 		JLabel lblOr = new JLabel("or");
 		lblOr.setFont(new Font("Calibri", Font.ITALIC, 14));
-		lblOr.setBounds(53, 138, 44, 21);
+		lblOr.setBounds(38, 159, 44, 24);
 		notesPanel.add(lblOr);
+		
+		txtPlotName = new JTextField();
+		txtPlotName.setColumns(10);
+		txtPlotName.setBounds(141, 88, 211, 30);
+		notesPanel.add(txtPlotName);
+		
+		JLabel lblPlotName = new JLabel("Plot Name* :");
+		lblPlotName.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblPlotName.setBounds(38, 96, 101, 14);
+		notesPanel.add(lblPlotName);
+		
+		JLabel lblPlotNumber = new JLabel("Plot Number* :");
+		lblPlotNumber.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblPlotNumber.setBounds(38, 137, 93, 14);
+		notesPanel.add(lblPlotNumber);
 
 		btnCheckOut = new JButton("Check out Key");
 		btnCheckOut.setForeground(new Color(0, 0, 128));

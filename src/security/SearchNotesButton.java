@@ -22,10 +22,13 @@ public class SearchNotesButton extends Thread {
 		
 		Border compound = null;
 		Border redline = BorderFactory.createLineBorder(Color.red,2);
-		
+
 		String keyID = CheckOut.txtKeyId.getText();
-		String propertyID = CheckOut.txtPropertyId.getText();
-		
+		String plotName = CheckOut.txtPlotName.getText();
+		String plotNumber = CheckOut.txtPlotNumber.getText();
+		//
+		String propertyID = SecuritySaveButton.getPropId(plotName, Integer.parseInt(plotNumber));
+		//
 				
 		if(keyID.compareTo("") != 0){
 			method = 0;
@@ -50,7 +53,8 @@ public class SearchNotesButton extends Thread {
 			try {
 				if (!checker2(propertyID)){
 					compound = BorderFactory.createCompoundBorder(redline, compound);
-					CheckOut.txtPropertyId.setBorder(compound);
+					CheckOut.txtPlotName.setBorder(compound);
+					CheckOut.txtPlotNumber.setBorder(compound);
 					compound=null;
 					checked=false;
 					Messages.showWarningMessage("Property ID has error input");
@@ -67,7 +71,8 @@ public class SearchNotesButton extends Thread {
 			CheckOut.txtKeyId.setBorder(compound);
 			compound=null;
 			compound = BorderFactory.createCompoundBorder(redline, compound);
-			CheckOut.txtPropertyId.setBorder(compound);
+			CheckOut.txtPlotName.setBorder(compound);
+			CheckOut.txtPlotNumber.setBorder(compound);
 			compound=null;
 			Messages.showWarningMessage("Property ID and Key ID have error input");
 			CheckOutClearButton.start(1);
