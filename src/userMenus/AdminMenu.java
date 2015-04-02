@@ -53,14 +53,14 @@ public class AdminMenu {
 	public static void main(String[] args) {
 
 					@SuppressWarnings("unused")
-					AdminMenu window = new AdminMenu();
+					AdminMenu window = new AdminMenu(0);
 					frame.setVisible(true);
 	}
 
-	public AdminMenu() {
-		initialize();
+	public AdminMenu(int menu) {
+		initialize(menu);
 	}
-	private void initialize() {
+	private void initialize(int menu) {
 		
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -116,19 +116,23 @@ public class AdminMenu {
 	    btnProperty.setBackground(Color.WHITE);
 	    btnProperty.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnProperty.setBounds(43, 197, 127, 31);
-	    panel_2.add(btnProperty);
+	    //panel_2.add(btnProperty);
+	    
+	    
 	    btnContract = new JButton("Contract Menu");
 	    btnContract.setForeground(new Color(0, 0, 128));
 	    btnContract.setBackground(Color.WHITE);
 	    btnContract.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnContract.setBounds(43, 281, 127, 31);
-	    panel_2.add(btnContract);
+	    //panel_2.add(btnContract);
+	    
+	    
 	    btnCustomer = new JButton("Customer Menu");
 	    btnCustomer.setForeground(new Color(0, 0, 128));
 	    btnCustomer.setBackground(Color.WHITE);
 	    btnCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnCustomer.setBounds(43, 239, 127, 31);
-	    panel_2.add(btnCustomer);
+	    //panel_2.add(btnCustomer);
 	    
 	    JLabel imgLabel = new JLabel(image);
 	    imgLabel.setBounds(24, 26, 167, 133);
@@ -149,7 +153,7 @@ public class AdminMenu {
 	    btnSecurity.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnSecurity.setBackground(Color.WHITE);
 	    btnSecurity.setBounds(43, 323, 127, 31);
-	    panel_2.add(btnSecurity);
+	   // panel_2.add(btnSecurity);
 	    
 	    btnAccount = new JButton("Logistic Menu");
 	  
@@ -157,11 +161,31 @@ public class AdminMenu {
 	    btnAccount.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnAccount.setBackground(Color.WHITE);
 	    btnAccount.setBounds(43, 365, 127, 31);
-	    panel_2.add(btnAccount);
-		
 
-		
-	
+	    
+	    
+	    
+		if (menu == 0) {
+
+			panel_2.add(btnProperty);
+			panel_2.add(btnContract);
+			panel_2.add(btnCustomer);
+			panel_2.add(btnSecurity);
+			panel_2.add(btnAccount);
+
+		}
+		else if(menu == 1) {
+			panel.add(AccountantPanel);
+		}
+		else if(menu == 2) {
+			panel.add(SecurityPanel);
+		}
+		else if(menu == 3) {
+			panel_2.add(btnProperty);
+			panel_2.add(btnContract);
+			panel_2.add(btnCustomer);
+		}
+	    
 		addButtonFuctionalities();
 		
 	}
@@ -184,7 +208,6 @@ public class AdminMenu {
 		 		
 		 		panel.removeAll();
 	    		panel.add(ContractPanel);
-	    	
 	    		panel.revalidate();
 	    		frame.repaint();
 	    		

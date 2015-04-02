@@ -30,6 +30,7 @@ public class LogIn {
 	private JPasswordField txtPassword;
 	@SuppressWarnings("unused")
 	private JFrame menu;
+	private static int menuNumber = 3;
 
 	// Button //
 	private JButton btnLogIn;
@@ -141,7 +142,7 @@ public class LogIn {
 						String rights = rst.getString(3);
 						if (rights.equals("a")) {
 							frmAphroditeHill.setVisible(false);
-							new AdminMenu().setVisible(true);
+							new AdminMenu(menuNumber).setVisible(true);
 						} else if (rights.equals("b")) {
 							frmAphroditeHill.setVisible(false);
 							new SecretaryMenu().setVisible(true);

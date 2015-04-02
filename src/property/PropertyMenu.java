@@ -49,7 +49,7 @@ public class PropertyMenu{
 	    
 	    JPanel panel_3 = new JPanel();
 	    panel_3.setBackground(Color.WHITE);
-	    panel_3.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "PROPERTY DEPARTMENT", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+	    panel_3.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "PROPERTY MENU", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 	    panel_3.setBounds(22, 21, 792, 473);
 	    PropertyPanel.add(panel_3);
 	    panel_3.setLayout(null);
