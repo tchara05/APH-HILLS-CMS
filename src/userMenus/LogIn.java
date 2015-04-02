@@ -39,7 +39,7 @@ public class LogIn {
 	public static void main(String[] args) {
 
 		LogIn window = new LogIn();
-		window.frmAphroditeHill.setVisible(true);
+		LogIn.frmAphroditeHill.setVisible(true);
 	}
 
 	public LogIn() {
