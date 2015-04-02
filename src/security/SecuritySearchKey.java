@@ -12,9 +12,9 @@ public class SecuritySearchKey extends Thread {
 
 	public void run() {
 
-		String keyID = Securitymenu.txtSearchKey.getText();
+		String prop = Securitymenu.txtSearchProp.getText();
 		
-		if (keyID==null){
+		if (prop==null){
 			JOptionPane.showMessageDialog(null, "Non KeyID",
 					"Warning Message",
 					JOptionPane.WARNING_MESSAGE);
@@ -28,12 +28,12 @@ public class SecuritySearchKey extends Thread {
 				stment = database.getStatement();
 	
 				// insert query here
-				rst = stment.executeQuery("SELECT * FROM KeyContract WHERE keyID = '"
-						+ keyID +  "'");
+				rst = stment.executeQuery("SELECT * FROM KeyContract, Property WHERE KeyContract.propertyID = Property.plotID AND plotName = '"
+						+ prop +  "'");
 				
 				if(rst.next())
 					Securitymenu.txtShowIfFound.setText("Key Found: " + rst.getString("keyID"));
-				else
+				else 
 					Securitymenu.txtShowIfFound.setText("Key not Found");
 	
 			} catch (SQLException e) {

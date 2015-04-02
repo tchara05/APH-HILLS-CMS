@@ -28,7 +28,7 @@ public class Securitymenu extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static JTextField txtSearchKey;
+	public static JTextField txtSearchProp;
 	public static JComboBox<String> AllContracts;
 	public static JTextField txtShowIfFound;
 	public static DatabaseConnection database;
@@ -101,32 +101,32 @@ public class Securitymenu extends JPanel {
 		panel_2.setForeground(new Color(211, 211, 211));
 		panel_2.setBackground(new Color(173, 216, 230));
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_2.setBounds(46, 49, 417, 382);
+		panel_2.setBounds(46, 49, 412, 382);
 		panel_3.add(panel_2);
 		panel_2.setLayout(null);
 
-		JLabel lblSearch = new JLabel("Search Key Manually:");
-		lblSearch.setBounds(26, 42, 176, 23);
+		JLabel lblSearch = new JLabel("Search Key Manually using Plot Name:");
+		lblSearch.setBounds(26, 42, 325, 23);
 		panel_2.add(lblSearch);
 		lblSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
 
-		txtSearchKey = new JTextField();
-		txtSearchKey.setBounds(26, 76, 166, 32);
-		panel_2.add(txtSearchKey);
-		txtSearchKey.setColumns(10);
+		txtSearchProp = new JTextField();
+		txtSearchProp.setBounds(26, 76, 166, 32);
+		panel_2.add(txtSearchProp);
+		txtSearchProp.setColumns(10);
 
 		JLabel lblSelectKeyFrom = new JLabel("Select Key from List:");
 		lblSelectKeyFrom.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblSelectKeyFrom.setBounds(218, 42, 151, 23);
+		lblSelectKeyFrom.setBounds(26, 155, 151, 23);
 		panel_2.add(lblSelectKeyFrom);
 
 		JButton btnSearchKey = new JButton("Search");
-		btnSearchKey.setBounds(119, 176, 166, 33);
+		btnSearchKey.setBounds(218, 76, 166, 33);
 		panel_2.add(btnSearchKey);
 		btnSearchKey.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		txtShowIfFound = new JTextField();
-		txtShowIfFound.setBounds(119, 220, 166, 32);
+		txtShowIfFound.setBounds(218, 120, 166, 32);
 		panel_2.add(txtShowIfFound);
 		txtShowIfFound.setFont(new Font("Calibri", Font.PLAIN, 14));
 		txtShowIfFound.setEnabled(false);
@@ -135,7 +135,7 @@ public class Securitymenu extends JPanel {
 		txtShowIfFound.setColumns(10);
 
 		AllContracts = new JComboBox<String>();
-		AllContracts.setBounds(219, 76, 166, 32);
+		AllContracts.setBounds(26, 189, 358, 32);
 		panel_2.add(AllContracts);
 
 		JButton btnDeleteContract = new JButton("Delete Selected Key");
@@ -144,7 +144,7 @@ public class Securitymenu extends JPanel {
 		btnDeleteContract.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnEditContract = new JButton("Edit/View Selected Key ");
-		btnEditContract.setBounds(218, 288, 167, 33);
+		btnEditContract.setBounds(217, 288, 167, 33);
 		panel_2.add(btnEditContract);
 		btnEditContract.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnEditContract.addActionListener(new ActionListener() {
@@ -200,10 +200,10 @@ public class Securitymenu extends JPanel {
 
 		try {
 			rset = stment
-					.executeQuery("SELECT keyID FROM KeyContract ORDER BY keyID");
+					.executeQuery("SELECT keyID, plotName FROM KeyContract, Property WHERE Property.plotID = KeyContract.propertyID ORDER BY keyID");
 
 			while (rset.next() && rset.getString(1) != null) {
-				AllContracts.addItem(rset.getString(1));
+				AllContracts.addItem(rset.getString(1) + " " + rset.getString(2));
 			}
 
 		} catch (SQLException e1) {

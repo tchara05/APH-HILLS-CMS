@@ -129,39 +129,3 @@ private boolean checkerexist(String s,String g) throws SQLException {
 
 	}
 }
-
-//private boolean checkerfields(String s,String g) throws SQLException {
-//	
-//	if(Checker.checkNumber(s)){
-//		int id=Integer.parseInt(s);
-//		try{
-//			DatabaseConnection database = new DatabaseConnection();
-//			Statement st = database.getStatement();
-//			ResultSet rst = null;
-//			
-//			
-//			rst = st.executeQuery("SELECT * FROM Service WHERE keyID='" + id+ "' and specificKey='" + g +"'");
-//			//System.out.print("fdsa");
-//			rst.next();
-//			
-//			String l1=rst.getString("checkInTime");
-//			String l2=rst.getString("checkInDate");
-//			System.out.println(l1);
-//			System.out.println(l2);
-//			
-//			if(l1!=null && l2!=null){
-//				return true;
-//			}
-//				
-//		
-//			
-//		} catch (NullPointerException e) {
-//
-//			e.printStackTrace();
-//		}
-//	
-//	}
-//	return false;
-//
-//}
-//}

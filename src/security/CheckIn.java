@@ -231,8 +231,8 @@ public class CheckIn {
 		
 		
 		
-	//	database = new DatabaseConnection();
-	//	setUpContractList();
+		database = new DatabaseConnection();
+		setUpContractList();
 	}
 	
 	
