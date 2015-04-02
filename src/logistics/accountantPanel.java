@@ -40,7 +40,7 @@ public class accountantPanel{
 		
 		accountantMenu = new JPanel();
 		accountantMenu.setBackground(new Color(255, 255, 255));
-		accountantMenu.setBorder(new LineBorder(new Color(0, 0, 128)));
+		accountantMenu.setBorder(new LineBorder(new Color(0, 0, 128), 0));
 		accountantMenu.setLayout(null);
 	    
 	    panel = new JPanel();

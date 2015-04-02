@@ -45,6 +45,7 @@ public class CustomerMenu{
 	private static JButton btnEditCustomer;
 	private static JPanel detailsPanel;
 	private JPanel panel;
+	private JPanel panel_1;
 
 	CustomerMenu() {
 
@@ -52,102 +53,116 @@ public class CustomerMenu{
 		CustomerForm.setVisible(false);
 		CustomerPanel = new JPanel();
 		CustomerPanel.setBackground(new Color(255, 255, 255));
-		CustomerPanel.setBorder(new LineBorder(new Color(0, 0, 128), 3));
+		CustomerPanel.setBorder(new LineBorder(new Color(0, 0, 128), 0));
 		CustomerPanel.setLayout(null);
-		
-		panel = new JPanel();
-		panel.setBackground(new Color(173, 216, 230));
-		panel.setBorder(new LineBorder(new Color(0, 0, 128)));
-		panel.setBounds(127, 55, 584, 161);
-		CustomerPanel.add(panel);
-		panel.setLayout(null);
-		
-				// Labels //
-				JLabel lblAllCustomers = new JLabel("All Customers:");
-				lblAllCustomers.setBounds(42, 9, 93, 16);
-				panel.add(lblAllCustomers);
-				
-						// DropDown List //
-						AllCustomers = new JComboBox<String>();
-						AllCustomers.setBounds(37, 37, 301, 27);
-						panel.add(AllCustomers);
-						ListManager.setUpThreeList(AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
-						btnEditCustomer = new JButton("Edit/View Customer");
-						btnEditCustomer.setBounds(379, 105, 149, 33);
-						panel.add(btnEditCustomer);
-						btnEditCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
-						btnDeleteCustomer = new JButton("Delete Customer");
-						btnDeleteCustomer.setBounds(379, 70, 149, 33);
-						panel.add(btnDeleteCustomer);
-						btnDeleteCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
-						
-								// Buttons //
-								btnAddNewCustomer = new JButton("Add New Customer");
-								btnAddNewCustomer.setBounds(379, 34, 149, 33);
-								panel.add(btnAddNewCustomer);
-								btnAddNewCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
-																
-																		detailsPanel = new JPanel();
-																		detailsPanel.setBounds(130, 263, 584, 188);
-																		CustomerPanel.add(detailsPanel);
-																		detailsPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
-																		JLabel lblNewLabel = new JLabel("Primary Email:");
-																		lblNewLabel.setBounds(313, 72, 89, 16);
-																		detailsPanel.setBackground(new Color(173, 216, 230));
-																		detailsPanel.setLayout(null);
-																		detailsPanel.add(lblNewLabel);
-																		
-																				// Text Box //
-																				PrimaryMail = new JTextField();
-																				PrimaryMail.setBounds(414, 66, 164, 28);
-																				detailsPanel.add(PrimaryMail);
-																				PrimaryMail.setEditable(false);
-																				PrimaryMail.setColumns(15);
-																				JLabel lblContactPhone = new JLabel("Contact Phone:");
-																				lblContactPhone.setBounds(313, 100, 95, 16);
-																				detailsPanel.add(lblContactPhone);
-																				
-																						contactNumber = new JTextField();
-																						contactNumber.setBounds(414, 94, 164, 28);
-																						detailsPanel.add(contactNumber);
-																						contactNumber.setEditable(false);
-																						contactNumber.setColumns(10);
-																						
-																								MobilePhone = new JTextField();
-																								MobilePhone.setBounds(114, 66, 181, 28);
-																								detailsPanel.add(MobilePhone);
-																								MobilePhone.setEditable(false);
-																								MobilePhone.setColumns(15);
-																								JLabel lblMobilePhone = new JLabel("Mobile Phone:");
-																								lblMobilePhone.setBounds(14, 72, 88, 16);
-																								detailsPanel.add(lblMobilePhone);
-																								JLabel lblNewLabel_1 = new JLabel("Customer ID:");
-																								lblNewLabel_1.setBounds(146, 32, 83, 16);
-																								detailsPanel.add(lblNewLabel_1);
-																								
-																										CustomerID = new JTextField();
-																										CustomerID.setBounds(241, 26, 161, 28);
-																										detailsPanel.add(CustomerID);
-																										CustomerID.setEditable(false);
-																										CustomerID.setColumns(10);
-																										JLabel lblFirstName = new JLabel("First Name:");
-																										lblFirstName.setBounds(14, 100, 72, 16);
-																										detailsPanel.add(lblFirstName);
-																										
-																												FirstName = new JTextField();
-																												FirstName.setBounds(114, 94, 181, 28);
-																												detailsPanel.add(FirstName);
-																												FirstName.setEditable(false);
-																												FirstName.setColumns(15);
-																												JLabel lblLastname = new JLabel("Last Name:");
-																												lblLastname.setBounds(14, 128, 70, 16);
-																												detailsPanel.add(lblLastname);
-																												
-																														LastName = new JTextField();
-																														LastName.setBounds(114, 122, 181, 28);
-																														detailsPanel.add(LastName);
-																														LastName.setEditable(false);
-																														LastName.setColumns(15);
+																														
+																														panel_1 = new JPanel();
+																														panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "CUSTOMER MENU", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+																														panel_1.setBackground(Color.WHITE);
+																														panel_1.setBounds(22, 21, 792, 473);
+																														CustomerPanel.add(panel_1);
+																														panel_1.setLayout(null);
+																														
+																																detailsPanel = new JPanel();
+																																detailsPanel.setBounds(65, 248, 673, 183);
+																																panel_1.add(detailsPanel);
+																																detailsPanel.setBorder(new LineBorder(new Color(0, 0, 128)));
+																																JLabel lblNewLabel = new JLabel("Primary Email:");
+																																lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																lblNewLabel.setBounds(351, 61, 91, 16);
+																																detailsPanel.setBackground(new Color(173, 216, 230));
+																																detailsPanel.setLayout(null);
+																																detailsPanel.add(lblNewLabel);
+																																
+																																		// Text Box //
+																																		PrimaryMail = new JTextField();
+																																		PrimaryMail.setBounds(461, 49, 164, 28);
+																																		detailsPanel.add(PrimaryMail);
+																																		PrimaryMail.setEditable(false);
+																																		PrimaryMail.setColumns(15);
+																																		JLabel lblContactPhone = new JLabel("Contact Phone:");
+																																		lblContactPhone.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																		lblContactPhone.setBounds(351, 100, 95, 16);
+																																		detailsPanel.add(lblContactPhone);
+																																		
+																																				contactNumber = new JTextField();
+																																				contactNumber.setBounds(461, 94, 164, 28);
+																																				detailsPanel.add(contactNumber);
+																																				contactNumber.setEditable(false);
+																																				contactNumber.setColumns(10);
+																																				
+																																						MobilePhone = new JTextField();
+																																						MobilePhone.setBounds(144, 55, 181, 28);
+																																						detailsPanel.add(MobilePhone);
+																																						MobilePhone.setEditable(false);
+																																						MobilePhone.setColumns(15);
+																																						JLabel lblMobilePhone = new JLabel("Mobile Phone:");
+																																						lblMobilePhone.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																						lblMobilePhone.setBounds(44, 61, 90, 16);
+																																						detailsPanel.add(lblMobilePhone);
+																																						JLabel lblNewLabel_1 = new JLabel("Customer ID:");
+																																						lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																						lblNewLabel_1.setBounds(44, 17, 83, 16);
+																																						detailsPanel.add(lblNewLabel_1);
+																																						
+																																								CustomerID = new JTextField();
+																																								CustomerID.setBounds(144, 11, 181, 28);
+																																								detailsPanel.add(CustomerID);
+																																								CustomerID.setEditable(false);
+																																								CustomerID.setColumns(10);
+																																								JLabel lblFirstName = new JLabel("First Name:");
+																																								lblFirstName.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																								lblFirstName.setBounds(44, 100, 90, 16);
+																																								detailsPanel.add(lblFirstName);
+																																								
+																																										FirstName = new JTextField();
+																																										FirstName.setBounds(144, 94, 181, 28);
+																																										detailsPanel.add(FirstName);
+																																										FirstName.setEditable(false);
+																																										FirstName.setColumns(15);
+																																										JLabel lblLastname = new JLabel("Last Name:");
+																																										lblLastname.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																										lblLastname.setBounds(44, 139, 90, 16);
+																																										detailsPanel.add(lblLastname);
+																																										
+																																												LastName = new JTextField();
+																																												LastName.setBounds(144, 133, 181, 28);
+																																												detailsPanel.add(LastName);
+																																												LastName.setEditable(false);
+																																												LastName.setColumns(15);
+																																												
+																																												panel = new JPanel();
+																																												panel.setBounds(65, 48, 670, 162);
+																																												panel_1.add(panel);
+																																												panel.setBackground(new Color(173, 216, 230));
+																																												panel.setBorder(new LineBorder(new Color(0, 0, 128)));
+																																												panel.setLayout(null);
+																																												
+																																														// Labels //
+																																														JLabel lblAllCustomers = new JLabel("All Customers:");
+																																														lblAllCustomers.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																														lblAllCustomers.setBounds(49, 41, 93, 16);
+																																														panel.add(lblAllCustomers);
+																																														
+																																																// DropDown List //
+																																																AllCustomers = new JComboBox<String>();
+																																																AllCustomers.setBounds(49, 68, 301, 27);
+																																																panel.add(AllCustomers);
+																																																ListManager.setUpThreeList(AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
+																																																btnEditCustomer = new JButton("Edit/View Customer");
+																																																btnEditCustomer.setBounds(429, 109, 149, 33);
+																																																panel.add(btnEditCustomer);
+																																																btnEditCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																																btnDeleteCustomer = new JButton("Delete Customer");
+																																																btnDeleteCustomer.setBounds(429, 65, 149, 33);
+																																																panel.add(btnDeleteCustomer);
+																																																btnDeleteCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
+																																																
+																																																		// Buttons //
+																																																		btnAddNewCustomer = new JButton("Add New Customer");
+																																																		btnAddNewCustomer.setBounds(429, 21, 149, 33);
+																																																		panel.add(btnAddNewCustomer);
+																																																		btnAddNewCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
 		addButtonsFuctionalities();
 	}
 
