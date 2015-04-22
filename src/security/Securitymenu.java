@@ -176,6 +176,7 @@ public class Securitymenu extends JPanel {
 		
 		btnEditContract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new SecurityEditButton().start();
 			}
 		});
 		btnDeleteContract.addActionListener(new ActionListener() {
@@ -201,6 +202,7 @@ public class Securitymenu extends JPanel {
 		});
 		btnAddContract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				securityForm.editor = 0;
 				securityForm.frame.setVisible(true);
 			}
 		});

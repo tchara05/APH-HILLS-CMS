@@ -11,77 +11,80 @@ public class SecuritySaveButton extends Thread {
 
 	public void run() {
 
-		DatabaseConnection database = new DatabaseConnection();
-		Statement stment = null;
+		if (SecurityForm.editor == 1) {
 
-		boolean checked = true;
-		boolean exist = false;
-		int flag = 1;
-		String txtpropertyID = null;
-		String query = null;
-		// int txtpropertyID = 0;
+		} else {
+			DatabaseConnection database = new DatabaseConnection();
+			Statement stment = null;
 
-		String txtNotes = SecurityForm.txtAreaNotes.getText();
+			boolean checked = true;
+			boolean exist = false;
+			int flag = 1;
+			String txtpropertyID = null;
+			String query = null;
+			// int txtpropertyID = 0;
 
-		String txtplotName = SecurityForm.txtPlotName.getText();
-		String plotNumber = SecurityForm.txtPlotNumber.getText();
-		int txtplotNumber = Integer.parseInt(plotNumber);
+			String txtNotes = SecurityForm.txtAreaNotes.getText();
 
-		txtpropertyID = getPropId(txtplotName, txtplotNumber);
+			String txtplotName = SecurityForm.txtPlotName.getText();
+			String plotNumber = SecurityForm.txtPlotNumber.getText();
+			int txtplotNumber = Integer.parseInt(plotNumber);
 
-		try {
-			checked = checker(txtpropertyID);
-			exist = CheckOutButton.checker(txtpropertyID, flag);
-		} catch (SQLException e1) {
+			txtpropertyID = getPropId(txtplotName, txtplotNumber);
 
-			e1.printStackTrace();
-		}
+			try {
+				checked = checker(txtpropertyID);
+				exist = CheckOutButton.checker(txtpropertyID, flag);
+			} catch (SQLException e1) {
 
-		try {
-
-			stment = database.getStatement();
-
-			if (checked && !exist) {
-				int response = JOptionPane
-						.showConfirmDialog(null,
-								"Do you want to save changes?", "Confirm",
-								JOptionPane.YES_NO_OPTION,
-								JOptionPane.QUESTION_MESSAGE);
-
-				if (response == JOptionPane.YES_OPTION) {
-
-					query = "";
-
-					// insert query here
-					query = "INSERT INTO KEYCONTRACT VALUES ('" + txtpropertyID
-							+ "','" + txtNotes + "')";
-
-					stment.executeUpdate(query);
-
-					SecurityClearButton.start();
-
-					JOptionPane.showMessageDialog(null, "Key Contract Added",
-							"Information Message",
-							JOptionPane.INFORMATION_MESSAGE);
-					SecurityClearButton.start();
-					Securitymenu.setUpContractList();
-					// SecurityForm.setVisible(false);
-
-				}
-
-			} else if (exist) {
-				JOptionPane.showMessageDialog(null, "Key is already added",
-						"Warning Message", JOptionPane.WARNING_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null,
-						"Property ID is Emprty or not exist",
-						"Warning Message", JOptionPane.WARNING_MESSAGE);
+				e1.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NullPointerException e) {
 
-			e.printStackTrace();
+			try {
+
+				stment = database.getStatement();
+
+				if (checked && !exist) {
+					int response = JOptionPane.showConfirmDialog(null,
+							"Do you want to save changes?", "Confirm",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE);
+
+					if (response == JOptionPane.YES_OPTION) {
+
+						query = "";
+
+						// insert query here
+						query = "INSERT INTO KEYCONTRACT VALUES ('"
+								+ txtpropertyID + "','" + txtNotes + "')";
+
+						stment.executeUpdate(query);
+
+						SecurityClearButton.start();
+
+						JOptionPane.showMessageDialog(null,
+								"Key Contract Added", "Information Message",
+								JOptionPane.INFORMATION_MESSAGE);
+						SecurityClearButton.start();
+						Securitymenu.setUpContractList();
+						// SecurityForm.setVisible(false);
+
+					}
+
+				} else if (exist) {
+					JOptionPane.showMessageDialog(null, "Key is already added",
+							"Warning Message", JOptionPane.WARNING_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Property ID is Emprty or not exist",
+							"Warning Message", JOptionPane.WARNING_MESSAGE);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -119,7 +122,7 @@ public class SecuritySaveButton extends Thread {
 		stment = database.getStatement();
 		String query = null;
 		ResultSet rset = null;
-		String txtpropertyID  = "0";
+		String txtpropertyID = "0";
 
 		query = "SELECT * FROM Property WHERE plotName = '" + txtplotName
 				+ "' AND plotNumber = '" + txtplotNumber + "'";
