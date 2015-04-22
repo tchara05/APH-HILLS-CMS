@@ -132,8 +132,8 @@ public class CheckOutButton extends Thread {
 					JOptionPane.showMessageDialog(null, "Key Checked Out",
 							"Information Message", JOptionPane.INFORMATION_MESSAGE);
 	
-					//CheckOut.setVisible(false);
-					// SecurityMenu.UpdateContractList(propertyID);
+					CheckIn.allKeys.removeAllItems();
+					CheckIn.setUpContractList();
 				}
 	
 			} catch (SQLException e) {
@@ -206,33 +206,6 @@ public class CheckOutButton extends Thread {
 		return false;
 
 	}
-	
-	
-//	public boolean cheked3(String s,String p) throws SQLException {
-//		
-//		
-//		int id=Integer.parseInt(s);
-//		try{
-//			DatabaseConnection database = new DatabaseConnection();
-//			Statement st = database.getStatement();
-//			ResultSet rst = null;
-//			
-//			rst = st.executeQuery("SELECT * FROM Service WHERE keyID= '" + id+"' and specificKey= '"+ p +"'");
-//			
-//				if (!rst.next()){
-//					return true;
-//				}
-//		
-//			
-//		} catch (NullPointerException e) {
-//
-//			e.printStackTrace();
-//		}
-//	
-//	
-//	return false;
-//
-//}
 	
 	
 }

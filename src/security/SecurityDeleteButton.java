@@ -20,23 +20,42 @@ public class SecurityDeleteButton {
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		
 		if (response == JOptionPane.YES_OPTION) {
-
+			
 			String keyID = "";
 			
-			String txtPlotName = Securitymenu.txtPlotName.getText();
-			String txtPlotNumber = Securitymenu.txtPlotNumber.getText();
-			
-			keyID = SecuritySaveButton.getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
-			
-			String keyID_fromList = "";
-			keyID_fromList = (String)Securitymenu.getSelectedContract();
+			if(Securitymenu.radioList.isSelected() == true) {
+				
+				String con = "";
+				con = (String)Securitymenu.getSelectedContract();
+				
+				String[] contract = new String[3];
+				contract = extras.ListManager.SplitThreeItem(con);
+				
+				keyID =contract[2];
 
-			if ((!keyID.equals("")) || (!keyID_fromList.equals(""))) {
-		
-				if(keyID.equals("")) {
-					keyID = keyID_fromList.substring(0, keyID_fromList.length());
+			}
+			else {
+				
+				String propId = "";
+				String txtPlotName = Securitymenu.txtPlotName.getText();
+				String txtPlotNumber = Securitymenu.txtPlotNumber.getText();
+				propId = SecuritySaveButton.getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
+				
+				ResultSet rst = null;
+				try {
+					rst = stment.executeQuery("SELECT * FROM KeyContract WHERE propertyID = '"
+							+ propId +  "'");
+					if(rst.next())
+						keyID = rst.getString("keyID");
+					else 
+						keyID = "";
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-				System.out.println(keyID);
+				
+			}
+			
+			if (!keyID.equals("")) {
 				
 				String queryChecker = "";
 				queryChecker = "SELECT * FROM KeyContract WHERE keyID = '"
@@ -46,7 +65,8 @@ public class SecurityDeleteButton {
 				query = "DELETE KeyContract WHERE keyID = '" + keyID + "'";
 
 				try {
-					ResultSet rst = stment.executeQuery(queryChecker);
+					ResultSet rst = null;
+					rst = stment.executeQuery(queryChecker);
 					if(!rst.next())
 						JOptionPane.showMessageDialog(null, "Key not found",
 								"Warning message", JOptionPane.WARNING_MESSAGE);
@@ -54,6 +74,7 @@ public class SecurityDeleteButton {
 						stment.executeUpdate(query);
 						JOptionPane.showMessageDialog(null, "Key Contract Deleted",
 								"Information Message", JOptionPane.INFORMATION_MESSAGE);
+						///////////////////////////////////////////
 						Securitymenu.AllContracts.removeAllItems();
 						Securitymenu.setUpContractList();
 					}
