@@ -17,20 +17,32 @@ public class SecuritySaveButton extends Thread {
 			DatabaseConnection database = new DatabaseConnection();
 			Statement stment = null;
 
+			int check = 0;
 			boolean checked = true;
 			boolean exist = false;
 			int flag = 1;
 			String txtpropertyID = null;
 			String query = null;
-			// int txtpropertyID = 0;
 
 			String txtNotes = SecurityForm.txtAreaNotes.getText();
+			String txtPlotName = SecurityForm.txtPlotName.getText();
+			String txtPlotNumber = SecurityForm.txtPlotNumber.getText();
+			
+			if(!Checker.checkEmpty(txtPlotName) || !Checker.checkEmpty(txtPlotNumber))
+				check = 1;
+			
+			if(!Checker.checkString(txtPlotName) || !Checker.checkNumber(txtPlotNumber))
+				check = 1;
+			
+			if(check == 1) {
+				Checker.showMessage();
+				check = 0;
+				return;
+			}
+			
+			int txtplotNumber = Integer.parseInt(txtPlotNumber);
 
-			String txtplotName = SecurityForm.txtPlotName.getText();
-			String plotNumber = SecurityForm.txtPlotNumber.getText();
-			int txtplotNumber = Integer.parseInt(plotNumber);
-
-			txtpropertyID = getPropId(txtplotName, txtplotNumber);
+			txtpropertyID = getPropId(txtPlotName, txtplotNumber);
 
 			try {
 				checked = checker(txtpropertyID);
@@ -72,11 +84,11 @@ public class SecuritySaveButton extends Thread {
 					}
 
 				} else if (exist) {
-					JOptionPane.showMessageDialog(null, "Key is already added",
+					JOptionPane.showMessageDialog(null, "Key Contract is already Added",
 							"Warning Message", JOptionPane.WARNING_MESSAGE);
 				} else {
 					JOptionPane.showMessageDialog(null,
-							"Property ID is Emprty or not exist",
+							"Property does not Exist!",
 							"Warning Message", JOptionPane.WARNING_MESSAGE);
 				}
 			} catch (SQLException e) {

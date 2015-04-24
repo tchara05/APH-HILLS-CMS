@@ -6,19 +6,33 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import extras.Checker;
 import extras.DatabaseConnection;
 
 public class SecuritySearchKey extends Thread {
 
 	public void run() {
 
+		int check = 0;
 		String txtPlotName = Securitymenu.txtPlotName.getText();
 		String txtPlotNumber = Securitymenu.txtPlotNumber.getText();
+		
+		if(!Checker.checkEmpty(txtPlotName) || !Checker.checkEmpty(txtPlotNumber))
+			check = 1;
+		
+		if(!Checker.checkString(txtPlotName) || !Checker.checkNumber(txtPlotNumber))
+			check = 1;
+		
+		if(check == 1) {
+			Checker.showMessage();
+			check = 0;
+			return;
+		}
 		
 		String prop = SecuritySaveButton.getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
 		
 		if (prop==null){
-			JOptionPane.showMessageDialog(null, "Non KeyID",
+			JOptionPane.showMessageDialog(null, "Key Contract not Found!",
 					"Warning Message",
 					JOptionPane.WARNING_MESSAGE);
 		}else{

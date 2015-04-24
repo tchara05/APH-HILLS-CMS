@@ -6,12 +6,14 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import extras.Checker;
 import extras.DatabaseConnection;
 
 public class SecurityDeleteButton {
 
 	public static void start() {
 
+		int check = 0;
 		DatabaseConnection database = new DatabaseConnection();
 		Statement stment = database.getStatement();
 
@@ -36,9 +38,22 @@ public class SecurityDeleteButton {
 			}
 			else {
 				
-				String propId = "";
 				String txtPlotName = Securitymenu.txtPlotName.getText();
 				String txtPlotNumber = Securitymenu.txtPlotNumber.getText();
+				
+				if(!Checker.checkEmpty(txtPlotName) || !Checker.checkEmpty(txtPlotNumber))
+					check = 1;
+				
+				if(!Checker.checkString(txtPlotName) || !Checker.checkNumber(txtPlotNumber))
+					check = 1;
+				
+				if(check == 1) {
+					Checker.showMessage();
+					check = 0;
+					return;
+				}
+				
+				String propId = "";
 				propId = SecuritySaveButton.getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
 				
 				ResultSet rst = null;
@@ -68,25 +83,28 @@ public class SecurityDeleteButton {
 					ResultSet rst = null;
 					rst = stment.executeQuery(queryChecker);
 					if(!rst.next())
-						JOptionPane.showMessageDialog(null, "Key not found",
+						JOptionPane.showMessageDialog(null, "Key Contract not Found!",
 								"Warning message", JOptionPane.WARNING_MESSAGE);
 					else {
 						stment.executeUpdate(query);
 						JOptionPane.showMessageDialog(null, "Key Contract Deleted",
 								"Information Message", JOptionPane.INFORMATION_MESSAGE);
-						///////////////////////////////////////////
+						
 						Securitymenu.AllContracts.removeAllItems();
 						Securitymenu.setUpContractList();
 					}
+					
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 
 			} else {
 				JOptionPane.showMessageDialog(null,
-						"No Key Contract is Selected", "Information Message",
+						"Key Contract not Found!", "Information Message",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
+			Securitymenu.txtPlotName.setText("");
+			Securitymenu.txtPlotNumber.setText("");
 		}
 	}
 }

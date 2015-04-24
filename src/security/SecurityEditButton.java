@@ -6,6 +6,7 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import extras.Checker;
 import extras.DatabaseConnection;
 
 public class SecurityEditButton {
@@ -18,6 +19,7 @@ public class SecurityEditButton {
 		String keyID = "";
 		String txtPlotNumber = "";
 		String txtPlotName = "";
+		int check = 0;
 
 		if (Securitymenu.radioList.isSelected() == true) {
 
@@ -29,9 +31,22 @@ public class SecurityEditButton {
 
 		} else {
 
-			String propId = "";
 			txtPlotName = Securitymenu.txtPlotName.getText();
 			txtPlotNumber = Securitymenu.txtPlotNumber.getText();
+			
+			if(!Checker.checkEmpty(txtPlotName) || !Checker.checkEmpty(txtPlotNumber))
+				check = 1;
+			
+			if(!Checker.checkString(txtPlotName) || !Checker.checkNumber(txtPlotNumber))
+				check = 1;
+			
+			if(check == 1) {
+				Checker.showMessage();
+				check = 0;
+				return;
+			}
+			
+			String propId = "";
 			propId = SecuritySaveButton.getPropId(txtPlotName,
 					Integer.parseInt(txtPlotNumber));
 
@@ -97,6 +112,9 @@ public class SecurityEditButton {
 			JOptionPane.showMessageDialog(null, "No Key Contract is Found",
 					"Information Message", JOptionPane.INFORMATION_MESSAGE);
 		}
+		
+		Securitymenu.txtPlotName.setText("");
+		Securitymenu.txtPlotNumber.setText("");
 
 	}
 
