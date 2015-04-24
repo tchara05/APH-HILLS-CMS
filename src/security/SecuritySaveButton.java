@@ -35,6 +35,7 @@ public class SecuritySaveButton extends Thread {
 				e.printStackTrace();
 			}
 			stment = database.getStatement();
+			SecurityEditButton.editor = 0;
 			
 		} else {
 

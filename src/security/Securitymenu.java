@@ -220,7 +220,8 @@ public class Securitymenu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Securitymenu.txtPlotName.setText("");
 				Securitymenu.txtPlotNumber.setText("");
-				new SecurityForm(0).frame.setVisible(true);
+				new SecurityForm(0);
+				SecurityForm.frame.setVisible(true);
 			}
 		});
 
