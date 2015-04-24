@@ -1,6 +1,7 @@
 package security;
 
 import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -9,10 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
 import java.awt.Font;
 
 import extras.DatabaseConnection;
@@ -23,6 +27,8 @@ import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 
 public class CheckIn {
@@ -250,15 +256,21 @@ public class CheckIn {
 	public static void setUpContractList() {
 
 		
+
 		Statement stment = database.getStatement();
-
+		
 		ResultSet rset = null;
-
+		ArrayList<String> List =new ArrayList<String>();
 		try {
 			rset = stment.executeQuery("SELECT keyID, specificKey FROM Service WHERE checkInTime = 'Key is not checked in yet' ORDER BY keyID");
+			
+			while (rset.next() && (rset.getString(1) != null) ) {
+				
+				String s=rset.getString(1);
+				String s1=rset.getString(2);
 
-			while (rset.next() && rset.getString(1) != null) {
-				allKeys.addItem(rset.getString(1) +" "+ rset.getString(2));
+				List.add(s);
+				List.add(s1);
 			}
 			
 
@@ -266,6 +278,38 @@ public class CheckIn {
 			System.out.println("Can execute the query in setUpContractList");
 			e1.printStackTrace();
 		}
+		
+		
+		rset = null; 
+		try {
+				rset = stment.executeQuery("SELECT keyID,plotName ,plotNumber FROM KeyContract K,Property P WhERE k.propertyID=P.plotID ");	
+				while (rset.next() && (rset.getString(1) != null) ) {
+					String s=rset.getString(1);
+					String s1=rset.getString(2);
+					String s3=rset.getString(3);			
+					for (int i=0; i<List.size(); i=i+2){
+
+						String word=List.get(i).toString();
+						String word1=List.get(i+1).toString();
+						
+						if( word.equals(s)){
+							allKeys.addItem(word+" "+word1+" "+" | "+s1 +" "+s3);
+						}
+							
+					}
+		
+				}
+				
+				
+				
+			
+			
+		} catch (SQLException e1) {
+			System.out.println("Can execute the query in setUpContractList");
+			e1.printStackTrace();
+		}
+		
+		
 		
 	}
 }
