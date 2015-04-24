@@ -154,7 +154,7 @@ public class ContractMenu extends JPanel {
 	}
 	
 	
-	public boolean existContract() {
+ public boolean existContract() {
 		
 		String plot = (String)ContractMenu.AllProperties.getSelectedItem();
 		String Plot[]=ListManager.SplitTwoItem(plot);

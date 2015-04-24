@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import extras.Checker;
 
-public class UnitTesting {
+public class ChecketTest {
 
 	@Test
 	public void checkStringTest() {
@@ -53,6 +53,8 @@ public class UnitTesting {
 		assertTrue("[ OK ]",Checker.removeStringID(goodString).equals(result));
 	}
 	
+	
+	
 
-
+	
 }

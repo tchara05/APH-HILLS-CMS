@@ -33,6 +33,8 @@ public class ListManager {
 		} catch (Exception e) {
 			System.out.println("Empty List");
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 
 	}
@@ -121,6 +123,8 @@ public class ListManager {
 		} catch (Exception e) {
 			System.out.println("Empty List");
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 	}
 

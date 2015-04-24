@@ -55,9 +55,21 @@ public class DatabaseConnection {
 		return conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 	}
 
+	public void closeDatabaseConnection(){
+		try {
+			statement.close();
+			conn.close();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void main(String args[]) throws Throwable {
 		new DatabaseConnection();
 	}
+	
 	
 
 }

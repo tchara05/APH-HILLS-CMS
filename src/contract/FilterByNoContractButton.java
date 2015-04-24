@@ -7,8 +7,6 @@ public class FilterByNoContractButton extends Thread {
 	
 	public void run(){
 		
-		
-
 		ContractMenu.AllProperties.removeAllItems();
 		ListManager.setUpTwoColumnsList(ContractMenu.AllProperties, Query.PLOTS_WITH_NO_CONTRACTS);
 	}

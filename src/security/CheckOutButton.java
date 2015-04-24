@@ -135,6 +135,7 @@ public class CheckOutButton extends Thread {
 	
 					CheckIn.allKeys.removeAllItems();
 					CheckIn.setUpContractList();
+
 				}
 	
 			} catch (SQLException e) {
