@@ -62,14 +62,13 @@ public class CheckOutButton extends Thread {
 					//System.out.print(f2);
 					
 					if (f1){
-						Messages.showWarningMessage("Can not Ckeck out this Key Not checkIn yet ");
+						Messages.showWarningMessage("This key is not Available!");
 						flag=false;	
 						CheckOutClearButton.start(3);
 					}
 					
 				}
 			} catch (SQLException e1) {
-				System.out.print("2222");
 			}
 		}
 		else{
@@ -97,7 +96,7 @@ public class CheckOutButton extends Thread {
 		}
 		
 		if(!flag){
-			Messages.showWarningMessage("Erros input ");
+			Checker.showMessage();
 			CheckOutClearButton.start(3);
 			
 		}
