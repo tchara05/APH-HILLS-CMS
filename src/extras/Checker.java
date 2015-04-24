@@ -1,5 +1,7 @@
 package extras;
 
+import javax.swing.JOptionPane;
+
 public class Checker {
 
 	public static boolean checkString(String t) {
@@ -25,6 +27,13 @@ public class Checker {
 
 	}
 
+	
+	public static boolean checkEmpty(String text){
+		if(text.equals(" "))
+			return false;
+		return true;
+	}
+	
 	public static boolean checkEmailAddress(String s) {
 		String epatern = "^.+@.+";
 		java.util.regex.Pattern p = java.util.regex.Pattern.compile(epatern);
@@ -78,6 +87,11 @@ public class Checker {
 
 		return s.substring(i + 1);
 
+	}
+	
+	public static void showMessage() {
+		JOptionPane.showMessageDialog(null, "Input Error! Please check the Fields!",
+				"Information Message", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 

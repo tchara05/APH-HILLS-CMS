@@ -132,23 +132,12 @@ public class CheckOut {
 		JLabel lblNotes = new JLabel(
 				"Please, check any pop up Notes given by the customer:");
 		lblNotes.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblNotes.setBounds(28, 25, 338, 14);
+		lblNotes.setBounds(23, 11, 338, 28);
 		notesPanel.add(lblNotes);
-
-		JLabel lblNotes1 = new JLabel(
-				"Search pop up Notes using one of the two search methdos");
-		lblNotes1.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNotes1.setBounds(38, 50, 341, 14);
-		notesPanel.add(lblNotes1);
-
-		JLabel lblNotes2 = new JLabel(" as shown below:");
-		lblNotes2.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblNotes2.setBounds(36, 67, 259, 14);
-		notesPanel.add(lblNotes2);
 
 		JLabel lblKeyId = new JLabel("Key ID* :");
 		lblKeyId.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblKeyId.setBounds(38, 190, 69, 14);
+		lblKeyId.setBounds(43, 182, 69, 14);
 		notesPanel.add(lblKeyId);
 
 		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
@@ -173,12 +162,12 @@ public class CheckOut {
 		txtPerson.setColumns(10);
 
 		txtPlotNumber = new JTextField();
-		txtPlotNumber.setBounds(141, 129, 211, 30);
+		txtPlotNumber.setBounds(141, 79, 211, 30);
 		notesPanel.add(txtPlotNumber);
 		txtPlotNumber.setColumns(10);
 
 		txtKeyId = new JTextField();
-		txtKeyId.setBounds(141, 182, 211, 30);
+		txtKeyId.setBounds(141, 174, 211, 30);
 		notesPanel.add(txtKeyId);
 		txtKeyId.setColumns(10);
 
@@ -222,32 +211,44 @@ public class CheckOut {
 		JButton btnSearchNotes = new JButton("Search pop up Notes");
 		btnSearchNotes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SearchNotesButton.searchMethod = 0;
 				new SearchNotesButton().start();
 			}
 		});
 		btnSearchNotes.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnSearchNotes.setBounds(141, 217, 211, 30);
+		btnSearchNotes.setBounds(141, 120, 211, 30);
 		notesPanel.add(btnSearchNotes);
 		
 		JLabel lblOr = new JLabel("or");
 		lblOr.setFont(new Font("Calibri", Font.ITALIC, 14));
-		lblOr.setBounds(38, 159, 44, 24);
+		lblOr.setBounds(53, 147, 44, 24);
 		notesPanel.add(lblOr);
 		
 		txtPlotName = new JTextField();
 		txtPlotName.setColumns(10);
-		txtPlotName.setBounds(141, 88, 211, 30);
+		txtPlotName.setBounds(141, 38, 211, 30);
 		notesPanel.add(txtPlotName);
 		
 		JLabel lblPlotName = new JLabel("Plot Name* :");
 		lblPlotName.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblPlotName.setBounds(38, 96, 101, 14);
+		lblPlotName.setBounds(38, 54, 101, 14);
 		notesPanel.add(lblPlotName);
 		
 		JLabel lblPlotNumber = new JLabel("Plot Number* :");
 		lblPlotNumber.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblPlotNumber.setBounds(38, 137, 93, 14);
+		lblPlotNumber.setBounds(38, 87, 93, 14);
 		notesPanel.add(lblPlotNumber);
+		
+		JButton btnNewButton_1 = new JButton("Search pop up Notes");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SearchNotesButton.searchMethod = 1;
+				new SearchNotesButton().start();
+			}
+		});
+		btnNewButton_1.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(141, 215, 211, 32);
+		notesPanel.add(btnNewButton_1);
 
 		btnCheckOut = new JButton("Check out Key");
 		btnCheckOut.setForeground(new Color(0, 0, 128));

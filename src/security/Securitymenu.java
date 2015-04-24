@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -21,6 +22,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import java.awt.SystemColor;
+import javax.swing.JRadioButton;
 
 public class Securitymenu extends JPanel {
 
@@ -35,11 +37,12 @@ public class Securitymenu extends JPanel {
 	@SuppressWarnings("unused")
 	private static CheckIn checkIn;
 	private static CheckOut checkOut;
-	private static SecurityForm securityForm;
 	@SuppressWarnings("unused")
 	private static SecuritySearchKey search;
 	private static JPanel panel;
 	public static  JTextField txtPlotNumber;
+	public static JRadioButton radioList;
+	public static JRadioButton radioText;
 
 	public Securitymenu() {
 
@@ -60,7 +63,6 @@ public class Securitymenu extends JPanel {
 		database = new DatabaseConnection();
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		securityForm = new SecurityForm();
 		panel.setLayout(null);
 
 		@SuppressWarnings("unused")
@@ -84,7 +86,7 @@ public class Securitymenu extends JPanel {
 		panel_1.setLayout(null);
 
 		JButton btnAddContract = new JButton("Add New Key Contract");
-		btnAddContract.setBounds(30, 288, 184, 33);
+		btnAddContract.setBounds(30, 323, 184, 33);
 		panel_1.add(btnAddContract);
 		btnAddContract.setFont(new Font("Calibri", Font.PLAIN, 14));
 
@@ -106,28 +108,28 @@ public class Securitymenu extends JPanel {
 		panel_3.add(panel_2);
 		panel_2.setLayout(null);
 
-		JLabel lblSearch = new JLabel("Search Key Manually using Plot Name and Plot Number:");
-		lblSearch.setBounds(26, 42, 339, 23);
+		JLabel lblSearch = new JLabel("Search Key Manually:");
+		lblSearch.setBounds(26, 23, 339, 23);
 		panel_2.add(lblSearch);
 		lblSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		txtPlotName = new JTextField();
-		txtPlotName.setBounds(26, 76, 166, 32);
+		txtPlotName.setBounds(26, 74, 166, 32);
 		panel_2.add(txtPlotName);
 		txtPlotName.setColumns(10);
 
 		JLabel lblSelectKeyFrom = new JLabel("Select Key from List:");
 		lblSelectKeyFrom.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblSelectKeyFrom.setBounds(26, 197, 151, 23);
+		lblSelectKeyFrom.setBounds(26, 174, 151, 23);
 		panel_2.add(lblSelectKeyFrom);
 
 		JButton btnSearchKey = new JButton("Search");
-		btnSearchKey.setBounds(218, 121, 166, 33);
+		btnSearchKey.setBounds(218, 74, 166, 33);
 		panel_2.add(btnSearchKey);
 		btnSearchKey.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		txtShowIfFound = new JTextField();
-		txtShowIfFound.setBounds(218, 165, 166, 32);
+		txtShowIfFound.setBounds(218, 132, 166, 32);
 		panel_2.add(txtShowIfFound);
 		txtShowIfFound.setFont(new Font("Calibri", Font.PLAIN, 14));
 		txtShowIfFound.setEnabled(false);
@@ -136,29 +138,61 @@ public class Securitymenu extends JPanel {
 		txtShowIfFound.setColumns(10);
 
 		AllContracts = new JComboBox<String>();
-		AllContracts.setBounds(26, 231, 358, 32);
+		AllContracts.setBounds(26, 201, 358, 32);
 		panel_2.add(AllContracts);
 
 		JButton btnDeleteContract = new JButton("Delete Selected Key");
-		btnDeleteContract.setBounds(26, 288, 166, 33);
+		btnDeleteContract.setBounds(26, 325, 166, 33);
 		panel_2.add(btnDeleteContract);
 		btnDeleteContract.setFont(new Font("Calibri", Font.PLAIN, 14));
 
 		JButton btnEditContract = new JButton("Edit/View Selected Key ");
-		btnEditContract.setBounds(217, 288, 167, 33);
+		btnEditContract.setBounds(217, 325, 167, 33);
 		panel_2.add(btnEditContract);
 		btnEditContract.setFont(new Font("Calibri", Font.PLAIN, 14));
 		
 		txtPlotNumber = new JTextField();
-		txtPlotNumber.setBounds(26, 119, 166, 32);
+		txtPlotNumber.setBounds(26, 131, 166, 32);
 		panel_2.add(txtPlotNumber);
 		txtPlotNumber.setColumns(10);
+		
+		radioList = new JRadioButton("Edit/Delete Selected key using List");
+		radioList.setSelected(true);
+		radioList.setBackground(new Color(173, 216, 230));
+		radioList.setForeground(new Color(0, 0, 0));
+		radioList.setBounds(26, 255, 309, 23);
+		panel_2.add(radioList);
+		
+		radioText = new JRadioButton("Edit/Delete Selected key Manually using texts");
+		radioText.setBackground(new Color(173, 216, 230));
+		radioText.setBounds(26, 281, 309, 23);
+		panel_2.add(radioText);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(radioList);
+		group.add(radioText);
+		
+		JLabel lblNewLabel = new JLabel("Plot Name*:");
+		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblNewLabel.setBounds(26, 49, 96, 23);
+		panel_2.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Plot Number*:");
+		lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(26, 108, 96, 23);
+		panel_2.add(lblNewLabel_1);
+		
 		btnEditContract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Securitymenu.txtPlotName.setText("");
+				Securitymenu.txtPlotNumber.setText("");
+				new SecurityEditButton().start();
 			}
 		});
 		btnDeleteContract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Securitymenu.txtPlotName.setText("");
+				Securitymenu.txtPlotNumber.setText("");
 				SecurityDeleteButton.start();
 			}
 		});
@@ -169,18 +203,25 @@ public class Securitymenu extends JPanel {
 		});
 		btnCheckIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Securitymenu.txtPlotName.setText("");
+				Securitymenu.txtPlotNumber.setText("");
 				CheckIn.frmCheckIn.setVisible(true);
 			}
 		});
 		btnCheckOut.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
+				Securitymenu.txtPlotName.setText("");
+				Securitymenu.txtPlotNumber.setText("");
 				checkOut.frmService.setVisible(true);
 			}
 		});
 		btnAddContract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				securityForm.frame.setVisible(true);
+				Securitymenu.txtPlotName.setText("");
+				Securitymenu.txtPlotNumber.setText("");
+				new SecurityForm(0);
+				SecurityForm.frame.setVisible(true);
 			}
 		});
 
@@ -200,8 +241,8 @@ public class Securitymenu extends JPanel {
 
 	public static void setUpContractList() {
 
+		AllContracts.removeAllItems();
 		Statement stment = database.getStatement();
-
 		ResultSet rset = null;
 
 		try {

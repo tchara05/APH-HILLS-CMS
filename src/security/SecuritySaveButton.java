@@ -13,75 +13,114 @@ public class SecuritySaveButton extends Thread {
 
 		DatabaseConnection database = new DatabaseConnection();
 		Statement stment = null;
+		
+		if (SecurityEditButton.editor == 1) {
 
-		boolean checked = true;
-		boolean exist = false;
-		int flag = 1;
-		String txtpropertyID = null;
-		String query = null;
-		// int txtpropertyID = 0;
-
-		String txtNotes = SecurityForm.txtAreaNotes.getText();
-
-		String txtplotName = SecurityForm.txtPlotName.getText();
-		String plotNumber = SecurityForm.txtPlotNumber.getText();
-		int txtplotNumber = Integer.parseInt(plotNumber);
-
-		txtpropertyID = getPropId(txtplotName, txtplotNumber);
-
-		try {
-			checked = checker(txtpropertyID);
-			exist = CheckOutButton.checker(txtpropertyID, flag);
-		} catch (SQLException e1) {
-
-			e1.printStackTrace();
-		}
-
-		try {
+			String txtPlotName = SecurityForm.txtPlotName.getText();
+			String txtPlotNumber = SecurityForm.txtPlotNumber.getText();
+			String txtNotes = SecurityForm.txtAreaNotes.getText();
+			
+			String txtpropertyID = getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
+			String query = "";
+			
+			query = "UPDATE KEYCONTRACT SET notes = '" + txtNotes + "' WHERE propertyID = '" + txtpropertyID + "'";
 
 			stment = database.getStatement();
-
-			if (checked && !exist) {
-				int response = JOptionPane
-						.showConfirmDialog(null,
-								"Do you want to save changes?", "Confirm",
-								JOptionPane.YES_NO_OPTION,
-								JOptionPane.QUESTION_MESSAGE);
-
-				if (response == JOptionPane.YES_OPTION) {
-
-					query = "";
-
-					// insert query here
-					query = "INSERT INTO KEYCONTRACT VALUES ('" + txtpropertyID
-							+ "','" + txtNotes + "')";
-
-					stment.executeUpdate(query);
-
-					SecurityClearButton.start();
-
-					JOptionPane.showMessageDialog(null, "Key Contract Added",
-							"Information Message",
-							JOptionPane.INFORMATION_MESSAGE);
-					SecurityClearButton.start();
-					Securitymenu.setUpContractList();
-					// SecurityForm.setVisible(false);
-
-				}
-
-			} else if (exist) {
-				JOptionPane.showMessageDialog(null, "Key is already added",
-						"Warning Message", JOptionPane.WARNING_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null,
-						"Property ID is Emprty or not exist",
-						"Warning Message", JOptionPane.WARNING_MESSAGE);
+			
+			try {
+				stment.executeUpdate(query);
+				JOptionPane.showMessageDialog(null, "Key Contract Updated!",
+						"Information Message", JOptionPane.INFORMATION_MESSAGE);
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NullPointerException e) {
+			stment = database.getStatement();
+			SecurityEditButton.editor = 0;
+			
+		} else {
 
-			e.printStackTrace();
+			int check = 0;
+			boolean checked = true;
+			boolean exist = false;
+			int flag = 1;
+			String txtpropertyID = null;
+			String query = null;
+
+			String txtNotes = SecurityForm.txtAreaNotes.getText();
+			String txtPlotName = SecurityForm.txtPlotName.getText();
+			String txtPlotNumber = SecurityForm.txtPlotNumber.getText();
+			
+			if(!Checker.checkEmpty(txtPlotName) || !Checker.checkEmpty(txtPlotNumber))
+				check = 1;
+			
+			if(!Checker.checkString(txtPlotName) || !Checker.checkNumber(txtPlotNumber))
+				check = 1;
+			
+			if(check == 1) {
+				Checker.showMessage();
+				check = 0;
+				return;
+			}
+			
+			int txtplotNumber = Integer.parseInt(txtPlotNumber);
+
+			txtpropertyID = getPropId(txtPlotName, txtplotNumber);
+
+			try {
+				checked = checker(txtpropertyID);
+				exist = CheckOutButton.checker(txtpropertyID, flag);
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
+
+			try {
+
+				stment = database.getStatement();
+
+				if (checked && !exist) {
+					int response = JOptionPane.showConfirmDialog(null,
+							"Do you want to save changes?", "Confirm",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE);
+
+					if (response == JOptionPane.YES_OPTION) {
+
+						query = "";
+
+						// insert query here
+						query = "INSERT INTO KEYCONTRACT VALUES ('"
+								+ txtpropertyID + "','" + txtNotes + "')";
+
+						stment.executeUpdate(query);
+
+						SecurityClearButton.start();
+
+						JOptionPane.showMessageDialog(null,
+								"Key Contract Added", "Information Message",
+								JOptionPane.INFORMATION_MESSAGE);
+						SecurityClearButton.start();
+						
+						Securitymenu.AllContracts.removeAll();
+						Securitymenu.setUpContractList();
+						// SecurityForm.setVisible(false);
+
+					}
+
+				} else if (exist) {
+					JOptionPane.showMessageDialog(null, "Key Contract is already Added",
+							"Warning Message", JOptionPane.WARNING_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Property does not Exist!",
+							"Warning Message", JOptionPane.WARNING_MESSAGE);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -119,7 +158,7 @@ public class SecuritySaveButton extends Thread {
 		stment = database.getStatement();
 		String query = null;
 		ResultSet rset = null;
-		String txtpropertyID  = "0";
+		String txtpropertyID = "0";
 
 		query = "SELECT * FROM Property WHERE plotName = '" + txtplotName
 				+ "' AND plotNumber = '" + txtplotNumber + "'";

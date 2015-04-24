@@ -1,5 +1,7 @@
 package contract;
 
+import org.junit.Test;
+
 import extras.ListManager;
 import extras.Query;
 
@@ -29,9 +31,6 @@ public class ContractFilterButton extends Thread {
 			return ;
 		}
 		ListManager.setUpThreeList(ContractMenu.AllProperties, query);
-		
-		
 	}
 	
-
 }
