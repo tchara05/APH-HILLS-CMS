@@ -32,6 +32,8 @@ public class CompanyDocument {
 	protected static final int INVOICE = 1;
 	protected static final int PROFORMA = 2;
 	protected static final int RECEIPT = 3;
+	
+	protected static final double VAT = 19/100;
 
 	protected static final Paragraph NewLine = new Paragraph("\n");
 
@@ -435,7 +437,6 @@ public class CompanyDocument {
 	public void createCostTableInvoice(Document doc, ResultSet rs)
 			throws Exception {
 
-		DatabaseConnection database = new DatabaseConnection();
 
 		int N = 6;
 		int counter=1;
@@ -470,7 +471,7 @@ public class CompanyDocument {
 
 		columnsTitle.setWidthPercentage(100);
 		
-		while (rs.next()) {
+		do{
 			
 			if (!prev.equals(rs.getString(2))) {
 				prev = rs.getString(2);
@@ -493,7 +494,8 @@ public class CompanyDocument {
 				columnsTitle.addCell(Columns[j]);
 			}
 
-		}
+		}while (rs.next());
+		total = total + total*VAT;
 		
 		doc.add(columnsTitle);
 
@@ -555,7 +557,7 @@ public class CompanyDocument {
 		if (rs.next()) {
 
 			PdfWriter.getInstance(document, new FileOutputStream("Invoices/"
-					+ rs.getString(5) + ".pdf"));
+					+ rs.getString(5) +"_" +rs.getString(6)+ "_"+rs.getString(7) + ".pdf"));
 			document.open();
 			Companydocument.createHeader(document);
 			Companydocument.createCustomerDetailsTableInvoice(document, rs);	

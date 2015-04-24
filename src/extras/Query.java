@@ -39,5 +39,5 @@ public class Query {
 													+ "FROM Proforma "
 													+ "WHERE toPaid = 0 "
 													+" ORDER BY firstName , lastName";
-	
+
 }

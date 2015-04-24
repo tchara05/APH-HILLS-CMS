@@ -1,5 +1,7 @@
 package logistics;
 
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,17 +18,20 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.io.File;
+
 import javax.swing.border.TitledBorder;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class accountantPanel{
 	
 
 
 	private static JPanel accountantMenu;
-	
 	public static  JComboBox<String> AllCustomers;
+	
+	private JFrame fileChooser;
+	public static File file;
 
 	// Buttons //
 	private JButton btnExportProforms;
@@ -42,6 +47,9 @@ public class accountantPanel{
 		accountantMenu.setBackground(new Color(255, 255, 255));
 		accountantMenu.setBorder(new LineBorder(new Color(0, 0, 128), 0));
 		accountantMenu.setLayout(null);
+		
+		fileChooser = new FileChooser();
+		fileChooser.setVisible(false);
 	    
 	    panel = new JPanel();
 	    panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "LOGISTIC DEPARTMENT", TitledBorder.CENTER, TitledBorder.TOP, null, null));
@@ -68,9 +76,9 @@ public class accountantPanel{
 	    btnSendInvoiceTo.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
 	    AllCustomers = new JComboBox<String>();
-	    AllCustomers.setBounds(265, 226, 227, 27);
+	    AllCustomers.setBounds(270, 181, 227, 27);
 	    panel_1.add(AllCustomers);
-	    ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
+	   ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
 	    btnExportExcel = new JButton("Export Excel File");
 	    btnExportExcel.setBounds(86, 133, 149, 33);
 	    panel_1.add(btnExportExcel);
@@ -79,6 +87,8 @@ public class accountantPanel{
 	    btnImportExcel.setBounds(86, 83, 149, 33);
 	    panel_1.add(btnImportExcel);
 	    btnImportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
+	    
+	    
 		addButtonsFuctionalities();
 	}
 	
@@ -93,7 +103,7 @@ public class accountantPanel{
 		
 		btnImportExcel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ReadExcelBtn().start();
+				fileChooser.setVisible(true);
 			}
 		});
 		
@@ -105,8 +115,7 @@ public class accountantPanel{
 		});
 		
 		btnSendInvoiceTo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {				
 				new ExportInvoiceBtn().start();
 			}
 		});

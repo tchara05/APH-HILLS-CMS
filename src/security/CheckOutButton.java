@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 
 import security.CheckOut;
 import extras.DatabaseConnection;
+import extras.ListManager;
 import extras.Messages;
 import userMenus.LogIn;
 import security.CheckOutClearButton;
@@ -126,14 +127,12 @@ public class CheckOutButton extends Thread {
 							+ checkInDate + "','" + details + "')";
 	
 					stment.executeUpdate(query);
+					ListManager.UpdateList(keyID, specificKey,"", CheckIn.allKeys);
 	
 					new CheckOutClearButton().start(0);
 	
 					JOptionPane.showMessageDialog(null, "Key Checked Out",
 							"Information Message", JOptionPane.INFORMATION_MESSAGE);
-	
-					//CheckOut.setVisible(false);
-					// SecurityMenu.UpdateContractList(propertyID);
 				}
 	
 			} catch (SQLException e) {

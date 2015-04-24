@@ -1,5 +1,6 @@
 package logistics;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -85,13 +86,13 @@ public class Excel {
 	
 	}
 		
-  public static void ReadExcel(){
+  public static void ReadExcel(File f){
 	  
 	  
 	  DatabaseConnection data = new DatabaseConnection();
 	  
 		try {
-		    POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream("properties.xls"));
+		    POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(f));
 		    HSSFWorkbook wb = new HSSFWorkbook(fs);
 		    HSSFSheet sheet = wb.getSheetAt(0);
 		    HSSFRow row;
