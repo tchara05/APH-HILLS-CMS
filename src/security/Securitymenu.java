@@ -37,7 +37,6 @@ public class Securitymenu extends JPanel {
 	@SuppressWarnings("unused")
 	private static CheckIn checkIn;
 	private static CheckOut checkOut;
-	private static SecurityForm securityForm;
 	@SuppressWarnings("unused")
 	private static SecuritySearchKey search;
 	private static JPanel panel;
@@ -64,7 +63,6 @@ public class Securitymenu extends JPanel {
 		database = new DatabaseConnection();
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		securityForm = new SecurityForm();
 		panel.setLayout(null);
 
 		@SuppressWarnings("unused")
@@ -222,8 +220,7 @@ public class Securitymenu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Securitymenu.txtPlotName.setText("");
 				Securitymenu.txtPlotNumber.setText("");
-				securityForm.editor = 0;
-				SecurityForm.frame.setVisible(true);
+				new SecurityForm(0).frame.setVisible(true);
 			}
 		});
 
@@ -243,8 +240,8 @@ public class Securitymenu extends JPanel {
 
 	public static void setUpContractList() {
 
+		AllContracts.removeAllItems();
 		Statement stment = database.getStatement();
-
 		ResultSet rset = null;
 
 		try {

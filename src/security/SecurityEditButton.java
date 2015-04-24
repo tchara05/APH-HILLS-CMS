@@ -11,6 +11,8 @@ import extras.DatabaseConnection;
 
 public class SecurityEditButton {
 
+	public static int editor = 0;
+	
 	public static void start() {
 
 		DatabaseConnection database = new DatabaseConnection();
@@ -79,17 +81,19 @@ public class SecurityEditButton {
 							"Warning message", JOptionPane.WARNING_MESSAGE);
 				else {
 
-					SecurityForm.frame.setVisible(true);
-					SecurityForm.editor = 1;
+					editor = 1;
+					new SecurityForm(1).frame.setVisible(true);
 
 					if (Securitymenu.radioList.isSelected() == true) {
 
 						ResultSet rst1 = null;
-						SecurityForm.txtPlotName.setText(contract[1]);
-						SecurityForm.txtPlotNumber.setText(contract[2]);
+						SecurityForm.txtPlotName.setText(contract[0]);
+						SecurityForm.txtPlotNumber.setText(contract[1]);
+						
 						rst1 = stment.executeQuery("SELECT * FROM KeyContract WHERE keyID = '"
 										+ keyID + "'");
-						SecurityForm.txtAreaNotes.setText(rst1.getString("notes"));
+						if(rst1.next())
+							SecurityForm.txtAreaNotes.setText(rst1.getString("notes"));
 						rst = null;
 
 					} else {

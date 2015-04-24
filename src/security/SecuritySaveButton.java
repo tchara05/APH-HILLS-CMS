@@ -11,11 +11,32 @@ public class SecuritySaveButton extends Thread {
 
 	public void run() {
 
-		if (SecurityForm.editor == 1) {
+		DatabaseConnection database = new DatabaseConnection();
+		Statement stment = null;
+		
+		if (SecurityEditButton.editor == 1) {
 
+			String txtPlotName = SecurityForm.txtPlotName.getText();
+			String txtPlotNumber = SecurityForm.txtPlotNumber.getText();
+			String txtNotes = SecurityForm.txtAreaNotes.getText();
+			
+			String txtpropertyID = getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
+			String query = "";
+			
+			query = "UPDATE KEYCONTRACT SET notes = '" + txtNotes + "' WHERE propertyID = '" + txtpropertyID + "'";
+
+			stment = database.getStatement();
+			
+			try {
+				stment.executeUpdate(query);
+				JOptionPane.showMessageDialog(null, "Key Contract Updated!",
+						"Information Message", JOptionPane.INFORMATION_MESSAGE);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			stment = database.getStatement();
+			
 		} else {
-			DatabaseConnection database = new DatabaseConnection();
-			Statement stment = null;
 
 			int check = 0;
 			boolean checked = true;
@@ -78,6 +99,8 @@ public class SecuritySaveButton extends Thread {
 								"Key Contract Added", "Information Message",
 								JOptionPane.INFORMATION_MESSAGE);
 						SecurityClearButton.start();
+						
+						Securitymenu.AllContracts.removeAll();
 						Securitymenu.setUpContractList();
 						// SecurityForm.setVisible(false);
 

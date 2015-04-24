@@ -1,12 +1,28 @@
 package security;
 import java.sql.SQLException;
 
+import extras.Checker;
+
 import security.CheckOutButton;
 
 public class CheckOutAvailability extends Thread {
 	
 	public void run() {
+	int check = 0;
 	String key = CheckOut.getKeyID();
+	
+	if(!Checker.checkEmpty(key))
+		check = 1;
+	
+	if(!Checker.checkNumber(key))
+		check = 1;
+	
+	if(check == 1) {
+		Checker.showMessage();
+		check = 0;
+		return;
+	}
+	
 	String specificKey = CheckOut.getSpecificKey();
 	
 	

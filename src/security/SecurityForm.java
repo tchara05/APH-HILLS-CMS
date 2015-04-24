@@ -28,20 +28,19 @@ public class SecurityForm {
 	public static JTextField txtPlotName;
 	protected static boolean edit = false;
 	public static JTextField txtPlotNumber;
-	public static int editor = 0;
 
 	
 	public static void main(String[] args) {
-		SecurityForm window = new SecurityForm();
+		SecurityForm window = new SecurityForm(0);
 		window.frame.setVisible(true);
 	}
 
-	public SecurityForm() {
+	public SecurityForm(int editor) {
 
-		initialize();
+		initialize(editor);
 	}
 
-	public void initialize() {
+	public void initialize(int editor) {
 
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -119,6 +118,8 @@ public class SecurityForm {
 		txtPlotName = new JTextField();
 		txtPlotName.setBounds(163, 48, 168, 30);
 		insertPanel.add(txtPlotName);
+		if(editor == 1)
+			txtPlotName.setEnabled(false);
 		txtPlotName.setColumns(10);
 		
 		JLabel lblPlotNumber = new JLabel("Plot Number* :");
@@ -131,11 +132,8 @@ public class SecurityForm {
 		txtPlotNumber.setColumns(10);
 		txtPlotNumber.setBounds(163, 125, 168, 30);
 		insertPanel.add(txtPlotNumber);
-		
-		if(editor == 1) {
+		if(editor == 1)
 			txtPlotNumber.setEnabled(false);
-			txtPlotName.setEditable(false);
-		}
 
 		JButton btnAdd = new JButton("Add Contract");
 		btnAdd.setBackground(Color.WHITE);
