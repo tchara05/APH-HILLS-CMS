@@ -12,10 +12,10 @@ import java.util.*;
 public class email {    
 	
 	static String d_email = "pparthenhs@gmail.com";//to email mas 
-	static String d_password = "...";// o kwdikos mas 
+	static String d_password = "jgfaksjbfkas8934j@njms$";// o kwdikos mas 
 	static String d_host = "smtp.gmail.com";// o host
 	static String d_port = "465";// to port
-	static String m_to = "....";//to email pou phgenei
+	static String m_to = "pparthenhs@yahoo.gr";//to email pou phgenei
 	static String m_subject = "To email einai etoimo ";
 	static String m_text = "Hey, this is a test email.";
     
@@ -25,8 +25,10 @@ public class email {
         }
     }
     
-    public static void main(String[] args){
+    public static void send(String mailtoSend,String s5,String s6,String s7){
     
+//    	m_to=mailtoSend;
+    	
         Properties props = new Properties();//ena hashtable
         
         props.put("mail.smtp.user", d_email);
@@ -64,9 +66,9 @@ public class email {
             
             messageBodyPart = new MimeBodyPart();
             
-            String file = "C:/Users/Panos/Desktop/EPL222.1.AB325898.docx";
+            String file = "C:/Users/Panos/Desktop/TEAM_D_361/Invoices/"+ s5 +"_" + s6 + "_"+ s7 + ".pdf";
             
-            String fileName = "EPL222.1.AB325898.docx";
+            String fileName =  s5 +"_" + s6 + "_"+ s7 + ".pdf";
             
             DataSource source = new FileDataSource(file);
             
@@ -80,6 +82,7 @@ public class email {
           
           
             Transport.send(msg);
+            System.out.print("edw");
    
         } catch (Exception mex) {
             mex.printStackTrace();
