@@ -4,13 +4,15 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import userMenus.LogIn;
 
+
+import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Query;
 
@@ -18,8 +20,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.border.TitledBorder;
+
 import java.awt.Font;
+
 import javax.swing.border.EtchedBorder;
 @SuppressWarnings("serial")
 public class ContractMenu extends JPanel {
@@ -160,8 +165,9 @@ public class ContractMenu extends JPanel {
 		String Plot[]=ListManager.SplitTwoItem(plot);
 		String query="SELECT contractID, plotID FROM Contract WHERE plotID='"+Plot[0]+"'";
 		ResultSet rst;
+		DatabaseConnection database= new DatabaseConnection();
 		try {
-			rst = 	LogIn.database.getStatement().executeQuery(query);
+			rst = 	database.getStatement().executeQuery(query);
 			if (rst.next()){
 				if (Plot[0].equals(rst.getString(2))){
 					return true;
@@ -170,6 +176,8 @@ public class ContractMenu extends JPanel {
 		} catch (SQLException e) {
 			System.out.println("Existing Contract");
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 	return false;
 	}

@@ -2,6 +2,7 @@ package customer;
 
 
 import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -11,26 +12,32 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import java.awt.Font;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+
+import extras.DatabaseConnection;
 import extras.Query;
+
 
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.TitledBorder;
 
-import userMenus.LogIn;
 
 public class CustomerForm {
 	
@@ -340,8 +347,10 @@ public class CustomerForm {
 
 	public static void setID() {
 		ResultSet rs = null;
+		DatabaseConnection database=null; 
 		try {
-			rs = LogIn.database.getStatement().executeQuery("SELECT MAX(customerID)  FROM Customer");
+			database = new DatabaseConnection();
+			rs = database.getStatement().executeQuery("SELECT MAX(customerID)  FROM Customer");
 
 			if (rs.next()) {
 				if (rs.getString(1) != null) {
@@ -355,6 +364,8 @@ public class CustomerForm {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 
 	}
@@ -364,16 +375,18 @@ public class CustomerForm {
 	}
 	
 	private static void setUpClassesList(){
-
+		DatabaseConnection database=null; 
 		try{
-			
-			ResultSet rs = LogIn.database.getStatement().executeQuery(Query.COUNTRY);	
+			database = new DatabaseConnection();
+			ResultSet rs = database.getStatement().executeQuery(Query.COUNTRY);	
 			while (rs.next()){
 				Country.addItem(rs.getString(2));
 			}
 		}catch (Exception e){
 			e.printStackTrace();
 			
+		}finally{
+			database.closeDatabaseConnection();
 		}
 		
 	}

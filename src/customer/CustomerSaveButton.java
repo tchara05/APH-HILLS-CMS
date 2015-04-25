@@ -9,9 +9,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
-import userMenus.LogIn;
 import contract.ContractForm;
 import extras.Checker;
+import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 
@@ -172,9 +172,11 @@ public class CustomerSaveButton extends Thread {
 		if (!checked) {
 			Messages.showWarningMessage("Complete All Details");
 		}
+		
+		DatabaseConnection database = new DatabaseConnection();
 		try {
 
-				Statement st = LogIn.database.getStatement();
+				Statement st = database.getStatement();
 				int countryID = getCountry(country, st);
 				if (countryID > 0 && checked) {
 					// Confirm Dialog //
@@ -243,17 +245,26 @@ public class CustomerSaveButton extends Thread {
 		
 	}
 
-	private static int getCountry(String country, Statement st)
-			throws SQLException {
+	private static int getCountry(String country, Statement st){
 
 		int countryID = -1;
-		ResultSet result = LogIn.database.getStatement().executeQuery("SELECT countryID FROM Country " +
-																	"WHERE countryName='"+ country + "'");
-		if (result.next()) {
-			countryID = Integer.parseInt(result.getString(1));
-		} else {
-			countryID = -1;
+		DatabaseConnection database= new DatabaseConnection();
+		ResultSet result;
+		try {
+			result = database.getStatement().executeQuery("SELECT countryID FROM Country " +
+																		"WHERE countryName='"+ country + "'");
+			
+			if (result.next()) {
+				countryID = Integer.parseInt(result.getString(1));
+			} else {
+				countryID = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
+		
 		return countryID;
 	}
 

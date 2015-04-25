@@ -8,17 +8,24 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import userMenus.LogIn;
+import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Query;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.border.TitledBorder;
+
 import java.awt.Font;
 
 public class CustomerMenu {
@@ -223,10 +230,10 @@ public class CustomerMenu {
 		String query = "SELECT customerID, firstName, lastName, primaryEmail, contactPhone, mobilePhone FROM"
 				+ " Customer WHERE customerID = '" + Customer[0] + "'";
 
+		DatabaseConnection database = new DatabaseConnection();
 		try {
-			rst = LogIn.database.getStatement().executeQuery(query);
+			rst = database.getStatement().executeQuery(query);
 			if (rst.next() && rst.getString(1) != null) {
-
 				CustomerID.setText(rst.getString(1));
 				FirstName.setText(rst.getString(2));
 				LastName.setText(rst.getString(3));

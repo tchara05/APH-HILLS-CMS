@@ -10,6 +10,7 @@ import javax.swing.border.Border;
 import userMenus.LogIn;
 import contract.ContractMenu;
 import extras.Checker;
+import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 
@@ -191,7 +192,7 @@ public class PropertySaveButton extends Thread {
 		}
 		
 		
-
+		DatabaseConnection database = new DatabaseConnection();
 		try {
 
 			
@@ -240,7 +241,7 @@ public class PropertySaveButton extends Thread {
 								ContractMenu.AllProperties.removeItem(del);
 					}
 
-					LogIn.database.getStatement().executeUpdate(query);
+					database.getStatement().executeUpdate(query);
 					PropertyForm.setVisible(false);
 					String id = PropertyForm.txtPlotID.getText();
 					ListManager.UpdateList(id, plotName, plotNumber, PropertyMenu.AllProperties);
@@ -260,6 +261,8 @@ public class PropertySaveButton extends Thread {
 		} catch (NullPointerException e) {
 
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 
 	}

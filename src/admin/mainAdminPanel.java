@@ -11,54 +11,26 @@ import extras.DatabaseConnection;
 public class mainAdminPanel extends JPanel {
 	
 	private static JPanel adminMainPanel;
-	private static classPanel  clPanel;
 	private static parcelPanel parPanel;
 	private static statusPanel statPanel;
-	public static DatabaseConnection database;
+	private static classPanel clasPanel;
 	
 	public mainAdminPanel() {	
 		adminMainPanel = new JPanel();
-		database=new DatabaseConnection();;
-		//Class Panel //
-		clPanel = new classPanel();
 		parPanel = new parcelPanel();
+		parPanel.setBounds(6, 176, 549, 152);
 		statPanel = new statusPanel();
-	
-		// Positioning //
-		GroupLayout groupLayout = new GroupLayout(adminMainPanel);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(parPanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-								.addComponent(clPanel, Alignment.LEADING, 0, 0, Short.MAX_VALUE))
-							.addContainerGap(129, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(statPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(39))))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(34)
-					.addComponent(clPanel, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(parPanel, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(statPanel, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(32, Short.MAX_VALUE))
-		);
-		adminMainPanel.setLayout(groupLayout);
-		
+		statPanel.setBounds(6, 351, 549, 134);
+		clasPanel = new classPanel();
+		clasPanel.setBounds(6,351,549,132);
+		adminMainPanel.setLayout(null);
+		adminMainPanel.add(parPanel);
+		adminMainPanel.add(statPanel);
 	}
 	
 	
 	public static JPanel createAdminMenu(){
 		new mainAdminPanel();
 		return adminMainPanel;
-		
 	}
 }

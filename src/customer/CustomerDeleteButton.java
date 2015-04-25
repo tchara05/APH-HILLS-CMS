@@ -1,11 +1,12 @@
 package customer;
 
 import java.sql.SQLException;
+
+import extras.DatabaseConnection;
 import extras.Messages;
 
 import javax.swing.JOptionPane;
 
-import userMenus.LogIn;
 import contract.ContractForm;
 import extras.ListManager;
 
@@ -19,6 +20,7 @@ public class CustomerDeleteButton extends Thread {
 					"Do you want to continue?", "Confirm",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (response == JOptionPane.YES_OPTION) {
+				DatabaseConnection database= new DatabaseConnection();
 
 				String customer = (String) CustomerMenu.AllCustomers
 						.getSelectedItem();
@@ -33,11 +35,13 @@ public class CustomerDeleteButton extends Thread {
 							+ Customer[0] + "'";
 
 					try {
-						LogIn.database.getStatement().executeUpdate(query);
+						database.getStatement().executeUpdate(query);
 					} catch (SQLException e) {
 						System.out
 								.println("Cant execute the query in CustomerDelete");
 						e.printStackTrace();
+					}finally{
+						database.closeDatabaseConnection();
 					}
 
 					Messages.showWarningMessage("Customer Deleted");

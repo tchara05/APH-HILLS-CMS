@@ -25,8 +25,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class accountantPanel{
 	
-
-
 	private static JPanel accountantMenu;
 	public static  JComboBox<String> AllCustomers;
 	
@@ -67,24 +65,24 @@ public class accountantPanel{
 		
 		// Buttons //
 	    btnExportProforms = new JButton("Export All Proformas");
-	    btnExportProforms.setBounds(86, 223, 149, 33);
+	    btnExportProforms.setBounds(391, 40, 149, 33);
 	    panel_1.add(btnExportProforms);
 	    btnExportProforms.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    btnSendInvoiceTo = new JButton("Send Invoice to");
-	    btnSendInvoiceTo.setBounds(86, 178, 149, 33);
+	    btnSendInvoiceTo = new JButton("Send Invoice - Receipt to");
+	    btnSendInvoiceTo.setBounds(55, 227, 161, 33);
 	    panel_1.add(btnSendInvoiceTo);
 	    btnSendInvoiceTo.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
 	    AllCustomers = new JComboBox<String>();
-	    AllCustomers.setBounds(270, 181, 227, 27);
+	    AllCustomers.setBounds(240, 230, 227, 27);
 	    panel_1.add(AllCustomers);
 	   ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
 	    btnExportExcel = new JButton("Export Excel File");
-	    btnExportExcel.setBounds(86, 133, 149, 33);
+	    btnExportExcel.setBounds(55, 40, 149, 33);
 	    panel_1.add(btnExportExcel);
 	    btnExportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnImportExcel = new JButton("Import Excel File");
-	    btnImportExcel.setBounds(86, 83, 149, 33);
+	    btnImportExcel.setBounds(55, 100, 149, 33);
 	    panel_1.add(btnImportExcel);
 	    btnImportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    

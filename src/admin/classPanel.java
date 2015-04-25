@@ -2,6 +2,8 @@ package admin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -11,11 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
+
 import extras.Checker;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 import extras.Query;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -40,72 +44,45 @@ public class classPanel extends JPanel {
 			
 		//Labels //
 		JLabel lblClasses = new JLabel("Class:");
+		lblClasses.setBounds(14, 30, 38, 16);
 		JLabel lblClassId = new JLabel("Class ID:");
+		lblClassId.setBounds(14, 72, 56, 16);
 		JLabel lblName = new JLabel("Name:");
+		lblName.setBounds(14, 112, 40, 16);
 		
 		// DropDown //
 		AllClasses  = new JComboBox<String>();
+		AllClasses.setBounds(76, 26, 215, 27);
 		ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
 		
 		// Buttons //
 		btnEditClass = new JButton("Edit Class");
+		btnEditClass.setBounds(388, 24, 122, 29);
 		btnAddClass = new JButton("Add Class");
+		btnAddClass.setBounds(388, 65, 122, 29);
 		btnDeleteClass = new JButton("Delete Class");
+		btnDeleteClass.setBounds(388, 107, 122, 29);
 	
 		// TextBoxes //
 		txtID = new JTextField();
+		txtID.setBounds(76, 66, 215, 28);
 		txtID.setEditable(false);
 		txtID.setColumns(10);
 		txtName = new JTextField();
+		txtName.setBounds(76, 106, 215, 28);
 		txtName.setColumns(10);
 		
 		setID();
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(14)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblClassId)
-						.addComponent(lblClasses)
-						.addComponent(lblName))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(txtID)
-						.addComponent(txtName)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addPreferredGap(ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(btnEditClass, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnAddClass, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnDeleteClass, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(AllClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblClasses))
-						.addComponent(btnEditClass))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblClassId))
-						.addComponent(btnAddClass))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnDeleteClass)
-						.addComponent(lblName))
-					.addContainerGap(32, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
+		setLayout(null);
+		add(lblClassId);
+		add(lblClasses);
+		add(lblName);
+		add(txtID);
+		add(txtName);
+		add(AllClasses);
+		add(btnEditClass);
+		add(btnAddClass);
+		add(btnDeleteClass);
 		addButtonsFuctionalities();
 
 	}
@@ -137,14 +114,17 @@ public class classPanel extends JPanel {
 	// Set txtID from database // 
 	private void setID(){
 		
+			DatabaseConnection database = new DatabaseConnection();
 			try{
-				ResultSet t=mainAdminPanel.database.getStatement().executeQuery(Query.STATUS_NO);
+				ResultSet t=database.getStatement().executeQuery(Query.STATUS_NO);
 				if (t.next()){
 					txtID.setText((t.getInt(1)+1)+"");
 				}
 			}catch (SQLException e){
 				System.out.println("Class Txt Id");
 				e.printStackTrace();
+			}finally{
+				database.closeDatabaseConnection();
 			}
 	}	
 	
@@ -167,6 +147,8 @@ public class classPanel extends JPanel {
 					}catch (SQLException e) {
 						System.out.println("Class Delete Query");
 						e.printStackTrace();
+					}finally{
+						database.closeDatabaseConnection();
 					}
 				
 				
@@ -185,21 +167,23 @@ public class classPanel extends JPanel {
 			String name=txtName.getText();
 			name=Checker.clearString(name);
 			if (response == JOptionPane.YES_OPTION&&!name.equals("")) {
+				
+				DatabaseConnection database = new DatabaseConnection();
 			
 				String query="INSERT INTO  Class VALUES('"+ name+"')";
 				AllClasses.addItem(txtID.getText()+" "+txtName.getText());
 				
 				try {
-					mainAdminPanel.database.getStatement().executeUpdate(query);
+					database.getStatement().executeUpdate(query);
 					setID();
 					txtName.setText("");
 				}catch (SQLException e) {
 					System.out.println("Class Delete Query");
 					e.printStackTrace();
+				}finally{
+					database.closeDatabaseConnection();
 				}
 				
-			
-			
 			}else{
 				Messages.showWarningMessage("Empty Class Name");
 			}
@@ -217,13 +201,14 @@ public class classPanel extends JPanel {
 			String name=Checker.clearString(txtName.getText());
 			if (response == JOptionPane.YES_OPTION && !name.equals("")) {
 				
-			
+				DatabaseConnection database = new DatabaseConnection();
+				
 				String c = (String) AllClasses.getSelectedItem();
 				int index = AllClasses.getSelectedIndex();
 				AllClasses.removeItem(c);
 				String[] clas = ListManager.SplitTwoItem(c);
 				try {
-					mainAdminPanel.database.getStatement().executeUpdate(
+					database.getStatement().executeUpdate(
 							"Update Class SET className='" + txtName.getText()
 									+ "' WHERE propertyClassNo='" + clas[0] + "'");
 					AllClasses.insertItemAt(clas[0]+" "+name, index);
@@ -231,6 +216,8 @@ public class classPanel extends JPanel {
 				} catch (SQLException e) {
 					System.out.println("Update Class Query");
 					e.printStackTrace();
+				}finally{
+					database.closeDatabaseConnection();
 				}
 
 			}else{

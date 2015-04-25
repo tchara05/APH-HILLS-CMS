@@ -12,10 +12,14 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+
 import extras.Checker;
+import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 import extras.Query;
@@ -24,11 +28,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.JCheckBox;
 
-import userMenus.LogIn;
 import javax.swing.border.TitledBorder;
+
 import java.awt.Font;
+
 import javax.swing.Icon;
 
 
@@ -340,9 +346,10 @@ public class ContractForm {
 		
 
 		str = ListManager.SplitOneItem(str);
-		
+		DatabaseConnection database=null; 
 		try {
-			ResultSet rst = LogIn.database.getStatement().executeQuery("SELECT primaryEmail , contactPhone , mobilePhone"
+			database = new DatabaseConnection();
+			ResultSet rst = database.getStatement().executeQuery("SELECT primaryEmail , contactPhone , mobilePhone"
 							+" FROM Customer WHERE customerID ='" +str +"'"  );
 			
 			while (rst.next()&& rst.getString(1)!=null){
@@ -353,14 +360,15 @@ public class ContractForm {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 	}
 	private static void setContractID() {
-
-
 		ResultSet rs;
+		DatabaseConnection database= new DatabaseConnection();
 		try {
-			rs = LogIn.database.getStatement().executeQuery(Query.CONTRACT_NO);
+			rs = database.getStatement().executeQuery(Query.CONTRACT_NO);
 
 			if (rs.next()) {
 				if (rs.getString(1) != null) {
@@ -372,6 +380,8 @@ public class ContractForm {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 
 	}

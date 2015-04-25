@@ -2,6 +2,7 @@ package property;
 
 
 import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -9,10 +10,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JTextField;
@@ -23,14 +27,15 @@ import javax.swing.UIManager;
 
 import extras.*;
 
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.JComboBox;
 
 import userMenus.LogIn;
+
 import javax.swing.Icon;
 import javax.swing.border.TitledBorder;
 
@@ -102,8 +107,9 @@ public class PropertyForm {
 	public static void setPlotID() {
 
 		ResultSet rs;
+		DatabaseConnection database = new DatabaseConnection();
 		try {
-			rs = LogIn.database.getStatement().executeQuery("SELECT MAX(plotID)  FROM Property");
+			rs = database.getStatement().executeQuery("SELECT MAX(plotID)  FROM Property");
 
 			if (rs.next() && rs.getString(1)!=null) {
 				
@@ -115,6 +121,8 @@ public class PropertyForm {
 		} catch (SQLException e) {
 			System.out.println("PlotID set query");
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 	}
 	

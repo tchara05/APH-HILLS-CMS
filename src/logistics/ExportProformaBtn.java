@@ -4,9 +4,7 @@ import extras.Messages;
 
 
 public class ExportProformaBtn extends Thread {
-	
-	
-	
+
 	public void run(){
 		
 		try {

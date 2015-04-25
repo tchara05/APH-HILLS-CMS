@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import userMenus.LogIn;
+import extras.DatabaseConnection;
 import extras.ListManager;
 
 
@@ -22,8 +23,9 @@ public class PropertyEditButton extends Thread {
 		String property = (String) PropertyMenu.AllProperties.getSelectedItem();
 		if (property != null) {
 			String[] Property = ListManager.SplitThreeItem(property);
+			DatabaseConnection database = new DatabaseConnection();
 			try {
-				rst =  LogIn.database.getStatement().executeQuery("SELECT * FROM Property WHERE PlotID ='" + Property[0] +"'");
+				rst =  database.getStatement().executeQuery("SELECT * FROM Property WHERE PlotID ='" + Property[0] +"'");
 				
 				if (rst.next() && (rst.getString(1) != null)) {
 					setForm(rst);
@@ -31,6 +33,8 @@ public class PropertyEditButton extends Thread {
 				PropertyForm.setVisible(true);
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}finally{
+				database.closeDatabaseConnection();
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Nothing To Edit",

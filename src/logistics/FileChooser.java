@@ -51,7 +51,6 @@ public class FileChooser extends JFrame {
 					hideFather();
 				}
 			};
-			
 			fileChooser.setAcceptAllFileFilterUsed(false);
 			FileNameExtensionFilter filter1 = new FileNameExtensionFilter(".xls" ,"xls");
 			FileNameExtensionFilter filter2 = new FileNameExtensionFilter(".xlsx","xlsx");
@@ -62,7 +61,6 @@ public class FileChooser extends JFrame {
 	}
 	
 	private  void hideFather(){
-		
 		this.setVisible(false);
 		
 	}

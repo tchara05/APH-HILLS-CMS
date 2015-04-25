@@ -22,7 +22,7 @@ public class Query {
 	
 	public static final String CLASS_NO = "SELECT MAX(PropertyClassNo) FROM Class";
 	
-	public static final String PARCEL_NO="SELECT MAX(parcelNo) FROM Parcel_";
+	public static final String PARCEL_NO="SELECT MAX(parcleNo) FROM Parcel";
 	
 	public static final String STATUS_NO="SELECT MAX(statusID) FROM PropertyStatus";
 	

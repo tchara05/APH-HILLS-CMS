@@ -1,6 +1,8 @@
 package admin;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,8 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import extras.Checker;
+import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
+import extras.Query;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class parcelPanel extends JPanel {
@@ -34,106 +40,104 @@ public class parcelPanel extends JPanel {
 		
 		// Labels //
 		JLabel lblParcel = new JLabel("Parcel:");
+		lblParcel.setBounds(26, 38, 41, 16);
 		JLabel lblParcelId = new JLabel("Parcel ID:");
+		lblParcelId.setBounds(26, 80, 59, 16);
 		JLabel lblPercelName = new JLabel("Percel Name:");
+		lblPercelName.setBounds(26, 122, 81, 16);
 		
 		// DropDownList //
 		AllParcels = new JComboBox<String>();
-		
+		AllParcels.setBounds(119, 34, 278, 27);
+		ListManager.setUpTwoColumnsList(AllParcels, Query.PARCEL_NO_NAME);
 		// TextBoxes //
 		txtParceID = new JTextField();
+		txtParceID.setBounds(119, 74, 278, 28);
 		txtParceID.setEditable(false);
 		txtParceID.setColumns(10);
 		txtParcelName = new JTextField();
+		txtParcelName.setBounds(119, 116, 278, 28);
 		txtParcelName.setColumns(10);
 		
 		//Buttons //
 		 btnEditParcel = new JButton("Edit Parcel");
+		 btnEditParcel.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		new btnEdit().start();
+		 	}
+		 });
+		 btnEditParcel.setBounds(403, 33, 125, 29);
 		 btnAddParcel = new JButton("Add Parcel");
+		 btnAddParcel.setBounds(403, 75, 125, 29);
 		 btnDeleteParcel = new JButton("Delete Parcel");
-		
-		 // Positions //
-		 GroupLayout groupLayout = new GroupLayout(this);
-		 groupLayout.setHorizontalGroup(
-		 	groupLayout.createParallelGroup(Alignment.LEADING)
-		 		.addGroup(groupLayout.createSequentialGroup()
-		 			.addGap(26)
-		 			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-		 				.addGroup(groupLayout.createSequentialGroup()
-		 					.addPreferredGap(ComponentPlacement.RELATED)
-		 					.addComponent(lblPercelName)
-		 					.addPreferredGap(ComponentPlacement.UNRELATED)
-		 					.addComponent(txtParcelName, GroupLayout.PREFERRED_SIZE, 278, GroupLayout.PREFERRED_SIZE))
-		 				.addGroup(groupLayout.createSequentialGroup()
-		 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-		 						.addComponent(lblParcelId)
-		 						.addComponent(lblParcel))
-		 					.addGap(34)
-		 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-		 						.addComponent(txtParceID, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-		 						.addComponent(AllParcels, 0, 270, Short.MAX_VALUE))))
-		 			.addPreferredGap(ComponentPlacement.RELATED)
-		 			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-		 				.addComponent(btnDeleteParcel)
-		 				.addComponent(btnAddParcel, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-		 				.addComponent(btnEditParcel, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
-		 			.addContainerGap())
-		 );
-		 groupLayout.setVerticalGroup(
-		 	groupLayout.createParallelGroup(Alignment.LEADING)
-		 		.addGroup(groupLayout.createSequentialGroup()
-		 			.addGap(33)
-		 			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-		 				.addComponent(AllParcels, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		 				.addComponent(btnEditParcel)
-		 				.addComponent(lblParcel))
-		 			.addPreferredGap(ComponentPlacement.UNRELATED)
-		 			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-		 				.addComponent(lblParcelId)
-		 				.addComponent(txtParceID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		 				.addComponent(btnAddParcel))
-		 			.addGap(12)
-		 			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-		 				.addComponent(txtParcelName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		 				.addComponent(lblPercelName)
-		 				.addComponent(btnDeleteParcel))
-		 			.addContainerGap(32, Short.MAX_VALUE))
-		 );
-		setLayout(groupLayout);
+		 btnDeleteParcel.setBounds(403, 117, 125, 29);
+		setLayout(null);
+		add(lblPercelName);
+		add(txtParcelName);
+		add(lblParcelId);
+		add(lblParcel);
+		add(txtParceID);
+		add(AllParcels);
+		add(btnDeleteParcel);
+		add(btnAddParcel);
+		add(btnEditParcel);
+		setID();
 	}
+	
+	private void setID(){
+		
+		DatabaseConnection database = new DatabaseConnection();
+		try{
+			ResultSet t=database.getStatement().executeQuery(Query.PARCEL_NO);
+			if (t.next()){
+				txtParceID.setText((t.getInt(1)+1)+"");
+			}
+		}catch (SQLException e){
+			System.out.println("Class Txt Id");
+			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
+		}
+}	
 	
 	@SuppressWarnings("unused")
 	private class btnEdit extends Thread{
 		
-		
-		
-		
 		public void run(){
-				
 				int response = JOptionPane.showConfirmDialog(null,
 						"Do you want to continue?", "Confirm",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				String name=Checker.clearString(txtParcelName.getText());
-				if (response == JOptionPane.YES_OPTION && !name.equals("")) {
+				
+				if (response == JOptionPane.YES_OPTION) {
 					
+					   String input = JOptionPane.showInputDialog(null, "Enter Parcel Name:", "Dialog for Input",
+						        JOptionPane.WARNING_MESSAGE);
+						while (!Checker.checkEmpty(input)){
+							input = JOptionPane.showInputDialog(null, "Enter Parcel Name:", "Dialog for Input",
+							        JOptionPane.WARNING_MESSAGE);
+						}
+						    
+						    
+					DatabaseConnection database = new DatabaseConnection();
 				
 					String c = (String) AllParcels.getSelectedItem();
 					int index = AllParcels.getSelectedIndex();
 					AllParcels.removeItemAt(index);
 					String[] clas = ListManager.SplitTwoItem(c);
 					try {
-						mainAdminPanel.database.getStatement().executeUpdate(
-								"Update Class SET className='" + txtParcelName.getText()
-										+ "' WHERE propertyClassNo='" + clas[0] + "'");
-						AllParcels.insertItemAt(clas[0]+" "+name, index);
-						txtParcelName.setText("");
+						database.getStatement().executeUpdate(
+								"Update Parcel SET parcelName='" + input
+										+ "' WHERE parcleNo='" + clas[0] + "'");
+								
+						Messages.showWarningMessage("Restart The System!");
 					} catch (SQLException e) {
 						System.out.println("Update Class Query");
 						e.printStackTrace();
+					}finally{
+						database.closeDatabaseConnection();
 					}
-				}else{
-					Messages.showWarningMessage("Empty Class Name");
 				}
+				
 			
 		}
 		
@@ -141,4 +145,5 @@ public class parcelPanel extends JPanel {
 	}
 	
 
+	
 }

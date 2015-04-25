@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import userMenus.LogIn;
+import extras.DatabaseConnection;
 import extras.ListManager;
 
 public class CustomerEditButton extends Thread {
@@ -20,9 +20,10 @@ public class CustomerEditButton extends Thread {
 		
 		if (customer != null) {
 			String[] Customer = ListManager.SplitThreeItem(customer);
+			DatabaseConnection database= new DatabaseConnection();
 			try {
 				
-				rst =LogIn.database.getStatement().executeQuery("SELECT * FROM Customer WHERE firstName='"
+				rst =database.getStatement().executeQuery("SELECT * FROM Customer WHERE firstName='"
 						+ Customer[1] + "' and lastName ='" + Customer[2] + "' and customerID = '" + Customer[0] +"'");
 				
 				if (rst.next() && (rst.getString(1) != null)) {
@@ -34,6 +35,8 @@ public class CustomerEditButton extends Thread {
 			} catch (SQLException e) {
 				System.out.println("Cannot execute the query EditCustomer");
 				e.printStackTrace();
+			}finally{
+				database.closeDatabaseConnection();
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Nothing To Edit",
