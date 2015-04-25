@@ -36,7 +36,6 @@ public class SecurityForm {
 	}
 
 	public SecurityForm(int editor) {
-
 		initialize(editor);
 	}
 
