@@ -29,7 +29,7 @@ public class Checker {
 
 	
 	public static boolean checkEmpty(String text){
-		if(text.equals(" "))
+		if(text.equals(""))
 			return false;
 		return true;
 	}
@@ -47,7 +47,7 @@ public class Checker {
 		String nStr = "";
 		if (str.startsWith(" ")) {
 			int i = 0;
-			while (str.charAt(i) == ' ' && i < str.length()) {
+			while (i < str.length() && str.charAt(i) == ' ') {
 				i++;
 			}
 
@@ -55,13 +55,12 @@ public class Checker {
 				nStr = nStr + str.charAt(j);
 			}
 			change = true;
-
 		}
 
 		String fStr = "";
 		if (nStr.endsWith(" ")) {
 			int i = nStr.length() - 1;
-			while (nStr.charAt(i) == ' ' && i >= 0) {
+			while ( i >= 0 && nStr.charAt(i) == ' ' ) {
 				i--;
 			}
 

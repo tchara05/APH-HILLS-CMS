@@ -17,7 +17,6 @@ import extras.Messages;
 public class PropertySaveButton extends Thread {
 
 	/* This classes need improvements */
-
 	public void run() {
 
 		boolean checked = true;
@@ -26,7 +25,7 @@ public class PropertySaveButton extends Thread {
 		Border redline = BorderFactory.createLineBorder(Color.red,2);
 		
 		Border correct =PropertyForm.txtPlotID.getBorder();
-		
+		String id = PropertyForm.txtPlotID.getText();
 
 		String plotName = PropertyForm.txtPlotName.getText();
 		//plotName = Checker.clearString(plotName);
@@ -124,15 +123,7 @@ public class PropertySaveButton extends Thread {
 			PropertyForm.txtBathrooms.setBorder(correct);
 		}
 
-		String deedNum = PropertyForm.txtDeedNo.getText();
-		if (!Checker.checkNumber(deedNum)) {
-			compound = BorderFactory.createCompoundBorder(redline, compound);
-			PropertyForm.txtDeedNo.setBorder(compound);
-			checked = false;
-			compound = null;
-		}else{
-			PropertyForm.txtDeedNo.setBorder(correct);
-		}
+		
 
 		short rentalGarante = 0;
 		if (PropertyForm.chckbxRentalGuarantee.isSelected()) {
@@ -191,6 +182,16 @@ public class PropertySaveButton extends Thread {
 			Messages.showWarningMessage("Complete All Details");
 		}
 		
+		String deedNum = PropertyForm.txtDeedNo.getText();
+		if (titleDeed==1 && !Checker.checkNumber(deedNum)) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
+			PropertyForm.txtDeedNo.setBorder(compound);
+			checked = false;
+			compound = null;
+		}else{
+			PropertyForm.txtDeedNo.setBorder(correct);
+		}
+		
 		
 		DatabaseConnection database = new DatabaseConnection();
 		try {
@@ -208,8 +209,7 @@ public class PropertySaveButton extends Thread {
 
 					String query = "";
 					if (!PropertyForm.edit) {
-
-						query = "INSERT INTO Property VALUES ('" + plotNumber
+						query = "INSERT INTO Property VALUES ('"+id+"','" + plotNumber
 								+ "','" + plotName + "','" + propertyClass
 								+ "','" + parcel + "','" + landUse + "','"
 								+ percentage + "','" + plots + "','" + details
@@ -243,7 +243,6 @@ public class PropertySaveButton extends Thread {
 
 					database.getStatement().executeUpdate(query);
 					PropertyForm.setVisible(false);
-					String id = PropertyForm.txtPlotID.getText();
 					ListManager.UpdateList(id, plotName, plotNumber, PropertyMenu.AllProperties);
 					ListManager.UpdateList(id, plotName, plotNumber, ContractMenu.AllProperties);
 					PropertyForm.edit = false;

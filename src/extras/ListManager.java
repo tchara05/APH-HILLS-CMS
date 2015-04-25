@@ -100,6 +100,8 @@ public class ListManager {
 		list.add(i, finalValue);
 
 	}
+	
+
 
 	public static void setUpTwoColumnsList(JComboBox<String> list, String query) {
 

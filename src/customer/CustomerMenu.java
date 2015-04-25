@@ -210,6 +210,22 @@ public class CustomerMenu {
 		});
 
 	}
+	
+	public static void addListListener(){
+		
+		AllCustomers.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				String str = (String) AllCustomers.getSelectedItem();
+				setDetails(str);
+			}
+		});
+	
+	}
+	
+	
+	
+	
+	
 
 	// Reuturns the hole box //
 	public static JPanel createCustomerMenu() {

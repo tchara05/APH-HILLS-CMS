@@ -26,23 +26,21 @@ public class ChecketTest {
 	}
 	
 	@Test
-	public void checkEmailTest(){
-		
+	public void checkEmailTest(){	
 		assertTrue("[ OK ]", Checker.checkEmailAddress("theodoros@gmail.com"));
 		assertFalse("[ OK ]",Checker.checkEmailAddress("I am not email"));
-		
 	}
-	
-	
 	
 	@Test
 	public void checkClearStringTest(){
 		
 		String goodString = "Theodoros Charalambous";
 		String badString ="       Theodoros Charalambous     ";
+		String st = "           ";
 		
-		assertTrue("[ OK ]",Checker.clearString(goodString).equals(goodString));
-		assertTrue("[ OK ]",Checker.clearString(badString).equals(goodString));
+		assertTrue("good",Checker.clearString(goodString).equals(goodString));
+		assertTrue("bad",Checker.clearString(badString).equals(goodString));
+		assertTrue("emptys",Checker.clearString(st).equals(""));
 	}
 	
 	@Test

@@ -2,6 +2,7 @@ package contract;
 
 import java.awt.Toolkit;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
@@ -30,12 +32,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JCheckBox;
-
 import javax.swing.border.TitledBorder;
 
 import java.awt.Font;
 
 import javax.swing.Icon;
+
+import customer.CustomerForm;
 
 
 public class ContractForm {
@@ -129,10 +132,10 @@ public class ContractForm {
 		label_3.setBounds(7, 296, 89, 16);
 		JLabel label_4 = new JLabel("Contact Phone:");
 		label_4.setFont(new Font("Calibri", Font.PLAIN, 14));
-		label_4.setBounds(147, 296, 95, 16);
+		label_4.setBounds(215, 296, 95, 16);
 		JLabel label_5 = new JLabel("Mobile Phone:");
 		label_5.setFont(new Font("Calibri", Font.PLAIN, 14));
-		label_5.setBounds(299, 296, 88, 16);
+		label_5.setBounds(392, 296, 88, 16);
 		JLabel label_6 = new JLabel("Percentage:");
 		label_6.setFont(new Font("Calibri", Font.PLAIN, 14));
 		label_6.setBounds(226, 134, 72, 16);
@@ -144,19 +147,19 @@ public class ContractForm {
 
 	
 		txtMail = new JTextField();
-		txtMail.setBounds(7, 320, 128, 28);
+		txtMail.setBounds(7, 320, 193, 28);
 		txtMail.setEditable(false);
-		txtMail.setColumns(10);
+		txtMail.setColumns(50);
 		
 		txtContactPhone = new JTextField();
-		txtContactPhone.setBounds(147, 320, 134, 28);
+		txtContactPhone.setBounds(212, 320, 164, 28);
 		txtContactPhone.setEditable(false);
-		txtContactPhone.setColumns(10);
+		txtContactPhone.setColumns(50);
 		
 		txtMobilePhone = new JTextField();
-		txtMobilePhone.setBounds(299, 320, 134, 28);
+		txtMobilePhone.setBounds(389, 320, 134, 28);
 		txtMobilePhone.setEditable(false);
-		txtMobilePhone.setColumns(10);
+		txtMobilePhone.setColumns(50);
 		
 		
 		//Model List Initialize //
@@ -297,15 +300,24 @@ public class ContractForm {
 			public void mouseClicked(MouseEvent e) {
 				
 				String share =  txtSharing.getText();
+				Border compound = null;
+				Border redline = BorderFactory.createLineBorder(Color.red,2);
 				
+			
 				if (Checker.checkNumber(share)){
 					String customer =AllCustomers.remove(Customers.getSelectedIndex());
 					totalShare = totalShare + Integer.parseInt(share);
 					AllOwners.addElement(customer + " " +share);
+					txtSharing.setBorder(txtContractID.getBorder());
 					txtSharing.setText("");
-					Messages.showWarningMessage("" + totalShare);
+					if (totalShare<=100)
+						Messages.showWarningMessage("The total share is: " + totalShare);
+					else
+						Messages.showWarningMessage("The total share is more than 100 please check your inputs");
 				}else{
+					txtSharing.setBorder(redline);
 					Messages.showWarningMessage("Percentage is not valid");
+					
 				}
 				
 			}

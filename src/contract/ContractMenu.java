@@ -42,9 +42,9 @@ public class ContractMenu extends JPanel {
 	private static ContractForm contractform ;
 	
 	//Buttons //
-	private static JButton btnFilter;
+	private static JButton btnSearch;
 	private static JButton btnAddNewContract;
-	private static JButton btnFilterByNo;
+	private static JButton btnSearchNoContr;
 		
 	
 	public ContractMenu(){
@@ -93,15 +93,15 @@ public class ContractMenu extends JPanel {
 		label_2.setBounds(257, 120, 41, 16);
 		
 		// Buttons: //
-		btnFilter = new JButton("Filter");
-		btnFilter.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnFilter.setBounds(62, 213, 149, 33);
+		btnSearch = new JButton("Search");
+		btnSearch.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnSearch.setBounds(62, 213, 149, 33);
 		btnAddNewContract = new JButton("Add New Contract");
 		btnAddNewContract.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnAddNewContract.setBounds(384, 213, 153, 33);
-		btnFilterByNo = new JButton("Filter by No Contract");
-		btnFilterByNo.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnFilterByNo.setBounds(223, 213, 149, 33);
+		btnSearchNoContr = new JButton("Search by No Contract");
+		btnSearchNoContr.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnSearchNoContr.setBounds(223, 213, 149, 33);
 		contPanel.setLayout(null);
 		contPanel.add(label);
 		contPanel.add(AllProperties);
@@ -109,8 +109,8 @@ public class ContractMenu extends JPanel {
 		contPanel.add(AllClasses);
 		contPanel.add(label_2);
 		contPanel.add(AllParcels);
-		contPanel.add(btnFilter);
-		contPanel.add(btnFilterByNo);
+		contPanel.add(btnSearch);
+		contPanel.add(btnSearchNoContr);
 		contPanel.add(btnAddNewContract);
 		
 		addButtonsFuctionalities();
@@ -142,14 +142,14 @@ public class ContractMenu extends JPanel {
 				
 			}
 		});
-		btnFilter.addMouseListener(new MouseAdapter() {
+		btnSearch.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				new ContractFilterButton().start();
 			}
 		});
 		
-		 btnFilterByNo.addMouseListener(new MouseAdapter() {
+		 btnSearchNoContr.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseClicked(MouseEvent e) {
 		    		new FilterByNoContractButton().start();

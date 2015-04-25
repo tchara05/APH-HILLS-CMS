@@ -27,6 +27,7 @@ public class CustomerSaveButton extends Thread {
 		Border redline = BorderFactory.createLineBorder(Color.red,2);
 		
 		Border correct = CustomerForm.txtID.getBorder();
+		String id =CustomerForm.txtID.getText();
 		
 		String country = (String) CustomerForm.Country.getSelectedItem();
 		
@@ -133,19 +134,17 @@ public class CustomerSaveButton extends Thread {
 		}else{
 			CustomerForm.txtPrimaryMail.setBorder(correct);
 		}
-
+		
+		
 		String secondaryMail = CustomerForm.txtSeconadaryMail.getText();
 		secondaryMail = secondaryMail.trim();
-		if (!secondaryMail.isEmpty()) {
-			if (!Checker.checkEmailAddress(secondaryMail)) {
+		if (!secondaryMail.isEmpty() && !Checker.checkEmailAddress(secondaryMail)) {
 				compound = BorderFactory.createCompoundBorder(redline, compound);
 				CustomerForm.txtSeconadaryMail.setBorder(compound);
 				checked = false;
 				compound = null;
-			}
-			else{
+		}else{
 				CustomerForm.txtSeconadaryMail.setBorder(correct);
-			}
 		}
 		
 		String zipcode = CustomerForm.txtZipCode.getText();
@@ -197,7 +196,6 @@ public class CustomerSaveButton extends Thread {
 									+ faxNumber + "','" + closeAccount + "','"
 									+ infoMaterial + "','" + note + "')";
 						} else {
-
 							query = "UPDATE Customer SET firstName = '"
 									+ nFname + "', lastName = '" + nLname
 									+ "', address = '" + address
@@ -218,12 +216,13 @@ public class CustomerSaveButton extends Thread {
 							String s =  ListManager.DeleteFromList(CustomerMenu.AllCustomers);
 							ContractForm.AllCustomers.removeElement(s);
 						}
-
 						st.executeUpdate(query);
-						ListManager.UpdateList(CustomerForm.txtID.getText(),
+						ListManager.UpdateList(CustomerForm.txtID.getText(),   //Customer
 								nFname, nLname, CustomerMenu.AllCustomers);
-						ListManager.UpdateList(CustomerForm.txtID.getText(),
+						ListManager.UpdateList(CustomerForm.txtID.getText(),  // Contract
 								nFname, nLname, ContractForm.AllCustomers);
+						CustomerMenu.addListListener();
+						
 						CustomerClearButton.start();
 						Messages.showSaveMessage("Customer added");
 						CustomerForm.setVisible(false);

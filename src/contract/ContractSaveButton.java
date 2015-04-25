@@ -49,9 +49,9 @@ public class ContractSaveButton extends Thread {
 				database.closeDatabaseConnection();
 			}
 
-		
-		Messages.showSaveMessage("Contract Added");
 		ContractForm.setVisible(false);
+		Messages.showSaveMessage("Contract Added");
+		
 	}
 
 }

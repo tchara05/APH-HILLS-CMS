@@ -27,9 +27,6 @@ import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class classPanel extends JPanel {
-	
-	// For Data //
-	public static JTextField txtID;
 	public static JTextField txtName;
 	public static JComboBox<String> AllClasses ;
 	
@@ -45,14 +42,12 @@ public class classPanel extends JPanel {
 		//Labels //
 		JLabel lblClasses = new JLabel("Class:");
 		lblClasses.setBounds(14, 30, 38, 16);
-		JLabel lblClassId = new JLabel("Class ID:");
-		lblClassId.setBounds(14, 72, 56, 16);
-		JLabel lblName = new JLabel("Name:");
-		lblName.setBounds(14, 112, 40, 16);
+		JLabel lblName = new JLabel("New Class:");
+		lblName.setBounds(14, 70, 84, 16);
 		
 		// DropDown //
 		AllClasses  = new JComboBox<String>();
-		AllClasses.setBounds(76, 26, 215, 27);
+		AllClasses.setBounds(125, 26, 215, 27);
 		ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
 		
 		// Buttons //
@@ -62,22 +57,13 @@ public class classPanel extends JPanel {
 		btnAddClass.setBounds(388, 65, 122, 29);
 		btnDeleteClass = new JButton("Delete Class");
 		btnDeleteClass.setBounds(388, 107, 122, 29);
-	
-		// TextBoxes //
-		txtID = new JTextField();
-		txtID.setBounds(76, 66, 215, 28);
-		txtID.setEditable(false);
-		txtID.setColumns(10);
 		txtName = new JTextField();
-		txtName.setBounds(76, 106, 215, 28);
+		txtName.setBounds(125, 66, 215, 28);
 		txtName.setColumns(10);
 		
-		setID();
 		setLayout(null);
-		add(lblClassId);
 		add(lblClasses);
 		add(lblName);
-		add(txtID);
 		add(txtName);
 		add(AllClasses);
 		add(btnEditClass);
@@ -100,7 +86,7 @@ public class classPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				new addBtn().start();
+				new btnAdd().start();
 			}
 		});
 		btnEditClass.addActionListener(new ActionListener() {
@@ -110,23 +96,6 @@ public class classPanel extends JPanel {
 		});
 		
 	}
-	
-	// Set txtID from database // 
-	private void setID(){
-		
-			DatabaseConnection database = new DatabaseConnection();
-			try{
-				ResultSet t=database.getStatement().executeQuery(Query.STATUS_NO);
-				if (t.next()){
-					txtID.setText((t.getInt(1)+1)+"");
-				}
-			}catch (SQLException e){
-				System.out.println("Class Txt Id");
-				e.printStackTrace();
-			}finally{
-				database.closeDatabaseConnection();
-			}
-	}	
 	
 	// Thread For Deleted Class //
 	private class delBtn extends Thread{
@@ -156,74 +125,116 @@ public class classPanel extends JPanel {
 			}
 	}	
 	
-	//Thread for addbutton //
-	private class addBtn extends Thread {
-		
-		public void run(){
-			
+
+	@SuppressWarnings("unused")
+	private class btnEdit extends Thread {
+
+		public void run() {
 			int response = JOptionPane.showConfirmDialog(null,
 					"Do you want to continue?", "Confirm",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-			String name=txtName.getText();
-			name=Checker.clearString(name);
-			if (response == JOptionPane.YES_OPTION&&!name.equals("")) {
-				
+
+			if (response == JOptionPane.YES_OPTION) {
+
+				String input = JOptionPane.showInputDialog(null,
+						"Enter Status Name:", "Dialog for Input",
+						JOptionPane.WARNING_MESSAGE);
+				input = Checker.clearString(input);
+				while (!Checker.checkEmpty(input)) {
+					input = JOptionPane.showInputDialog(null,
+							"Enter Status Name:", "Dialog for Input",
+							JOptionPane.WARNING_MESSAGE);
+				}
+
 				DatabaseConnection database = new DatabaseConnection();
-			
-				String query="INSERT INTO  Class VALUES('"+ name+"')";
-				AllClasses.addItem(txtID.getText()+" "+txtName.getText());
+
+				String c = (String) AllClasses.getSelectedItem();
+				int index = AllClasses.getSelectedIndex();
+				AllClasses.removeItemAt(index);
+				String[] clas = ListManager.SplitTwoItem(c);
+				try {
+					database.getStatement().executeUpdate(
+							"Update Class SET className='" + input
+									+ "' WHERE propertyClassNo='" + clas[0] + "'");
+
+					Messages.showWarningMessage("Please restart The System!");
+				} catch (SQLException e) {
+					System.out.println("Update Class Query");
+					e.printStackTrace();
+				} finally {
+					database.closeDatabaseConnection();
+				}
+			}
+		}
+	}
+
+	// Thread for addbutton //
+	private class btnAdd extends Thread {
+
+		public void run() {
+
+			int response = JOptionPane.showConfirmDialog(null,
+					"Do you want to continue?", "Confirm",
+					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			String name = txtName.getText();
+			name = Checker.clearString(name);
+			if (response == JOptionPane.YES_OPTION && !name.equals("")) {
+
+				DatabaseConnection database = new DatabaseConnection();
+
+				String query = "INSERT INTO  Class VALUES('" + name + "')";
 				
 				try {
 					database.getStatement().executeUpdate(query);
-					setID();
+					ResultSet rs= database.getStatement().executeQuery(Query.CLASS_NO);
+					rs.next();
+					
+					AllClasses.addItem(rs.getString(1) + " "
+							+ txtName.getText());
 					txtName.setText("");
-				}catch (SQLException e) {
+					Messages.showSaveMessage("Status Added");
+					Messages.showWarningMessage("Please restart The System!");
+				} catch (SQLException e) {
 					System.out.println("Class Delete Query");
 					e.printStackTrace();
-				}finally{
+				} finally {
 					database.closeDatabaseConnection();
 				}
-				
-			}else{
+			} else {
 				Messages.showWarningMessage("Empty Class Name");
 			}
 		}
 	}
-	
-	private class btnEdit extends Thread {
-		
-		
-		public void run(){
-			
+
+	private class btnDelete extends Thread {
+
+		public void run() {
 			int response = JOptionPane.showConfirmDialog(null,
 					"Do you want to continue?", "Confirm",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-			String name=Checker.clearString(txtName.getText());
-			if (response == JOptionPane.YES_OPTION && !name.equals("")) {
-				
+
+			String input = (String) AllClasses.getSelectedItem();
+			String Status[] = ListManager.SplitTwoItem(input);
+			if (response == JOptionPane.YES_OPTION) {
 				DatabaseConnection database = new DatabaseConnection();
-				
 				String c = (String) AllClasses.getSelectedItem();
 				int index = AllClasses.getSelectedIndex();
-				AllClasses.removeItem(c);
+				AllClasses.removeItemAt(index);
 				String[] clas = ListManager.SplitTwoItem(c);
 				try {
 					database.getStatement().executeUpdate(
-							"Update Class SET className='" + txtName.getText()
-									+ "' WHERE propertyClassNo='" + clas[0] + "'");
-					AllClasses.insertItemAt(clas[0]+" "+name, index);
-					txtName.setText("");
+							"Delete PropertyStatus WHERE statusID='" + clas[0] + "'");
+					Messages.showSaveMessage("Status Deleted");
+					Messages.showWarningMessage("Please restart The System!");
 				} catch (SQLException e) {
 					System.out.println("Update Class Query");
 					e.printStackTrace();
-				}finally{
+				} finally {
 					database.closeDatabaseConnection();
 				}
-
-			}else{
-				Messages.showWarningMessage("Empty Class Name");
 			}
-		}	
+		}
 	}
+
 }	
 

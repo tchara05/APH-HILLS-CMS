@@ -89,11 +89,13 @@ public class PropertyEditButton extends Thread {
 
 		if (rst.getInt(19) == 1) {
 			PropertyForm.TitleDeed.setSelected(true);
+			PropertyForm.txtDeedNo.setText(rst.getString(18));
 		} else {
 			PropertyForm.TitleDeed.setSelected(false);
+			PropertyForm.txtDeedNo.setText("");
 		}
 
-		PropertyForm.txtDeedNo.setText(rst.getString(18));
+		
 		PropertyForm.txtBathrooms.setText(rst.getString(17));
 		PropertyForm.txtBedrooms.setText(rst.getString(16));
 		PropertyForm.txtFloors.setText(rst.getString(15));
@@ -125,7 +127,7 @@ public class PropertyEditButton extends Thread {
 
 		PropertyForm.txtExtraDetails.setText(rst.getString(9));
 		PropertyForm.txtPlots.setText(rst.getString(8));
-		PropertyForm.txtPerChange.setText(rst.getString(7));
+		PropertyForm.txtPerChange.setText(((int)Double.parseDouble(rst.getString(7)))+"");
 		PropertyForm.txtLandUse.setText(rst.getString(6));
 		PropertyForm.txtPlotName.setText(rst.getString(3));
 		PropertyForm.txtPlotNo.setText(rst.getString(2));
