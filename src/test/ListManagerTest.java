@@ -21,6 +21,7 @@ public class ListManagerTest {
 		list = new JComboBox<String>();
 	}
 
+	
 	@Test
 	public void testUpdateJCombox() {
 
@@ -45,26 +46,54 @@ public class ListManagerTest {
 			assertTrue(" [OK]",control==5);		
 	}
 	@Test
-	public void testTwoSplit(){
+	public void testThreeSplit(){
 		
 		String strs[];
 		strs = ListManager.SplitThreeItem("1 2 3");
 		assertTrue("[OK]",strs[0].equals("1"));
 		assertTrue("[OK]",strs[1].equals("2"));
-		assertTrue("[OK]",strs[1].equals("3"));
+		assertTrue("[OK]",strs[2].equals("3"));
 		
-		ListManager.SplitThreeItem("AA BB CC");
+		strs = ListManager.SplitThreeItem("AA BB CC");
 		
 		assertTrue("[OK]",strs[0].equals("AA"));
 		assertTrue("[OK]",strs[1].equals("BB"));
-		assertTrue("[OK]",strs[1].equals("CC"));
-		ListManager.SplitThreeItem("1 Marios Theodoros");
+		assertTrue("[OK]",strs[2].equals("CC"));
+		strs = ListManager.SplitThreeItem("1 Marios Theodoros");
 		
 		assertTrue("[OK]",strs[0].equals("1"));
 		assertTrue("[OK]",strs[1].equals("Marios"));
-		assertTrue("[OK]",strs[1].equals("Theodoros"));
-		
+		assertTrue("[OK]",strs[2].equals("Theodoros"));
 		
 	}
+	
+	@Test
+	public void testTwoSplit(){
+		
+		String strs[];
+		strs = ListManager.SplitTwoItem("1 2 3");
+		
+		System.out.println(strs[0]);
+		System.out.println(strs[1]);
+		
+		assertTrue("[OK]",strs[0].equals("1"));
+		assertTrue("[OK]",strs[1].equals("2 3"));
+		
 
+		
+		strs = ListManager.SplitTwoItem("AA BB CC");
+		
+		assertTrue("[OK]",strs[0].equals("AA"));
+		assertTrue("[OK]",strs[1].equals("BB CC"));
+		
+		strs = ListManager.SplitTwoItem("1 Marios Theodoros");
+		
+		assertTrue("[OK]",strs[0].equals("1"));
+		assertTrue("[OK]",strs[1].equals("Marios Theodoros"));
+	}
+	
+	
+	
+	
+	
 }

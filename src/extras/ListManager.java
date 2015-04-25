@@ -185,8 +185,13 @@ public class ListManager {
 			Fname = Fname + item.charAt(i);
 			i++;
 		}
+		
+		while((i<item.length())){
+			Fname=Fname +item.charAt(i);
+			i++;
+		}
 
-		String[] customer = new String[3];
+		String[] customer = new String[2];
 
 		customer[0] = id;
 		customer[1] = Fname;
@@ -255,5 +260,8 @@ public class ListManager {
 		}
 
 	}
+	
+	
+	
 
 }

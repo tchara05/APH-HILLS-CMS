@@ -1,10 +1,9 @@
-/.DS_Store
-/admin/
-/contract/
 /customer/
 /extras/
-/property/
-/test/
 /logistics/
+/property/
 /security/
+/test/
 /userMenus/
+/admin/
+/contract/
