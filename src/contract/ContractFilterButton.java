@@ -1,12 +1,30 @@
 package contract;
 
-import org.junit.Test;
-
 import extras.ListManager;
 import extras.Query;
 
+/**
+ * Thread that helps user to retrieve specific properties from the 
+ * Database and puts the results into a DropDownList. 
+ * @author TeamD
+ *
+ */
+
 public class ContractFilterButton extends Thread {
 	
+	
+	/**
+	 *  Overwrite the Thread's method run.
+	 *  
+	 *  The specific thread connects with the database and retrieves (filters) 
+	 *  properties with specific characteristic.
+	 *  The user choose from AllParcel (DropDownList) and AllClasses(DropDownList)
+	 *  and the thread retrieves the Properties with these characteristic.
+	 *  All results (Properties) goes into AllProperties (DropdownList) and user
+	 *  can choose something from there.
+	 *  
+	 * @author TeamD
+	 */
 	
 	public void run(){
 		

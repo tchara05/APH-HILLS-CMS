@@ -1,5 +1,5 @@
-package contract;
 
+package contract;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
@@ -24,8 +24,15 @@ import java.sql.SQLException;
 import javax.swing.border.TitledBorder;
 
 import java.awt.Font;
-
-import javax.swing.border.EtchedBorder;
+/**
+ * Class that represents a panel.
+ * 
+ * The role of this panel is to show user the properties and 
+ * choose one from a dropdown list  and create a new contract.
+ * 
+ * @author TeamD
+ *
+ */
 @SuppressWarnings("serial")
 public class ContractMenu extends JPanel {
 	
@@ -46,6 +53,13 @@ public class ContractMenu extends JPanel {
 	private static JButton btnAddNewContract;
 	private static JButton btnSearchNoContr;
 		
+	/**
+	 * The constructor of the class creates and initialize
+	 * all fields of the class (panels,buttons,text boxes)
+	 * 
+	 * Besides calls methods to add listeners to the buttons.
+	 * 
+	 */
 	
 	public ContractMenu(){
 		
@@ -117,12 +131,30 @@ public class ContractMenu extends JPanel {
 
 	}
 	
+	
+	
+	
+	/**
+	 * Method that returns the father panel
+	 * 
+	 * 
+	 * @return JPanel.
+	 */
+	
+	
 	public static JPanel createContractMenu() {
 		 new ContractMenu();
 		 return panel;
 	}
 
-	//Buttons Fuctionalities //
+	/**
+	 * This is a function that add mouselisteners to the
+	 * buttons.
+	 * 
+	 * With this mouse listener we can check if a contract exist
+	 * for a chosen property and show a warning to user.
+	 * 
+	 */
 	private void addButtonsFuctionalities(){
 		btnAddNewContract.addMouseListener(new MouseAdapter() {
 			@Override
@@ -157,6 +189,15 @@ public class ContractMenu extends JPanel {
 		    });
 		
 	}
+	
+	/**
+	 * This method connects to the database and checks if
+	 * the chooser property has already a contract.
+	 * 
+	 * 
+	 * @return boolean
+	 */
+	
 	
 	
  public boolean existContract() {

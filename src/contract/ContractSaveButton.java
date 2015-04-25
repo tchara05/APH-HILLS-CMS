@@ -6,7 +6,27 @@ import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
 
+
+/**
+ * 
+ * Thread that save contract data into database.
+ * Connect to database and execute query to save contract
+ * or update a contract (base on the flag edit).
+ * @author TeamD
+ *
+ */
+
 public class ContractSaveButton extends Thread {
+	
+	/**
+	 * 
+	 * Method that connect to a database and execute querie to save
+	 * a new contract and disable an old one if exist.
+	 * 
+	 * After the execution of the querie the lists of the contract 
+	 * form updated.
+	 * 
+	 */
 
 	public void run() {
 

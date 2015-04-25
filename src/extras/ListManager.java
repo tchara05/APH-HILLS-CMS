@@ -7,8 +7,35 @@ import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
+
+
+/**
+ * 
+ * Class that helps t manage dropdawn lists.
+ * 
+ * There are methods that helps to delete, update, setup and slipt list's
+ * data.
+ *
+ * Some methods also connects to database and retrieves some data.
+ * 
+ * @author TeamD
+ *
+ */
 public class ListManager {
 
+	
+	/**
+	 * Method takes a list and string-query as parameters.
+	 * It connect to database and execute the query string to 
+	 * retrieve data.
+	 * When data got into to a result set then, the getting also into
+	 * the drop down list with this format:
+	 * 
+	 * 		<col1 col2 col3>
+	 * 
+	 * @param JComboBox
+	 * @param String
+	 */
 
 	public static void setUpThreeList(JComboBox<String> list, String query) {
 
@@ -38,6 +65,20 @@ public class ListManager {
 		}
 
 	}
+	
+	/**
+	 * Method that takes a list and three strings. The strings represent
+	 * 		(for example  <id,name,surname> )
+	 * and method inserts these string into the list with alphabetic sorting(str1,str2).
+	 * 
+	 * 
+	 * @param String
+	 * @param String
+	 * @param String
+	 * @param JComboBox
+	 */
+	
+	
 	public static void UpdateList(String id, String str1, String str2,
 			JComboBox<String> list) {
 
@@ -71,6 +112,18 @@ public class ListManager {
 		}
 	}
 
+	/**
+	 * Method that takes a list and three strings. The strings represent
+	 * 		(for example  <id,name,surname> )
+	 * and method inserts these string into the list with alphabetic sorting(str1,str2).
+	 * 
+	 * 
+	 * @param String
+	 * @param String
+	 * @param String
+	 * @param DefaultListModel
+	 */
+
 	public static void UpdateList(String id, String str1, String str2,DefaultListModel<String> list) {
 
 		int length = list.getSize();
@@ -101,6 +154,18 @@ public class ListManager {
 
 	}
 	
+	/**
+	 * Method takes a list and string-query as parameters.
+	 * It connect to database and execute the query string to 
+	 * retrieve data.
+	 * When data got into to a result set then, the getting also into
+	 * the drop down list with this format:
+	 * 
+	 * 		<col1 col2>
+	 * 
+	 * @param JComboBox
+	 * @param String
+	 */
 
 
 	public static void setUpTwoColumnsList(JComboBox<String> list, String query) {
@@ -130,6 +195,15 @@ public class ListManager {
 		}
 	}
 
+	/**
+	 * Methods that finds a specific element in a list and delete it from the
+	 * list
+	 * 
+	 * 
+	 * @param DefaultListModel
+	 * @param String
+	 */
+	
 	public static String DeleteFromList(JComboBox<String> list) {
 
 		if (list.getItemCount() > 0) {
@@ -140,11 +214,33 @@ public class ListManager {
 			return "";
 		}
 	}
+	
+	/**
+	 * Methods that finds a specific element in a list and delete it from the
+	 * list
+	 * 
+	 * 
+	 * @param DefaultListModel
+	 * @param String
+	 */
 	public static void DeleteFromList(DefaultListModel<String> list,String s){
 		if (list.getSize()>0){
 			list.removeElement(s);
 		}
 	}
+	
+	/**
+	 * Method takes as parameters a string with format:
+	 * 
+	 * 	<str1 str2 str3>
+	 * 
+	 * and returns the str1 str2 and str3  in an String array.
+	 * 
+	 * @param String
+	 * @return String
+	 */
+	
+	
 	public static String[] SplitThreeItem(String item) {
 
 		String Fname = "";
@@ -174,6 +270,18 @@ public class ListManager {
 
 		return customer;
 	}
+	
+	/**
+	 * Method takes as parameters a string with format:
+	 * 
+	 * 	<str1 str2>
+	 * 
+	 * and returns the str1 and str2 into a String array.
+	 * 
+	 * @param String
+	 * @return String[]
+	 */
+
 	public static String[] SplitTwoItem(String item) {
 		String Fname = "";
 		String id = "";
@@ -200,6 +308,19 @@ public class ListManager {
 
 		return customer;
 	}
+	
+	/**
+	 * Method takes a list and string-query as parameters.
+	 * It connect to database and execute the query string to 
+	 * retrieve data.
+	 * When data got into to a result set then, the getting also into
+	 * the drop down list with this format:
+	 * 
+	 * 		<col1 col2>
+	 * 
+	 * @param DefaultListModel
+	 * @param String
+	 */
 	public static void SetUpThreeList(DefaultListModel<String> list,
 			String query) {
 		
@@ -220,6 +341,19 @@ public class ListManager {
 		}
 
 	}
+	
+	/**
+	 * Method takes as parameters a string with format:
+	 * 
+	 * 	<Fname Lname share>
+	 * 
+	 * and returns the Fname and Lname in an array
+	 * 
+	 * @param String
+	 * @return String[]
+	 */
+	
+	
 	public static String[] removeShare(String item) {
 
 		int i = item.length() - 1;
@@ -238,6 +372,20 @@ public class ListManager {
 		return newItem;
 
 	}
+	
+
+	/**
+	 * Method takes as parameters a string with format:
+	 * 
+	 * 	<Fname Lname share  ...>
+	 * 
+	 * and returns the Fname .
+	 * 
+	 * @param String
+	 * @return Strin
+	 */
+	
+	
 	public static String SplitOneItem(String s) {
 		String result = "";
 		int i = 0;
@@ -248,6 +396,8 @@ public class ListManager {
 		return result;
 
 	}
+	
+	
 	public static boolean checkPercentage(int prc) {
 
 		if (prc != 100) {

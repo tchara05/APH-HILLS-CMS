@@ -4,6 +4,18 @@ import java.sql.*;
 
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * Class that represents the database connection.
+ * 
+ * We can get a statement and execute queries.
+ * with this class.
+ * 
+ * @author TeamD
+ *
+ */
+
+
 public class DatabaseConnection {
 
 	private static String databaseName = "aphroditehills";
@@ -11,6 +23,13 @@ public class DatabaseConnection {
 	private static String username = "aphroditehills";
 	private static Connection conn;
 	private static Statement statement;
+	
+	
+	/**
+	 * Constructor that creates a basic statement and connects to a database
+	 * to retrieve data.
+	 * 
+	 */
 	
 	public DatabaseConnection() {
 
@@ -47,14 +66,39 @@ public class DatabaseConnection {
 		return statement;
 	}
 
+	/**
+	 * Getter for connection
+	 * 
+	 * 
+	 * @return Connection
+	 */
+	
 	public Connection getDatabaseConnection() {
 		return conn;
 	}
+	
+	
+	/***
+	 * Creates and returns a back and forward statement and 
+	 * return it to user.
+	 * 
+	 * 
+	 * 
+	 * @return Statement
+	 * @throws SQLException
+	 */
+	
 	
 	public Statement createBackForwardStateMent() throws SQLException{
 		return conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 	}
 
+	
+	
+	/**
+	 * Method that close the statement and the database connection
+	 * 
+	 */
 	public void closeDatabaseConnection(){
 		try {
 			statement.close();
@@ -66,6 +110,14 @@ public class DatabaseConnection {
 		
 	}
 	
+	/**
+	 * Method main just for test.
+	 * 
+	 * 
+	 * 
+	 * @param Strings[]
+	 * @throws Throwable
+	 */
 	public static void main(String args[]) throws Throwable {
 		new DatabaseConnection();
 	}

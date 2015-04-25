@@ -1,5 +1,13 @@
 package extras;
 
+/**
+ * Class that has variables that keeps the standard queries to retrieve
+ * some data.
+ * 
+ * @author TeamD
+ *
+ */
+
 public class Query {
 	
 	public static final String PROPERTY_ID_NAME_NUMBER = "SELECT plotID, plotName , PlotNumber FROM " +

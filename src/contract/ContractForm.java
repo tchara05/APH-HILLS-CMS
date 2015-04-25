@@ -41,6 +41,22 @@ import javax.swing.Icon;
 import customer.CustomerForm;
 
 
+/**
+ * Class that represents a window.
+ * The user uses this window-form to save Contracts (data) into
+ * the database.
+ * 
+ * All types and fields are static because the form would be created 
+ * one time.
+ * 
+ * 
+ * All methods and listeners in this class
+ * connect to a database to retrieve, or puts some data.
+ * 
+ * @author TeamD
+ *
+ */
+
 public class ContractForm {
 
 	private static JFrame frame;
@@ -75,16 +91,44 @@ public class ContractForm {
 	private JButton btnSave;
 	private JLabel lblNewLabel;
 
+	
+	/**
+	 * Main method
+	 * Useful only for testing
+	 *
+	 * @param  Srting[]
+	 */
+	
+	
+	
 	public static void main(String[] args) {
 		
 					@SuppressWarnings("unused")
 					ContractForm window = new ContractForm();
 					ContractForm.setVisible(true);		
 	}
+	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 
 	public ContractForm() {
 		initialize();
 	}
+	
+	
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
+	
 	private void initialize() {
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -292,7 +336,14 @@ public class ContractForm {
 		setContractID();
 	}
 	
-	// Add Events to Buttons//
+	/**
+	 * This methods creates MouseListeners for the 
+	 * for all buttons of the form.
+	 * Mouse Listeners checks the user's input and 
+	 * save database or show some warnings if there is any 
+	 * error.
+	 * 
+	 */
 	private void addButtonsFuctionalities(){
 		
 		btnRight.addMouseListener(new MouseAdapter() {
@@ -354,6 +405,16 @@ public class ContractForm {
 		});
 	}
 
+	
+	/**
+	 * This method retrieves some data from database about
+	 * a customer.
+	 * When a customer selected from the dropdown list
+	 * some details shown up in text boxes to inform the 
+	 * user about him.
+	 * 
+	 * @param String
+	 */
 	private static void setTextFields(String str){
 		
 
@@ -376,6 +437,15 @@ public class ContractForm {
 			database.closeDatabaseConnection();
 		}
 	}
+	
+	/**
+	 * This method connects to the database and retrieve 
+	 * the max id of the contract table.
+	 * Increase this number and puts the number to a txtbox
+	 * The number now is the id of the next new contract.
+	 * 
+	 */
+	
 	private static void setContractID() {
 		ResultSet rs;
 		DatabaseConnection database= new DatabaseConnection();
@@ -398,15 +468,35 @@ public class ContractForm {
 
 	}
 
+	/**
+	 * This is a method that hide and show the window-form
+	 * 
+	 * 
+	 * @param boolean
+	 */
+	
+	
+	
 	public static void setVisible(boolean val){
 		String property ="";
 		try{
 			 property = (String)ContractMenu.AllProperties.getSelectedItem();
 		}catch(Exception e){
-		System.out.println("Nohing"); }
-		setPropertyTextFields(property);
+			System.out.println("Nohing"); }
+			setPropertyTextFields(property);
 		frame.setVisible(val);
 	}
+	
+	
+	/**
+	 * This method splits a string that represent a property
+	 * and add this information to text boxes.
+	 * This is a way for users to know about the property and the
+	 * new contract.
+	 * 
+	 * 
+	 * @param String
+	 */
 	
 	public static void setPropertyTextFields(String property){
 		String[] Property = ListManager.SplitThreeItem(property);
