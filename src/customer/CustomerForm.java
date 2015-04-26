@@ -37,12 +37,27 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.border.TitledBorder;
+/**
+ * Class that represents a window.
+ * The user uses this window-form to save Customer (data) into
+ * the database.
+ * 
+ * All types and fields are static because the form would be created 
+ * one time.
+ * 
+ * 
+ * All methods and listeners in this class
+ * connect to a database to retrieve, or puts some data.
+ * 
+ * @author TeamD
+ *
+ */
 
 
 public class CustomerForm {
 	
 	
-	// Graphical Variables  Data //
+	// Text Boxes: //
 	public static JFrame frame;
 	public static JTextField txtFname;
 	public static JTextField txtLastName;
@@ -56,8 +71,14 @@ public class CustomerForm {
 	public static JTextField txtContactNumber;
 	public static JTextField txtFaxNumber;
 	public static JTextField txtID;
+	
+	//List for scroll //
 	public static JComboBox<String> Country;
+	
+	// Text Area box: //
 	public static JTextArea txtNote;
+	
+	// Check Box: //
 	public static JCheckBox chckbxCloseAccound;	
 	public static JCheckBox chckbxInformationMaterial;
 	
@@ -70,6 +91,13 @@ public class CustomerForm {
 	 private JLabel lblNewLabel;
 	
 	
+	 
+	 /**
+		 * Main method
+		 * Useful only for testing
+		 *
+		 * @param  Srting[]
+		 */
 	public static void main(String[] args) {
 		
 					@SuppressWarnings("unused")
@@ -78,12 +106,26 @@ public class CustomerForm {
 					
 	}
 	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	public CustomerForm() {
 		initialize();
 		setUpClassesList();
 		addButtonsFuctionalities();	
 	}
-
+	
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
 	private void initialize() {
 		
 		try {
@@ -344,7 +386,13 @@ public class CustomerForm {
 		frame.getContentPane().setLayout(groupLayout);
 	
 	}
-
+	/**
+	 * This method creates retrieve from Database
+	 * the customer ID and increases by 1
+	 * Or if  Database is empty start with 1
+	 * 
+	 * 
+	 */
 	public static void setID() {
 		ResultSet rs = null;
 		DatabaseConnection database=null; 
@@ -369,11 +417,24 @@ public class CustomerForm {
 		}
 
 	}
-
+	
+	/**
+	 * This is a method that hide and show the window-form
+	 * 
+	 * 
+	 * @param val boolean
+	 */
 	public static void setVisible(boolean val){
 		frame.setVisible(val);	
 	}
 	
+	/**
+	 * This method creates list of country.
+	 * Retrieve from Database country and 
+	 * show on the list.
+	 * 
+	 * 
+	 */
 	private static void setUpClassesList(){
 		DatabaseConnection database=null; 
 		try{
@@ -392,7 +453,12 @@ public class CustomerForm {
 	}
 	
 	
-	// adding events //
+	/**
+	 * This method  manage the buttons and 
+	 * their actions
+	 * 
+	 * 
+	 */
 	private void addButtonsFuctionalities(){
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override

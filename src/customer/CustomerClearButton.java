@@ -2,10 +2,20 @@ package customer;
 
 import javax.swing.border.Border;
 
-
+/**
+ * Class that clear a window for the customer form .
+ *
+ *
+ * @author TeamD
+ *
+ */
 public class CustomerClearButton{
 	
-	
+	/**
+	 * This method clear all fields on Customer form 
+	 * window
+	 *
+	 */
 	public static void start(){
 			CustomerForm.chckbxCloseAccound.setSelected(false);
 			CustomerForm.chckbxInformationMaterial.setSelected(false);

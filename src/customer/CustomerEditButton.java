@@ -7,9 +7,25 @@ import javax.swing.JOptionPane;
 
 import extras.DatabaseConnection;
 import extras.ListManager;
-
+/**
+ * Class that can edit a Customer from Database.
+ * Connect to database and execute query to edit Customer
+ * and display the old information for this customer.
+ *
+ * @author TeamD
+ *
+ */
 public class CustomerEditButton extends Thread {
 
+	
+	
+	/**
+	 * 
+	 * Method that connect to a database and execute query to select
+	 * a Customer and disable all information ready to edit.
+	 * 
+	 * 
+	 */
 	public void run() {
 
 
@@ -45,6 +61,12 @@ public class CustomerEditButton extends Thread {
 		
 	}
 
+	/**
+	 * 
+	 * Method  the  disable all information ready to edit.
+	 * 
+	 * @param ReslutSet //answer from Database 
+	 */
 	private static void setForm(ResultSet rst) throws SQLException {
 
 		
@@ -66,9 +88,10 @@ public class CustomerEditButton extends Thread {
 		
 		if (rst.getInt(14) == 0) {
 			CustomerForm.chckbxCloseAccound.setSelected(false);
-		} else
+		} else{
 			CustomerForm.chckbxCloseAccound.setSelected(true);
-
+		}
+		
 		if (rst.getInt(15) == 0) {
 			CustomerForm.chckbxInformationMaterial.setSelected(false);
 		} else {

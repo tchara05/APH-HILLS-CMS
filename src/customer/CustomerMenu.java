@@ -27,7 +27,19 @@ import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
 import java.awt.Font;
-
+/**
+ * Class that represents a window.
+ *
+ * All types and fields are static because the form would be created 
+ * one time.
+ * 
+ * 
+ * All methods and listeners in this class
+ * connect to a database to retrieve, or puts some data.
+ * 
+ * @author TeamD
+ *
+ */
 public class CustomerMenu {
 
 	// This is the hole box //
@@ -53,7 +65,14 @@ public class CustomerMenu {
 	private static JPanel detailsPanel;
 	private JPanel panel;
 	private JPanel panel_1;
-
+	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	CustomerMenu() {
 
 		customerform = new CustomerForm();
@@ -175,7 +194,12 @@ public class CustomerMenu {
 		addButtonsFuctionalities();
 	}
 
-	// Events Added //
+	/**
+	 * This method  manage the buttons and 
+	 * their actions
+	 * 
+	 * 
+	 */
 	private void addButtonsFuctionalities() {
 
 		btnDeleteCustomer.addMouseListener(new MouseAdapter() {
@@ -210,7 +234,11 @@ public class CustomerMenu {
 		});
 
 	}
-	
+	/**
+	 * This method  manage the list 
+	 * 
+	 * 
+	 */
 	public static void addListListener(){
 		
 		AllCustomers.addItemListener(new ItemListener() {
@@ -222,17 +250,24 @@ public class CustomerMenu {
 	
 	}
 	
-	
-	
-	
-	
-
-	// Reuturns the hole box //
+	/**
+	 * this method create that Form calling the
+	 * constructor of CustomerMenu
+	 * 
+	 * 
+	 */
 	public static JPanel createCustomerMenu() {
 		new CustomerMenu();
 		return CustomerPanel;
 	}
-
+	
+	/**
+	 * This method  connect to a database and execute query to select
+	 * a Customer and disable same information.
+	 * To be sure about the customer to delete or edit.
+	 * 
+	 * 
+	 */
 	public static void setDetails(String customer) {
 
 		ResultSet rst = null;

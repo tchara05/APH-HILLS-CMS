@@ -14,10 +14,27 @@ import extras.Checker;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
-
+/**
+ * Class that can insert a Customer into Database.
+ * Take all values from field and checked. 
+ * Then Connect to database and execute query to save Customer
+ *
+ *
+ * @author TeamD
+ *
+ */
 public class CustomerSaveButton extends Thread {
 	
-	
+
+	/**
+	 * This method take all value from fields and checked if are correct. 
+	 * If all value from field are not correct set red Boarder all incorrect fields.
+	 * If all value from field are  correct connect to database and execute query 
+	 * to save Customer.Method that connect to a database and execute query to insert
+	 * a Customer into Database.
+	 * 
+	 * 
+	 */
 
 	public void run() {
 
@@ -243,6 +260,14 @@ public class CustomerSaveButton extends Thread {
 		CustomerForm.edit= false;
 		
 	}
+
+	/**
+	 * This method connect to database and execute query 
+	 * to find country ID for customer's country
+	 * 
+	 * @param country // name of country
+	 * @param st  //answer for Database
+	 */
 
 	private static int getCountry(String country, Statement st){
 

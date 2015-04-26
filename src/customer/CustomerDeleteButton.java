@@ -9,9 +9,23 @@ import javax.swing.JOptionPane;
 
 import contract.ContractForm;
 import extras.ListManager;
-
+/**
+ * Class that can Delete a Customer from Database.
+ * Connect to database and execute query to delete Customer
+ *
+ * @author TeamD
+ *
+ */
 public class CustomerDeleteButton extends Thread {
 
+	
+	/**
+	 * 
+	 * Method that connect to a database and execute query to delete
+	 * a Customer and disable the safe question to complete this action.
+	 * 
+	 * 
+	 */
 	public void run() {
 
 
