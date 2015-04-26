@@ -1,5 +1,14 @@
 package security;
 
+/**
+ * 
+ * This class is used for clearing the text fields
+ * that are used in the security department menu. 
+ * 
+ * @author TeamD
+ *
+ */
+
 public class SecurityClearButton {
 	
 	public static void start() {

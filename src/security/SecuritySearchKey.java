@@ -3,11 +3,19 @@ package security;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.JOptionPane;
-
 import extras.Checker;
 import extras.DatabaseConnection;
+
+/**
+ * 
+ * This class is used for editing or deleting a key contract
+ * using the plot name and the plot number. We use some checks
+ * using queries to check if the key contract exists or is not.
+ * 
+ * @author TeamD
+ *
+ */
 
 public class SecuritySearchKey extends Thread {
 

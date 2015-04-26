@@ -19,6 +19,16 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * Graphics for the key contract form of the Security department.
+ * This form is used when we want to add a new key contract or to
+ * edit an existing one (the only editable thing is the notes
+ * that are given by the customer).
+ * 
+ * @author TeamD
+ *
+ */
 
 public class SecurityForm {
 
@@ -30,6 +40,7 @@ public class SecurityForm {
 	public static JTextField txtPlotNumber;
 
 	
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		SecurityForm window = new SecurityForm(0);
 		window.frame.setVisible(true);
@@ -49,8 +60,6 @@ public class SecurityForm {
 				}
 			}
 		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look
-			// and feel.
 		}
 
 		frame = new JFrame();
@@ -171,9 +180,9 @@ public class SecurityForm {
 		btnClear.setBounds(32, 277, 116, 31);
 		btnPanel.add(btnClear);
 		
-				JLabel lblimage = new JLabel(image);
-				lblimage.setBounds(10, 35, 158, 120);
-				btnPanel.add(lblimage);
+		JLabel lblimage = new JLabel(image);
+		lblimage.setBounds(10, 35, 158, 120);
+		btnPanel.add(lblimage);
 
 	}
 }

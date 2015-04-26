@@ -7,26 +7,37 @@ import javax.swing.JOptionPane;
 import extras.DatabaseConnection;
 import extras.Checker;
 
+/**
+ * 
+ * This class is used for saving a new key contract or
+ * saving an edited key contract.
+ * 
+ * @author TeamD
+ *
+ */
+
 public class SecuritySaveButton extends Thread {
 
 	public void run() {
 
 		DatabaseConnection database = new DatabaseConnection();
 		Statement stment = null;
-		
+
 		if (SecurityEditButton.editor == 1) {
 
 			String txtPlotName = SecurityForm.txtPlotName.getText();
 			String txtPlotNumber = SecurityForm.txtPlotNumber.getText();
 			String txtNotes = SecurityForm.txtAreaNotes.getText();
-			
-			String txtpropertyID = getPropId(txtPlotName, Integer.parseInt(txtPlotNumber));
+
+			String txtpropertyID = getPropId(txtPlotName,
+					Integer.parseInt(txtPlotNumber));
 			String query = "";
-			
-			query = "UPDATE KEYCONTRACT SET notes = '" + txtNotes + "' WHERE propertyID = '" + txtpropertyID + "'";
+
+			query = "UPDATE KEYCONTRACT SET notes = '" + txtNotes
+					+ "' WHERE propertyID = '" + txtpropertyID + "'";
 
 			stment = database.getStatement();
-			
+
 			try {
 				stment.executeUpdate(query);
 				JOptionPane.showMessageDialog(null, "Key Contract Updated!",
@@ -36,7 +47,7 @@ public class SecuritySaveButton extends Thread {
 			}
 			stment = database.getStatement();
 			SecurityEditButton.editor = 0;
-			
+
 		} else {
 
 			int check = 0;
@@ -49,19 +60,21 @@ public class SecuritySaveButton extends Thread {
 			String txtNotes = SecurityForm.txtAreaNotes.getText();
 			String txtPlotName = SecurityForm.txtPlotName.getText();
 			String txtPlotNumber = SecurityForm.txtPlotNumber.getText();
-			
-			if(!Checker.checkEmpty(txtPlotName) || !Checker.checkEmpty(txtPlotNumber))
+
+			if (!Checker.checkEmpty(txtPlotName)
+					|| !Checker.checkEmpty(txtPlotNumber))
 				check = 1;
-			
-			if(!Checker.checkString(txtPlotName) || !Checker.checkNumber(txtPlotNumber))
+
+			if (!Checker.checkString(txtPlotName)
+					|| !Checker.checkNumber(txtPlotNumber))
 				check = 1;
-			
-			if(check == 1) {
+
+			if (check == 1) {
 				Checker.showMessage();
 				check = 0;
 				return;
 			}
-			
+
 			int txtplotNumber = Integer.parseInt(txtPlotNumber);
 
 			txtpropertyID = getPropId(txtPlotName, txtplotNumber);
@@ -100,7 +113,7 @@ public class SecuritySaveButton extends Thread {
 								"Key Contract Added", "Information Message",
 								JOptionPane.INFORMATION_MESSAGE);
 						SecurityClearButton.start();
-						
+
 						Securitymenu.AllContracts.removeAll();
 						Securitymenu.setUpContractList();
 						// SecurityForm.setVisible(false);
@@ -108,12 +121,13 @@ public class SecuritySaveButton extends Thread {
 					}
 
 				} else if (exist) {
-					JOptionPane.showMessageDialog(null, "Key Contract is already Added",
-							"Warning Message", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Key Contract is already Added", "Warning Message",
+							JOptionPane.WARNING_MESSAGE);
 				} else {
 					JOptionPane.showMessageDialog(null,
-							"Property does not Exist!",
-							"Warning Message", JOptionPane.WARNING_MESSAGE);
+							"Property does not Exist!", "Warning Message",
+							JOptionPane.WARNING_MESSAGE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -124,6 +138,15 @@ public class SecuritySaveButton extends Thread {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * This method is used to check if the property id (plot id) exists
+	 * in the property table of the database.
+	 * 
+	 * @author TeamD
+	 *
+	 */
 	private boolean checker(String s) throws SQLException {
 
 		if (Checker.checkNumber(s)) {
@@ -151,6 +174,15 @@ public class SecuritySaveButton extends Thread {
 
 	}
 
+	
+	/**
+	 * 
+	 * This method is used to get the property id of the give plot name
+	 * and plot number in the property table of the database.
+	 * 
+	 * @author TeamD
+	 *
+	 */
 	public static String getPropId(String txtplotName, int txtplotNumber) {
 
 		DatabaseConnection database = new DatabaseConnection();
@@ -170,8 +202,6 @@ public class SecuritySaveButton extends Thread {
 				txtpropertyID = rset.getString(1);
 			else
 				txtpropertyID = "0";
-
-			// txtpropertyID = Integer.parseInt(propertyID);
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}

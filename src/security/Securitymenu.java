@@ -3,16 +3,13 @@ package security;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.UIManager;
-
 import extras.DatabaseConnection;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,26 +18,26 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
-import java.awt.SystemColor;
 import javax.swing.JRadioButton;
+
+/**
+ * 
+ * Graphics for the security-menu of the Security department.
+ * 
+ * @author TeamD
+ *
+ */
 
 public class Securitymenu extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public static JTextField txtPlotName;
 	public static JComboBox<String> AllContracts;
 	public static JTextField txtShowIfFound;
 	public static DatabaseConnection database;
-	@SuppressWarnings("unused")
-	private static CheckIn checkIn;
 	private static CheckOut checkOut;
-	@SuppressWarnings("unused")
-	private static SecuritySearchKey search;
 	private static JPanel panel;
-	public static  JTextField txtPlotNumber;
+	public static JTextField txtPlotNumber;
 	public static JRadioButton radioList;
 	public static JRadioButton radioText;
 
@@ -54,20 +51,14 @@ public class Securitymenu extends JPanel {
 				}
 			}
 		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look
-			// and feel.
 		}
 
 		checkOut = new CheckOut();
-		checkIn = new CheckIn();
 		database = new DatabaseConnection();
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setLayout(null);
-
-		@SuppressWarnings("unused")
-		ImageIcon image = new ImageIcon("Aphrodite-Hills-wp.png");
-
+		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
 		panel_3.setBorder(new TitledBorder(
@@ -150,39 +141,41 @@ public class Securitymenu extends JPanel {
 		btnEditContract.setBounds(217, 325, 167, 33);
 		panel_2.add(btnEditContract);
 		btnEditContract.setFont(new Font("Calibri", Font.PLAIN, 14));
-		
+
 		txtPlotNumber = new JTextField();
 		txtPlotNumber.setBounds(26, 131, 166, 32);
 		panel_2.add(txtPlotNumber);
 		txtPlotNumber.setColumns(10);
-		
+
 		radioList = new JRadioButton("Edit/Delete Selected key using List");
 		radioList.setSelected(true);
 		radioList.setBackground(new Color(173, 216, 230));
 		radioList.setForeground(new Color(0, 0, 0));
 		radioList.setBounds(26, 255, 309, 23);
 		panel_2.add(radioList);
-		
-		radioText = new JRadioButton("Edit/Delete Selected key Manually using texts");
+
+		radioText = new JRadioButton(
+				"Edit/Delete Selected key Manually using texts");
 		radioText.setBackground(new Color(173, 216, 230));
 		radioText.setBounds(26, 281, 309, 23);
 		panel_2.add(radioText);
-		
+
 		ButtonGroup group = new ButtonGroup();
 		group.add(radioList);
 		group.add(radioText);
-		
+
 		JLabel lblNewLabel = new JLabel("Plot Name*:");
 		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblNewLabel.setBounds(26, 49, 96, 23);
 		panel_2.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Plot Number*:");
 		lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(26, 108, 96, 23);
 		panel_2.add(lblNewLabel_1);
-		
+
 		btnEditContract.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				Securitymenu.txtPlotName.setText("");
 				Securitymenu.txtPlotNumber.setText("");
@@ -239,6 +232,16 @@ public class Securitymenu extends JPanel {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * This method is used to set up the list which it shows
+	 * the key contracts that already exist in the the security 
+	 * department.
+	 * 
+	 * @author TeamD
+	 *
+	 */
 	public static void setUpContractList() {
 
 		AllContracts.removeAllItems();
@@ -250,7 +253,8 @@ public class Securitymenu extends JPanel {
 					.executeQuery("SELECT plotName, plotNumber, keyID FROM KeyContract, Property WHERE Property.plotID = KeyContract.propertyID ORDER BY plotName");
 
 			while (rset.next() && rset.getString(1) != null) {
-				AllContracts.addItem(rset.getString(1) + " " + rset.getString(2) + " " +rset.getString(3));
+				AllContracts.addItem(rset.getString(1) + " "
+						+ rset.getString(2) + " " + rset.getString(3));
 			}
 
 		} catch (SQLException e1) {

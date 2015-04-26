@@ -3,16 +3,25 @@ package security;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.JOptionPane;
-
 import extras.Checker;
 import extras.DatabaseConnection;
+
+/**
+ * 
+ * This class is used when we want edit any information are given
+ * to the key contract. The only thing that is editable are the notes
+ * that are given by the customer. The other fields cannot be edit.
+ * 
+ * @author TeamD
+ *
+ */
 
 public class SecurityEditButton {
 
 	public static int editor = 0;
-	
+
+	@SuppressWarnings("static-access")
 	public static void start() {
 
 		DatabaseConnection database = new DatabaseConnection();
@@ -35,19 +44,21 @@ public class SecurityEditButton {
 
 			txtPlotName = Securitymenu.txtPlotName.getText();
 			txtPlotNumber = Securitymenu.txtPlotNumber.getText();
-			
-			if(!Checker.checkEmpty(txtPlotName) || !Checker.checkEmpty(txtPlotNumber))
+
+			if (!Checker.checkEmpty(txtPlotName)
+					|| !Checker.checkEmpty(txtPlotNumber))
 				check = 1;
-			
-			if(!Checker.checkString(txtPlotName) || !Checker.checkNumber(txtPlotNumber))
+
+			if (!Checker.checkString(txtPlotName)
+					|| !Checker.checkNumber(txtPlotNumber))
 				check = 1;
-			
-			if(check == 1) {
+
+			if (check == 1) {
 				Checker.showMessage();
 				check = 0;
 				return;
 			}
-			
+
 			String propId = "";
 			propId = SecuritySaveButton.getPropId(txtPlotName,
 					Integer.parseInt(txtPlotNumber));
@@ -89,11 +100,13 @@ public class SecurityEditButton {
 						ResultSet rst1 = null;
 						SecurityForm.txtPlotName.setText(contract[0]);
 						SecurityForm.txtPlotNumber.setText(contract[1]);
-						
-						rst1 = stment.executeQuery("SELECT * FROM KeyContract WHERE keyID = '"
+
+						rst1 = stment
+								.executeQuery("SELECT * FROM KeyContract WHERE keyID = '"
 										+ keyID + "'");
-						if(rst1.next())
-							SecurityForm.txtAreaNotes.setText(rst1.getString("notes"));
+						if (rst1.next())
+							SecurityForm.txtAreaNotes.setText(rst1
+									.getString("notes"));
 						rst = null;
 
 					} else {
@@ -101,9 +114,11 @@ public class SecurityEditButton {
 						ResultSet rst2 = null;
 						SecurityForm.txtPlotName.setText(txtPlotName);
 						SecurityForm.txtPlotNumber.setText(txtPlotNumber);
-						rst2 = stment.executeQuery("SELECT * FROM KEYCONTRACT WHERE keyID = '"
+						rst2 = stment
+								.executeQuery("SELECT * FROM KEYCONTRACT WHERE keyID = '"
 										+ keyID + "'");
-						SecurityForm.txtAreaNotes.setText(rst2.getString("notes"));
+						SecurityForm.txtAreaNotes.setText(rst2
+								.getString("notes"));
 
 					}
 
@@ -116,10 +131,8 @@ public class SecurityEditButton {
 			JOptionPane.showMessageDialog(null, "No Key Contract is Found",
 					"Information Message", JOptionPane.INFORMATION_MESSAGE);
 		}
-		
+
 		Securitymenu.txtPlotName.setText("");
 		Securitymenu.txtPlotNumber.setText("");
-
 	}
-
 }
