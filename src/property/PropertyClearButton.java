@@ -2,10 +2,20 @@ package property;
 
 import javax.swing.border.Border;
 
-
+/**
+ * Class that clear a window for the property form .
+ *
+ *
+ * @author TeamD
+ *
+ */
 
 public class PropertyClearButton  {
-	
+	/**
+	 * This method clear all fields on Property form 
+	 * window
+	 *
+	 */
 	
 	public static void start(){
 		

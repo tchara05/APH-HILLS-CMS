@@ -8,10 +8,25 @@ import javax.swing.JOptionPane;
 import userMenus.LogIn;
 import extras.DatabaseConnection;
 import extras.ListManager;
-
+/**
+ * Class that can edit a Property from Database.
+ * Connect to database and execute query to edit Property
+ * and display the old information for this Property.
+ *
+ * @author TeamD
+ *
+ */
 
 public class PropertyEditButton extends Thread {
 
+
+	/**
+	 * 
+	 * Method that connect to a database and execute query to select
+	 * a Property.
+	 * 
+	 * 
+	 */
 	public void run() {
 
 
@@ -42,7 +57,12 @@ public class PropertyEditButton extends Thread {
 		}
 
 	}
-
+	/**
+	 * 
+	 * Method  the  disable all information ready to edit.
+	 * 
+	 * @param ReslutSet //answer from Database 
+	 */
 	private static void setForm(ResultSet rst) throws SQLException {
 
 		if (rst.getInt(26) == 1) {
@@ -137,7 +157,13 @@ public class PropertyEditButton extends Thread {
 		setDropDownListEdit(rst);
 	}
 	
-	
+	/**
+	 * 
+	 * Method  the  disable all information to 
+	 * Drop Down List about classes and parcel
+	 * 
+	 * @param ReslutSet rst //answer from Database 
+	 */
     private static void setDropDownListEdit(ResultSet rst) throws SQLException{
 		
 		int  generalID= rst.getInt(4);

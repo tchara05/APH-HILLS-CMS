@@ -1,5 +1,19 @@
 package property;
-
+/**
+ * Class that represents a window.
+ * The user uses this window-form to save Property (data) into
+ * the database.
+ * 
+ * All types and fields are static because the form would be created 
+ * one time.
+ * 
+ * 
+ * All methods and listeners in this class
+ * connect to a database to retrieve, or puts some data.
+ * 
+ * @author TeamD
+ *
+ */
 
 import java.awt.Toolkit;
 
@@ -93,17 +107,35 @@ public class PropertyForm {
 	
 	
 	
-	
+	/**
+	 * This is a method that hide and show the Form
+	 * 
+	 * 
+	 * @param val boolean
+	 */
 	public PropertyForm() {
 		initialize();
 		addButtonsFuctionalities();
 		
 	}
 
+	/**
+	 * This is a method that hide and show the window-form
+	 * 
+	 * 
+	 * @param val boolean
+	 */
 	public static void setVisible(boolean val) {
 		frmPropertyForm.setVisible(val);
 	}
 	
+	/**
+	 * This method creates retrieve from Database
+	 * the PlotID and increases by 1
+	 * Or if  Database is empty start with 1
+	 * 
+	 * 
+	 */
 	public static void setPlotID() {
 
 		ResultSet rs;
@@ -125,7 +157,12 @@ public class PropertyForm {
 			database.closeDatabaseConnection();
 		}
 	}
-	
+	/**
+	 * This method  manage the buttons and 
+	 * their actions
+	 * 
+	 * 
+	 */
 	private void addButtonsFuctionalities(){
 		
 		btnBack.addMouseListener(new MouseAdapter() {
@@ -153,6 +190,14 @@ public class PropertyForm {
 		
 	}
 	
+	
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
 	private void initialize() {
 		
 		
@@ -521,7 +566,13 @@ public class PropertyForm {
 
 	
 	
-	
+	 
+	 /**
+		 * Main method
+		 * Useful only for testing
+		 *
+		 * @param  Srting[]
+		 */
 	
 	public static void main(String[] args) {
 		
