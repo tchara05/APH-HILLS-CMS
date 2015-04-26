@@ -1,7 +1,14 @@
 package security;
 
-import java.awt.Toolkit;
+/**
+ * 
+ * Graphics for the check-in form of the Security department.
+ * 
+ * @author TeamD
+ *
+ */
 
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -10,25 +17,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
-
 import java.awt.Color;
-
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
 import java.awt.Font;
-
 import extras.DatabaseConnection;
-import extras.ListManager;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import javax.swing.JComboBox;
 
 public class CheckIn {
@@ -51,7 +51,7 @@ public class CheckIn {
 		window.frmCheckIn.setVisible(true);
 	}
 
-	public CheckIn()  {
+	public CheckIn() {
 		initialize();
 	}
 
@@ -64,8 +64,6 @@ public class CheckIn {
 				}
 			}
 		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look
-			// and feel.
 		}
 
 		frmCheckIn = new JFrame();
@@ -73,16 +71,18 @@ public class CheckIn {
 		frmCheckIn.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmCheckIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCheckIn.getContentPane().setLayout(null);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frmCheckIn.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.setLayout(null);
-		
+
 		JPanel outerPanel = new JPanel();
-		outerPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "SECURITY DEPARTMENT", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		outerPanel.setBorder(new TitledBorder(new LineBorder(
+				new Color(0, 0, 0), 2), "SECURITY DEPARTMENT",
+				TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		outerPanel.setBackground(Color.WHITE);
 		outerPanel.setBounds(70, 60, 1216, 618);
 		contentPane.add(outerPanel);
@@ -90,7 +90,10 @@ public class CheckIn {
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
-		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Check in a Key", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		mainPanel.setBorder(new TitledBorder(new LineBorder(
+				new Color(0, 0, 128), 3), "Check in a Key",
+				TitledBorder.LEADING, TitledBorder.TOP, null,
+				new Color(0, 0, 0)));
 		mainPanel.setBounds(280, 34, 674, 549);
 		outerPanel.add(mainPanel);
 		mainPanel.setLayout(null);
@@ -169,7 +172,7 @@ public class CheckIn {
 		txtDate.setEditable(false);
 		txtDate.setColumns(10);
 		buttonPanel.add(txtDate);
-		
+
 		txtSpecificKey = new JTextField();
 		txtSpecificKey.setText("specific key (A,B,C)");
 		txtSpecificKey.setBounds(28, 96, 220, 29);
@@ -205,7 +208,7 @@ public class CheckIn {
 		btnSelect.setBounds(25, 210, 223, 31);
 		listPanel.add(btnSelect);
 		btnSelect.setFont(new Font("Calibri", Font.PLAIN, 14));
-		
+
 		allKeys = new JComboBox<String>();
 		allKeys.setBounds(25, 51, 223, 31);
 		listPanel.add(allKeys);
@@ -245,71 +248,70 @@ public class CheckIn {
 		btnBack.setBounds(75, 424, 149, 33);
 		buttonPanel.add(btnBack);
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
-		
-		
-		
+
 		database = new DatabaseConnection();
 		setUpContractList();
 	}
 	
 	
+	
+	/**
+	 * 
+	 * This method is used to set up the list which it shows
+	 * the key contracts that already exist in the the security 
+	 * department.
+	 * 
+	 * @author TeamD
+	 *
+	 */
 	public static void setUpContractList() {
 
-		
-
 		Statement stment = database.getStatement();
-		
+
 		ResultSet rset = null;
-		ArrayList<String> List =new ArrayList<String>();
+		ArrayList<String> List = new ArrayList<String>();
 		try {
-			rset = stment.executeQuery("SELECT keyID, specificKey FROM Service WHERE checkInTime = 'Key is not checked in yet' ORDER BY keyID");
-			
-			while (rset.next() && (rset.getString(1) != null) ) {
-				
-				String s=rset.getString(1);
-				String s1=rset.getString(2);
+			rset = stment
+					.executeQuery(extras.Query.KEYID_SPECIFICKEY);
+
+			while (rset.next() && (rset.getString(1) != null)) {
+
+				String s = rset.getString(1);
+				String s1 = rset.getString(2);
 
 				List.add(s);
 				List.add(s1);
 			}
-			
 
 		} catch (SQLException e1) {
-			System.out.println("Can execute the query in setUpContractList");
 			e1.printStackTrace();
 		}
-		
-		
-		rset = null; 
+
+		rset = null;
 		try {
-				rset = stment.executeQuery("SELECT keyID,plotName ,plotNumber FROM KeyContract K,Property P WhERE k.propertyID=P.plotID ");	
-				while (rset.next() && (rset.getString(1) != null) ) {
-					String s=rset.getString(1);
-					String s1=rset.getString(2);
-					String s3=rset.getString(3);			
-					for (int i=0; i<List.size(); i=i+2){
+			rset = stment
+					.executeQuery(extras.Query.KEYID_PLOTNAME_PLOTNUMBER);
+			while (rset.next() && (rset.getString(1) != null)) {
+				String s = rset.getString(1);
+				String s1 = rset.getString(2);
+				String s3 = rset.getString(3);
+				
+				for (int i = 0; i < List.size(); i = i + 2) {
+					String word = List.get(i).toString();
+					String word1 = List.get(i + 1).toString();
 
-						String word=List.get(i).toString();
-						String word1=List.get(i+1).toString();
-						
-						if( word.equals(s)){
-							allKeys.addItem(word+" "+word1+" "+" | "+s1 +" "+s3);
-						}
-							
+					if (word.equals(s)) {
+						allKeys.addItem(word + " " + word1 + " " + " | " + s1
+								+ " " + s3);
 					}
-		
+
 				}
-				
-				
-				
-			
-			
+
+			}
+
 		} catch (SQLException e1) {
 			System.out.println("Can execute the query in setUpContractList");
 			e1.printStackTrace();
 		}
-		
-		
-		
 	}
 }

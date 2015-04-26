@@ -8,20 +8,31 @@ import javax.swing.JOptionPane;
 import security.CheckIn;
 import extras.DatabaseConnection;
 
-public class CheckInButton extends Thread{
-	
+/**
+ * 
+ * This class is used for checking-in a key. When the button of
+ * the check-in form is pushed then this function is called.
+ * Then we execute a query in updating the service table
+ * in the database.
+ * 
+ * @author TeamD
+ *
+ */
+
+public class CheckInButton extends Thread {
+
 	@SuppressWarnings("static-access")
 	public void run() {
 
-		String checkInDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
-		String checkInTime = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
+		String checkInDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar
+				.getInstance().getTime());
+		String checkInTime = new SimpleDateFormat("HH:mm").format(Calendar
+				.getInstance().getTime());
 
 		try {
 
 			DatabaseConnection database = new DatabaseConnection();
 			Statement stment = null;
-		//	ResultSet rst = null;
-
 			stment = database.getStatement();
 
 			int response = JOptionPane.showConfirmDialog(null,
@@ -32,24 +43,17 @@ public class CheckInButton extends Thread{
 
 				String query = "";
 
-				// insert query here
-				//rst = stment.executeQuery("SELECT * FROM SERVICE WHERE checkInTime = '"
-					//	+ checkInTime + "' and checkInDate = '" + checkInDate + "'");
-				
 				query = "UPDATE SERVICE SET checkInTime = '" + checkInTime
 						+ "', checkInDate = '" + checkInDate
-						+ "' WHERE  keyID = '"
-						+ CheckIn.txtSearch.getText() + "' AND specificKey = '" + CheckIn.txtSpecificKey.getText() + "'";
+						+ "' WHERE  keyID = '" + CheckIn.txtSearch.getText()
+						+ "' AND specificKey = '"
+						+ CheckIn.txtSpecificKey.getText() + "'";
 
 				stment.executeUpdate(query);
-
 				new CheckInClearButton().start();
 
 				JOptionPane.showMessageDialog(null, "Key Checked In",
 						"Information Message", JOptionPane.INFORMATION_MESSAGE);
-
-				//CheckOut.setVisible(false);
-				// SecurityMenu.UpdateContractList(propertyID);
 			}
 
 		} catch (SQLException e) {
@@ -59,5 +63,4 @@ public class CheckInButton extends Thread{
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -35,7 +35,7 @@ public class Query {
 	public static final String STATUS_NO="SELECT MAX(statusID) FROM PropertyStatus";
 	
 	public static final String PLOTS_WITH_NO_CONTRACTS="SELECT P.plotID, P.plotName, P.PlotNumber" +
-			"											 FROM Property P WHERE plotID NOT IN (" +
+														"FROM Property P WHERE plotID NOT IN (" +
 														"SELECT DISTINCT C.plotID FROM Contract C )";
 	
 	public static final String PLOTS_AND_ROOMS = "SELECT P.plotID, P.plotNumber, P.plotName, P.numberOfBedrooms " +
@@ -47,5 +47,9 @@ public class Query {
 													+ "FROM Proforma "
 													+ "WHERE toPaid = 0 "
 													+" ORDER BY firstName , lastName";
+	
+	public static final String KEYID_SPECIFICKEY = "SELECT keyID, specificKey FROM Service WHERE checkInTime = 'Key is not checked in yet' ORDER BY keyID";
+	
+	public static final String KEYID_PLOTNAME_PLOTNUMBER = "SELECT keyID, plotName ,plotNumber FROM KeyContract K, Property P WhERE k.propertyID = P.plotID";
 
 }
