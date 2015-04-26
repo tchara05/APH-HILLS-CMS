@@ -6,7 +6,7 @@ import security.CheckIn;
 /**
  * 
  * This class is used for clearing the text fields
- * that are used in the check-in form.
+ * that are used in the check-out form.
  * 
  * @author TeamD
  *

@@ -21,6 +21,14 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
+/**
+ * 
+ * Graphics for the check-out form of the Security department.
+ * 
+ * @author TeamD
+ *
+ */
+
 public class CheckOut {
 
 	public static JFrame frmService;
@@ -57,8 +65,6 @@ public class CheckOut {
 				}
 			}
 		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look
-			// and feel.
 		}
 
 		frmService = new JFrame();
@@ -73,17 +79,21 @@ public class CheckOut {
 		frmService.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.setLayout(null);
-		
+
 		JPanel outerPanel = new JPanel();
-		outerPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "SECURITY DEPARTMENT", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		outerPanel.setBorder(new TitledBorder(new LineBorder(
+				new Color(0, 0, 0), 2), "SECURITY DEPARTMENT",
+				TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		outerPanel.setBackground(Color.WHITE);
 		outerPanel.setBounds(70, 58, 1216, 618);
 		contentPane.add(outerPanel);
 		outerPanel.setLayout(null);
-		
+
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
-		mainPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 128), 3), "Check out a Key", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		mainPanel.setBorder(new TitledBorder(new LineBorder(
+				new Color(0, 0, 128), 3), "Check out a Key",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		mainPanel.setBounds(65, 25, 1085, 569);
 		outerPanel.add(mainPanel);
 		mainPanel.setLayout(null);
@@ -147,7 +157,8 @@ public class CheckOut {
 		buttonPanel.add(lblimage);
 
 		comboBoxKey = new JComboBox<String>();
-		comboBoxKey.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C"}));
+		comboBoxKey.setModel(new DefaultComboBoxModel(new String[] { "A", "B",
+				"C" }));
 		comboBoxKey.setBounds(130, 84, 223, 30);
 		keyPanel.add(comboBoxKey);
 
@@ -174,32 +185,32 @@ public class CheckOut {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(32, 384, 321, 88);
 		keyPanel.add(scrollPane);
-		
-				txtDetails = new JTextArea();
-				scrollPane.setViewportView(txtDetails);
-				
-				JPanel panel = new JPanel();
-				panel.setBorder(new LineBorder(new Color(0, 0, 128)));
-				panel.setBackground(new Color(173, 216, 230));
-				panel.setBounds(0, 141, 384, 133);
-				keyPanel.add(panel);
-				panel.setLayout(null);
-				
-				JButton btnNewButton = new JButton("Check Availability");
-				btnNewButton.setBounds(92, 28, 193, 30);
-				panel.add(btnNewButton);
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						new CheckOutAvailability().run();
-					}
-				});
-				btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
-				
-						txtAvailability = new JTextField();
-						txtAvailability.setBounds(92, 77, 193, 30);
-						panel.add(txtAvailability);
-						txtAvailability.setEnabled(false);
-						txtAvailability.setColumns(10);
+
+		txtDetails = new JTextArea();
+		scrollPane.setViewportView(txtDetails);
+
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 128)));
+		panel.setBackground(new Color(173, 216, 230));
+		panel.setBounds(0, 141, 384, 133);
+		keyPanel.add(panel);
+		panel.setLayout(null);
+
+		JButton btnNewButton = new JButton("Check Availability");
+		btnNewButton.setBounds(92, 28, 193, 30);
+		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new CheckOutAvailability().run();
+			}
+		});
+		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
+
+		txtAvailability = new JTextField();
+		txtAvailability.setBounds(92, 77, 193, 30);
+		panel.add(txtAvailability);
+		txtAvailability.setEnabled(false);
+		txtAvailability.setColumns(10);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(43, 258, 309, 212);
@@ -218,27 +229,27 @@ public class CheckOut {
 		btnSearchNotes.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnSearchNotes.setBounds(141, 120, 211, 30);
 		notesPanel.add(btnSearchNotes);
-		
+
 		JLabel lblOr = new JLabel("or");
 		lblOr.setFont(new Font("Calibri", Font.ITALIC, 14));
 		lblOr.setBounds(53, 147, 44, 24);
 		notesPanel.add(lblOr);
-		
+
 		txtPlotName = new JTextField();
 		txtPlotName.setColumns(10);
 		txtPlotName.setBounds(141, 38, 211, 30);
 		notesPanel.add(txtPlotName);
-		
+
 		JLabel lblPlotName = new JLabel("Plot Name* :");
 		lblPlotName.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblPlotName.setBounds(38, 54, 101, 14);
 		notesPanel.add(lblPlotName);
-		
+
 		JLabel lblPlotNumber = new JLabel("Plot Number* :");
 		lblPlotNumber.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblPlotNumber.setBounds(38, 87, 93, 14);
 		notesPanel.add(lblPlotNumber);
-		
+
 		JButton btnNewButton_1 = new JButton("Search pop up Notes");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -286,21 +297,21 @@ public class CheckOut {
 		btnBack.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnBack.setBounds(33, 442, 114, 33);
 		buttonPanel.add(btnBack);
-		
+
 	}
-	
+
 	public static String getKeyID() {
 		return txtKey.getText();
 	}
-	
+
 	public static String getSpecificKey() {
-		return (String)comboBoxKey.getSelectedItem().toString();
+		return (String) comboBoxKey.getSelectedItem().toString();
 	}
-	
+
 	public static String getPickUpPerson() {
 		return txtPerson.getText();
 	}
-	
+
 	public static String getDetails() {
 		return txtDetails.getText();
 	}

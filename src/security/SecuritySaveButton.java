@@ -68,7 +68,7 @@ public class SecuritySaveButton extends Thread {
 
 			try {
 				checked = checker(txtpropertyID);
-				exist = CheckOutButton.checker(txtpropertyID, flag);
+				exist = CheckOutButton.checkKey(txtpropertyID, flag);
 			} catch (SQLException e1) {
 
 				e1.printStackTrace();

@@ -4,14 +4,29 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
-
 import extras.Checker;
 import extras.DatabaseConnection;
-import extras.Messages;
+
+/**
+ * 
+ * This class is used to search the notes that are given by the 
+ * customer when the key contract was set up. There are two
+ * search methods for this class.
+ * 
+ * These functionalities may be used before a key is check out.
+ * 
+ * The first method is according to two text fields. The first
+ * one is plot Name and the other one is plot Number.
+ * 
+ * The second method is according to one text field. This text
+ * field is the key id.
+ * 
+ * @author TeamD
+ * 
+ */
 
 public class SearchNotesButton extends Thread {
 
@@ -44,7 +59,6 @@ public class SearchNotesButton extends Thread {
 				check = 1;
 
 			if (check == 1) {
-				//Checker.showMessage();
 				check = 0;
 				propertyID = "1";
 			} else {
@@ -70,23 +84,22 @@ public class SearchNotesButton extends Thread {
 		method = -1;
 
 		if ((searchMethod == 1) && (!keyID.equals("1"))) {
-			
+
 			try {
-				if (checker(keyID))
+				if (checkKey(keyID))
 					method = 0;
 				else {
-					JOptionPane.showMessageDialog(null, "No Key Contract is Found",
-							"Information Message", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"No Key Contract is Found", "Information Message",
+							JOptionPane.INFORMATION_MESSAGE);
 					CheckOutClearButton.start(1);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 
-		}
-		else if(searchMethod == 1){
-			compound = BorderFactory.createCompoundBorder(redline,
-					compound);
+		} else if (searchMethod == 1) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
 			CheckOut.txtKeyId.setBorder(compound);
 			compound = null;
 			checked = false;
@@ -94,25 +107,24 @@ public class SearchNotesButton extends Thread {
 			CheckOutClearButton.start(1);
 			return;
 		}
-		
+
 		if ((searchMethod == 0) && (!propertyID.equals("1"))) {
 
 			try {
-				if (checker2(propertyID))
+				if (checkProperty(propertyID))
 					method = 1;
-				else if(propertyID.equals("0")) {
-					JOptionPane.showMessageDialog(null, "No Key Contract is Found",
-							"Information Message", JOptionPane.INFORMATION_MESSAGE);
+				else if (propertyID.equals("0")) {
+					JOptionPane.showMessageDialog(null,
+							"No Key Contract is Found", "Information Message",
+							JOptionPane.INFORMATION_MESSAGE);
 					CheckOutClearButton.start(1);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 
-		}
-		else if(searchMethod == 0){
-			compound = BorderFactory.createCompoundBorder(redline,
-					compound);
+		} else if (searchMethod == 0) {
+			compound = BorderFactory.createCompoundBorder(redline, compound);
 			CheckOut.txtPlotName.setBorder(compound);
 			CheckOut.txtPlotNumber.setBorder(compound);
 			compound = null;
@@ -154,7 +166,16 @@ public class SearchNotesButton extends Thread {
 		}
 	}
 
-	private boolean checker(String s) throws SQLException {
+	
+	/**
+	 * 
+	 * This method is used to check if the key id exists in the
+	 * database using the above query.
+	 * 
+	 * @author TeamD
+	 *
+	 */
+	private boolean checkKey(String s) throws SQLException {
 
 		int id = Integer.parseInt(s);
 		try {
@@ -162,7 +183,7 @@ public class SearchNotesButton extends Thread {
 			Statement st = database.getStatement();
 			ResultSet rst = null;
 
-			rst = st.executeQuery("SELECT keyID FROM KeyContract WHERE keyID='"
+			rst = st.executeQuery("SELECT keyID FROM KeyContract WHERE keyID ='"
 					+ id + "'");
 
 			if (rst.next()) {
@@ -177,7 +198,15 @@ public class SearchNotesButton extends Thread {
 
 	}
 
-	private boolean checker2(String s) throws SQLException {
+	/**
+	 * 
+	 * This method is used to check if the property id exists in the
+	 * database using the above query.
+	 * 
+	 * @author TeamD
+	 *
+	 */
+	private boolean checkProperty(String s) throws SQLException {
 
 		int id = Integer.parseInt(s);
 		try {
@@ -185,7 +214,7 @@ public class SearchNotesButton extends Thread {
 			Statement st = database.getStatement();
 			ResultSet rst = null;
 
-			rst = st.executeQuery("SELECT propertyID FROM KeyContract WHERE propertyID='"
+			rst = st.executeQuery("SELECT propertyID FROM KeyContract WHERE propertyID ='"
 					+ id + "'");
 
 			if (rst.next()) {
