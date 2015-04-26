@@ -1,10 +1,8 @@
 package userMenus;
 
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import java.awt.Color;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -19,9 +17,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager.*;
 import java.sql.ResultSet;
-
 import extras.DatabaseConnection;
 import extras.Messages;
+
+/**
+ * 
+ * This class is used for logging in the system of the
+ * Aphrodite Hills. 
+ * 
+ * @author TeamD
+ * 
+ */
 
 public class LogIn {
 
@@ -36,6 +42,7 @@ public class LogIn {
 
 	public static void main(String[] args) {
 
+		@SuppressWarnings("unused")
 		LogIn window = new LogIn();
 		LogIn.frmAphroditeHill.setVisible(true);
 	}
@@ -54,8 +61,6 @@ public class LogIn {
 				}
 			}
 		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look
-			// and feel.
 		}
 
 		frmAphroditeHill = new JFrame();
@@ -106,28 +111,34 @@ public class LogIn {
 		panel.add(txtPassword);
 		panel.add(btnLogIn);
 		panel.add(btnHelp);
-		
-				JLabel lblIcon = new JLabel(image);
-				lblIcon.setBounds(166, 26, 177, 145);
-				panel.add(lblIcon);
-				lblIcon.setBackground(UIManager.getColor("Button.foreground"));
-				lblIcon.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-				lblIcon.setForeground(UIManager.getColor("DesktopIcon.labelBackground"));
-				lblIcon.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JLabel lblIcon = new JLabel(image);
+		lblIcon.setBounds(166, 26, 177, 145);
+		panel.add(lblIcon);
+		lblIcon.setBackground(UIManager.getColor("Button.foreground"));
+		lblIcon.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		lblIcon.setForeground(UIManager.getColor("DesktopIcon.labelBackground"));
+		lblIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		frmAphroditeHill.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		frmAphroditeHill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		addButtonFuctionalities();
 	}
 
-	// Buttons Fuctionalities //
+	/**
+	 * 
+	 * This method is used for checking if the user name and the 
+	 * password that are given in the log in menu are correct.
+	 * 
+	 * @author TeamD
+	 *
+	 */
 	private void addButtonFuctionalities() {
 
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String username ="admin01"; //txtUserName.getText();
-				@SuppressWarnings("deprecation")
-				String password ="admin!";  //txtPassword.getText();
+				String username = "admin01"; // txtUserName.getText();
+				String password = "admin!"; // txtPassword.getText();
 				String query = "SELECT * FROM SystemUsers WHERE userName='"
 						+ username + "' AND passwords = '" + password + "'";
 
@@ -167,9 +178,17 @@ public class LogIn {
 		});
 	}
 
+	/**
+	 * 
+	 * Returns the user.
+	 * 
+	 * @author TeamD
+	 *
+	 */
 	public static String getUsername() {
-		return "marios";
+		return txtUserName.toString();
 	}
+
 	public void setVisible(boolean t) {
 		frmAphroditeHill.setVisible(t);
 	}
