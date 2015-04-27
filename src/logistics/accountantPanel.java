@@ -35,6 +35,7 @@ public class accountantPanel{
 	// Buttons //
 	private JButton btnExportProforms;
 	private JButton btnSendInvoiceTo;
+	private	JButton btnSendReceiptTo;
 	private JButton btnExportExcel; 
 	private JButton btnImportExcel;
 	private JPanel panel;
@@ -88,7 +89,8 @@ public class accountantPanel{
 	    panel_1.add(btnImportExcel);
 	    btnImportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
-	    JButton btnSendReceiptTo = new JButton("Send Receipt to");
+	    btnSendReceiptTo = new JButton("Send Receipt to");
+	    
 	    btnSendReceiptTo.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    btnSendReceiptTo.setBounds(55, 286, 161, 33);
 	    panel_1.add(btnSendReceiptTo);
@@ -134,6 +136,12 @@ public class accountantPanel{
 				new ExportInvoiceBtn().start();
 			}
 		});
+		
+		btnSendReceiptTo.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		new ExportRecipt().start();
+	    	}
+	    });
 	}
 	
 	

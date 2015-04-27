@@ -7,15 +7,15 @@ import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.email;
 
-public class ExportInvoiceBtn extends Thread {
+public class ExportRecipt extends Thread {
 	
 	public void run(){
 		
 		String customer = (String) accountantPanel.AllCustomers.getSelectedItem();
 		
 		try {
-			CompanyDocument.CreateInvoice(customer);
-			//CompanyDocument.CreateReceipt(customer);
+			
+			CompanyDocument.CreateReceipt(customer);
 			String[] Customer = ListManager.SplitThreeItem(customer);
 			
 			DatabaseConnection database = new DatabaseConnection();
@@ -35,7 +35,7 @@ public class ExportInvoiceBtn extends Thread {
 				FName=rst.getString(2);
 				LName=rst.getString(3);	
 			}
-			email.send(mail,id,FName,LName,"Invoices");
+			email.send(mail,id,FName,LName,"Receipt");
 			
 		} catch (Exception e) {
 			System.out.println("Create Invoice");
