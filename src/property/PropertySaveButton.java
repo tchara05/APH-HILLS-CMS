@@ -178,9 +178,7 @@ public class PropertySaveButton extends Thread {
 			poolHeading = 1;
 		}
 		
-		if (!checked){
-			Messages.showWarningMessage("Complete All Details");
-		}
+		
 		
 		String deedNum = PropertyForm.txtDeedNo.getText();
 		if (titleDeed==1 && !Checker.checkNumber(deedNum)) {
@@ -192,11 +190,11 @@ public class PropertySaveButton extends Thread {
 			PropertyForm.txtDeedNo.setBorder(correct);
 		}
 		
-		
+		if (!checked){
+			Messages.showWarningMessage("Complete All Details");
+		}
 		DatabaseConnection database = new DatabaseConnection();
 		try {
-
-			
 
 			if (checked) {
 
@@ -240,7 +238,6 @@ public class PropertySaveButton extends Thread {
 								String del =ListManager.DeleteFromList(PropertyMenu.AllProperties);	
 								ContractMenu.AllProperties.removeItem(del);
 					}
-
 					database.getStatement().executeUpdate(query);
 					PropertyForm.setVisible(false);
 					ListManager.UpdateList(id, plotName, plotNumber, PropertyMenu.AllProperties);

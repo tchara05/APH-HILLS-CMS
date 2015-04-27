@@ -2,8 +2,8 @@
 drop table Service;
 
 create table Service (
-	keyID int  primary key,
-	specificKey int primary key,
+	keyID int,
+	specificKey int,
 	checkIN datetime,
 	checkOUT datetime,
 	details text,

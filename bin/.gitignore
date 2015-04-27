@@ -1,3 +1,5 @@
+/admin/
+/contract/
 /customer/
 /extras/
 /logistics/
@@ -5,5 +7,3 @@
 /security/
 /test/
 /userMenus/
-/admin/
-/contract/

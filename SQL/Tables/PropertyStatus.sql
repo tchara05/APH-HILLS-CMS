@@ -1,4 +1,3 @@
-
 drop table PropertyStatus;
 
 create table PropertyStatus (
