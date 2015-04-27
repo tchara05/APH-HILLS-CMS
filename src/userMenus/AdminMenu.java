@@ -130,20 +130,20 @@ public class AdminMenu {
 		btnProperty.setForeground(new Color(0, 0, 128));
 		btnProperty.setBackground(Color.WHITE);
 		btnProperty.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnProperty.setBounds(43, 197, 127, 31);
+		btnProperty.setBounds(43, 170, 127, 31);
 		// panel_2.add(btnProperty);
 
 		btnContract = new JButton("Contract Menu");
 		btnContract.setForeground(new Color(0, 0, 128));
 		btnContract.setBackground(Color.WHITE);
 		btnContract.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnContract.setBounds(43, 281, 127, 31);
+		btnContract.setBounds(43, 254, 127, 31);
 
 		btnCustomer = new JButton("Customer Menu");
 		btnCustomer.setForeground(new Color(0, 0, 128));
 		btnCustomer.setBackground(Color.WHITE);
 		btnCustomer.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnCustomer.setBounds(43, 239, 127, 31);
+		btnCustomer.setBounds(43, 212, 127, 31);
 
 		JLabel imgLabel = new JLabel(image);
 		imgLabel.setBounds(24, 26, 167, 133);
@@ -157,7 +157,7 @@ public class AdminMenu {
 			}
 		});
 		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnNewButton.setBounds(43, 421, 127, 31);
+		btnNewButton.setBounds(43, 437, 127, 31);
 		panel_2.add(btnNewButton);
 
 		JButton btnExit = new JButton("Exit");
@@ -167,33 +167,37 @@ public class AdminMenu {
 			}
 		});
 		btnExit.setFont(new Font("Calibri", Font.PLAIN, 14));
-		btnExit.setBounds(43, 463, 127, 31);
+		btnExit.setBounds(43, 479, 127, 31);
 		panel_2.add(btnExit);
 
 		btnDatabase = new JButton("Database");
-		btnDatabase.setBounds(53, 386, 117, 29);
+		btnDatabase.setBackground(new Color(255, 255, 255));
+		btnDatabase.setForeground(new Color(0, 0, 128));
+		btnDatabase.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnDatabase.setBounds(43, 380, 127, 31);
 
 		btnSecurity = new JButton("Security Menu");
 		btnSecurity.setForeground(new Color(0, 0, 128));
 		btnSecurity.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnSecurity.setBackground(Color.WHITE);
-		btnSecurity.setBounds(43, 323, 127, 31);
+		btnSecurity.setBounds(43, 296, 127, 31);
 
 		btnAccount = new JButton("Logistic Menu");
 
 		btnAccount.setForeground(new Color(0, 0, 128));
 		btnAccount.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnAccount.setBackground(Color.WHITE);
-		btnAccount.setBounds(43, 365, 127, 31);
+		btnAccount.setBounds(43, 338, 127, 31);
 
-		if (menu == 0) {
+		
+		//if (menu == 0) {
 			panel_2.add(btnProperty);
 			panel_2.add(btnContract);
 			panel_2.add(btnCustomer);
 			panel_2.add(btnSecurity);
 			panel_2.add(btnAccount);
 			panel_2.add(btnDatabase);
-		} else if (menu == 1) {
+		/*} else if (menu == 1) {
 			panel_2.add(btnProperty);
 			panel_2.add(btnContract);
 			panel_2.add(btnCustomer);
@@ -203,7 +207,7 @@ public class AdminMenu {
 			panel.add(AccountantPanel);
 		}
 
-		addButtonFuctionalities();
+*/		addButtonFuctionalities();
 
 	}
 
