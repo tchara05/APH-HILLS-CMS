@@ -16,8 +16,19 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.TitledBorder;
-
-
+/**
+ * Class that represents a window.
+ *
+ * All types and fields are static because the form would be created 
+ * one time.
+ * 
+ * 
+ * All methods and listeners in this class
+ * connect to a database to retrieve, or puts some data.
+ * 
+ * @author TeamD
+ *
+ */
 public class PropertyMenu{
 
 	@SuppressWarnings("unused")
@@ -37,7 +48,13 @@ public class PropertyMenu{
 	private JPanel panel;
 		
 	
-	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	public PropertyMenu() {
 		
 		PropertyPanel = new JPanel();
@@ -122,7 +139,12 @@ public class PropertyMenu{
 	}
 	
 	
-	// Adding events //
+	/**
+	 * This method  manage the buttons and 
+	 * their actions
+	 * 
+	 * 
+	 */
 	private void addButtonsFuctionalities(){
 		
 		btnAddNewProperty.addActionListener(new ActionListener() {
@@ -164,12 +186,22 @@ public class PropertyMenu{
 		
 	}
 	
-	
+	/**
+	 * This is a method that hide and show the Form
+	 * 
+	 * 
+	 * @param val boolean
+	 */
 	public static JPanel createPropertyMenu(){
 		new PropertyMenu();
 		return PropertyPanel;
 	}
-	
+	/**
+	 * Main method
+	 * Useful only for testing
+	 *
+	 * @param  Srting[]
+	 */
 	public static void main(String args[]){
 		new PropertyMenu();
 		PropertyPanel.setVisible(true);

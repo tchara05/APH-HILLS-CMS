@@ -22,7 +22,7 @@ public class CustomerEditButton extends Thread {
 	/**
 	 * 
 	 * Method that connect to a database and execute query to select
-	 * a Customer and disable all information ready to edit.
+	 * a Customer.
 	 * 
 	 * 
 	 */
