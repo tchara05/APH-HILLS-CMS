@@ -26,8 +26,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class accountantPanel{
 	
 	private static JPanel accountantMenu;
-	public static  JComboBox<String> AllCustomers;
-	private static JComboBox<String> AllCustomers1;
+	public static  JComboBox<String> AllCustomers1;
+	private static JComboBox<String> AllCustomers2;
 	
 	private JFrame fileChooser;
 	public static File file;
@@ -39,7 +39,6 @@ public class accountantPanel{
 	private JButton btnImportExcel;
 	private JPanel panel;
 	private JPanel panel_1;
-	private JComboBox<String> Allcustomer2;
 	
 	public accountantPanel() {
 		
@@ -93,16 +92,12 @@ public class accountantPanel{
 	    btnSendReceiptTo.setBounds(55, 286, 161, 33);
 	    panel_1.add(btnSendReceiptTo);
 	    
-	    AllCustomers = new JComboBox<String>();
-	    AllCustomers.setBounds(240, 230, 227, 27);
-	    panel_1.add(AllCustomers);
-	   ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
 	  
 	    
-	    Allcustomer2 = new JComboBox<String>();
-	    Allcustomer2.setBounds(240, 281, 227, 27);
-	    panel_1.add(Allcustomer2);
-	    ListManager.setUpThreeList(Allcustomer2, Query.PROFORMA_CUSTOMERS);
+	    AllCustomers2 = new JComboBox<String>();
+	    AllCustomers2.setBounds(240, 281, 227, 27);
+	    panel_1.add(AllCustomers2);
+	    ListManager.setUpThreeList(AllCustomers2, Query.PROFORMA_CUSTOMERS);
 	    
 		addButtonsFuctionalities();
 	}

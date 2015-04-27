@@ -3,9 +3,16 @@ package extras;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+
+import logistics.accountantPanel;
+import contract.ContractForm;
+import contract.ContractMenu;
+import property.PropertyMenu;
+import customer.CustomerMenu;
 
 
 
@@ -403,6 +410,23 @@ public class ListManager {
 
 	}
 	
+	
+	/**
+	 * Method that keeps all dropdown list update.
+	 * 
+	 */
+	public static void updateAllList(){
+		setUpThreeList(CustomerMenu.AllCustomers,Query.CUSTOMER_NO_FNAME_LNAME);
+		CustomerMenu.addListListener();
+		setUpThreeList(PropertyMenu.AllProperties,Query.PROPERTY_ID_NAME_NUMBER);
+		setUpThreeList(ContractMenu.AllProperties,Query.PROPERTY_ID_NAME_NUMBER);
+		if (!ContractForm.frame.isVisible()){
+			SetUpThreeList(ContractForm.AllCustomers,Query.CUSTOMER_NO_FNAME_LNAME);
+			ContractForm.addListListener();
+		}
+		ListManager.setUpThreeList(accountantPanel.AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
+		ListManager.setUpThreeList(accountantPanel.AllCustomers2,Query.CUSTOMER_NO_FNAME_LNAME);
+	}
 	
 	
 

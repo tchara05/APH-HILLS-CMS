@@ -451,8 +451,7 @@ public class CustomerForm {
 		}
 		
 	}
-	
-	
+
 	/**
 	 * This method  manage the buttons and 
 	 * their actions

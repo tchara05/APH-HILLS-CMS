@@ -1,8 +1,11 @@
 package userMenus;
 
 import java.awt.Toolkit;
+
 import javax.swing.JFrame;
+
 import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -11,13 +14,22 @@ import javax.swing.JPasswordField;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.UIManager.*;
+
+import property.PropertyMenu;
+
 import java.sql.ResultSet;
+
 import extras.DatabaseConnection;
+import extras.ListManager;
 import extras.Messages;
 
 /**
@@ -50,6 +62,7 @@ public class LogIn {
 
 	public LogIn() {
 		initialize();
+		new UpdateAll().start();
 	}
 
 	private void initialize() {
@@ -124,6 +137,7 @@ public class LogIn {
 		frmAphroditeHill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		addButtonFuctionalities();
+		
 	}
 
 	/**
@@ -146,11 +160,10 @@ public class LogIn {
 				try {
 					ResultSet rst = null;
 
-					// Concurrency //
-					synchronized (database) {
+				
 						rst = database.getStatement().executeQuery(query);
 						System.out.println("I executed query");
-					}
+					
 
 					if (rst.next()) {
 						user = txtUserName.getText();
@@ -195,4 +208,27 @@ public class LogIn {
 		frmAphroditeHill.setVisible(t);
 	}
 
+}
+ class UpdateAll extends Thread{
+	
+	
+	
+	public void run(){
+		
+		while(true){	
+			try {
+				sleep(60000);
+				ListManager.updateAllList();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		}
+	}
+	
+	
+	
+	
 }

@@ -11,7 +11,7 @@ public class ExportInvoiceBtn extends Thread {
 	
 	public void run(){
 		
-		String customer = (String) accountantPanel.AllCustomers.getSelectedItem();
+		String customer = (String) accountantPanel.AllCustomers1.getSelectedItem();
 		
 		try {
 			CompanyDocument.CreateInvoice(customer);

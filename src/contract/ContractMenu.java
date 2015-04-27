@@ -85,6 +85,9 @@ public class ContractMenu extends JPanel {
 		//DropDown List: //
 		 AllProperties = new JComboBox<String>();
 		 AllProperties.setBounds(100, 66, 199, 27);
+		 
+		 
+		 
 		 ListManager.setUpThreeList(AllProperties, Query.PROPERTY_ID_NAME_NUMBER);
 		 AllParcels = new JComboBox<String>();
 		 AllParcels.setBounds(257, 142, 280, 27);
@@ -164,9 +167,9 @@ public class ContractMenu extends JPanel {
 						"There is already a contract for that property\n" +
 						"Deactive current contract and continue with a\n new contract?", "Confirm",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if (response == JOptionPane.YES_OPTION) {
-					ContractForm.setVisible(true);
-				}
+					if (response == JOptionPane.YES_OPTION) {
+						ContractForm.setVisible(true);
+					}
 				
 				}else{
 					ContractForm.setVisible(true);

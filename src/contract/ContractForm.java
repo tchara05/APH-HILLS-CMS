@@ -59,7 +59,7 @@ import customer.CustomerForm;
 
 public class ContractForm {
 
-	private static JFrame frame;
+	public static JFrame frame;
 	
 	// Text Boxes: //
 	public static JTextField txtContractID;
@@ -81,8 +81,8 @@ public class ContractForm {
 	//List for scroll; //
 	public static DefaultListModel<String> AllCustomers;
 	public static DefaultListModel<String> AllOwners;
-	public JList<String> Owners;
-	public JList<String> Customers;
+	public static JList<String> Owners;
+	public static JList<String> Customers;
 
 	// Buttons: //
 	private JButton btnRight;
@@ -405,7 +405,19 @@ public class ContractForm {
 		});
 	}
 
-	
+	public static void addListListener(){
+		
+		
+		Customers.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String customer =AllCustomers.get(Customers.getSelectedIndex());
+				setTextFields(customer);
+				
+			}
+		});
+	}
 	/**
 	 * This method retrieves some data from database about
 	 * a customer.

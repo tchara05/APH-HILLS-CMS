@@ -27,7 +27,7 @@ public class email {
     
     public static void send(String mailtoSend,String s5,String s6,String s7){
     
-//    	m_to=mailtoSend;
+    	m_to=mailtoSend;
     	
         Properties props = new Properties();//ena hashtable
         
