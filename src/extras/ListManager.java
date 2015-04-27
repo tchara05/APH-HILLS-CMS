@@ -416,11 +416,16 @@ public class ListManager {
 	 * 
 	 */
 	public static void updateAllList(){
+		
+		CustomerMenu.AllCustomers.removeAllItems();
+		PropertyMenu.AllProperties.removeAllItems();
+		ContractMenu.AllProperties.removeAllItems();
 		setUpThreeList(CustomerMenu.AllCustomers,Query.CUSTOMER_NO_FNAME_LNAME);
 		CustomerMenu.addListListener();
 		setUpThreeList(PropertyMenu.AllProperties,Query.PROPERTY_ID_NAME_NUMBER);
 		setUpThreeList(ContractMenu.AllProperties,Query.PROPERTY_ID_NAME_NUMBER);
 		if (!ContractForm.frame.isVisible()){
+			ContractForm.AllCustomers.clear();
 			SetUpThreeList(ContractForm.AllCustomers,Query.CUSTOMER_NO_FNAME_LNAME);
 			ContractForm.addListListener();
 		}
