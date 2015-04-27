@@ -25,9 +25,9 @@ public class email {
         }
     }
     
-    public static void send(String mailtoSend,String s5,String s6,String s7){
+    public static void send(String mailtoSend,String s5,String s6,String s7,String s8){
     
-//    	m_to=mailtoSend;
+    	m_to=mailtoSend;
     	
         Properties props = new Properties();//ena hashtable
         
@@ -66,7 +66,7 @@ public class email {
             
             messageBodyPart = new MimeBodyPart();
             
-            String file = "C:/Users/Panos/Desktop/TEAM_D_361/Invoices/"+ s5 +"_" + s6 + "_"+ s7 + ".pdf";
+            String file = "C:/Users/Panos/Desktop/TEAM_D_361/"+s8+"/"+ s5 +"_" + s6 + "_"+ s7 + ".pdf";
             
             String fileName =  s5 +"_" + s6 + "_"+ s7 + ".pdf";
             
