@@ -19,9 +19,14 @@ import com.itextpdf.text.pdf.PdfWriter;
 import extras.DatabaseConnection;
 import extras.ListManager;
 
+enum TYPE {
+	INVOICE, RECEIPT, PROFORMA
+}
+
 public class CompanyDocument {
 
 	/* All Document and Company Details */
+	
 
 	protected static final String CompanyName = "APHRODITEHILLS SERVICES LTD \n";
 	protected static final String CustomerDetails = "\nCustomer Details:";
@@ -29,9 +34,6 @@ public class CompanyDocument {
 	protected static final String DocNumber = "Doc. Number:";
 	protected static final String OrderNumber = "Order Number:";
 	protected static final String DocDate = "DocDate";
-	protected static final int INVOICE = 1;
-	protected static final int PROFORMA = 2;
-	protected static final int RECEIPT = 3;
 	
 	protected static final double VAT = 19/100;
 
@@ -61,15 +63,8 @@ public class CompanyDocument {
 	 * All Customer and Property Details -- Dynamic variables that initialize by
 	 * database data
 	 */
-	private int documentID = 0;
 
-	private int type;
-
-	public CompanyDocument(int type) {
-		this.type = type;
-	}
-
-	public void createHeader(Document doc) throws Exception {
+	public void receiptHeader(Document doc) throws Exception {
 
 		Image image1 = Image.getInstance("PDF-IMAGE.png");
 		doc.add(image1);
@@ -77,42 +72,78 @@ public class CompanyDocument {
 		Paragraph HeaderPara = new Paragraph(general, smallbold);
 		HeaderPara.setAlignment(Element.ALIGN_CENTER);
 		doc.add(HeaderPara);
-
 		doc.add(NewLine);
-
-		if (type == INVOICE) {
-			Paragraph InvoicePara = new Paragraph("INVOICE", MEDIUMUNDERLINE);
-			InvoicePara.setAlignment(Element.ALIGN_CENTER);
-			doc.add(InvoicePara);
-		} else if (type == RECEIPT) {
-			Paragraph InvoicePara = new Paragraph("RECEIPT", MEDIUMUNDERLINE);
-			InvoicePara.setAlignment(Element.ALIGN_CENTER);
-			doc.add(InvoicePara);
-
-		}
-
-		if (type != RECEIPT) {
-			Paragraph DatesPara = new Paragraph(Dates);
-			DatesPara.setAlignment(Element.ALIGN_CENTER);
-			doc.add(DatesPara);
-		}
+		
+		Paragraph InvoicePara = new Paragraph("RECEIPT", MEDIUMUNDERLINE);
+		InvoicePara.setAlignment(Element.ALIGN_CENTER);
+		doc.add(InvoicePara);
+		
+		Paragraph DatesPara = new Paragraph(Dates);
+		DatesPara.setAlignment(Element.ALIGN_CENTER);
+		doc.add(DatesPara);
 		Paragraph CustDetails = new Paragraph(CustomerDetails, smallbold);
 		CustDetails.setAlignment(Element.ALIGN_LEFT);
 		doc.add(CustDetails);
 
 	}
+	
+	public void invoiceHeader(Document doc) throws Exception {
 
+		Image image1 = Image.getInstance("PDF-IMAGE.png");
+		doc.add(image1);
+
+		Paragraph HeaderPara = new Paragraph(general, smallbold);
+		HeaderPara.setAlignment(Element.ALIGN_CENTER);
+		doc.add(HeaderPara);
+		doc.add(NewLine);
+
+			Paragraph InvoicePara = new Paragraph("INVOICE", MEDIUMUNDERLINE);
+			InvoicePara.setAlignment(Element.ALIGN_CENTER);
+			doc.add(InvoicePara);
+			
+			Paragraph DatesPara = new Paragraph(Dates);
+			DatesPara.setAlignment(Element.ALIGN_CENTER);
+			doc.add(DatesPara);
+			Paragraph CustDetails = new Paragraph(CustomerDetails, smallbold);
+			CustDetails.setAlignment(Element.ALIGN_LEFT);
+			doc.add(CustDetails);
+
+	}
+	
+	public void proformaHeader(Document doc) throws Exception {
+
+		Image image1 = Image.getInstance("PDF-IMAGE.png");
+		doc.add(image1);
+
+		Paragraph HeaderPara = new Paragraph(general, smallbold);
+		HeaderPara.setAlignment(Element.ALIGN_CENTER);
+		doc.add(HeaderPara);
+		doc.add(NewLine);
+
+			Paragraph InvoicePara = new Paragraph("Proforma", MEDIUMUNDERLINE);
+			InvoicePara.setAlignment(Element.ALIGN_CENTER);
+			doc.add(InvoicePara);
+			
+			Paragraph DatesPara = new Paragraph(Dates);
+			DatesPara.setAlignment(Element.ALIGN_CENTER);
+			doc.add(DatesPara);
+			Paragraph CustDetails = new Paragraph(CustomerDetails, smallbold);
+			CustDetails.setAlignment(Element.ALIGN_LEFT);
+			doc.add(CustDetails);
+
+	}
+	
 	public void createCustomerDetailsTableProforma(Document doc, ResultSet rs)
 			throws Exception {
 
 		String exportDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar
 				.getInstance().getTime());
-
 		DatabaseConnection database = new DatabaseConnection();
 		ResultSet proforma = database.getStatement().executeQuery(
 				"SELECT docID " + "FROM DocumentsIDS "
 						+ "WHERE docType = 'Proforma' ");
-		documentID = 0;
+		
+		int documentID =0;
 		if (proforma.next()) {
 			documentID = proforma.getInt(1);
 			database.getStatement().execute(
@@ -120,7 +151,6 @@ public class CompanyDocument {
 							+ "' WHERE docType = 'Proforma' ");
 		} else {
 			System.exit(-1);
-
 		}
 		proforma.close();
 
@@ -129,7 +159,7 @@ public class CompanyDocument {
 				+ rs.getString(11);
 		String customerID = rs.getString(4);
 
-		String documentDetailsString = documentType();
+		String documentDetailsString = documentType(TYPE.PROFORMA);
 		PdfPTable CustomerDetailsTable = new PdfPTable(2); // Megalos Pinakas
 		PdfPCell CustomerDetails = new PdfPCell(new Phrase(customerName + "\n"
 				+ address));// aristeri Plevra
@@ -166,9 +196,7 @@ public class CompanyDocument {
 											// megalou pinaka
 		CustomerDetailsTable.addCell(AllCodes); // eisagogi keliou kwdikwn stin
 												// de3ia plevra
-
 		doc.add(CustomerDetailsTable);
-
 	}
 	
 	
@@ -182,7 +210,7 @@ public class CompanyDocument {
 		ResultSet proforma = database.getStatement().executeQuery(
 				"SELECT docID " + "FROM DocumentsIDS "
 						+ "WHERE docType = 'Invoice' ");
-		documentID = 0;
+		int documentID = 0;
 		if (proforma.next()) {
 			documentID = proforma.getInt(1);
 			database.getStatement().execute(
@@ -200,7 +228,7 @@ public class CompanyDocument {
 		String customerID = rs.getString(5);
 		System.out.println(customerName);
 		
-		String documentDetailsString = documentType();
+		String documentDetailsString = documentType(TYPE.INVOICE);
 		PdfPTable CustomerDetailsTable = new PdfPTable(2); // Megalos Pinakas
 		PdfPCell CustomerDetails = new PdfPCell(new Phrase(customerName + "\n"
 															+ address));// aristeri Plevra
@@ -241,19 +269,19 @@ public class CompanyDocument {
 	}
 
 
-	private String documentType() {
+	private String documentType(TYPE type) {
 
-		if (type == INVOICE)
-			return AccountCode + "\n" + DocNumber + "\n" + OrderNumber + "\n"
-					+ DocDate;
-		else if (type == PROFORMA || type == RECEIPT)
-			return AccountCode + "\n" + DocNumber + "\n" + DocDate;
-		else
-			return "Error";
-
+		switch(type){
+			case INVOICE:	return AccountCode + "\n" + DocNumber + "\n" + OrderNumber + "\n"
+							+ DocDate;
+			case PROFORMA: 	return AccountCode + "\n" + DocNumber + "\n" + DocDate;
+			case RECEIPT:   return AccountCode + "\n" + DocNumber + "\n" + DocDate;
+		}
+		
+		return "Error";
 	}
 
-	public void Signatures(Document doc) throws Exception {
+	public void Signatures(Document doc,TYPE type) throws Exception {
 
 		PdfPTable Signature = new PdfPTable(2);
 		doc.add(NewLine);
@@ -262,15 +290,21 @@ public class CompanyDocument {
 		LeftCell.setBorderWidth(0);
 		LeftCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-		if (type != RECEIPT) {
-			Phrase t = new Phrase(
-					"CUSTOMER \n\n ________________________________ \n\t " +
+		
+		switch (type){
+		
+		case PROFORMA:
+		case INVOICE:  	Phrase t = new Phrase(
+						"CUSTOMER \n\n ________________________________ \n\t " +
 
-					"                         Signature");
-			LeftCell.addElement(t);
+						"                         Signature");
+						LeftCell.addElement(t);
+						break;
+		
+		
 		}
+		
 		Signature.addCell(LeftCell);
-
 		Signature.setWidthPercentage(100);
 		PdfPCell RightCell = new PdfPCell();
 		RightCell.setBorderWidth(0);
@@ -283,7 +317,7 @@ public class CompanyDocument {
 		doc.add(Signature);
 	}
 
-	public void BankInfo(Document doc) throws Exception {
+	public void BankInfo(Document doc,TYPE type) throws Exception {
 
 		PdfPTable BankINF = new PdfPTable(1);
 
@@ -306,23 +340,30 @@ public class CompanyDocument {
 		BankINF.addCell(LeftCell);
 
 		doc.add(NewLine);
-
+		
 		doc.add(BankINF);
-		if (type == PROFORMA) {
-			Paragraph noVAT1 = new Paragraph("This is not a VAT invoice");
-			noVAT1.setAlignment(Element.ALIGN_CENTER);
-			doc.add(noVAT1);
-			Paragraph noVAT2 = new Paragraph(
-					"The above amount is payable with immediate effect", small);
-			noVAT2.setAlignment(Element.ALIGN_CENTER);
-			doc.add(noVAT2);
-		} else if (type == INVOICE) {
-			doc.add(NewLine);
-			Paragraph noVAT2 = new Paragraph(
-					"The above amount is payable 30 days,if not paid interest at the rate 8%  pa will be charged",
-					smallerbold);
-			noVAT2.setAlignment(Element.ALIGN_CENTER);
-			doc.add(noVAT2);
+		
+		Paragraph noVAT2;
+		switch (type){
+		case PROFORMA :
+						Paragraph noVAT1 = new Paragraph("This is not a VAT invoice");
+						noVAT1.setAlignment(Element.ALIGN_CENTER);
+						doc.add(noVAT1);
+						noVAT2 = new Paragraph(
+						"The above amount is payable with immediate effect", small);
+						noVAT2.setAlignment(Element.ALIGN_CENTER);
+						doc.add(noVAT2);
+						break;
+		case INVOICE: 
+						doc.add(NewLine);
+						noVAT2 = new Paragraph(
+						"The above amount is payable 30 days,if not paid interest at the rate 8%  pa will be charged",
+						smallerbold);
+						noVAT2.setAlignment(Element.ALIGN_CENTER);
+						doc.add(noVAT2);
+						break;
+		default:
+						break;
 		}
 
 	}
@@ -365,7 +406,7 @@ public class CompanyDocument {
 		columnsTitle.setWidthPercentage(100);
 
 		String prev = rs.getString(1);
-		documentID++;
+		int documentID=0;  // Prepei na to piano apo ti vasi //
 
 		do {
 			String exportDate = new SimpleDateFormat("dd/MM/yyyy")
@@ -516,7 +557,7 @@ public class CompanyDocument {
 	public static void createAllProforma() throws Exception {
 
 		DatabaseConnection database = new DatabaseConnection();
-		String query = "SELECT *" + "FROM  COSTS " + "ORDER BY customerID ASC";
+		String query = "SELECT *" + " FROM  COSTS " + "ORDER BY customerID ASC";
 
 		File f = new File("Proformas");
 		f.mkdir();
@@ -527,21 +568,21 @@ public class CompanyDocument {
 					query);
 
 			while (rs.next()) {
-				CompanyDocument Companydocument = new CompanyDocument(PROFORMA);
+				CompanyDocument Companydocument = new CompanyDocument();
 				Document document = new Document();
 
 				PdfWriter.getInstance(document, new FileOutputStream(
 						"Proformas/" + rs.getString(5) + ".pdf"));
 				document.open();
-				Companydocument.createHeader(document);
+				Companydocument.proformaHeader(document);
 
 				Companydocument
 						.createCustomerDetailsTableProforma(document, rs);
 
 				Companydocument.createCostTableProforma(document, rs);
 				rs.previous();
-				Companydocument.Signatures(document);
-				Companydocument.BankInfo(document);
+				Companydocument.Signatures(document,TYPE.PROFORMA);
+				Companydocument.BankInfo(document,TYPE.PROFORMA);
 				document.close();
 
 			}
@@ -567,33 +608,30 @@ public class CompanyDocument {
 		ResultSet rs = database.getStatement().executeQuery(query);
 		
 		
-		CompanyDocument Companydocument = new CompanyDocument(INVOICE);
+		CompanyDocument Companydocument = new CompanyDocument();
 		Document document = new Document();
 		if (rs.next()) {
 
 			PdfWriter.getInstance(document, new FileOutputStream("Invoices/"
 					+ rs.getString(5) +"_" +rs.getString(6)+ "_"+rs.getString(7) + ".pdf"));
 			document.open();
-			Companydocument.createHeader(document);
+			Companydocument.invoiceHeader(document);
 			Companydocument.createCustomerDetailsTableInvoice(document, rs);	
 			Companydocument.createCostTableInvoice(document, rs);
-			Companydocument.Signatures(document);
-			Companydocument.BankInfo(document);
+			Companydocument.Signatures(document,TYPE.INVOICE);
+			Companydocument.BankInfo(document,TYPE.INVOICE);
 			document.close();
 			
 		}
 	
-		
-
-		
 	}
 	
-	public static void CreateRECEIPT(String customer) throws Exception {
+	public static void CreateReceipt(String customer) throws Exception {
 		DatabaseConnection database = new DatabaseConnection();
 
 		String[] Customer = ListManager.SplitThreeItem(customer);
 
-		String query = "SELECT * " + "FROM PROFORMA " + "WHERE customerID = '"
+		String query = "SELECT * " + "FROM PROFORMA " + "WHERE customerID = '"  // From Invoice
 				+ Customer[0] + "' and toPaid = 0 ";
 		
 		
@@ -603,18 +641,18 @@ public class CompanyDocument {
 		ResultSet rs = database.getStatement().executeQuery(query);
 		
 		
-		CompanyDocument Companydocument = new CompanyDocument(RECEIPT);
+		CompanyDocument Companydocument = new CompanyDocument();
 		Document document = new Document();
 		if (rs.next()) {
 
 			PdfWriter.getInstance(document, new FileOutputStream("RECEIPT/"
 					+ rs.getString(5) +"_" +rs.getString(6)+ "_"+rs.getString(7) + ".pdf"));
 			document.open();
-			Companydocument.createHeader(document);
+			Companydocument.receiptHeader(document);
 			Companydocument.createCustomerDetailsTableInvoice(document, rs);	
 			Companydocument.createCostTableInvoice(document, rs);
-			Companydocument.Signatures(document);
-			Companydocument.BankInfo(document);
+			Companydocument.Signatures(document,TYPE.RECEIPT);
+			Companydocument.BankInfo(document,TYPE.RECEIPT);
 			document.close();
 			
 		}

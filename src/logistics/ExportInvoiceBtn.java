@@ -14,8 +14,8 @@ public class ExportInvoiceBtn extends Thread {
 		String customer = (String) accountantPanel.AllCustomers.getSelectedItem();
 		
 		try {
-			//CompanyDocument.CreateInvoice(customer);
-			CompanyDocument.CreateRECEIPT(customer);
+			CompanyDocument.CreateInvoice(customer);
+			//CompanyDocument.CreateReceipt(customer);
 			String[] Customer = ListManager.SplitThreeItem(customer);
 			
 			DatabaseConnection database = new DatabaseConnection();
@@ -33,8 +33,7 @@ public class ExportInvoiceBtn extends Thread {
 				id=rst.getString(1);
 				mail=rst.getString(5);
 				FName=rst.getString(2);
-				LName=rst.getString(3);
-				
+				LName=rst.getString(3);	
 			}
 			email.send(mail,id,FName,LName);
 			
