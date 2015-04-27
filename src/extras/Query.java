@@ -34,9 +34,9 @@ public class Query {
 	
 	public static final String STATUS_NO="SELECT MAX(statusID) FROM PropertyStatus";
 	
-	public static final String PLOTS_WITH_NO_CONTRACTS="SELECT P.plotID, P.plotName, P.PlotNumber" +
-														"FROM Property P WHERE plotID NOT IN (" +
-														"SELECT DISTINCT C.plotID FROM Contract C )";
+	public static final String PLOTS_WITH_NO_CONTRACTS="SELECT P.plotID, P.plotName, P.PlotNumber " +
+														" FROM Property P WHERE P.plotID NOT IN (" +
+														" SELECT DISTINCT C.plotID FROM Contract C )";
 	
 	public static final String PLOTS_AND_ROOMS = "SELECT P.plotID, P.plotNumber, P.plotName, P.numberOfBedrooms " +
 												  "FROM Property P, Service S, KeyContract KC " +

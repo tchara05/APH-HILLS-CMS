@@ -53,13 +53,6 @@ public class ListManager {
 		} catch (SQLException e1) {
 			System.out.println("Set up list exception");
 			e1.printStackTrace();
-		}
-
-		try {
-			list.setSelectedIndex(0);
-		} catch (Exception e) {
-			System.out.println("Empty List");
-			e.printStackTrace();
 		}finally{
 			database.closeDatabaseConnection();
 		}
@@ -183,16 +176,11 @@ public class ListManager {
 		} catch (SQLException e1) {
 			System.out.println("Set up list exception");
 			e1.printStackTrace();
-		}
-
-		try {
-			list.setSelectedIndex(0);
-		} catch (Exception e) {
-			System.out.println("Empty List");
-			e.printStackTrace();
 		}finally{
 			database.closeDatabaseConnection();
 		}
+
+	
 	}
 
 	/**
@@ -338,6 +326,8 @@ public class ListManager {
 		} catch (SQLException e) {
 			System.out.println("From Set Up Three List Query");
 			e.printStackTrace();
+		}finally{
+			database.closeDatabaseConnection();
 		}
 
 	}

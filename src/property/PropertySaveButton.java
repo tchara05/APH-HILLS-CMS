@@ -224,7 +224,7 @@ public class PropertySaveButton extends Thread {
 
 					String query = "";
 					if (!PropertyForm.edit) {
-						query = "INSERT INTO Property VALUES ('"+id+"','" + plotNumber
+						query = "INSERT INTO Property VALUES ('" + plotNumber
 								+ "','" + plotName + "','" + propertyClass
 								+ "','" + parcel + "','" + landUse + "','"
 								+ percentage + "','" + plots + "','" + details

@@ -240,7 +240,6 @@ public class CustomerMenu {
 	 * 
 	 */
 	public static void addListListener(){
-		
 		AllCustomers.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				String str = (String) AllCustomers.getSelectedItem();
@@ -276,6 +275,7 @@ public class CustomerMenu {
 			return;
 		}
 
+		System.out.println("Hello");
 		String[] Customer = ListManager.SplitThreeItem(customer);
 
 		String query = "SELECT customerID, firstName, lastName, primaryEmail, contactPhone, mobilePhone FROM"

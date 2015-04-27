@@ -452,10 +452,8 @@ public class ContractForm {
 		try {
 			rs = database.getStatement().executeQuery(Query.CONTRACT_NO);
 
-			if (rs.next()) {
-				if (rs.getString(1) != null) {
-					txtContractID.setText(rs.getString(1));
-				}
+			if (rs.next()&&rs.getString(1) != null) {
+					txtContractID.setText((rs.getInt(1)+1)+"");
 			} else {
 				txtContractID.setText("1");
 			}
@@ -497,7 +495,6 @@ public class ContractForm {
 	 * 
 	 * @param String
 	 */
-	
 	public static void setPropertyTextFields(String property){
 		String[] Property = ListManager.SplitThreeItem(property);
 		txtPlotID.setText(Property[0]);

@@ -521,9 +521,7 @@ public class PropertyForm {
 						  AllStatus = new JComboBox<String>();
 						  AllStatus.setBounds(18, 181, 146, 27);
 						  ListManager.setUpTwoColumnsList(AllStatus, Query.STATUS_NO_NAME);
-						  AllParcels.setSelectedIndex(0);
-						  AllStatus.setSelectedIndex(0);
-						  AllClasses.setSelectedIndex(0);
+						
 						  panelDetails.setLayout(null);
 						  panelDetails.add(lblDetails);
 						  panelDetails.add(lblNo);
