@@ -30,13 +30,13 @@ public class statusPanel extends JPanel {
 
 	public statusPanel() {
 		JLabel lblStatusName = new JLabel("New Status:");
-		lblStatusName.setBounds(21, 62, 87, 16);
+		lblStatusName.setBounds(10, 50, 87, 16);
 		JLabel lblStatus = new JLabel("Status:");
-		lblStatus.setBounds(21, 26, 43, 16);
+		lblStatus.setBounds(10, 11, 43, 16);
 
 		// Drop Down //
 		AllStatus = new JComboBox<String>();
-		AllStatus.setBounds(138, 22, 267, 27);
+		AllStatus.setBounds(97, 6, 215, 27);
 		ListManager.setUpTwoColumnsList(AllStatus, Query.STATUS_NO_NAME);
 
 		// Buttons //
@@ -46,24 +46,24 @@ public class statusPanel extends JPanel {
 				new btnAdd().start();
 			}
 		});
-		btnAddStatus.setBounds(433, 57, 123, 29);
+		btnAddStatus.setBounds(332, 44, 123, 29);
 		JButton btnDeleteStatus = new JButton("Delete Status");
 		btnDeleteStatus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new btnDelete().start();
 			}
 		});
-		btnDeleteStatus.setBounds(433, 92, 123, 29);
+		btnDeleteStatus.setBounds(332, 84, 123, 29);
 		JButton btnEditStatus = new JButton("Edit Status");
 		btnEditStatus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new btnEdit().start();
 			}
 		});
-		btnEditStatus.setBounds(433, 21, 123, 29);
+		btnEditStatus.setBounds(332, 5, 123, 29);
 
 		txtStatusName = new JTextField();
-		txtStatusName.setBounds(138, 56, 267, 28);
+		txtStatusName.setBounds(97, 44, 215, 28);
 		txtStatusName.setColumns(10);
 		setLayout(null);
 		add(lblStatus);

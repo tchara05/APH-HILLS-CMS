@@ -137,8 +137,8 @@ public class LogIn {
 
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String username = "admin01"; // txtUserName.getText();
-				String password = "admin!"; // txtPassword.getText();
+				String username = txtUserName.getText();
+				String password = txtPassword.getText();
 				String query = "SELECT * FROM SystemUsers WHERE userName='"
 						+ username + "' AND passwords = '" + password + "'";
 

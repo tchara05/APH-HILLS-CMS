@@ -20,10 +20,10 @@ public class Checker {
 
 	public static boolean checkNumber(String s) {
 
-		if (s.matches("[0-9]+")) {
-			return true;
+		if (!s.matches("[0-9]+")) {
+			return false;
 		}
-		return false;
+		return true;
 
 	}
 

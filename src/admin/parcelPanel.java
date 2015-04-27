@@ -40,17 +40,17 @@ public class parcelPanel extends JPanel {
 
 		// Labels //
 		JLabel lblParcel = new JLabel("Parcel:");
-		lblParcel.setBounds(26, 38, 41, 16);
-		JLabel lblPercelName = new JLabel("New Percel:");
-		lblPercelName.setBounds(26, 80, 81, 16);
+		lblParcel.setBounds(10, 11, 41, 16);
+		JLabel lblPercelName = new JLabel("New Parcel:");
+		lblPercelName.setBounds(10, 50, 81, 16);
 
 		// DropDownList //
 		AllParcels = new JComboBox<String>();
-		AllParcels.setBounds(119, 34, 278, 27);
+		AllParcels.setBounds(92, 6, 215, 27);
 		ListManager.setUpTwoColumnsList(AllParcels, Query.PARCEL_NO_NAME);
 		// TextBoxes //
 		txtParcelName = new JTextField();
-		txtParcelName.setBounds(119, 74, 278, 28);
+		txtParcelName.setBounds(92, 44, 215, 28);
 		txtParcelName.setColumns(10);
 
 		// Buttons //
@@ -60,21 +60,21 @@ public class parcelPanel extends JPanel {
 				new btnEdit().start();
 			}
 		});
-		btnEditParcel.setBounds(403, 33, 125, 29);
+		btnEditParcel.setBounds(329, 5, 125, 29);
 		btnAddParcel = new JButton("Add Parcel");
 		btnAddParcel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new btnAdd().start();
 			}
 		});
-		btnAddParcel.setBounds(403, 75, 125, 29);
+		btnAddParcel.setBounds(329, 44, 125, 29);
 		btnDeleteParcel = new JButton("Delete Parcel");
 		btnDeleteParcel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new btnDelete().start();
 			}
 		});
-		btnDeleteParcel.setBounds(403, 117, 125, 29);
+		btnDeleteParcel.setBounds(329, 84, 125, 29);
 		setLayout(null);
 		add(lblPercelName);
 		add(txtParcelName);

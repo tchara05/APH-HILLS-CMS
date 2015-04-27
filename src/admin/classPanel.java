@@ -41,24 +41,24 @@ public class classPanel extends JPanel {
 			
 		//Labels //
 		JLabel lblClasses = new JLabel("Class:");
-		lblClasses.setBounds(14, 30, 38, 16);
+		lblClasses.setBounds(10, 11, 38, 16);
 		JLabel lblName = new JLabel("New Class:");
-		lblName.setBounds(14, 70, 84, 16);
+		lblName.setBounds(10, 50, 84, 16);
 		
 		// DropDown //
 		AllClasses  = new JComboBox<String>();
-		AllClasses.setBounds(125, 26, 215, 27);
+		AllClasses.setBounds(90, 6, 215, 27);
 		ListManager.setUpTwoColumnsList(AllClasses, Query.CLASS_NO_NAME);
 		
 		// Buttons //
 		btnEditClass = new JButton("Edit Class");
-		btnEditClass.setBounds(388, 24, 122, 29);
+		btnEditClass.setBounds(327, 5, 122, 29);
 		btnAddClass = new JButton("Add Class");
-		btnAddClass.setBounds(388, 65, 122, 29);
+		btnAddClass.setBounds(327, 44, 122, 29);
 		btnDeleteClass = new JButton("Delete Class");
-		btnDeleteClass.setBounds(388, 107, 122, 29);
+		btnDeleteClass.setBounds(327, 84, 122, 29);
 		txtName = new JTextField();
-		txtName.setBounds(125, 66, 215, 28);
+		txtName.setBounds(90, 44, 215, 28);
 		txtName.setColumns(10);
 		
 		setLayout(null);
