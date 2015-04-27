@@ -190,14 +190,14 @@ public class AdminMenu {
 		btnAccount.setBounds(43, 338, 127, 31);
 
 		
-		//if (menu == 0) {
+		if (menu == 0) {
 			panel_2.add(btnProperty);
 			panel_2.add(btnContract);
 			panel_2.add(btnCustomer);
 			panel_2.add(btnSecurity);
 			panel_2.add(btnAccount);
 			panel_2.add(btnDatabase);
-		/*} else if (menu == 1) {
+		} else if (menu == 1) {
 			panel_2.add(btnProperty);
 			panel_2.add(btnContract);
 			panel_2.add(btnCustomer);
@@ -207,7 +207,7 @@ public class AdminMenu {
 			panel.add(AccountantPanel);
 		}
 
-*/		addButtonFuctionalities();
+		addButtonFuctionalities();
 
 	}
 
