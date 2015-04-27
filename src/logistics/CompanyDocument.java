@@ -495,8 +495,20 @@ public class CompanyDocument {
 			}
 
 		}while (rs.next());
+		
 		total = total + total*VAT;
 		
+		Columns[0].setPhrase(new Phrase());
+		Columns[1].setPhrase(new Phrase());
+		Columns[2].setPhrase(new Phrase());
+		Columns[3].setPhrase(new Phrase());
+		Phrase t = new Phrase("\nTotal Amount: ");
+		t.setFont(smallbold);
+		Columns[4].setPhrase(t);
+		Columns[5].setPhrase(new Phrase("\n" + total));
+		for (int j = 0; j < N; j++) {
+			columnsTitle.addCell(Columns[j]);
+		}
 		doc.add(columnsTitle);
 
 	}
@@ -547,11 +559,14 @@ public class CompanyDocument {
 
 		String query = "SELECT * " + "FROM PROFORMA " + "WHERE customerID = '"
 				+ Customer[0] + "' and toPaid = 0 ";
-
+		
+		
 		File f = new File("Invoices");
 		f.mkdir();
 
 		ResultSet rs = database.getStatement().executeQuery(query);
+		
+		
 		CompanyDocument Companydocument = new CompanyDocument(INVOICE);
 		Document document = new Document();
 		if (rs.next()) {
@@ -570,6 +585,40 @@ public class CompanyDocument {
 	
 		
 
+		
+	}
+	
+	public static void CreateRECEIPT(String customer) throws Exception {
+		DatabaseConnection database = new DatabaseConnection();
+
+		String[] Customer = ListManager.SplitThreeItem(customer);
+
+		String query = "SELECT * " + "FROM PROFORMA " + "WHERE customerID = '"
+				+ Customer[0] + "' and toPaid = 0 ";
+		
+		
+		File f = new File("RECEIPT");
+		f.mkdir();
+
+		ResultSet rs = database.getStatement().executeQuery(query);
+		
+		
+		CompanyDocument Companydocument = new CompanyDocument(RECEIPT);
+		Document document = new Document();
+		if (rs.next()) {
+
+			PdfWriter.getInstance(document, new FileOutputStream("RECEIPT/"
+					+ rs.getString(5) +"_" +rs.getString(6)+ "_"+rs.getString(7) + ".pdf"));
+			document.open();
+			Companydocument.createHeader(document);
+			Companydocument.createCustomerDetailsTableInvoice(document, rs);	
+			Companydocument.createCostTableInvoice(document, rs);
+			Companydocument.Signatures(document);
+			Companydocument.BankInfo(document);
+			document.close();
+			
+		}
+	
 	}
 
 	public static void main(String args[]) {

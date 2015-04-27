@@ -27,6 +27,7 @@ public class accountantPanel{
 	
 	private static JPanel accountantMenu;
 	public static  JComboBox<String> AllCustomers;
+	private static JComboBox<String> AllCustomers1;
 	
 	private JFrame fileChooser;
 	public static File file;
@@ -38,6 +39,7 @@ public class accountantPanel{
 	private JButton btnImportExcel;
 	private JPanel panel;
 	private JPanel panel_1;
+	private JComboBox<String> Allcustomer2;
 	
 	public accountantPanel() {
 		
@@ -68,15 +70,15 @@ public class accountantPanel{
 	    btnExportProforms.setBounds(391, 40, 149, 33);
 	    panel_1.add(btnExportProforms);
 	    btnExportProforms.setFont(new Font("Calibri", Font.PLAIN, 14));
-	    btnSendInvoiceTo = new JButton("Send Invoice - Receipt to");
+	    btnSendInvoiceTo = new JButton("Send Invoice to");
 	    btnSendInvoiceTo.setBounds(55, 227, 161, 33);
 	    panel_1.add(btnSendInvoiceTo);
 	    btnSendInvoiceTo.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
-	    AllCustomers = new JComboBox<String>();
-	    AllCustomers.setBounds(240, 230, 227, 27);
-	    panel_1.add(AllCustomers);
-	   ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
+	    AllCustomers1 = new JComboBox<String>();
+	    AllCustomers1.setBounds(240, 230, 227, 27);
+	    panel_1.add(AllCustomers1);
+	   ListManager.setUpThreeList(AllCustomers1, Query.PROFORMA_CUSTOMERS);
 	    btnExportExcel = new JButton("Export Excel File");
 	    btnExportExcel.setBounds(55, 40, 149, 33);
 	    panel_1.add(btnExportExcel);
@@ -86,6 +88,21 @@ public class accountantPanel{
 	    panel_1.add(btnImportExcel);
 	    btnImportExcel.setFont(new Font("Calibri", Font.PLAIN, 14));
 	    
+	    JButton btnSendReceiptTo = new JButton("Send Receipt to");
+	    btnSendReceiptTo.setFont(new Font("Calibri", Font.PLAIN, 14));
+	    btnSendReceiptTo.setBounds(55, 286, 161, 33);
+	    panel_1.add(btnSendReceiptTo);
+	    
+	    AllCustomers = new JComboBox<String>();
+	    AllCustomers.setBounds(240, 230, 227, 27);
+	    panel_1.add(AllCustomers);
+	   ListManager.setUpThreeList(AllCustomers, Query.PROFORMA_CUSTOMERS);
+	  
+	    
+	    Allcustomer2 = new JComboBox<String>();
+	    Allcustomer2.setBounds(240, 281, 227, 27);
+	    panel_1.add(Allcustomer2);
+	    ListManager.setUpThreeList(Allcustomer2, Query.PROFORMA_CUSTOMERS);
 	    
 		addButtonsFuctionalities();
 	}
