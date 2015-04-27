@@ -35,7 +35,8 @@ public class Securitymenu extends JPanel {
 	public static JComboBox<String> AllContracts;
 	public static JTextField txtShowIfFound;
 	public static DatabaseConnection database;
-	private static CheckOut checkOut;
+	private static CheckOut checkout;
+	private static CheckIn checkin;
 	private static JPanel panel;
 	public static JTextField txtPlotNumber;
 	public static JRadioButton radioList;
@@ -53,7 +54,8 @@ public class Securitymenu extends JPanel {
 		} catch (Exception e) {
 		}
 
-		checkOut = new CheckOut();
+		checkout = new CheckOut();
+		checkin = new CheckIn();
 		database = new DatabaseConnection();
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -198,15 +200,15 @@ public class Securitymenu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Securitymenu.txtPlotName.setText("");
 				Securitymenu.txtPlotNumber.setText("");
-				CheckIn.frmCheckIn.setVisible(true);
+				checkin.frmCheckIn.setVisible(true);
 			}
 		});
 		btnCheckOut.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
+			
 			public void actionPerformed(ActionEvent e) {
 				Securitymenu.txtPlotName.setText("");
 				Securitymenu.txtPlotNumber.setText("");
-				checkOut.frmService.setVisible(true);
+				checkout.frmService.setVisible(true);
 			}
 		});
 		btnAddContract.addActionListener(new ActionListener() {

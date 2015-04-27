@@ -34,6 +34,7 @@ public class LogIn {
 	public static JFrame frmAphroditeHill;
 	public static JTextField txtUserName;
 	private JPasswordField txtPassword;
+	public static String user;
 
 	// Button //
 	private JButton btnLogIn;
@@ -137,8 +138,8 @@ public class LogIn {
 
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String username = "admin01"; // txtUserName.getText();
-				String password = "admin!"; // txtPassword.getText();
+				String username = txtUserName.getText();
+				String password = txtPassword.getText();
 				String query = "SELECT * FROM SystemUsers WHERE userName='"
 						+ username + "' AND passwords = '" + password + "'";
 
@@ -152,6 +153,7 @@ public class LogIn {
 					}
 
 					if (rst.next()) {
+						user = txtUserName.getText();
 						String rights = rst.getString(3);
 						if (rights.equals("a")) {
 							frmAphroditeHill.setVisible(false);
@@ -186,7 +188,7 @@ public class LogIn {
 	 *
 	 */
 	public static String getUsername() {
-		return txtUserName.toString();
+		return user;
 	}
 
 	public void setVisible(boolean t) {

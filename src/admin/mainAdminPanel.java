@@ -18,14 +18,17 @@ public class mainAdminPanel extends JPanel {
 	public mainAdminPanel() {	
 		adminMainPanel = new JPanel();
 		parPanel = new parcelPanel();
-		parPanel.setBounds(16, 161, 549, 152);
+		parPanel.AllParcels.setBounds(92, 6, 215, 27);
+		parPanel.setBounds(16, 201, 549, 157);
 		clasPanel = new classPanel();
-		clasPanel.setBounds(16,17,549,132);
+		clasPanel.setBounds(16,17,549,157);
 		adminMainPanel.setLayout(null);
 		adminMainPanel.add(parPanel);
 		adminMainPanel.add(clasPanel);
 		statPanel = new statusPanel();
-		statPanel.setBounds(16, 339, 549, 134);
+		statPanel.txtStatusName.setLocation(95, 44);
+		statPanel.AllStatus.setLocation(95, 6);
+		statPanel.setBounds(16, 380, 549, 134);
 		adminMainPanel.add(statPanel);
 	}
 	

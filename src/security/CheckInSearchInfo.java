@@ -40,11 +40,11 @@ public class CheckInSearchInfo extends Thread {
 			keyID = CheckIn.txtSearch.getText();
 			specificKey = CheckIn.txtSpecificKey.getText();
 		} else {
-			String inList = CheckIn.inList;
+			String inList = CheckIn.inList.replace('|', ' ');
 			String splits[] = new String[2];
 			splits = ListManager.SplitTwoItem(inList);
 			keyID = splits[0];
-			specificKey = splits[1];
+			specificKey = ListManager.SplitOneItem(splits[1]);
 		}
 
 		boolean flag = false;
@@ -111,6 +111,11 @@ public class CheckInSearchInfo extends Thread {
 				CheckIn.txtPerson.setText(rst.getString("pickUpPerson"));
 				CheckIn.txtTime.setText(rst.getString("checkOutTime"));
 				CheckIn.txtDate.setText(rst.getString("checkOutDate"));
+				
+				if(CheckIn.isList == 0)
+					CheckInButton.check_in = 1;
+				else
+					CheckInButton.check_in = 0;
 
 			}
 		} catch (SQLException e) {

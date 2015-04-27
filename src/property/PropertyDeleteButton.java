@@ -9,9 +9,24 @@ import contract.ContractMenu;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
-
+/**
+ * Class that can Delete a Property from Database.
+ * Connect to database and execute query to delete Customer
+ *
+ * @author TeamD
+ *
+ */
 public class PropertyDeleteButton extends Thread {
 
+	
+
+	/**
+	 * 
+	 * Method that connect to a database and execute query to delete
+	 * a property and disable the safe question to complete this action.
+	 * 
+	 * 
+	 */
 	public void run() {
 
 		

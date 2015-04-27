@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import security.CheckIn;
+import extras.Checker;
 import extras.DatabaseConnection;
+import extras.ListManager;
 
 /**
  * 
@@ -20,7 +22,9 @@ import extras.DatabaseConnection;
  */
 
 public class CheckInButton extends Thread {
-
+	
+	public static int check_in = -1;
+	
 	@SuppressWarnings("static-access")
 	public void run() {
 
@@ -42,16 +46,36 @@ public class CheckInButton extends Thread {
 			if (response == JOptionPane.YES_OPTION) {
 
 				String query = "";
+				
+				String keyID = "";
+				String specificKey = "";
+				
+				if (check_in == 0) {
+					String inList = CheckIn.inList.replace('|', ' ');
+					String splits[] = new String[2];
+					splits = ListManager.SplitTwoItem(inList);
+					keyID = splits[0];
+					specificKey = ListManager.SplitOneItem(splits[1]);
+				}
+				else if(check_in == 1) {
+					keyID = CheckIn.txtSearch.getText();
+					specificKey = CheckIn.txtSpecificKey.getText();
+				}
+				else
+					Checker.showMessage();
 
 				query = "UPDATE SERVICE SET checkInTime = '" + checkInTime
 						+ "', checkInDate = '" + checkInDate
-						+ "' WHERE  keyID = '" + CheckIn.txtSearch.getText()
+						+ "' WHERE  keyID = '" + keyID
 						+ "' AND specificKey = '"
-						+ CheckIn.txtSpecificKey.getText() + "'";
+						+ specificKey + "'";
 
 				stment.executeUpdate(query);
 				new CheckInClearButton().start();
 
+				CheckIn.allKeys.removeAll();
+				CheckIn.setUpContractList();
+				
 				JOptionPane.showMessageDialog(null, "Key Checked In",
 						"Information Message", JOptionPane.INFORMATION_MESSAGE);
 			}

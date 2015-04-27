@@ -13,10 +13,27 @@ import extras.Checker;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Messages;
-
+/**
+ * Class that can insert a Customer into Database.
+ * Take all values from field and checked. 
+ * Then Connect to database and execute query to save Customer
+ *
+ *
+ * @author TeamD
+ *
+ */
 public class PropertySaveButton extends Thread {
 
-	/* This classes need improvements */
+
+	/**
+	 * This method take all value from fields and checked if are correct. 
+	 * If all value from field are not correct set red Boarder all incorrect fields.
+	 * If all value from field are  correct connect to database and execute query 
+	 * to save Property.Method that connect to a database and execute query to insert
+	 * a Property into Database.
+	 * 
+	 * 
+	 */
 	public void run() {
 
 		boolean checked = true;
