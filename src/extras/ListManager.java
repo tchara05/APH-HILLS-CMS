@@ -424,7 +424,7 @@ public class ListManager {
 			SetUpThreeList(ContractForm.AllCustomers,Query.CUSTOMER_NO_FNAME_LNAME);
 			ContractForm.addListListener();
 		}
-		ListManager.setUpThreeList(accountantPanel.AllCustomers, Query.CUSTOMER_NO_FNAME_LNAME);
+		ListManager.setUpThreeList(accountantPanel.AllCustomers1, Query.CUSTOMER_NO_FNAME_LNAME);
 		ListManager.setUpThreeList(accountantPanel.AllCustomers2,Query.CUSTOMER_NO_FNAME_LNAME);
 	}
 	

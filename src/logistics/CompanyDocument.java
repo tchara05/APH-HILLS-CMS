@@ -475,10 +475,42 @@ public class CompanyDocument {
 
 	}
 
-	public void createCostTableInvoice(Document doc, ResultSet rs)
+	public void createCostTableInvoice(Document doc, ResultSet rs,TYPE type)
 			throws Exception {
+		DatabaseConnection database = new DatabaseConnection();
+		String exportDate = new SimpleDateFormat("dd/MM/yyyy")
+		.format(Calendar.getInstance().getTime());
 
 
+		switch (type){
+		
+		case INVOICE: 	database.getStatement().executeUpdate(
+					"INSERT INTO Invoice values ('" + 0 + "','"
+							+ rs.getString(2) + "','" + rs.getString(3) + "','"
+							+ rs.getString(4) + "','" + rs.getString(5) + "','"
+							+ rs.getString(6) + "','" + rs.getString(7) + "','"
+							+ rs.getString(8) + "','" + rs.getString(9) + "','"
+							+ rs.getString(10) + "','" + rs.getString(11)
+							+ "','" + rs.getString(12) + "','" + exportDate
+							+ "','0' )");
+						break;
+						
+		case RECEIPT: 
+			database.getStatement().executeUpdate(
+					"INSERT INTO Receipt values ('" + 0 + "','"
+							+ rs.getString(2) + "','" + rs.getString(3) + "','"
+							+ rs.getString(4) + "','" + rs.getString(5) + "','"
+							+ rs.getString(6) + "','" + rs.getString(7) + "','"
+							+ rs.getString(8) + "','" + rs.getString(9) + "','"
+							+ rs.getString(10) + "','" + rs.getString(11)
+							+ "','" + rs.getString(12) + "','" + exportDate
+							+ "')");
+						break;
+			
+		default:
+						break;
+		}
+		
 		int N = 6;
 		int counter=1;
 		String CustomerID = rs.getString(4);
@@ -617,7 +649,7 @@ public class CompanyDocument {
 			document.open();
 			Companydocument.invoiceHeader(document);
 			Companydocument.createCustomerDetailsTableInvoice(document, rs);	
-			Companydocument.createCostTableInvoice(document, rs);
+			Companydocument.createCostTableInvoice(document, rs,TYPE.INVOICE);
 			Companydocument.Signatures(document,TYPE.INVOICE);
 			Companydocument.BankInfo(document,TYPE.INVOICE);
 			document.close();
@@ -631,11 +663,11 @@ public class CompanyDocument {
 
 		String[] Customer = ListManager.SplitThreeItem(customer);
 
-		String query = "SELECT * " + "FROM PROFORMA " + "WHERE customerID = '"  // From Invoice
+		String query = "SELECT * " + "FROM Invoice " + "WHERE customerID = '"  
 				+ Customer[0] + "' and toPaid = 0 ";
 		
 		
-		File f = new File("RECEIPT");
+		File f = new File("Receipt");
 		f.mkdir();
 
 		ResultSet rs = database.getStatement().executeQuery(query);
@@ -650,7 +682,7 @@ public class CompanyDocument {
 			document.open();
 			Companydocument.receiptHeader(document);
 			Companydocument.createCustomerDetailsTableInvoice(document, rs);	
-			Companydocument.createCostTableInvoice(document, rs);
+			Companydocument.createCostTableInvoice(document, rs,TYPE.RECEIPT);
 			Companydocument.Signatures(document,TYPE.RECEIPT);
 			Companydocument.BankInfo(document,TYPE.RECEIPT);
 			document.close();
