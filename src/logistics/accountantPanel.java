@@ -27,7 +27,7 @@ public class accountantPanel{
 	
 	private static JPanel accountantMenu;
 	public static  JComboBox<String> AllCustomers1;
-	private static JComboBox<String> AllCustomers2;
+	public static JComboBox<String> AllCustomers2;
 	
 	private JFrame fileChooser;
 	public static File file;
@@ -134,7 +134,7 @@ public class accountantPanel{
 		
 		btnSendReceiptTo.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		new ExportRecipt().start();
+	    		new ExportReceipt().start();
 	    	}
 	    });
 	}

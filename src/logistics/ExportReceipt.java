@@ -7,11 +7,11 @@ import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.email;
 
-public class ExportRecipt extends Thread {
+public class ExportReceipt extends Thread {
 	
 	public void run(){
 		
-		String customer = (String) accountantPanel.AllCustomers.getSelectedItem();
+		String customer = (String) accountantPanel.AllCustomers2.getSelectedItem();
 		
 		try {
 			
