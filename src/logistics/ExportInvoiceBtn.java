@@ -15,7 +15,6 @@ public class ExportInvoiceBtn extends Thread {
 		
 		try {
 			CompanyDocument.CreateInvoice(customer);
-			//CompanyDocument.CreateReceipt(customer);
 			String[] Customer = ListManager.SplitThreeItem(customer);
 			
 			DatabaseConnection database = new DatabaseConnection();
