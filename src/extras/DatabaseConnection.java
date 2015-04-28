@@ -68,8 +68,7 @@ public class DatabaseConnection {
 
 	/**
 	 * Getter for connection
-	 * 
-	 * 
+	 *
 	 * @return Connection
 	 */
 	
