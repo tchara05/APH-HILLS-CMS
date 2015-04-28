@@ -36,6 +36,13 @@ public class classPanel extends JPanel {
 	private JButton btnDeleteClass;
 	// Database Connection //
 	
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @author TeamD
+	 */
 	
 	public classPanel() {
 			

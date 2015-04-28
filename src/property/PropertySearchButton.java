@@ -4,7 +4,30 @@ package property;
 import extras.ListManager;
 import extras.Query;
 
+
+
+/**
+ * Thread that search properties by categories
+ * 
+ * 
+ * 
+ * @author TeamD
+ *
+ */
+
 public class PropertySearchButton extends Thread {
+	
+	
+	/**
+	 * Method for thread to start and search for properties in database.
+	 * 
+	 * Takes data from dropdown list,connects to database and finds 
+	 * the specific proeprty
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	
 
 		

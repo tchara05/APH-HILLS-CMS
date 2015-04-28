@@ -94,7 +94,7 @@ public class AdminMenu {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// All Menu Panels //
-		ContractPanel = ContractMenu.createContractMenu();
+		
 		PropertyPanel = PropertyMenu.createPropertyMenu();
 		CustomerPanel = CustomerMenu.createCustomerMenu();
 		SecurityPanel = Securitymenu.createSecurityMenu();
