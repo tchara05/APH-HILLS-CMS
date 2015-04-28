@@ -275,7 +275,6 @@ public class CustomerMenu {
 			return;
 		}
 
-		System.out.println("Hello");
 		String[] Customer = ListManager.SplitThreeItem(customer);
 
 		String query = "SELECT customerID, firstName, lastName, primaryEmail, contactPhone, mobilePhone FROM"
