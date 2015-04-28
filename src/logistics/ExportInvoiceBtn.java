@@ -5,7 +5,7 @@ import java.sql.Statement;
 
 import extras.DatabaseConnection;
 import extras.ListManager;
-import extras.email;
+import extras.Email;
 
 public class ExportInvoiceBtn extends Thread {
 	
@@ -35,7 +35,7 @@ public class ExportInvoiceBtn extends Thread {
 				FName=rst.getString(2);
 				LName=rst.getString(3);	
 			}
-			email.send(mail,id,FName,LName,"Invoices");
+			Email.send(mail,id,FName,LName,"Invoices");
 			
 		} catch (Exception e) {
 			System.out.println("Create Invoice");
