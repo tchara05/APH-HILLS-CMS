@@ -209,6 +209,21 @@ public class LogIn {
 	}
 
 }
+
+
+ /**
+  * Thread that update the system.
+  * 
+  * It updates all dropdown list in the system by 
+  * retrieving data from the database.
+  * 
+  * Helpful when two people works at different location
+  * 
+  * 
+  * @author TeamD
+  *
+  */
+
  class UpdateAll extends Thread{
 	
 	
