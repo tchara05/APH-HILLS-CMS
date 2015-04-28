@@ -9,7 +9,7 @@ import javax.mail.internet.*;
 
 import java.util.*;
 
-public class email {    
+public class Email {    
 	
 	static String d_email = "pparthenhs@gmail.com";//to email mas 
 	static String d_password = "jgfaksjbfkas8934j@njms$";// o kwdikos mas 
