@@ -407,10 +407,10 @@ public class CompanyDocument {
 
 		String prev = rs.getString(1);
 		int documentID=0;  // Prepei na to piano apo ti vasi //
-
+		String exportDate = new SimpleDateFormat("dd/MM/yyyy")
+		.format(Calendar.getInstance().getTime());
 		do {
-			String exportDate = new SimpleDateFormat("dd/MM/yyyy")
-					.format(Calendar.getInstance().getTime());
+			
 
 			if (!CustomerID.equals(rs.getString(4))) {
 				Columns[0].setPhrase(new Phrase());
@@ -474,46 +474,146 @@ public class CompanyDocument {
 		doc.add(columnsTitle);
 
 	}
+	
+	
+	public void createCostTableReceipt(Document doc, ResultSet rs,TYPE type)
+			throws Exception {
+		DatabaseConnection database = new DatabaseConnection();
+		String exportDate = new SimpleDateFormat("dd/MM/yyyy")
+		.format(Calendar.getInstance().getTime());
+		
+		int id=0;
+		ResultSet ids;
+		String query;
+		query = "SELECT docID FROM DocumentsIDS WHERE docType =  'receipt'";
+		 ids = database.getStatement().executeQuery(query);
+		 if (ids.next())
+		 id = (ids.getInt(1)+1);
+		query = "UPDATE DocumentsIDS SET docID = '"+id + "WHERE docType = 'receipt'";
+		database.getStatement().executeUpdate(query);
+	
+		
+					
+		int N = 6;
+		int counter=1;
+		String CustomerID = 0+"";
+		
+		CustomerID = rs.getString(4);
+		query = "UPDATE Invoice set toPaid ='1' WHERE customerID='"+CustomerID+"'";
+		database.getStatement().executeUpdate(query);
+		PdfPTable columnsTitle = new PdfPTable(N);
+		PdfPCell[] Columns = new PdfPCell[N];
 
+		for (int i = 0; i < N; i++) {
+			Columns[i] = new PdfPCell();
+			Columns[i].setHorizontalAlignment(Element.ALIGN_LEFT);
+			Columns[i].setBorderWidth(0);
+		}
+
+		Phrase[] titles = new Phrase[N];
+		
+		int rooms = 1;
+		double total = 0;
+		String prev = rs.getString(2);
+
+		titles[0] = new Phrase("S/N");
+		titles[1] = new Phrase("PlotNo");
+		titles[2] = new Phrase("Location/Type");
+		titles[3] = new Phrase("Description");
+		titles[4] = new Phrase("Qty");
+		titles[5] = new Phrase("Amount");
+
+		for (int j = 0; j < N; j++) {
+			titles[j].setFont(smallbold);
+			Columns[j].addElement(titles[j]);
+			columnsTitle.addCell(Columns[j]);
+		}
+
+		columnsTitle.setWidthPercentage(100);
+		
+		do{
+			
+			
+			database.getStatement().executeUpdate(
+				   	"INSERT INTO Receipt values ('" + id + "','"
+							+ rs.getString(2) + "','" + rs.getString(3) + "','"
+							+ rs.getString(4) + "','" + rs.getString(5) + "','"
+							+ rs.getString(6) + "','" + rs.getString(7) + "','"
+							+ rs.getString(8) + "','" + rs.getString(9) + "','"
+							+ rs.getString(10) + "','" + rs.getString(11)
+							+ "','" + rs.getString(12) + "','" + exportDate
+							+ " ')");
+			
+			if (!prev.equals(rs.getString(2))) {
+				prev = rs.getString(2);
+				rooms = 1;
+			}
+			
+			double roomCost = Double.parseDouble(rs.getString(10))
+					* Double.parseDouble(rs.getString(11)) / 100;
+			total = total + roomCost;
+			Columns[0].setPhrase(new Phrase(counter+""));
+			Columns[1].setPhrase(new Phrase(prev));
+			Columns[2].setPhrase(new Phrase(rs.getString(3) + " "
+					+ rs.getString(4)));
+			Columns[3].setPhrase(new Phrase("Room No:" + rooms));
+			Columns[4].setPhrase(new Phrase("1"));
+			Columns[5].setPhrase(new Phrase(roomCost + ""));
+			counter++;
+			rooms++;
+			for (int j = 0; j < N; j++) {
+				columnsTitle.addCell(Columns[j]);
+			}
+
+		}while (rs.next());
+		
+		
+		double vat = total*VAT;
+		Columns[0].setPhrase(new Phrase());
+		Columns[1].setPhrase(new Phrase());
+		Columns[2].setPhrase(new Phrase());
+		Columns[3].setPhrase(new Phrase());
+		Phrase t = new Phrase("\nVAT 19%:\nTotal Amount: ");
+		t.setFont(smallbold);
+		Columns[4].setPhrase(t);
+		Columns[5].setPhrase(new Phrase("\n" + (vat)+"\n"+(total+vat)));
+		for (int j = 0; j < N; j++) {
+			columnsTitle.addCell(Columns[j]);
+		}
+		doc.add(columnsTitle);
+
+	}
+	
+	
+	
 	public void createCostTableInvoice(Document doc, ResultSet rs,TYPE type)
 			throws Exception {
 		DatabaseConnection database = new DatabaseConnection();
 		String exportDate = new SimpleDateFormat("dd/MM/yyyy")
 		.format(Calendar.getInstance().getTime());
-
-
-		switch (type){
 		
-		case INVOICE: 	database.getStatement().executeUpdate(
-					"INSERT INTO Invoice values ('" + 0 + "','"
-							+ rs.getString(2) + "','" + rs.getString(3) + "','"
-							+ rs.getString(4) + "','" + rs.getString(5) + "','"
-							+ rs.getString(6) + "','" + rs.getString(7) + "','"
-							+ rs.getString(8) + "','" + rs.getString(9) + "','"
-							+ rs.getString(10) + "','" + rs.getString(11)
-							+ "','" + rs.getString(12) + "','" + exportDate
-							+ "','0' )");
-						break;
+		int id=0;
+		ResultSet ids;
+		String query;
+
+						 query = "SELECT docID FROM DocumentsIDS WHERE docType =  'invoice'";
+						 ids = database.getStatement().executeQuery(query);
+						 if (ids.next())
+						 id = (ids.getInt(1)+1);
+						query = "UPDATE DocumentsIDS SET docID = '"+id + "' WHERE docType = 'invoice'";
+						database.getStatement().executeUpdate(query);
+					
 						
-		case RECEIPT: 
-			database.getStatement().executeUpdate(
-					"INSERT INTO Receipt values ('" + 0 + "','"
-							+ rs.getString(2) + "','" + rs.getString(3) + "','"
-							+ rs.getString(4) + "','" + rs.getString(5) + "','"
-							+ rs.getString(6) + "','" + rs.getString(7) + "','"
-							+ rs.getString(8) + "','" + rs.getString(9) + "','"
-							+ rs.getString(10) + "','" + rs.getString(11)
-							+ "','" + rs.getString(12) + "','" + exportDate
-							+ "')");
-						break;
-			
-		default:
-						break;
-		}
+
 		
 		int N = 6;
 		int counter=1;
-		String CustomerID = rs.getString(4);
+		
+	    String CustomerID = 0+"";
+	  
+	    CustomerID = rs.getString(4);
+		query = "UPDATE Proforma set toPaid ='1' WHERE customerID='"+CustomerID+"'";
+		database.getStatement().executeUpdate(query);
 		PdfPTable columnsTitle = new PdfPTable(N);
 		PdfPCell[] Columns = new PdfPCell[N];
 
@@ -550,6 +650,15 @@ public class CompanyDocument {
 				prev = rs.getString(2);
 				rooms = 1;
 			}
+			database.getStatement().executeUpdate(
+			    	"INSERT INTO Invoice values ('" + id + "','"
+						+ rs.getString(2) + "','" + rs.getString(3) + "','"
+						+ rs.getString(4) + "','" + rs.getString(5) + "','"
+						+ rs.getString(6) + "','" + rs.getString(7) + "','"
+						+ rs.getString(8) + "','" + rs.getString(9) + "','"
+						+ rs.getString(10) + "','" + rs.getString(11)
+						+ "','" + rs.getString(12) + "','" + exportDate
+						+ "','0' )");
 			
 			double roomCost = Double.parseDouble(rs.getString(10))
 					* Double.parseDouble(rs.getString(11)) / 100;
@@ -569,7 +678,8 @@ public class CompanyDocument {
 
 		}while (rs.next());
 		
-		total = total + total*VAT;
+		
+		double vat = total*VAT;
 		
 		Columns[0].setPhrase(new Phrase());
 		Columns[1].setPhrase(new Phrase());
@@ -578,7 +688,7 @@ public class CompanyDocument {
 		Phrase t = new Phrase("\nTotal Amount: ");
 		t.setFont(smallbold);
 		Columns[4].setPhrase(t);
-		Columns[5].setPhrase(new Phrase("\n" + total));
+		Columns[5].setPhrase(new Phrase("\n" + (vat)+"\n"+(total+vat)));
 		for (int j = 0; j < N; j++) {
 			columnsTitle.addCell(Columns[j]);
 		}
@@ -681,14 +791,20 @@ public class CompanyDocument {
 					+ rs.getString(5) +"_" +rs.getString(6)+ "_"+rs.getString(7) + ".pdf"));
 			document.open();
 			Companydocument.receiptHeader(document);
-			Companydocument.createCustomerDetailsTableInvoice(document, rs);	
-			Companydocument.createCostTableInvoice(document, rs,TYPE.RECEIPT);
+			Companydocument.createCustomerDetailsTableReceipt(document, rs);	
+			Companydocument.createCostTableReceipt(document, rs,TYPE.RECEIPT);
 			Companydocument.Signatures(document,TYPE.RECEIPT);
 			Companydocument.BankInfo(document,TYPE.RECEIPT);
 			document.close();
 			
 		}
 	
+	}
+
+	private void createCustomerDetailsTableReceipt(Document document,
+			ResultSet rs) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public static void main(String args[]) {

@@ -5,7 +5,7 @@ import java.sql.Statement;
 
 import extras.DatabaseConnection;
 import extras.ListManager;
-import extras.email;
+import extras.Email;
 
 public class ExportReceipt extends Thread {
 	
@@ -35,7 +35,7 @@ public class ExportReceipt extends Thread {
 				FName=rst.getString(2);
 				LName=rst.getString(3);	
 			}
-			email.send(mail,id,FName,LName,"Receipt");
+			Email.send(mail,id,FName,LName,"Receipt");
 			
 		} catch (Exception e) {
 			System.out.println("Create Invoice");
