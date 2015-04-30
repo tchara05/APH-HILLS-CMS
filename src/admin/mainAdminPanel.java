@@ -7,6 +7,14 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import extras.DatabaseConnection;
 
+/**
+ * 
+ * Graphics for the all the Class, Parcel and
+ * Status Panel.
+ * 
+ * @author TeamD
+ *
+ */
 @SuppressWarnings("serial")
 public class mainAdminPanel extends JPanel {
 	
@@ -31,7 +39,6 @@ public class mainAdminPanel extends JPanel {
 		statPanel.setBounds(16, 380, 549, 134);
 		adminMainPanel.add(statPanel);
 	}
-	
 	
 	public static JPanel createAdminMenu(){
 		new mainAdminPanel();

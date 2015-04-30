@@ -21,6 +21,13 @@ import extras.Query;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * Graphics for the Status Panel form.
+ * 
+ * @author TeamD
+ *
+ */
 @SuppressWarnings("serial")
 public class statusPanel extends JPanel {
 
@@ -76,7 +83,12 @@ public class statusPanel extends JPanel {
 	}
 
 	
-
+	/**
+	 * 
+	 * The purpose of this function is to edit the status of
+	 * a property using a query.
+	 *
+	 */
 	@SuppressWarnings("unused")
 	private class btnEdit extends Thread {
 
@@ -119,7 +131,13 @@ public class statusPanel extends JPanel {
 		}
 	}
 
-	// Thread for addbutton //
+	
+	/**
+	 * 
+	 * The purpose of this function is to add the status of
+	 * a property using a query.
+	 *
+	 */
 	private class btnAdd extends Thread {
 
 		public void run() {
@@ -157,6 +175,13 @@ public class statusPanel extends JPanel {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * The purpose of this function is to delete the status of
+	 * a property using a query.
+	 *
+	 */
 	private class btnDelete extends Thread {
 
 		public void run() {

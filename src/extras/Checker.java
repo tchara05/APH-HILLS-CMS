@@ -2,8 +2,22 @@ package extras;
 
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * This class is used for checking any fields given 
+ * into the forms. 
+ * 
+ * @author TeamD
+ *
+ */
 public class Checker {
-
+	
+	/**
+	 * 
+	 * This method is used for checking if the given text
+	 * is a string without numbers or spaces.
+	 *
+	 */
 	public static boolean checkString(String t) {
 
 		char[] chars = t.toCharArray();
@@ -18,6 +32,13 @@ public class Checker {
 
 	}
 
+	
+	/**
+	 * 
+	 * This method is used for checking if the given text
+	 * is a number.
+	 *
+	 */
 	public static boolean checkNumber(String s) {
 
 		if (!s.matches("[0-9]+")) {
@@ -28,12 +49,25 @@ public class Checker {
 	}
 
 	
+	/**
+	 * 
+	 * This method is used for checking if the given text
+	 * is not empty.
+	 *
+	 */
 	public static boolean checkEmpty(String text){
 		if(text.equals(""))
 			return false;
 		return true;
 	}
 	
+	
+	/**
+	 * 
+	 * This method is used for checking if the given text
+	 * is an email.
+	 *
+	 */
 	public static boolean checkEmailAddress(String s) {
 		String epatern = "^.+@.+";
 		java.util.regex.Pattern p = java.util.regex.Pattern.compile(epatern);
@@ -41,6 +75,13 @@ public class Checker {
 		return m.matches();
 	}
 
+	
+	/**
+	 * 
+	 * This method is used for clearing the string from
+	 * any white spaces.
+	 *
+	 */
 	public static String clearString(String str) {
 
 		boolean change = false;
@@ -77,6 +118,13 @@ public class Checker {
 			return str;
 	}
 
+	
+	/**
+	 * 
+	 * This method is used for removing the first number
+	 * that is appeared in the string.
+	 *
+	 */
 	public static String removeStringID(String s) {
 
 		int i = 0;

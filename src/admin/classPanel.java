@@ -25,6 +25,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 
+ * Graphics for the Class Panel form.
+ * 
+ * @author TeamD
+ *
+ */
 @SuppressWarnings("serial")
 public class classPanel extends JPanel {
 	public static JTextField txtName;
@@ -35,14 +42,6 @@ public class classPanel extends JPanel {
 	private JButton btnAddClass ;
 	private JButton btnDeleteClass;
 	// Database Connection //
-	
-	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 * @author TeamD
-	 */
 	
 	public classPanel() {
 			
@@ -92,7 +91,6 @@ public class classPanel extends JPanel {
 		btnAddClass.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
 				new btnAdd().start();
 			}
 		});
@@ -104,7 +102,12 @@ public class classPanel extends JPanel {
 		
 	}
 	
-	// Thread For Deleted Class //
+	/**
+	 * 
+	 * The purpose of this function is to delete the class of
+	 * a property using a query.
+	 *
+	 */
 	private class delBtn extends Thread{
 			public void run(){
 				
@@ -133,7 +136,12 @@ public class classPanel extends JPanel {
 	}	
 	
 
-	@SuppressWarnings("unused")
+	/**
+	 * 
+	 * The purpose of this function is to edit the class of
+	 * a property using a query.
+	 *
+	 */
 	private class btnEdit extends Thread {
 
 		public void run() {
@@ -175,7 +183,13 @@ public class classPanel extends JPanel {
 		}
 	}
 
-	// Thread for addbutton //
+	
+	/**
+	 * 
+	 * The purpose of this function is to add the class of
+	 * a property using a query.
+	 *
+	 */
 	private class btnAdd extends Thread {
 
 		public void run() {
@@ -213,8 +227,14 @@ public class classPanel extends JPanel {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * The purpose of this function is to delete the property
+	 * status of a property using a query.
+	 *
+	 */
 	private class btnDelete extends Thread {
-
 		public void run() {
 			int response = JOptionPane.showConfirmDialog(null,
 					"Do you want to continue?", "Confirm",

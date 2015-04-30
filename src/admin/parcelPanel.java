@@ -23,6 +23,14 @@ import extras.Query;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+/**
+ * 
+ * Graphics for the Parcel Panel form.
+ * 
+ * @author TeamD
+ *
+ */
 @SuppressWarnings("serial")
 public class parcelPanel extends JPanel {
 
@@ -87,7 +95,12 @@ public class parcelPanel extends JPanel {
 	}
 
 
-	@SuppressWarnings("unused")
+	/**
+	 * 
+	 * The purpose of this function is to edit the parcel of
+	 * a property using a query.
+	 *
+	 */
 	private class btnEdit extends Thread {
 
 		public void run() {
@@ -129,7 +142,13 @@ public class parcelPanel extends JPanel {
 		}
 	}
 
-	// Thread for addbutton //
+	
+	/**
+	 * 
+	 * The purpose of this function is to add the parcel of
+	 * a property using a query.
+	 *
+	 */
 	private class btnAdd extends Thread {
 
 		public void run() {
@@ -170,6 +189,12 @@ public class parcelPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * 
+	 * The purpose of this function is to delete the parcel of
+	 * a property using a query.
+	 *
+	 */
 	private class btnDelete extends Thread {
 
 		public void run() {
