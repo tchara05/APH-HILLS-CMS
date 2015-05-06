@@ -17,11 +17,32 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import extras.DatabaseConnection;
 import extras.Query;
-
-
+/**
+ * Class that can create a excel and read excel.
+ * That Class Connect to database and execute query
+ * to create excel and save data for excel. 
+ * 
+ *That excel file contains the values per 
+ *property. But the user must complete those 
+ *values
+ *
+ *
+ * @author TeamD
+ *
+ */
 public class Excel {
 	
 	
+	/**
+	 * 
+	 * Method Connect to database and execute query
+	 * to pull all data about Services and a property
+	 * After that create a Excel file row by row 
+	 * to show this data.
+	 * 
+	 * The user now must complete the values
+	 * 
+	 */
 	public static void createExcelFile(){
 		
 		HSSFWorkbook wb = new HSSFWorkbook();
@@ -85,7 +106,17 @@ public class Excel {
 		}
 	
 	}
-		
+	/**
+	 * 
+	 * Method connect to database .
+	 * Read a excel file (must be completed).
+	 * After that execute query to save all 
+	 * this data from excel into database.
+	 * 
+	 * 
+	 * @param File the excel file
+	 */
+	
   public static void ReadExcel(File f){
 	  
 	  

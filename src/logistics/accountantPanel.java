@@ -22,7 +22,13 @@ import java.io.File;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+/**
+ * 
+ * Graphics for the Class Panel form.
+ * 
+ * @author TeamD
+ *
+ */
 public class accountantPanel{
 	
 	private static JPanel accountantMenu;
@@ -41,6 +47,13 @@ public class accountantPanel{
 	private JPanel panel;
 	private JPanel panel_1;
 	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	public accountantPanel() {
 		
 		accountantMenu = new JPanel();
@@ -104,7 +117,12 @@ public class accountantPanel{
 		addButtonsFuctionalities();
 	}
 	
-	
+	/**
+	 * This method  manage the buttons and 
+	 * their actions
+	 * 
+	 * 
+	 */
 	public void addButtonsFuctionalities(){
 		
 		btnExportExcel.addActionListener(new ActionListener() {
@@ -139,7 +157,12 @@ public class accountantPanel{
 	    });
 	}
 	
-	
+	/**
+	 * This method  create the JPanel for this 
+	 * form 
+	 * 
+	 * 
+	 */
 	public static JPanel createAccountantMenu(){
 		new accountantPanel();
 		return accountantMenu;

@@ -6,9 +6,29 @@ import java.sql.Statement;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Email;
-
+/**
+ * Class create the Invoice for  customer 
+ * has property in active when the Export Invoice  
+ * button clicked. And create pdf file and also sent 
+ * this file with e-mail to the customer.
+ *  
+ * 
+ *
+ *
+ * @author TeamD
+ *
+ */
 public class ExportInvoiceBtn extends Thread {
 	
+	/**
+	 * 
+	 * Method that  create pdf file (invoice) for
+	 * the selected Customer from drop-down list.
+	 * After that sent with e-mail this file to 
+	 * the selected customer. 
+	 * 
+	 * 
+	 */
 	public void run(){
 		
 		String customer = (String) accountantPanel.AllCustomers1.getSelectedItem();
