@@ -19,6 +19,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 import extras.DatabaseConnection;
 import extras.ListManager;
 
+/**
+ * Class PDF (proforma, Invoice , receipt)
+ * 
+ *
+ * @author TeamD
+ *
+ */
 enum TYPE {
 	INVOICE, RECEIPT, PROFORMA
 }
@@ -63,7 +70,14 @@ public class CompanyDocument {
 	 * All Customer and Property Details -- Dynamic variables that initialize by
 	 * database data
 	 */
-
+	
+	
+	/**
+	 * 
+	 * Method create the Header for receipt Document
+	 * 
+	 *@param doc -Document file 
+	 */
 	public void receiptHeader(Document doc) throws Exception {
 
 		Image image1 = Image.getInstance("PDF-IMAGE.png");
@@ -87,6 +101,13 @@ public class CompanyDocument {
 
 	}
 	
+
+	/**
+	 * 
+	 * Method create the Header for invoice Document
+	 * 
+	 *@param doc -Document file 
+	 */
 	public void invoiceHeader(Document doc) throws Exception {
 
 		Image image1 = Image.getInstance("PDF-IMAGE.png");
@@ -109,7 +130,13 @@ public class CompanyDocument {
 			doc.add(CustDetails);
 
 	}
-	
+
+	/**
+	 * 
+	 * Method create the Header for Proforma Document
+	 * 
+	 *@param doc -Document file 
+	 */
 	public void proformaHeader(Document doc) throws Exception {
 
 		Image image1 = Image.getInstance("PDF-IMAGE.png");
@@ -133,6 +160,22 @@ public class CompanyDocument {
 
 	}
 	
+	
+	/**
+	 * 
+	 * Method create the Customer Details Table for
+	 * Prodorma document. Connect to Database and 
+	 * retrieve the number of this type Document.
+	 * After that Update the number of this type 
+	 * Document by 1. At last, create table to 
+	 * save all customer Details and also date 
+	 * and number of Document and write them 
+	 * into PDF
+	 *
+	 * 
+	 *@param doc -Document file 
+	 *@param rs -ResltSet customer data
+	 */
 	public void createCustomerDetailsTableProforma(Document doc, ResultSet rs)
 			throws Exception {
 
@@ -199,7 +242,21 @@ public class CompanyDocument {
 		doc.add(CustomerDetailsTable);
 	}
 	
-	
+	/**
+	 * 
+	 * Method create the Customer Details Table for
+	 * Invoice document. Connect to Database and 
+	 * retrieve the number of this type Document.
+	 * After that Update the number of this type 
+	 * Document by 1. At last, create table to 
+	 * save all customer Details and also date 
+	 * and number of Document and write them 
+	 * into PDF 
+	 *
+	 * 
+	 *@param doc -Document file 
+	 *@param rs -ResltSet customer data
+	 */
 	public void createCustomerDetailsTableInvoice(Document doc, ResultSet rs)
 			throws Exception {
 
@@ -268,7 +325,14 @@ public class CompanyDocument {
 
 	}
 
-
+   /**
+	 * 
+	 * Method create String for Details about 
+	 * the Document.
+	 *
+	 * 
+	*@param type -enumeration Document type
+	 */
 	private String documentType(TYPE type) {
 
 		switch(type){
@@ -280,7 +344,14 @@ public class CompanyDocument {
 		
 		return "Error";
 	}
-
+ /**
+	 * 
+	 * Method create the Signatures area on PDF
+	 *
+	 * 
+	 *@param doc -Document file 
+	 *@param type -enumeration Document type
+	 */
 	public void Signatures(Document doc,TYPE type) throws Exception {
 
 		PdfPTable Signature = new PdfPTable(2);
@@ -316,7 +387,16 @@ public class CompanyDocument {
 		Signature.addCell(RightCell);
 		doc.add(Signature);
 	}
-
+ /**
+	 * 
+	 * Method add into the PDF the hotel details 
+	 * And some other Details different for each 
+	 * Document Type
+	 *	 
+	 * 
+	 *@param doc -Document file 
+	 *@param type -enumeration Document type
+	 */
 	public void BankInfo(Document doc,TYPE type) throws Exception {
 
 		PdfPTable BankINF = new PdfPTable(1);
@@ -367,7 +447,19 @@ public class CompanyDocument {
 		}
 
 	}
-
+ /**
+	 * 
+	 * Method create and Add into file
+	 * cost table for Proforma. At this point 
+	 * we use tables to write data in file.
+	 * At the same time connected to Database 
+	 * and save all data for each record on 
+	 * Proforma.
+	 *	 
+	 * 
+	 *@param doc -Document file 
+	 *@param type -enumeration Document type
+	 */
 	public void createCostTableProforma(Document doc, ResultSet rs)
 			throws Exception {
 
@@ -475,7 +567,19 @@ public class CompanyDocument {
 
 	}
 	
-	
+	/**
+	 * 
+	 * Method create and Add into file
+	 * cost table for Receipt. At this point 
+	 * we use tables to write data in file.
+	 * At the same time connected to Database 
+	 * and save all data for each record on 
+	 * Receipt.
+	 *	 
+	 * 
+	 *@param doc -Document file 
+	 *@param type -enumeration Document type
+	 */
 	public void createCostTableReceipt(Document doc, ResultSet rs,TYPE type)
 			throws Exception {
 		DatabaseConnection database = new DatabaseConnection();
@@ -585,7 +689,19 @@ public class CompanyDocument {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * Method create and Add into file
+	 * cost table for Invoice. At this point 
+	 * we use tables to write data in file.
+	 * At the same time connected to Database 
+	 * and save all data for each record on 
+	 * Invoice.
+	 *	 
+	 * 
+	 *@param doc -Document file 
+	 *@param type -enumeration Document type
+	 */
 	public void createCostTableInvoice(Document doc, ResultSet rs,TYPE type)
 			throws Exception {
 		DatabaseConnection database = new DatabaseConnection();
@@ -695,7 +811,13 @@ public class CompanyDocument {
 		doc.add(columnsTitle);
 
 	}
-
+	/**
+	 * 
+	 * Method create Proforma file
+	 * for all customer
+ 	 *	 
+	 * 
+	 */
 	public static void createAllProforma() throws Exception {
 
 		DatabaseConnection database = new DatabaseConnection();
@@ -733,7 +855,13 @@ public class CompanyDocument {
 		}
 
 	}
-
+/**
+	 * 
+	 * Method create Invoice file
+	 * for this customer customer
+ 	 *	 
+	 * @param customer - item from drop-down list
+	 */
 	public static void CreateInvoice(String customer) throws Exception {
 
 		DatabaseConnection database = new DatabaseConnection();
@@ -767,7 +895,13 @@ public class CompanyDocument {
 		}
 	
 	}
-	
+	/**
+	 * 
+	 * Method create Receipt file
+	 * for this customer customer
+ 	 *	 
+	 * @param customer - item from drop-down list
+	 */
 	public static void CreateReceipt(String customer) throws Exception {
 		DatabaseConnection database = new DatabaseConnection();
 
@@ -806,7 +940,12 @@ public class CompanyDocument {
 		// TODO Auto-generated method stub
 		
 	}
-
+	 /**
+		 * Main method
+		 * Useful only for testing
+		 *
+		 * @param  Srting[]
+		 */
 	public static void main(String args[]) {
 
 		try {
