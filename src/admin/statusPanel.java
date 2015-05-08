@@ -35,6 +35,14 @@ public class statusPanel extends JPanel {
 	public static JTextField txtStatusName;
 	public static JComboBox<String> AllStatus;
 
+	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	public statusPanel() {
 		JLabel lblStatusName = new JLabel("New Status:");
 		lblStatusName.setBounds(10, 50, 87, 16);

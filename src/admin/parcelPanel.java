@@ -44,6 +44,14 @@ public class parcelPanel extends JPanel {
 	private JButton btnAddParcel;
 	private JButton btnDeleteParcel;
 
+	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	public parcelPanel() {
 
 		// Labels //

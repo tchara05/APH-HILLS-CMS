@@ -23,6 +23,13 @@ public class mainAdminPanel extends JPanel {
 	private static statusPanel statPanel;
 	private static classPanel clasPanel;
 	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	public mainAdminPanel() {	
 		adminMainPanel = new JPanel();
 		parPanel = new parcelPanel();
@@ -40,6 +47,13 @@ public class mainAdminPanel extends JPanel {
 		adminMainPanel.add(statPanel);
 	}
 	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	public static JPanel createAdminMenu(){
 		new mainAdminPanel();
 		return adminMainPanel;

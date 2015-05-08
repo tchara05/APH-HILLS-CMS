@@ -42,7 +42,13 @@ public class classPanel extends JPanel {
 	private JButton btnAddClass ;
 	private JButton btnDeleteClass;
 	// Database Connection //
-	
+	/**
+	 * Constructor of the form.
+	 * The constructor calls the initialize method to 
+	 * design the window-form and initialize all fields.
+	 * 
+	 * 
+	 */
 	public classPanel() {
 			
 		//Labels //
@@ -79,7 +85,9 @@ public class classPanel extends JPanel {
 
 	}
 
-	// Buttons Fuctionalities //
+	/**
+	 * Buttons Functionalities 
+	 */
 	private void addButtonsFuctionalities(){
 		btnDeleteClass.addMouseListener(new MouseAdapter() {
 			@Override
