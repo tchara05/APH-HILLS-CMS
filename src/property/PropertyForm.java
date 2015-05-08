@@ -111,7 +111,7 @@ public class PropertyForm {
 	 * This is a method that hide and show the Form
 	 * 
 	 * 
-	 * @param val boolean
+	 * 
 	 */
 	public PropertyForm() {
 		initialize();
