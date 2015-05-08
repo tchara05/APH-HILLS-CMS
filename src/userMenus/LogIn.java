@@ -53,6 +53,13 @@ public class LogIn {
 
 	public static DatabaseConnection database;
 
+	 /**
+		 * Main method
+		 * Useful only for testing
+		 *
+		 * @param  Srting[]
+		 */
+
 	public static void main(String[] args) {
 
 		@SuppressWarnings("unused")
@@ -60,11 +67,25 @@ public class LogIn {
 		LogIn.frmAphroditeHill.setVisible(true);
 	}
 
+	/**
+	 * 
+	 * This is a method that hide and show the Form
+	 * 
+	 * @param menu
+	 */
 	public LogIn() {
 		initialize();
 		new UpdateAll().start();
 	}
 
+	
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
 	private void initialize() {
 
 		try {
@@ -203,6 +224,13 @@ public class LogIn {
 	public static String getUsername() {
 		return user;
 	}
+	
+	/**
+	 * This is a method that hide and show the window-form
+	 * 
+	 * 
+	 * @param t boolean
+	 */
 
 	public void setVisible(boolean t) {
 		frmAphroditeHill.setVisible(t);
@@ -225,9 +253,17 @@ public class LogIn {
   */
 
  class UpdateAll extends Thread{
-	
-	
-	
+	/**
+	 * 
+	 * Thread that update the system.
+	 * 
+	 * It updates all dropdown list in the system by 
+	 * retrieving data from the database.
+	 * 
+	 * Helpful when two people works at different location
+	 * 
+	 */
+		
 	public void run(){
 		
 		while(true){	

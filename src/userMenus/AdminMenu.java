@@ -63,17 +63,37 @@ public class AdminMenu {
 	private JPanel panel_1;
 	private JPanel panel_2;
 
+	 /**
+	 * Main method
+	 * Useful only for testing
+	 *
+	 * @param  Srting[]
+	 */
+
 	public static void main(String[] args) {
 
 		@SuppressWarnings("unused")
 		AdminMenu window = new AdminMenu(0);
 		frame.setVisible(true);
 	}
-
+	
+	/**
+	 * 
+	 * This is a method that hide and show the Form
+	 * 
+	 * @param menu
+	 */
 	public AdminMenu(int menu) {
 		initialize(menu);
 	}
 
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
 	private void initialize(int menu) {
 
 		try {
@@ -210,7 +230,10 @@ public class AdminMenu {
 		addButtonFuctionalities();
 
 	}
-
+/**
+ * This method manage button Fuctionalities
+ * 
+ */
 	private static void addButtonFuctionalities() {
 
 		btnProperty.addActionListener(new ActionListener() {
@@ -269,6 +292,12 @@ public class AdminMenu {
 
 	}
 
+	/**
+	 * This is a method that hide and show the window-form
+	 * 
+	 * 
+	 * @param val boolean
+	 */
 	public void setVisible(boolean visible) {
 		frame.setVisible(visible);
 
