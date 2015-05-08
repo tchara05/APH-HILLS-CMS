@@ -61,7 +61,11 @@ public class DatabaseConnection {
 				e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * This method return the statement of database
+	 * 
+	 */
 	public Statement getStatement() {
 		return statement;
 	}

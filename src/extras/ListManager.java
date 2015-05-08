@@ -394,7 +394,12 @@ public class ListManager {
 
 	}
 	
-	
+	/**
+	 * Method checked if presentness is 100 
+	 * 
+	 * @param prc - presentness
+	 * @return boolean if presentness =100
+	 */
 	public static boolean checkPercentage(int prc) {
 
 		if (prc != 100) {

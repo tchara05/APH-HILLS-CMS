@@ -1,6 +1,12 @@
 package extras;
 
-
+/**
+ * 
+ * Class that represents to sent e-mail.
+ * 
+ * @author TeamD
+ *
+ */
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -25,6 +31,17 @@ public class Email {
         }
     }
     
+	/**
+	 * 
+	 * This method sent the e-mail to the customer and 
+	 * attached the proper pdf file 
+	 *
+	 *@param mailtoSend - customer email
+	 *@param s5-id customer 
+	 *@param s6-customer First name 
+	 *@param s7- customer last name
+	 *@param s8-type of file (find the folder)
+	 */
     public static void send(String mailtoSend,String s5,String s6,String s7,String s8){
     
     	m_to=mailtoSend;
