@@ -16,7 +16,16 @@ import extras.Query;
 
 
 public class FilterByNoContractButton extends Thread {
-	
+	/**
+	 * 
+	 * Method that connect to a database and execute querie for
+	 * PLOTS WITH NO CONTRACTS
+	 * 
+	 * After the execution of the querie the lists of the All 
+	 * property update
+	 * 
+	 */
+
 	public void run(){
 		
 		ContractMenu.AllProperties.removeAllItems();

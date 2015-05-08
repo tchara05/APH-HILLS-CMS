@@ -404,7 +404,12 @@ public class ContractForm {
 			}
 		});
 	}
-
+	
+	/**
+	 * This method manage the Drop-Down list with 
+	 * Customers
+	 * 
+	 */
 	public static void addListListener(){
 		
 		
