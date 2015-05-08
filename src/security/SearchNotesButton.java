@@ -31,7 +31,14 @@ import extras.DatabaseConnection;
 public class SearchNotesButton extends Thread {
 
 	public static int searchMethod = 0;
-
+	/**
+	 * This method is used to search the notes that are given by the 
+	 * customer when the key contract was set up. There are two
+	 * search methods for this class.
+	 * 
+	 * These functionalities may be used before a key is check out.
+	 * 
+	 */
 	public void run() {
 
 		int check = 0;

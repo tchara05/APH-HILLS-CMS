@@ -20,7 +20,12 @@ import extras.DatabaseConnection;
 public class SecurityEditButton {
 
 	public static int editor = 0;
-
+	/**
+	  * This method is used when we want edit any information are given
+	  * to the key contract. The only thing that is editable are the notes
+	  * that are given by the customer. The other fields cannot be edit.
+	  * 
+	  */
 	@SuppressWarnings("static-access")
 	public static void start() {
 

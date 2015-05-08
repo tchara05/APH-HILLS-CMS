@@ -28,6 +28,12 @@ import extras.Messages;
 
 public class CheckInSearchInfo extends Thread {
 
+	/**
+	 * This class is used to search information about the keys of
+	 * the properties that are already checked out. These information
+	 * are when the key was checked out (date and time) and the person
+	 * who check out the key.
+	 */
 	@SuppressWarnings("static-access")
 	public void run() {
 
@@ -126,7 +132,15 @@ public class CheckInSearchInfo extends Thread {
 		}
 
 	}
-
+/**
+ * This method connected to Database at checked if this 
+ * key is not checked in yet
+ * 
+ * @param s-id 
+ * @param g-key
+ * @return true if key is not checked in yet
+ * @throws SQLException
+ */
 	private boolean checkerexist(String s, String g) throws SQLException {
 
 		if (Checker.checkNumber(s)) {

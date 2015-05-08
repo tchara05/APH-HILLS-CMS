@@ -21,6 +21,13 @@ import extras.DatabaseConnection;
 
 public class SecurityDeleteButton {
 
+	/**
+	 * This method is used for deleting a key contract from the
+	 * database. There are two methods to delete a key contract.
+	 * The first method is using the plot name and the plot number
+	 * and the second method is using the list that is given where
+	 * you can choose which key contract to delete.
+	 */
 	public static void start() {
 
 		int check = 0;

@@ -25,6 +25,12 @@ public class CheckInButton extends Thread {
 	
 	public static int check_in = -1;
 	
+	/**
+	 * This method is used for checking-in a key. When the button of
+	 * the check-in form is pushed then this function is called.
+	 * Then we execute a query in updating the service table
+	 * in the database.
+	 */
 	@SuppressWarnings("static-access")
 	public void run() {
 

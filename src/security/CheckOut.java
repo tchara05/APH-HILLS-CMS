@@ -44,16 +44,36 @@ public class CheckOut {
 	public static JTextArea txtNotes;
 	public static JTextField txtPlotName;
 
+	 /**
+	 * Main method
+	 * Useful only for testing
+	 *
+	 * @param  Srting[]
+	 */
+
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		CheckOut window = new CheckOut();
 		window.frmService.setVisible(true);
 	}
-
+	
+	/**
+	 * This is a method that hide and show the Form
+	 * 
+	 * 
+	 * 
+	 */
 	public CheckOut() {
 		initialize();
 	}
 
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 
@@ -300,22 +320,47 @@ public class CheckOut {
 
 	}
 
+	/**
+	 * This method return keyID
+	 * 
+	 * @return key id
+	 */
 	public static String getKeyID() {
 		return txtKey.getText();
 	}
-
+	
+	/**
+	 * This method return Specific key 
+	 * 
+	 * @return   Specific key 
+	 */
 	public static String getSpecificKey() {
 		return (String) comboBoxKey.getSelectedItem().toString();
 	}
 
+	/**
+	 *  This method return Pick up person
+	 * 
+	 * @return Pick up person 
+	 */
 	public static String getPickUpPerson() {
 		return txtPerson.getText();
 	}
 
+	/**
+	 *  This method return Details 
+	 * 
+	 * @return Details
+	 */
 	public static String getDetails() {
 		return txtDetails.getText();
 	}
 
+	/**
+	 * This is a method that hide and show the Form
+	 * 
+	 * @param b
+	 */
 	public static void setVisible(boolean b) {
 		frmService.setVisible(b);
 	}

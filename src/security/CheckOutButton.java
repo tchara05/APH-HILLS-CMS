@@ -33,7 +33,12 @@ public class CheckOutButton extends Thread {
 
 		return false;
 	}
-
+	
+	/**
+	 * This method is used for checking-out a key. When the button of the check-out
+	 * form is pushed then this function is called. Then we execute a query in
+	 * updating the service table in the database.
+	 */
 	@SuppressWarnings("static-access")
 	public void run() {
 

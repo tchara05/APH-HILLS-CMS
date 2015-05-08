@@ -45,11 +45,23 @@ public class SecurityForm {
 		SecurityForm window = new SecurityForm(0);
 		window.frame.setVisible(true);
 	}
-
+	/**
+	 * This is a method that hide and show the Form
+	 * 
+	 * 
+	 * @param editor
+	 */
 	public SecurityForm(int editor) {
 		initialize(editor);
 	}
-
+	
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
 	public void initialize(int editor) {
 
 		try {

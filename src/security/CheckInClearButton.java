@@ -13,7 +13,11 @@ import security.CheckIn;
  */
 
 public class CheckInClearButton {
-
+	/**
+	 * This method is used for clearing the text fields
+	 * that are used in the check-out form.
+	 * 
+	 */
 	public static void start() {
 
 		String value = "";

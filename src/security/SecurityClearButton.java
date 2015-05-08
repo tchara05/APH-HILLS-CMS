@@ -10,7 +10,11 @@ package security;
  */
 
 public class SecurityClearButton {
-	
+	/**
+	 *
+	 * This class is used for clearing the text fields
+	 * that are used in the security department menu. 
+	 */
 	public static void start() {
 		
 		String value = "";

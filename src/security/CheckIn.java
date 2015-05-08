@@ -45,16 +45,37 @@ public class CheckIn {
 	public static int isList = 0;
 	public static String inList = "";
 
+	
+	 /**
+		 * Main method
+		 * Useful only for testing
+		 *
+		 * @param  Srting[]
+		 */
+	
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		CheckIn window = new CheckIn();
 		window.frmCheckIn.setVisible(true);
 	}
 
+	/**
+	 * This is a method that hide and show the Form
+	 * 
+	 * 
+	 * 
+	 */
 	public CheckIn() {
 		initialize();
 	}
 
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
 	private void initialize() {
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

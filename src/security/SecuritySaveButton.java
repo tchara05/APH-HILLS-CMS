@@ -18,6 +18,10 @@ import extras.Checker;
 
 public class SecuritySaveButton extends Thread {
 
+	/**
+	 * This mathod is used for saving a new key contract or
+	 * saving an edited key contract.
+	 */
 	public void run() {
 
 		DatabaseConnection database = new DatabaseConnection();

@@ -3,10 +3,22 @@ package security;
 import javax.swing.border.Border;
 import security.CheckOut;
 
-
+/**
+ * 
+ * This class clear all fields in Checkout form
+ * 
+ * @author TeamD
+ * 
+ */
 
 public class CheckOutClearButton {
 
+	/**
+	 * this method clear all fields in checkout form 
+	 * 
+	 * 
+	 * @param clear-to define the clear values
+	 */
 	public static void start(int clear) {
 
 		String value = "";

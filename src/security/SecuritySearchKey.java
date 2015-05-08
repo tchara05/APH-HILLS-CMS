@@ -19,6 +19,11 @@ import extras.DatabaseConnection;
 
 public class SecuritySearchKey extends Thread {
 
+	/**
+	 * This class is used for editing or deleting a key contract
+	 * using the plot name and the plot number. We use some checks
+	 * using queries to check if the key contract exists or is not.
+	 */
 	public void run() {
 
 		int check = 0;

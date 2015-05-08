@@ -42,6 +42,13 @@ public class Securitymenu extends JPanel {
 	public static JRadioButton radioList;
 	public static JRadioButton radioText;
 
+	/**
+	 * The initialize method creates and initialize
+	 * all buttons, text fields, panels and everything 
+	 * that the window needs to show. 
+	 * 
+	 * 
+	 */
 	public Securitymenu() {
 
 		try {
@@ -223,10 +230,19 @@ public class Securitymenu extends JPanel {
 		setUpContractList();
 	}
 
+	/**
+	 * this method select Contract 
+	 * 
+	 * @return
+	 */
 	public static Object getSelectedContract() {
 		return AllContracts.getSelectedItem();
 	}
 
+	/**
+	 * this method Delete key Contract from list 
+	 * 
+	 */
 	public static void DeleteKeyContractFromList() {
 
 		if (AllContracts.getItemCount() > 0) {

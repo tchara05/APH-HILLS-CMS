@@ -16,7 +16,12 @@ import security.CheckOutButton;
  */
 
 public class CheckOutAvailability extends Thread {
-
+	/**
+	 * This method is used to check if the key is available,
+	 * if the key is not available or if the key is not
+	 * found. For this functionality we use some queries
+	 * into the database. 
+	 */
 	public void run() {
 		int check = 0;
 		String key = CheckOut.getKeyID();
