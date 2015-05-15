@@ -38,10 +38,10 @@ public class ListManager {
 	 * When data got into to a result set then, the getting also into
 	 * the drop down list with this format:
 	 * 
-	 * 		<col1 col2 col3>
+	 * 		col1 col2 col3
 	 * 
-	 * @param JComboBox
-	 * @param String
+	 * @param list - JCombox
+	 * @param query -execute query
 	 */
 
 	public static void setUpThreeList(JComboBox<String> list, String query) {
@@ -68,14 +68,14 @@ public class ListManager {
 	
 	/**
 	 * Method that takes a list and three strings. The strings represent
-	 * 		(for example  <id,name,surname> )
+	 * 		(for example  id,name,surname )
 	 * and method inserts these string into the list with alphabetic sorting(str1,str2).
 	 * 
 	 * 
-	 * @param String
-	 * @param String
-	 * @param String
-	 * @param JComboBox
+	 * @param id input string id
+	 * @param str1 input string 1
+	 * @param str2 input string 2
+	 * @param list -update list
 	 */
 	
 	
@@ -114,14 +114,14 @@ public class ListManager {
 
 	/**
 	 * Method that takes a list and three strings. The strings represent
-	 * 		(for example  <id,name,surname> )
+	 * 		(for example  id,name,surname )
 	 * and method inserts these string into the list with alphabetic sorting(str1,str2).
 	 * 
 	 * 
-	 * @param String
-	 * @param String
-	 * @param String
-	 * @param DefaultListModel
+	 * @param id -input string id
+	 * @param str1-input string 1
+	 * @param str2-input string 2
+	 * @param list-update list
 	 */
 
 	public static void UpdateList(String id, String str1, String str2,DefaultListModel<String> list) {
@@ -161,10 +161,10 @@ public class ListManager {
 	 * When data got into to a result set then, the getting also into
 	 * the drop down list with this format:
 	 * 
-	 * 		<col1 col2>
+	 * 		col1 col2
 	 * 
-	 * @param JComboBox
-	 * @param String
+	 * @param list set up drop-down list 
+	 * @param query query to set up the list items
 	 */
 
 
@@ -195,8 +195,8 @@ public class ListManager {
 	 * list
 	 * 
 	 * 
-	 * @param DefaultListModel
-	 * @param String
+	 * @param list - to delete the item 
+	 * @return  -string  to delete from list
 	 */
 	
 	public static String DeleteFromList(JComboBox<String> list) {
@@ -215,8 +215,8 @@ public class ListManager {
 	 * list
 	 * 
 	 * 
-	 * @param DefaultListModel
-	 * @param String
+	 * @param list -list to remove
+	 * @param s -string to remove from list
 	 */
 	public static void DeleteFromList(DefaultListModel<String> list,String s){
 		if (list.getSize()>0){
@@ -227,12 +227,12 @@ public class ListManager {
 	/**
 	 * Method takes as parameters a string with format:
 	 * 
-	 * 	<str1 str2 str3>
+	 * 	str1 str2 str3
 	 * 
 	 * and returns the str1 str2 and str3  in an String array.
 	 * 
-	 * @param String
-	 * @return String
+	 * @param item -from list
+	 * @return -String array contains all this string from item list
 	 */
 	
 	
@@ -269,12 +269,12 @@ public class ListManager {
 	/**
 	 * Method takes as parameters a string with format:
 	 * 
-	 * 	<str1 str2>
+	 * 	str1 str2
 	 * 
 	 * and returns the str1 and str2 into a String array.
 	 * 
-	 * @param String
-	 * @return String[]
+	 * @param item- from list 
+	 * @return -array of strings contains all this string from item list
 	 */
 
 	public static String[] SplitTwoItem(String item) {
@@ -311,10 +311,10 @@ public class ListManager {
 	 * When data got into to a result set then, the getting also into
 	 * the drop down list with this format:
 	 * 
-	 * 		<col1 col2>
+	 * 		col1 col2
 	 * 
-	 * @param DefaultListModel
-	 * @param String
+	 * @param list-list to setup
+	 * @param query -to setup the list context
 	 */
 	public static void SetUpThreeList(DefaultListModel<String> list,
 			String query) {
@@ -342,12 +342,12 @@ public class ListManager {
 	/**
 	 * Method takes as parameters a string with format:
 	 * 
-	 * 	<Fname Lname share>
+	 * 	Fname Lname share
 	 * 
 	 * and returns the Fname and Lname in an array
 	 * 
-	 * @param String
-	 * @return String[]
+	 * @param item -from list
+	 * @return array of strings contains all this string from item list
 	 */
 	
 	
@@ -374,12 +374,12 @@ public class ListManager {
 	/**
 	 * Method takes as parameters a string with format:
 	 * 
-	 * 	<Fname Lname share  ...>
+	 * 	Fname Lname share  ...
 	 * 
 	 * and returns the Fname .
 	 * 
-	 * @param String
-	 * @return Strin
+	 * @param s-input string 
+	 * @return the fist string of input string
 	 */
 	
 	

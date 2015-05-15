@@ -233,7 +233,7 @@ public class Securitymenu extends JPanel {
 	/**
 	 * this method select Contract 
 	 * 
-	 * @return
+	 * @return-object Allcontracts items 
 	 */
 	public static Object getSelectedContract() {
 		return AllContracts.getSelectedItem();

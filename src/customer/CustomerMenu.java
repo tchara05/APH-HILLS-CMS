@@ -253,7 +253,7 @@ public class CustomerMenu {
 	 * this method create that Form calling the
 	 * constructor of CustomerMenu
 	 * 
-	 * 
+	 * @return the jpanel Customer Panel
 	 */
 	public static JPanel createCustomerMenu() {
 		new CustomerMenu();
@@ -265,7 +265,7 @@ public class CustomerMenu {
 	 * a Customer and disable same information.
 	 * To be sure about the customer to delete or edit.
 	 * 
-	 * 
+	 * @param customer -drop down list of customers
 	 */
 	public static void setDetails(String customer) {
 

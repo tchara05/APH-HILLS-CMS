@@ -17,6 +17,8 @@ public class Checker {
 	 * This method is used for checking if the given text
 	 * is a string without numbers or spaces.
 	 *
+	 *@param t - input string
+	 *@return -true string without numbers or spaces.
 	 */
 	public static boolean checkString(String t) {
 
@@ -38,6 +40,8 @@ public class Checker {
 	 * This method is used for checking if the given text
 	 * is a number.
 	 *
+	 *@param s- input string
+	 *@return -true if is number
 	 */
 	public static boolean checkNumber(String s) {
 
@@ -54,7 +58,9 @@ public class Checker {
 	 * This method is used for checking if the given text
 	 * is not empty.
 	 *
-	 */
+	 *@param text -input string
+	 *@return -true if string not empty
+ 	 */
 	public static boolean checkEmpty(String text){
 		if(text.equals(""))
 			return false;
@@ -67,6 +73,8 @@ public class Checker {
 	 * This method is used for checking if the given text
 	 * is an email.
 	 *
+	 *@param s -string input
+	 *@return -true if string is e-mail address
 	 */
 	public static boolean checkEmailAddress(String s) {
 		String epatern = "^.+@.+";
@@ -81,6 +89,8 @@ public class Checker {
 	 * This method is used for clearing the string from
 	 * any white spaces.
 	 *
+	 *@param str-input string
+	 *@return string without white spaces
 	 */
 	public static String clearString(String str) {
 
@@ -124,6 +134,8 @@ public class Checker {
 	 * This method is used for removing the first number
 	 * that is appeared in the string.
 	 *
+	 *@param s-input string 
+	 *@return string without the fist number 
 	 */
 	public static String removeStringID(String s) {
 

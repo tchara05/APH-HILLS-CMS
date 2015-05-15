@@ -184,7 +184,9 @@ public class SecuritySaveButton extends Thread {
 	 * This method is used to get the property id of the give plot name
 	 * and plot number in the property table of the database.
 	 * 
-	 * @author TeamD
+	 *@param txtplotName -input string 
+	 *@param txtplotNumber -input string 
+	 *@return -string property id
 	 *
 	 */
 	public static String getPropId(String txtplotName, int txtplotNumber) {

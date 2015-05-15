@@ -19,11 +19,9 @@ public class Messages {
 	 * 
 	 * 
 	 * 
-	 * @param String
+	 * @param msg -String of Warning Message
+	 * 
 	 */
-	
-	
-	
 	 public static void  showWarningMessage(String msg){
 			JOptionPane.showMessageDialog(null,
 				    msg,
@@ -37,7 +35,7 @@ public class Messages {
 	 * 
 	 * 
 	 * 
-	 * @param String
+	 * @param msg-String of Save Message
 	 */
 	 
 	 public static void showSaveMessage(String msg){
@@ -52,7 +50,7 @@ public class Messages {
 	 * 
 	 * 
 	 * 
-	 * @param String
+	 * @param msg-String of Error Message
 	 */
 	 
 	 public static void showErrorMessage(String msg){

@@ -48,7 +48,7 @@ public class CheckOut {
 	 * Main method
 	 * Useful only for testing
 	 *
-	 * @param  Srting[]
+	 * @param  args[]
 	 */
 
 	@SuppressWarnings("static-access")
@@ -359,7 +359,7 @@ public class CheckOut {
 	/**
 	 * This is a method that hide and show the Form
 	 * 
-	 * @param b
+	 * @param b -if true show the form else hide
 	 */
 	public static void setVisible(boolean b) {
 		frmService.setVisible(b);

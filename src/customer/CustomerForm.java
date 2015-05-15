@@ -96,7 +96,7 @@ public class CustomerForm {
 		 * Main method
 		 * Useful only for testing
 		 *
-		 * @param  Srting[]
+		 * @param  args[]
 		 */
 	public static void main(String[] args) {
 		

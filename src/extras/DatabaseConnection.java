@@ -65,6 +65,7 @@ public class DatabaseConnection {
 	/**
 	 * This method return the statement of database
 	 * 
+	 * @return  the statement of database
 	 */
 	public Statement getStatement() {
 		return statement;
@@ -88,7 +89,7 @@ public class DatabaseConnection {
 	 * 
 	 * 
 	 * @return Statement
-	 * @throws SQLException
+	 * @throws SQLException if something go worng with DB connection 
 	 */
 	
 	
@@ -118,8 +119,8 @@ public class DatabaseConnection {
 	 * 
 	 * 
 	 * 
-	 * @param Strings[]
-	 * @throws Throwable
+	 * @param args[]
+	 * @throws Throwable if something go wrong with DB connection
 	 */
 	public static void main(String args[]) throws Throwable {
 		new DatabaseConnection();

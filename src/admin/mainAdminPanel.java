@@ -52,7 +52,7 @@ public class mainAdminPanel extends JPanel {
 	 * The constructor calls the initialize method to 
 	 * design the window-form and initialize all fields.
 	 * 
-	 * 
+	 * @return  the jpanel adminMainPanel
 	 */
 	public static JPanel createAdminMenu(){
 		new mainAdminPanel();

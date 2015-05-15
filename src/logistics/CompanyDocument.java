@@ -73,10 +73,10 @@ public class CompanyDocument {
 	
 	
 	/**
-	 * 
 	 * Method create the Header for receipt Document
 	 * 
-	 *@param doc -Document file 
+	 * @param doc-Document file 
+	 * @throws Exception if something go wrong 
 	 */
 	public void receiptHeader(Document doc) throws Exception {
 
@@ -107,6 +107,7 @@ public class CompanyDocument {
 	 * Method create the Header for invoice Document
 	 * 
 	 *@param doc -Document file 
+	 * @throws Exception if something go wrong 
 	 */
 	public void invoiceHeader(Document doc) throws Exception {
 
@@ -135,7 +136,8 @@ public class CompanyDocument {
 	 * 
 	 * Method create the Header for Proforma Document
 	 * 
-	 *@param doc -Document file 
+	 *@param doc -Document file
+	 * @throws Exception if something go wrong  
 	 */
 	public void proformaHeader(Document doc) throws Exception {
 
@@ -175,6 +177,7 @@ public class CompanyDocument {
 	 * 
 	 *@param doc -Document file 
 	 *@param rs -ResltSet customer data
+	 * @throws Exception if something go wrong  with DB connection
 	 */
 	public void createCustomerDetailsTableProforma(Document doc, ResultSet rs)
 			throws Exception {
@@ -256,6 +259,7 @@ public class CompanyDocument {
 	 * 
 	 *@param doc -Document file 
 	 *@param rs -ResltSet customer data
+	 * @throws Exception if something go wrong  with DB connection
 	 */
 	public void createCustomerDetailsTableInvoice(Document doc, ResultSet rs)
 			throws Exception {
@@ -351,6 +355,7 @@ public class CompanyDocument {
 	 * 
 	 *@param doc -Document file 
 	 *@param type -enumeration Document type
+	 *@throws Exception if something go wrong  with DB connection
 	 */
 	public void Signatures(Document doc,TYPE type) throws Exception {
 
@@ -396,6 +401,7 @@ public class CompanyDocument {
 	 * 
 	 *@param doc -Document file 
 	 *@param type -enumeration Document type
+	 *@throws Exception if something go wrong  
 	 */
 	public void BankInfo(Document doc,TYPE type) throws Exception {
 
@@ -458,7 +464,8 @@ public class CompanyDocument {
 	 *	 
 	 * 
 	 *@param doc -Document file 
-	 *@param type -enumeration Document type
+	 *@param rs - Result set from Db
+	 *@throws Exception if something go wrong  with DB connection
 	 */
 	public void createCostTableProforma(Document doc, ResultSet rs)
 			throws Exception {
@@ -579,6 +586,8 @@ public class CompanyDocument {
 	 * 
 	 *@param doc -Document file 
 	 *@param type -enumeration Document type
+	 *@param rs -result from DB
+	 *@throws Exception if something go wrong  with DB connection
 	 */
 	public void createCostTableReceipt(Document doc, ResultSet rs,TYPE type)
 			throws Exception {
@@ -701,6 +710,8 @@ public class CompanyDocument {
 	 * 
 	 *@param doc -Document file 
 	 *@param type -enumeration Document type
+	 *@param rs -Result from Db
+	 *@throws Exception if something go wrong  with DB connection
 	 */
 	public void createCostTableInvoice(Document doc, ResultSet rs,TYPE type)
 			throws Exception {
@@ -816,7 +827,7 @@ public class CompanyDocument {
 	 * Method create Proforma file
 	 * for all customer
  	 *	 
-	 * 
+	 * @throws Exception if something go wrong  with DB connection
 	 */
 	public static void createAllProforma() throws Exception {
 
@@ -861,6 +872,7 @@ public class CompanyDocument {
 	 * for this customer customer
  	 *	 
 	 * @param customer - item from drop-down list
+	 * @throws Exception if something go wrong  with DB connection
 	 */
 	public static void CreateInvoice(String customer) throws Exception {
 
@@ -901,6 +913,7 @@ public class CompanyDocument {
 	 * for this customer customer
  	 *	 
 	 * @param customer - item from drop-down list
+	 * @throws Exception if something go wrong  with DB connection
 	 */
 	public static void CreateReceipt(String customer) throws Exception {
 		DatabaseConnection database = new DatabaseConnection();
@@ -944,7 +957,7 @@ public class CompanyDocument {
 		 * Main method
 		 * Useful only for testing
 		 *
-		 * @param  Srting[]
+		 * @param  args[]
 		 */
 	public static void main(String args[]) {
 

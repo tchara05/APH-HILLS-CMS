@@ -114,7 +114,7 @@ public class Excel {
 	 * this data from excel into database.
 	 * 
 	 * 
-	 * @param File the excel file
+	 * @param f the excel file
 	 */
 	
   public static void ReadExcel(File f){

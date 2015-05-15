@@ -57,7 +57,7 @@ public class LogIn {
 		 * Main method
 		 * Useful only for testing
 		 *
-		 * @param  Srting[]
+		 * @param  args[]
 		 */
 
 	public static void main(String[] args) {
@@ -71,7 +71,6 @@ public class LogIn {
 	 * 
 	 * This is a method that hide and show the Form
 	 * 
-	 * @param menu
 	 */
 	public LogIn() {
 		initialize();
@@ -218,7 +217,7 @@ public class LogIn {
 	 * 
 	 * Returns the user.
 	 * 
-	 * @author TeamD
+	 *@return String of the username
 	 *
 	 */
 	public static String getUsername() {
@@ -229,7 +228,7 @@ public class LogIn {
 	 * This is a method that hide and show the window-form
 	 * 
 	 * 
-	 * @param t boolean
+	 * @param t boolean if t true show else hide the form
 	 */
 
 	public void setVisible(boolean t) {

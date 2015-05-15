@@ -190,7 +190,7 @@ public class PropertyMenu{
 	 * This is a method that hide and show the Form
 	 * 
 	 * 
-	 * 
+	 * @return the jpanel for property panel
 	 */
 	public static JPanel createPropertyMenu(){
 		new PropertyMenu();
@@ -200,7 +200,7 @@ public class PropertyMenu{
 	 * Main method
 	 * Useful only for testing
 	 *
-	 * @param  Srting[]
+	 * @param  args[]
 	 */
 	public static void main(String args[]){
 		new PropertyMenu();

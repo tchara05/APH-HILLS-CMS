@@ -163,8 +163,10 @@ public class CheckOutButton extends Thread {
 	 * This method is used to check is the key Id exists in the database
 	 * using two queries.
 	 * 
-	 * @author TeamD
-	 * 
+	 * @param s-input string 
+	 * @param flag -define the query
+	 * @throws SQLException if some thing go wrong with DB connection 
+	 * @return -true if  key Id exists in the database
 	 */
 	public static boolean checkKey(String s, int flag) throws SQLException {
 
@@ -203,8 +205,10 @@ public class CheckOutButton extends Thread {
 	 * This method is used to find the keys that are already checked out, so
 	 * we cant use them and check them again.
 	 * 
-	 * @author TeamD
-	 * 
+	 * @param s-input string 1 (keyID)
+	 * @param p -input string 2 (speficKey)
+	 * @throws SQLException if some thing go wrong with DB connection 
+	 * @return true os key is already checked out
 	 */
 	public static boolean chekServiceTable(String s, String p) throws SQLException {
 

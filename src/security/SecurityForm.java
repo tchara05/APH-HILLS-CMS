@@ -49,7 +49,7 @@ public class SecurityForm {
 	 * This is a method that hide and show the Form
 	 * 
 	 * 
-	 * @param editor
+	 * @param editor-to define  context of some fields
 	 */
 	public SecurityForm(int editor) {
 		initialize(editor);
@@ -60,7 +60,7 @@ public class SecurityForm {
 	 * all buttons, text fields, panels and everything 
 	 * that the window needs to show. 
 	 * 
-	 * 
+	 * @param editor -to define  context of some fields
 	 */
 	public void initialize(int editor) {
 

@@ -96,7 +96,7 @@ public class ContractForm {
 	 * Main method
 	 * Useful only for testing
 	 *
-	 * @param  Srting[]
+	 * @param args[]
 	 */
 	
 	
@@ -487,11 +487,8 @@ public class ContractForm {
 	 * This is a method that hide and show the window-form
 	 * 
 	 * 
-	 * @param boolean
-	 */
-	
-	
-	
+	 * @param val -if true show the form else hide the form 
+	 */	
 	public static void setVisible(boolean val){
 		String property ="";
 		try{
@@ -510,7 +507,7 @@ public class ContractForm {
 	 * new contract.
 	 * 
 	 * 
-	 * @param String
+	 * @param property-input string 
 	 */
 	public static void setPropertyTextFields(String property){
 		String[] Property = ListManager.SplitThreeItem(property);

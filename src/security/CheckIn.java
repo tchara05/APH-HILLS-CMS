@@ -50,7 +50,7 @@ public class CheckIn {
 		 * Main method
 		 * Useful only for testing
 		 *
-		 * @param  Srting[]
+		 * @param  args[]
 		 */
 	
 	@SuppressWarnings("static-access")
