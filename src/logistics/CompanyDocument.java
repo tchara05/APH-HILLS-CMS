@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -18,6 +19,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import extras.DatabaseConnection;
 import extras.ListManager;
+import extras.Query;
 
 /**
  * Class PDF (proforma, Invoice , receipt)
@@ -199,7 +201,6 @@ public class CompanyDocument {
 			System.exit(-1);
 		}
 		proforma.close();
-
 		String customerName = "\n" + rs.getString(5) + " " + rs.getString(6);
 		String address = rs.getString(7) + " " + rs.getString(8) + ",\n"
 				+ rs.getString(11);
@@ -243,6 +244,7 @@ public class CompanyDocument {
 		CustomerDetailsTable.addCell(AllCodes); // eisagogi keliou kwdikwn stin
 												// de3ia plevra
 		doc.add(CustomerDetailsTable);
+		ListManager.setUpThreeList(accountantPanel.AllCustomers1, Query.PROFORMA_CUSTOMERS);
 	}
 	
 	/**
@@ -938,7 +940,7 @@ public class CompanyDocument {
 					+ rs.getString(5) +"_" +rs.getString(6)+ "_"+rs.getString(7) + ".pdf"));
 			document.open();
 			Companydocument.receiptHeader(document);
-			Companydocument.createCustomerDetailsTableReceipt(document, rs);	
+			Companydocument.createCustomerDetailsTableInvoice(document, rs);	
 			Companydocument.createCostTableReceipt(document, rs,TYPE.RECEIPT);
 			Companydocument.Signatures(document,TYPE.RECEIPT);
 			Companydocument.BankInfo(document,TYPE.RECEIPT);
@@ -948,11 +950,6 @@ public class CompanyDocument {
 	
 	}
 
-	private void createCustomerDetailsTableReceipt(Document document,
-			ResultSet rs) {
-		// TODO Auto-generated method stub
-		
-	}
 	 /**
 		 * Main method
 		 * Useful only for testing

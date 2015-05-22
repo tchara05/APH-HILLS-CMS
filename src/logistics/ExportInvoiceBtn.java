@@ -6,6 +6,7 @@ import java.sql.Statement;
 import extras.DatabaseConnection;
 import extras.ListManager;
 import extras.Email;
+import extras.Messages;
 /**
  * Class create the Invoice for  customer 
  * has property in active when the Export Invoice  
@@ -55,9 +56,9 @@ public class ExportInvoiceBtn extends Thread {
 				LName=rst.getString(3);	
 			}
 			Email.send(mail,id,FName,LName,"Invoices");
+			Messages.showSaveMessage("Mail Sended");
 			
 		} catch (Exception e) {
-			System.out.println("Create Invoice");
 			e.printStackTrace();
 		}
 		

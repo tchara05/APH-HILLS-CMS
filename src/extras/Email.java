@@ -83,7 +83,7 @@ public class Email {
             
             messageBodyPart = new MimeBodyPart();
             
-            String file = "C:/Users/Panos/Desktop/TEAM_D_361/"+s8+"/"+ s5 +"_" + s6 + "_"+ s7 + ".pdf";
+            String file = "/"+s8+"/"+ s5 +"_" + s6 + "_"+ s7 + ".pdf";
             
             String fileName =  s5 +"_" + s6 + "_"+ s7 + ".pdf";
             
@@ -99,7 +99,7 @@ public class Email {
           
           
             Transport.send(msg);
-            System.out.print("edw");
+           
    
         } catch (Exception mex) {
             mex.printStackTrace();

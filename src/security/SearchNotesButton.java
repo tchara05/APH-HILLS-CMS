@@ -58,13 +58,13 @@ public class SearchNotesButton extends Thread {
 			plotNumber = CheckOut.txtPlotNumber.getText();
 
 			if (!Checker.checkEmpty(plotName)
-					|| !Checker.checkEmpty(plotNumber))
+					|| !Checker.checkEmpty(plotNumber)){
 				check = 1;
-
+			}
 			if (!Checker.checkString(plotName)
-					|| !Checker.checkNumber(plotNumber))
+					|| !Checker.checkNumber(plotNumber)){
 				check = 1;
-
+			}
 			if (check == 1) {
 				check = 0;
 				propertyID = "1";

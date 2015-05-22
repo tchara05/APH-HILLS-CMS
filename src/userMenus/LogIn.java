@@ -74,7 +74,7 @@ public class LogIn {
 	 */
 	public LogIn() {
 		initialize();
-		new UpdateAll().start();
+		//new UpdateAll().start();
 	}
 
 	
@@ -238,47 +238,8 @@ public class LogIn {
 }
 
 
- /**
-  * Thread that update the system.
-  * 
-  * It updates all dropdown list in the system by 
-  * retrieving data from the database.
-  * 
-  * Helpful when two people works at different location
-  * 
-  * 
-  * @author TeamD
-  *
-  */
 
- class UpdateAll extends Thread{
-	/**
-	 * 
-	 * Thread that update the system.
-	 * 
-	 * It updates all dropdown list in the system by 
-	 * retrieving data from the database.
-	 * 
-	 * Helpful when two people works at different location
-	 * 
-	 */
-		
-	public void run(){
-		
-		while(true){	
-			try {
-				sleep(60000);
-				ListManager.updateAllList();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			
-			
-		}
-	}
+
 	
 	
 	
-	
-}

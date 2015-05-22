@@ -120,6 +120,7 @@ public class AdminMenu {
 		CustomerPanel = CustomerMenu.createCustomerMenu();
 		SecurityPanel = Securitymenu.createSecurityMenu();
 		MaintancePanel = mainAdminPanel.createAdminMenu();
+		ContractPanel= ContractMenu.createContractMenu();
 		AccountantPanel = accountantPanel.createAccountantMenu();
 		frame.getContentPane().setLayout(null);
 
